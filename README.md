@@ -76,10 +76,9 @@ security-plus-sy0701/
 │   ├── semana-5-6-operaciones/   # Dominio 4 (28% del examen) ⚠️ MÁS IMPORTANTE
 │   └── semana-7-8-governance/    # Dominio 5 + Repaso (20%)
 │
-├── flashcards/                   # 382 flashcards en 3 formatos
+├── flashcards/                   # 382 flashcards en 2 formatos
 │   ├── flashcards.html           # HTML interactivo (filtrable por dominio/prioridad)
-│   ├── flashcards.csv            # Para importar a Anki (si existe)
-│   └── flashcards.pdf            # PDF imprimible (220 ALTA + 162 MEDIA)
+│   └── flashcards.csv            # Para importar a Anki (si existe)
 │
 ├── laboratorios/                 # 15 labs prácticos paso a paso
 │   ├── README.md                 # Índice de labs + tiempos estimados
@@ -96,7 +95,8 @@ security-plus-sy0701/
 │
 ├── diccionario/                  # Términos por dominio
 │   ├── diccionario-completo.json # 436 términos (formato estructurado)
-│   └── diccionario-completo.md   # 436 términos (formato markdown)
+│   ├── diccionario-completo.md   # 436 términos (formato markdown)
+│   └── SecPlus_SY0-701_Diccionario_COMPLETO.pdf # 436 términos (PDF imprimible)
 │
 └── README.md                     # Este archivo
 ```
@@ -131,9 +131,12 @@ Abre: flashcards/flashcards.html en tu navegador
 Importa: flashcards/flashcards.csv a Anki
 ```
 
-**O imprime** (para estudiar offline):
+**Diccionario completo en PDF** (para consulta o imprimir):
 ```bash
-Imprime: flashcards/flashcards.pdf
+Abre: diccionario/SecPlus_SY0-701_Diccionario_COMPLETO.pdf
+- 436 términos con definiciones
+- Organizado por dominios
+- Ideal para referencia rápida
 ```
 
 ### Paso 3: Sigue el Plan
