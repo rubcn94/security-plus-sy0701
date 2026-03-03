@@ -1,0 +1,4693 @@
+{
+  "metadata": {
+    "titulo": "Diccionario CompTIA Security+ SY0-701 - COMPLETO FINAL",
+    "version": "2.1 FINAL (sin sinónimos)",
+    "fuente": "Bloques 1-21 teoria COMPLETOS + Bloques 1-12 preguntas COMPLETOS (ExamCompass + Messer)",
+    "dominios_incluidos": [
+      "Dominio 1",
+      "Dominio 2",
+      "Dominio 3"
+    ],
+    "fecha_extraccion": "2026-02-28",
+    "notas": "Diccionario optimizado sin sinónimos - solo términos, definiciones, ejemplos y prioridades",
+    "total_terminos": 436,
+    "nuevos_bloques_10_12": 64,
+    "nuevos_bloques_16_18": 85,
+    "nuevos_bloques_19_21": 47,
+    "fecha_completado": "2026-03-02",
+    "cobertura": "Dominios 1-5 COMPLETOS (100%)",
+    "estadisticas_prioridad": {
+      "ALTA": 220,
+      "MEDIA": 162,
+      "COMPLEMENTARIO": 54,
+      "porcentaje_ALTA": 50.5,
+      "porcentaje_MEDIA": 37.2,
+      "porcentaje_COMPLEMENTARIO": 12.4
+    }
+  },
+  "Dominio_1_Conceptos_Generales_Seguridad": {
+    "peso_examen": "12%",
+    "definiciones": {
+      "CIA_Triad": {
+        "termino": "CIA Triad",
+        "definicion": "Tríada de seguridad fundamental: Confidencialidad (solo personas autorizadas acceden), Integridad (datos no modificados sin autorización), Disponibilidad (acceso cuando se necesita)",
+        "ejemplos": [
+          "Confidencialidad: cifrado de datos sensibles",
+          "Integridad: hashing para verificar archivos",
+          "Disponibilidad: sistemas redundantes y backups"
+        ],
+        "prioridad": "ALTA"
+      },
+      "AAA": {
+        "termino": "AAA Framework",
+        "definicion": "Authentication (verificar identidad), Authorization (dar permisos), Accounting (registrar acciones). Marco de control de acceso",
+        "ejemplos": [
+          "Login con usuario/contraseña (Authentication) → permisos de lectura/escritura (Authorization) → logs de acceso (Accounting)",
+          "RADIUS y TACACS+ implementan AAA"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Zero_Trust": {
+        "termino": "Zero Trust",
+        "definicion": "Modelo de seguridad que NO confía en ninguna entidad automáticamente. Verificar siempre, dentro o fuera de la red. 'Never trust, always verify'",
+        "ejemplos": [
+          "Verificar cada conexión incluso dentro de la LAN corporativa",
+          "MFA obligatorio para todos los accesos",
+          "Microsegmentación de red",
+          "Adaptive identity basada en contexto"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Gap_Analysis": {
+        "termino": "Gap Analysis",
+        "definicion": "Proceso de identificar diferencias entre el estado actual de seguridad de una organización y el estado deseado/requerido",
+        "ejemplos": [
+          "Comparar seguridad actual con ISO 27001",
+          "Identificar controles faltantes para compliance PCI DSS"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Defense_in_Depth": {
+        "termino": "Defense in Depth",
+        "definicion": "Múltiples capas de seguridad. Si una falla, las demás protegen. Concepto de defensa en profundidad",
+        "ejemplos": [
+          "Firewall → IDS → WAF → Antivirus → EDR → SIEM",
+          "Seguridad física + red + aplicación + datos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Security_Control_Types": {
+        "termino": "Tipos de Controles de Seguridad",
+        "definicion": "Preventivo (evita incidentes), Detective (detecta incidentes), Correctivo (corrige tras incidente), Compensatorio (alternativa cuando el control preferido no es viable), Directivo (políticas y procedimientos), Disuasorio (desalienta ataques)",
+        "ejemplos": [
+          "Preventivo: firewall/AV",
+          "Detective: IDS/SIEM/CCTV",
+          "Correctivo: backups",
+          "Compensatorio: MFA si no hay biometría",
+          "Directivo: AUP",
+          "Disuasorio: cámaras visibles"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Security_Control_Categories": {
+        "termino": "Categorías de Controles",
+        "definicion": "Técnico/Lógico (tecnología/sistemas), Gerencial/Administrativo (políticas/procedimientos), Operacional (personas/procesos diarios), Físico (instalaciones materiales)",
+        "ejemplos": [
+          "Técnico: cifrado, firewall, EDR",
+          "Gerencial: políticas de seguridad, formación",
+          "Operacional: guardias, procedimientos de backup",
+          "Físico: cerraduras, cámaras, vallas"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Honeypot": {
+        "termino": "Honeypot",
+        "definicion": "Sistema trampa que simula ser vulnerable para atraer atacantes y estudiar sus técnicas. Contiene vulnerabilidades aparentes monitorizadas",
+        "ejemplos": [
+          "Servidor SSH falso con credenciales débiles",
+          "Base de datos con datos ficticios",
+          "Detectar técnicas de ataques"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Honeynet": {
+        "termino": "Honeynet",
+        "definicion": "Red completa de honeypots interconectados que simula infraestructura real. Entorno controlado para observar ataques complejos",
+        "ejemplos": [
+          "Red falsa con servidores web, DB, y workstations",
+          "Simular red corporativa completa para estudio de APTs"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Honeyfile": {
+        "termino": "Honeyfile",
+        "definicion": "Archivo falso colocado estratégicamente para detectar accesos no autorizados. Genera alerta cuando se accede",
+        "ejemplos": [
+          "passwords.xlsx falso en compartido de red",
+          "Documento con información tentadora pero falsa",
+          "Trigger de alerta al abrir"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Honeytoken": {
+        "termino": "Honeytoken",
+        "definicion": "Dato falso (credencial, API key, URL) que cuando se usa genera alerta de compromiso. NO debe usarse en producción real",
+        "ejemplos": [
+          "Credenciales falsas en código fuente",
+          "API key dummy que alerta si se usa",
+          "Email/usuario inexistente que si se usa indica compromiso"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "AES": {
+        "termino": "AES (Advanced Encryption Standard)",
+        "definicion": "Algoritmo de cifrado simétrico estándar. Claves de 128, 192 o 256 bits. Rápido y seguro",
+        "ejemplos": [
+          "AES-256 para cifrado de disco BitLocker",
+          "AES-128 en WPA2",
+          "AES-GCM en TLS"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DES": {
+        "termino": "DES (Data Encryption Standard)",
+        "definicion": "Algoritmo de cifrado simétrico OBSOLETO. Clave de 56 bits. Vulnerable a brute force. Reemplazado por AES",
+        "ejemplos": [
+          "Usado en sistemas legacy antiguos",
+          "Sustituido por 3DES y luego AES"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "3DES": {
+        "termino": "3DES (Triple DES)",
+        "definicion": "Versión mejorada de DES aplicando cifrado 3 veces. Clave efectiva de 168 bits. Obsoleto desde 2023",
+        "ejemplos": [
+          "Usado en cajeros ATM legacy",
+          "Sistemas de pago antiguos"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "RC4": {
+        "termino": "RC4 (Rivest Cipher 4)",
+        "definicion": "Cifrado de flujo obsoleto. Usado en WEP y SSL antiguo. Vulnerabilidades conocidas. Deprecated",
+        "ejemplos": [
+          "WEP encryption (inseguro)",
+          "SSL/TLS antiguo (prohibido)",
+          "Stream cipher",
+          "Vulnerabilidades Fluhrer-McGrew"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Block_Cipher_Modes": {
+        "termino": "Modos de Cifrado de Bloque",
+        "definicion": "Formas de aplicar cifrado por bloques. ECB (simple/débil), CBC (encadenado), CFB (feedback), GCM (autenticado), CTR (contador)",
+        "ejemplos": [
+          "ECB: NO usar (patrones visibles)",
+          "CBC: requiere IV",
+          "GCM: cifrado + autenticación",
+          "AES-256-GCM en TLS 1.3"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "RSA": {
+        "termino": "RSA",
+        "definicion": "Algoritmo de cifrado asimétrico. Par de claves pública/privada. Usado para cifrado y firmas digitales",
+        "ejemplos": [
+          "Certificados SSL/TLS",
+          "Firma digital de emails S/MIME",
+          "Intercambio seguro de claves simétricas",
+          "Claves de 2048-4096 bits"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ECC": {
+        "termino": "ECC (Elliptic Curve Cryptography)",
+        "definicion": "Criptografía de curva elíptica. Seguridad similar a RSA con claves más cortas. Eficiente para IoT y móviles",
+        "ejemplos": [
+          "ECDSA (firma digital)",
+          "ECDHE (intercambio de claves)",
+          "ECC 256-bit = RSA 3072-bit en seguridad"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DHE": {
+        "termino": "DHE (Diffie-Hellman Ephemeral)",
+        "definicion": "Intercambio de claves Diffie-Hellman con claves efimeras temporales. Perfect Forward Secrecy. Nueva clave cada sesion",
+        "ejemplos": [
+          "TLS_DHE_RSA cipher suites",
+          "PFS (Perfect Forward Secrecy)",
+          "Protege sesiones pasadas",
+          "ECDHE mas rapido"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ECDHE": {
+        "termino": "ECDHE (Elliptic Curve Diffie-Hellman Ephemeral)",
+        "definicion": "Versión de Diffie-Hellman basada en curvas elípticas con claves efímeras. Más eficiente que DHE tradicional",
+        "ejemplos": [
+          "TLS 1.3 usa ECDHE",
+          "Perfect Forward Secrecy con menor coste computacional"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Hashing": {
+        "termino": "Hashing",
+        "definicion": "Función criptográfica unidireccional que genera un valor de longitud fija (hash) a partir de datos de cualquier tamaño. NO es reversible",
+        "ejemplos": [
+          "SHA-256 para verificar integridad de archivos",
+          "Bcrypt/Argon2 para almacenar contraseñas",
+          "MD5 (obsoleto, vulnerable a colisiones)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SHA": {
+        "termino": "SHA (Secure Hash Algorithm)",
+        "definicion": "Familia de funciones hash criptográficas. SHA-1 (obsoleto), SHA-2 (SHA-256, SHA-512 - recomendado), SHA-3 (último estándar)",
+        "ejemplos": [
+          "SHA-256 para blockchain Bitcoin",
+          "SHA-512 para passwords",
+          "SHA-1 DEPRECADO (colisiones)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MD5": {
+        "termino": "MD5 (Message Digest 5)",
+        "definicion": "Función hash OBSOLETA de 128 bits. Vulnerable a colisiones. NO usar para seguridad",
+        "ejemplos": [
+          "Checksum de archivos (solo integridad no crítica)",
+          "Reemplazado por SHA-256"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "HMAC": {
+        "termino": "HMAC (Hash-based Message Authentication Code)",
+        "definicion": "Combina función hash con clave secreta para verificar autenticidad E integridad del mensaje",
+        "ejemplos": [
+          "HMAC-SHA256 en JWT",
+          "Verificar que mensaje no fue alterado y proviene de quien dice"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CRC": {
+        "termino": "CRC (Cyclic Redundancy Check)",
+        "definicion": "Función hash NO criptográfica para detección de errores. NO usar para seguridad, solo para verificar corrupción accidental",
+        "ejemplos": [
+          "CRC32 en archivos ZIP",
+          "Detección de errores en transmisión de red"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "PBKDF2": {
+        "termino": "PBKDF2 (Password-Based Key Derivation Function 2)",
+        "definicion": "Algoritmo de key stretching que aplica función hash múltiples veces (iteraciones) para derivar clave desde password. Protege contra brute force",
+        "ejemplos": [
+          "100,000 iteraciones SHA-256",
+          "Almacenamiento seguro de contraseñas",
+          "Alternativas: bcrypt, scrypt, Argon2"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Digital_Signature": {
+        "termino": "Digital Signature",
+        "definicion": "Firma digital para verificar autenticidad e integridad de documentos. Usa criptografia asimetrica (firma con clave privada, verifica con publica)",
+        "ejemplos": [
+          "Firmar PDF con certificado",
+          "Algoritmos: RSA, DSA, ECDSA",
+          "Proporciona autenticacion, integridad, no repudio"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DSA": {
+        "termino": "DSA (Digital Signature Algorithm)",
+        "definicion": "Algoritmo para firmas digitales. Autenticacion, integridad, no repudio. Basado en logaritmo discreto. No para cifrado",
+        "ejemplos": [
+          "DSA keys 1024-3072 bits",
+          "FIPS 186-4 standard",
+          "Solo firmas, NO cifrado",
+          "SSH host keys"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ECDSA": {
+        "termino": "ECDSA (Elliptic Curve Digital Signature Algorithm)",
+        "definicion": "DSA basado en criptografia de curva eliptica. Mas eficiente computacionalmente. Menor tamaño de clave para misma seguridad",
+        "ejemplos": [
+          "256-bit ECDSA = 3072-bit RSA security",
+          "Bitcoin signatures",
+          "TLS certificates",
+          "Mas rapido que RSA/DSA"
+        ],
+        "prioridad": "ALTA"
+      },
+      "PKI": {
+        "termino": "PKI (Public Key Infrastructure)",
+        "definicion": "Infraestructura de gestión de certificados digitales. Incluye CA (Certificate Authority), RA (Registration Authority), certificados X.509",
+        "ejemplos": [
+          "CA emite certificado SSL para sitio web",
+          "RA verifica identidad del solicitante",
+          "CRL lista certificados revocados"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Certificate": {
+        "termino": "Certificado Digital X.509",
+        "definicion": "Documento que vincula una clave pública a una identidad. Firmado por una CA. Contiene: titular, clave pública, CA emisora, periodo validez",
+        "ejemplos": [
+          "Certificado SSL/TLS para HTTPS",
+          "Certificado de firma de código",
+          "Certificado de usuario para S/MIME"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CA": {
+        "termino": "CA (Certificate Authority)",
+        "definicion": "Tercera parte confiable que emite, revoca y gestiona certificados digitales. Raiz de confianza en PKI",
+        "ejemplos": [
+          "DigiCert",
+          "Let's Encrypt",
+          "Verisign",
+          "Root CA → Intermediate CA → End-entity certificates"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RA": {
+        "termino": "RA (Registration Authority)",
+        "definicion": "Entidad de PKI que verifica la identidad del solicitante antes de que CA emita el certificado. Intermediario entre usuario y CA",
+        "ejemplos": [
+          "Verificar documentos de identidad antes de emitir certificado",
+          "Aprobar CSR antes de enviar a CA"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "DN": {
+        "termino": "DN (Distinguished Name)",
+        "definicion": "Nombre único que identifica una entidad en certificado X.509. Contiene: CN (Common Name), O (Organization), OU, C (Country)",
+        "ejemplos": [
+          "CN=www.example.com, O=Example Inc, C=US",
+          "Identifica titular del certificado"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "SAN_Certificate": {
+        "termino": "SAN Certificate (Subject Alternative Name)",
+        "definicion": "Certificado que puede asegurar múltiples dominios/subdominios. Extensión del campo SAN en X.509",
+        "ejemplos": [
+          "Certificado para www.ejemplo.com, mail.ejemplo.com, ftp.ejemplo.com",
+          "Más flexible que wildcard"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Wildcard_Certificate": {
+        "termino": "Wildcard Certificate",
+        "definicion": "Certificado que asegura un dominio principal y TODOS sus subdominios de primer nivel usando asterisco (*)",
+        "ejemplos": [
+          "*.ejemplo.com cubre: www.ejemplo.com, mail.ejemplo.com, ftp.ejemplo.com",
+          "NO cubre sub.sub.ejemplo.com"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "OID": {
+        "termino": "OID (Object Identifier)",
+        "definicion": "Identificador único numérico jerárquico usado en PKI para identificar objetos, algoritmos, políticas y extensiones",
+        "ejemplos": [
+          "OID 1.2.840.113549.1.1.11 = SHA256withRSA",
+          "Identificar política de certificado"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "PKCS": {
+        "termino": "PKCS (Public Key Cryptography Standards)",
+        "definicion": "Conjunto de estándares para criptografía de clave pública. Define formatos para claves, certificados, firmas, etc.",
+        "ejemplos": [
+          "PKCS#12 (.pfx/.p12) para exportar certificado + clave privada",
+          "PKCS#7 para firmas digitales",
+          "PKCS#10 para CSR"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Self_Signed_Certificate": {
+        "termino": "Certificado Autofirmado",
+        "definicion": "Certificado NO emitido por CA. La entidad se firma a sí misma. NO confiable por defecto en navegadores. Uso en entornos internos/dev",
+        "ejemplos": [
+          "Servidor de prueba local",
+          "Red interna corporativa",
+          "Navegador muestra advertencia de seguridad"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CRL": {
+        "termino": "CRL (Certificate Revocation List)",
+        "definicion": "Lista de certificados revocados publicada por CA. Actualizada periodicamente. Mas lento que OCSP",
+        "ejemplos": [
+          "Descarga de CRL completa",
+          "Verificacion offline",
+          "Actualizada cada 24-48 horas",
+          "Tamaño puede ser grande"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "OCSP": {
+        "termino": "OCSP (Online Certificate Status Protocol)",
+        "definicion": "Protocolo para verificar estado de revocacion de certificado en tiempo real. Mas rapido que CRL",
+        "ejemplos": [
+          "Consulta individual de certificado",
+          "Respuesta: good/revoked/unknown",
+          "Puerto 80 HTTP",
+          "OCSP stapling mejora rendimiento"
+        ],
+        "prioridad": "ALTA"
+      },
+      "TPM": {
+        "termino": "TPM (Trusted Platform Module)",
+        "definicion": "Chip criptográfico en placa base para almacenar claves, certificados y realizar operaciones de seguridad. Secure boot, cifrado de disco",
+        "ejemplos": [
+          "BitLocker usa TPM para cifrado",
+          "Almacenar claves RSA de forma segura",
+          "Attestation de integridad del sistema"
+        ],
+        "prioridad": "ALTA"
+      },
+      "HSM": {
+        "termino": "HSM (Hardware Security Module)",
+        "definicion": "Dispositivo hardware dedicado para gestión segura de claves criptográficas. Nivel empresarial. FIPS 140-2/3 certified",
+        "ejemplos": [
+          "Almacenar claves raíz de CA",
+          "Firma de transacciones bancarias",
+          "Thales, AWS CloudHSM"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "KDC": {
+        "termino": "KDC (Key Distribution Center)",
+        "definicion": "Servidor centralizado que distribuye claves criptográficas y autentica usuarios. Componente principal de Kerberos",
+        "ejemplos": [
+          "Kerberos KDC emite TGT (Ticket Granting Ticket)",
+          "Active Directory usa KDC"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "KEK": {
+        "termino": "KEK (Key Encryption Key)",
+        "definicion": "Clave usada para cifrar otras claves criptográficas. Añade capa adicional de seguridad en gestión de claves",
+        "ejemplos": [
+          "Master key que protege claves de sesión",
+          "Key wrapping en HSM"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "SED": {
+        "termino": "SED (Self-Encrypting Drive)",
+        "definicion": "Disco duro/SSD con cifrado por hardware integrado. Transparente para el usuario. Más rápido que software",
+        "ejemplos": [
+          "SSD Samsung con cifrado AES-256",
+          "Protección si roban laptop",
+          "Cumplimiento FIPS"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "FDE": {
+        "termino": "FDE (Full Disk Encryption)",
+        "definicion": "Cifrado completo del disco por software. Protege TODOS los datos en reposo",
+        "ejemplos": [
+          "BitLocker (Windows)",
+          "FileVault (macOS)",
+          "LUKS (Linux)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "EFS": {
+        "termino": "EFS (Encrypting File System)",
+        "definicion": "Sistema de cifrado a nivel de archivo en Windows NTFS. Cifra archivos/carpetas individuales, NO todo el disco",
+        "ejemplos": [
+          "Cifrar carpeta 'Documentos' en Windows",
+          "Protección por usuario",
+          "Transparente tras autenticación"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Secure_Enclave": {
+        "termino": "Secure Enclave",
+        "definicion": "Entorno protegido y aislado dentro de CPU para procesar datos sensibles. Hardware dedicado para operaciones criptográficas",
+        "ejemplos": [
+          "Apple Secure Enclave para Touch ID",
+          "Intel SGX",
+          "ARM TrustZone"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Steganography": {
+        "termino": "Esteganografía",
+        "definicion": "Ocultar datos dentro de otro archivo (imagen, audio, video). NO es cifrado, es ocultación",
+        "ejemplos": [
+          "Mensaje oculto en píxeles de imagen",
+          "Datos en metadatos de MP3",
+          "Menos común que cifrado"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Data_Masking": {
+        "termino": "Data Masking (Enmascaramiento)",
+        "definicion": "Ocultar datos sensibles reemplazándolos con caracteres genéricos. Preserva formato pero no contenido real",
+        "ejemplos": [
+          "Mostrar **** en campo de contraseña",
+          "4532-****-****-1234 para número de tarjeta",
+          "Base de datos de prueba con datos enmascarados"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Tokenization": {
+        "termino": "Tokenización",
+        "definicion": "Reemplazar dato sensible con token/referencia no sensible. Dato real se almacena en bóveda segura separada",
+        "ejemplos": [
+          "Token de pago en lugar de número de tarjeta real",
+          "PCI DSS compliance",
+          "Dato original NO se puede recuperar del token sin acceso a bóveda"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Blockchain": {
+        "termino": "Blockchain",
+        "definicion": "Registro público distribuido (ledger) de transacciones enlazadas criptográficamente. Inmutable y descentralizado",
+        "ejemplos": [
+          "Bitcoin blockchain",
+          "Ethereum",
+          "Cada bloque contiene hash del anterior",
+          "Inmutabilidad por consenso distribuido"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "S_MIME": {
+        "termino": "S/MIME (Secure/Multipurpose Internet Mail Extensions)",
+        "definicion": "Estándar para cifrar y firmar digitalmente emails. Requiere certificados X.509",
+        "ejemplos": [
+          "Email cifrado en Outlook",
+          "Firma digital de correo",
+          "Certificado personal para S/MIME"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SFTP": {
+        "termino": "SFTP (SSH File Transfer Protocol)",
+        "definicion": "Protocolo de transferencia de archivos sobre SSH. Cifrado completo. NO es FTP sobre SSL",
+        "ejemplos": [
+          "Puerto 22 (SSH)",
+          "Alternativa segura a FTP",
+          "FileZilla con SFTP"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SRTP": {
+        "termino": "SRTP (Secure Real-time Transport Protocol)",
+        "definicion": "Protocolo para cifrar audio/video en tiempo real. Usado en VoIP y videoconferencia",
+        "ejemplos": [
+          "Llamadas VoIP cifradas",
+          "WebRTC usa SRTP",
+          "Zoom/Teams para confidencialidad de llamadas"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "LEAP": {
+        "termino": "LEAP (Lightweight EAP)",
+        "definicion": "Protocolo de autenticacion inalambrica DEPRECADO de Cisco. Vulnerable a ataques de diccionario. Reemplazado por PEAP y EAP-TLS",
+        "ejemplos": [
+          "NO usar en produccion - obsoleto",
+          "Usar WPA2/WPA3 Enterprise con PEAP o EAP-TLS en su lugar"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "WPA2_WPA3": {
+        "termino": "WPA2/WPA3",
+        "definicion": "Protocolos de seguridad Wi-Fi. WPA2 usa AES-CCMP. WPA3 añade SAE (mejor proteccion contra fuerza bruta) y cifrado individualizado",
+        "ejemplos": [
+          "WPA2-Personal (PSK)",
+          "WPA3-Enterprise con 802.1X y RADIUS",
+          "WPA3-SAE protege contra KRACK"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SAE": {
+        "termino": "SAE (Simultaneous Authentication of Equals)",
+        "definicion": "Metodo de autenticacion en WPA3 que reemplaza el handshake PSK de WPA2. Resistente a ataques offline de fuerza bruta",
+        "ejemplos": [
+          "WPA3-Personal usa SAE",
+          "Proteccion contra ataques de diccionario incluso capturando handshake"
+        ],
+        "prioridad": "ALTA"
+      },
+      "802.1X": {
+        "termino": "802.1X",
+        "definicion": "Estandar IEEE para control de acceso a red basado en puertos (NAC). Usa EAP para autenticacion. Requiere: Suplicante, Autenticador, Servidor AAA (RADIUS)",
+        "ejemplos": [
+          "WPA2/WPA3 Enterprise",
+          "Autenticacion de switches con RADIUS",
+          "Suplicante=cliente, Autenticador=AP/switch, AAA=RADIUS server"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SSID": {
+        "termino": "SSID (Service Set Identifier)",
+        "definicion": "Nombre de red inalambrica. Puede ocultarse (SSID oculto) pero no es medida de seguridad efectiva",
+        "ejemplos": [
+          "Cambiar SSID por defecto del router",
+          "Ocultar SSID no previene ataques de descubrimiento"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Site_Survey": {
+        "termino": "Site Survey (Wireless)",
+        "definicion": "Analisis de ubicacion para diseño de red inalambrica. Identifica: cobertura, interferencias, potencia de señal optima, ubicacion de APs",
+        "ejemplos": [
+          "Heat map de cobertura Wi-Fi",
+          "Detectar interferencias de 2.4GHz (microondas, Bluetooth)",
+          "Optimizar ubicacion de APs para roaming"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "MDM": {
+        "termino": "MDM (Mobile Device Management)",
+        "definicion": "Gestion centralizada de dispositivos moviles: configuracion, seguridad, aplicaciones, politicas. Control remoto de smartphones/tablets corporativos",
+        "ejemplos": [
+          "Borrado remoto de dispositivo perdido",
+          "Forzar cifrado y PIN",
+          "Distribuir apps corporativas",
+          "Geofencing",
+          "Soluciones: Intune, Jamf, MobileIron"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CAPTCHA": {
+        "termino": "CAPTCHA",
+        "definicion": "Challenge-Response para distinguir humanos de bots. Previene ataques automatizados (brute force, scraping, spam)",
+        "ejemplos": [
+          "Imagenes distorsionadas con texto",
+          "Seleccionar semaforos en imagenes (reCAPTCHA v2)",
+          "reCAPTCHA v3 analiza comportamiento sin interaccion"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SEH": {
+        "termino": "SEH (Structured Exception Handling)",
+        "definicion": "Mecanismo de Windows para manejar excepciones. Vulnerable a ataques de buffer overflow que sobrescriben punteros SEH",
+        "ejemplos": [
+          "Ataque SEH overwrite",
+          "SafeSEH y SEHOP como mitigaciones",
+          "DEP y ASLR complementan proteccion"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "PEM": {
+        "termino": "PEM (Privacy Enhanced Mail)",
+        "definicion": "Formato codificacion Base64 para certificados y claves. Texto ASCII entre headers BEGIN/END. Estandar de facto",
+        "ejemplos": [
+          "-----BEGIN CERTIFICATE-----",
+          "-----END PRIVATE KEY-----",
+          "Base64 encoded",
+          "Formato texto legible"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DKIM": {
+        "termino": "DKIM (DomainKeys Identified Mail)",
+        "definicion": "Firma digital en cabeceras de email para verificar autenticidad del remitente y que no fue modificado. Usa criptografia asimetrica",
+        "ejemplos": [
+          "Clave privada firma email saliente",
+          "Clave publica en DNS TXT record",
+          "Previene spoofing y phishing"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DMARC": {
+        "termino": "DMARC (Domain-based Message Authentication)",
+        "definicion": "Politica de autenticacion de email que usa SPF y DKIM. Define que hacer con emails que fallan validacion (none/quarantine/reject)",
+        "ejemplos": [
+          "Publicar politica en DNS TXT: v=DMARC1; p=reject",
+          "Recibir reportes de emails rechazados",
+          "Proteccion contra phishing y spoofing"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SPF": {
+        "termino": "SPF (Sender Policy Framework)",
+        "definicion": "Record DNS que especifica que servidores pueden enviar email desde un dominio. Previene email spoofing",
+        "ejemplos": [
+          "v=spf1 ip4:192.0.2.0/24 include:_spf.google.com -all",
+          "Softfail (~all) vs Hardfail (-all)",
+          "Complementa DKIM y DMARC"
+        ],
+        "prioridad": "ALTA"
+      },
+      "OpenID_Connect": {
+        "termino": "OpenID Connect",
+        "definicion": "Capa de identidad sobre OAuth 2.0. Permite autenticacion federada (Single Sign-On). Devuelve ID token (JWT) con info del usuario",
+        "ejemplos": [
+          "Login con Google/Microsoft en apps terceras",
+          "ID token + Access token",
+          "Proveedores: Google, Okta, Auth0"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SAML_Features": {
+        "termino": "SAML (Security Assertion Markup Language)",
+        "definicion": "Estandar XML para intercambio de autenticacion/autorizacion entre Identity Provider (IdP) y Service Provider (SP). SSO empresarial",
+        "ejemplos": [
+          "Login corporativo unico para multiples apps SaaS",
+          "IdP (AD FS, Okta) emite SAML assertion",
+          "SP (Salesforce, AWS) consume assertion"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Biometrics_Types": {
+        "termino": "Tipos de Biometria",
+        "definicion": "Autenticacion basada en caracteristicas fisicas/comportamentales. Fisiologica: huella, iris, facial. Comportamental: firma, patron de tecleo, voz",
+        "ejemplos": [
+          "Fingerprint scanner (Touch ID)",
+          "Iris/retina scan",
+          "Facial recognition (Face ID)",
+          "Voice recognition",
+          "Gait analysis",
+          "Metricas: FAR, FRR, CER"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Hardware_Tokens": {
+        "termino": "Hardware Tokens",
+        "definicion": "Dispositivos fisicos para autenticacion. Tipos: Key fob (OTP), Security key (FIDO2/U2F), RFID badge, Smart card",
+        "ejemplos": [
+          "RSA SecurID (key fob con OTP)",
+          "YubiKey (FIDO2)",
+          "Tarjeta RFID para acceso fisico",
+          "Smart card con PKI"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Key_Fob": {
+        "termino": "Key Fob",
+        "definicion": "Token fisico que genera OTP (One-Time Password) basado en tiempo (TOTP) o contador (HOTP). Factor de autenticacion",
+        "ejemplos": [
+          "RSA SecurID",
+          "Codigo de 6-8 digitos cambia cada 30-60 segundos",
+          "Sincronizado con servidor AAA"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Security_Key": {
+        "termino": "Security Key",
+        "definicion": "Token de hardware para autenticacion sin contraseña. Soporta FIDO2/U2F/WebAuthn. Resistente a phishing",
+        "ejemplos": [
+          "YubiKey",
+          "Google Titan Key",
+          "Autenticacion tocando boton fisico",
+          "Funciona via USB/NFC/Bluetooth"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RFID_Badge": {
+        "termino": "RFID Badge",
+        "definicion": "Tarjeta con chip RFID para control de acceso fisico. Comunicacion por radiofrecuencia sin contacto",
+        "ejemplos": [
+          "Tarjeta de empleado para puertas",
+          "Frecuencias: 125kHz (LF), 13.56MHz (HF)",
+          "Vulnerable a clonacion y skimming"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Password_Policies": {
+        "termino": "Politicas de Contraseña",
+        "definicion": "Reglas de complejidad, longitud, historial, expiracion. Requisitos: minimo caracteres, mayusculas, numeros, simbolos",
+        "ejemplos": [
+          "Minimo 12 caracteres",
+          "Cambio cada 90 dias (NIST ya no recomienda expiracion)",
+          "No reusar ultimas 5 contraseñas",
+          "Lockout tras 5 intentos fallidos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "OTP": {
+        "termino": "OTP (One-Time Password)",
+        "definicion": "Contraseña valida para una sola sesion o transaccion. Genera codigo temporal. Componente MFA. Caduca rapidamente",
+        "ejemplos": [
+          "TOTP (Time-based)",
+          "HOTP (Counter-based)",
+          "SMS OTP",
+          "Google Authenticator",
+          "Valido 30-60 segundos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Just_in_Time_Permissions": {
+        "termino": "Just-in-Time Permissions (Permisos justo a tiempo)",
+        "definicion": "Acceso efimero temporal. Privilegios otorgados solo cuando se necesitan. Se revocan automaticamente tras uso. Reduce superficie de ataque",
+        "ejemplos": [
+          "Admin access por 2 horas",
+          "Elevacion temporal privilegios",
+          "Zero Standing Privileges",
+          "PAM JIT"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SHA_3": {
+        "termino": "SHA-3",
+        "definicion": "Familia de funciones hash criptograficas mas reciente. Mayor seguridad que SHA-2. Algoritmo Keccak",
+        "ejemplos": [
+          "SHA3-256",
+          "SHA3-512",
+          "Resistente a ataques de colision",
+          "Reemplazo de SHA-2 para maxima seguridad"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RIPEMD": {
+        "termino": "RIPEMD-160",
+        "definicion": "Funcion hash criptografica de 160 bits. Alternativa a SHA-1. Usado en Bitcoin",
+        "ejemplos": [
+          "RIPEMD-160 en Bitcoin addresses",
+          "Hash de 160 bits (20 bytes)",
+          "Menos usado que SHA"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Digital_Certificate": {
+        "termino": "Digital Certificate",
+        "definicion": "Documento digital que verifica identidad de individuo/dispositivo/organizacion. Emitido por CA. Contiene clave publica + info del titular",
+        "ejemplos": [
+          "Certificado SSL/TLS para HTTPS",
+          "Certificado de email S/MIME",
+          "Componentes: Subject, Issuer, Public Key, Validity"
+        ],
+        "prioridad": "ALTA"
+      },
+      "PKI_Trust_Models": {
+        "termino": "PKI Trust Models",
+        "definicion": "Modelos de confianza en infraestructura de clave publica: Single CA, Hierarchical, Mesh, Web of Trust, Bridge, Hybrid",
+        "ejemplos": [
+          "Hierarchical: root CA + intermediate CAs",
+          "Mesh: cross-certification entre CAs",
+          "Bridge: conectar PKIs separadas"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "EV_Certificate": {
+        "termino": "EV Certificate (Extended Validation)",
+        "definicion": "Certificado con validacion extendida. Mayor nivel de verificacion de identidad. Mostraba barra verde en navegadores antiguos",
+        "ejemplos": [
+          "Validacion exhaustiva de organizacion",
+          "Usado por bancos y ecommerce",
+          "Mayor confianza del usuario"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Disinformation": {
+        "termino": "Disinformation",
+        "definicion": "Informacion falsa o engañosa difundida deliberadamente para manipular o engañar. Diferente de misinformacion (no intencional)",
+        "ejemplos": [
+          "Campañas de desinformacion en redes sociales",
+          "Deepfakes",
+          "Propaganda maliciosa"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Quishing": {
+        "termino": "Quishing",
+        "definicion": "Phishing mediante codigos QR maliciosos. Victima escanea QR que lleva a sitio phishing o descarga malware",
+        "ejemplos": [
+          "QR falso en email",
+          "QR en parking meter scam",
+          "Redireccion a sitio phishing"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Vishing": {
+        "termino": "Vishing",
+        "definicion": "Phishing por voz (telefono/VoIP). Atacante llama haciendose pasar por entidad legitima para robar informacion",
+        "ejemplos": [
+          "Llamada falsa de soporte tecnico",
+          "IRS scam calls",
+          "Spoofing de caller ID"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Pharming": {
+        "termino": "Pharming",
+        "definicion": "Redireccion de trafico web a sitio falso mediante envenenamiento DNS o modificacion de archivo hosts. Sin interaccion del usuario",
+        "ejemplos": [
+          "Modificar archivo hosts local",
+          "DNS cache poisoning",
+          "Usuario escribe URL correcta pero va a sitio falso"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Watering_Hole_Platform": {
+        "termino": "Watering Hole Attack",
+        "definicion": "Compromiso de sitio web frecuentado por objetivo. Infectar sitio legitimo para atacar a sus visitantes",
+        "ejemplos": [
+          "Infectar sitio de industria especifica",
+          "Comprometer blog tecnico para atacar desarrolladores",
+          "Plataforma: Websites"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "MSP": {
+        "termino": "MSP (Managed Service Provider)",
+        "definicion": "Proveedor externo de servicios IT completos. Gestion de infraestructura, soporte, mantenimiento para empresas sin personal IT",
+        "ejemplos": [
+          "Gestion de red y servidores",
+          "Help desk",
+          "Backup y DR",
+          "Monitoreo 24/7"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "MSSP": {
+        "termino": "MSSP (Managed Security Service Provider)",
+        "definicion": "Proveedor externo especializado en seguridad IT. Ofrece SOC, SIEM, gestion de vulnerabilidades, respuesta a incidentes",
+        "ejemplos": [
+          "SOC as a Service",
+          "Gestion de firewall y IDS",
+          "Threat intelligence",
+          "Compliance monitoring"
+        ],
+        "prioridad": "ALTA"
+      },
+      "PPP": {
+        "termino": "PPP (Point-to-Point Protocol)",
+        "definicion": "Protocolo para enlace punto a punto dedicado entre dos dispositivos de red. Autenticacion, cifrado, compresion",
+        "ejemplos": [
+          "Conexiones dial-up",
+          "Enlace entre routers",
+          "Autenticacion PAP/CHAP",
+          "Base de PPTP y PPPoE"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Non_Persistent_VDI": {
+        "termino": "Non-Persistent VDI",
+        "definicion": "Escritorio virtual que revierte a estado original al cerrar sesion. Compartido entre usuarios. Cambios no se guardan",
+        "ejemplos": [
+          "Kioscos publicos",
+          "Call centers",
+          "Usuario cierra sesion → desktop se resetea",
+          "Ahorro de almacenamiento"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SHTTP": {
+        "termino": "SHTTP (Secure HTTP)",
+        "definicion": "Protocolo OBSOLETO para transferencia segura web. Reemplazado por HTTPS (HTTP over TLS). No confundir con HTTPS",
+        "ejemplos": [
+          "NO usar - obsoleto desde 1990s",
+          "Diferente de HTTPS",
+          "Reemplazado por SSL/TLS"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "CMS": {
+        "termino": "CMS (Content Management System)",
+        "definicion": "Sistema de gestion de contenido web. Simplifica creacion y mantenimiento de sitios web sin codigo",
+        "ejemplos": [
+          "WordPress",
+          "Drupal",
+          "Joomla",
+          "Vulnerabilidades: plugins desactualizados",
+          "Requiere hardening"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SMTPS": {
+        "termino": "SMTPS (SMTP Secure)",
+        "definicion": "SMTP con SSL/TLS DEPRECADO. Puerto 465/TCP. Reemplazado por STARTTLS. Cifrado desde inicio de conexion",
+        "ejemplos": [
+          "Puerto 465 (deprecado)",
+          "Usar STARTTLS puerto 587 en su lugar",
+          "Implicit TLS"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "STARTTLS": {
+        "termino": "STARTTLS",
+        "definicion": "Comando para actualizar conexion no cifrada a cifrada con TLS. Usado en SMTP, IMAP, POP3. Puerto 587 para SMTP",
+        "ejemplos": [
+          "SMTP puerto 587 con STARTTLS",
+          "Comienza sin cifrar, luego upgrade a TLS",
+          "Mejor practica actual vs SMTPS"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SOW": {
+        "termino": "SOW (Statement of Work)",
+        "definicion": "Documento detallado que describe trabajo a realizar en proyecto. Define entregables, cronograma, costos, requisitos",
+        "ejemplos": [
+          "SOW para implementacion de red",
+          "Alcance del proyecto",
+          "Entregables especificos",
+          "Diferente de SLA/MSA"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "TKIP": {
+        "termino": "TKIP (Temporal Key Integrity Protocol)",
+        "definicion": "Protocolo de cifrado para mejorar WEP. Usado en WPA1. DEPRECADO - reemplazado por CCMP en WPA2",
+        "ejemplos": [
+          "WPA con TKIP (obsoleto)",
+          "Claves temporales por paquete",
+          "Usar WPA2/WPA3 con CCMP/AES"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CCMP": {
+        "termino": "CCMP (Counter Mode CBC-MAC Protocol)",
+        "definicion": "Protocolo de cifrado en WPA2. Basado en AES. Reemplaza TKIP. Mayor seguridad",
+        "ejemplos": [
+          "WPA2 usa CCMP",
+          "Cifrado AES-128",
+          "Integridad con CBC-MAC",
+          "Estandar actual Wi-Fi"
+        ],
+        "prioridad": "ALTA"
+      },
+      "GRE": {
+        "termino": "GRE (Generic Routing Encapsulation)",
+        "definicion": "Protocolo de tunelizacion para encapsular protocolos de red dentro de IP. Usado en VPNs. NO cifrado por defecto",
+        "ejemplos": [
+          "GRE over IPsec para VPN",
+          "Tunel punto a punto",
+          "Protocolo 47",
+          "Combinar con IPsec para seguridad"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "AIS": {
+        "termino": "AIS (Automated Indicator Sharing)",
+        "definicion": "Iniciativa de gobierno USA (DHS) para compartir indicadores de amenazas ciberneticas en tiempo real entre organizaciones",
+        "ejemplos": [
+          "Compartir IoCs entre gobierno y sector privado",
+          "Formato STIX/TAXII",
+          "Programa DHS CISA"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Password_Manager": {
+        "termino": "Password Manager",
+        "definicion": "Aplicacion que almacena y gestiona contraseñas de forma segura. Cifrado de boveda. Genera contraseñas fuertes. Una contraseña maestra",
+        "ejemplos": [
+          "LastPass",
+          "KeePass",
+          "1Password",
+          "Bitwarden",
+          "Cifrado AES-256",
+          "Autorrelleno de formularios"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Key_Stretching": {
+        "termino": "Key Stretching",
+        "definicion": "Tecnica que incrementa tiempo de calculo para derivar clave. Dificulta ataques de fuerza bruta. Aplica funcion hash multiples veces",
+        "ejemplos": [
+          "PBKDF2",
+          "bcrypt",
+          "scrypt",
+          "Argon2",
+          "10000+ iteraciones",
+          "Combate password cracking"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Dictionary_Attack": {
+        "termino": "Dictionary Attack",
+        "definicion": "Ataque de fuerza bruta que usa lista de palabras comunes. Prueba contraseñas probables (diccionario). Mas eficiente que fuerza bruta pura",
+        "ejemplos": [
+          "rockyou.txt",
+          "john.txt",
+          "Lista de 10 millones de contraseñas",
+          "Contraseñas comunes (password123, qwerty)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Password_History": {
+        "termino": "Password History",
+        "definicion": "Politica que recuerda N contraseñas previas. Impide reutilizacion de contraseñas antiguas. Mejora seguridad en cambios periodicos",
+        "ejemplos": [
+          "Recordar ultimas 12 contraseñas",
+          "Windows: Store 24 passwords",
+          "No reutilizar ultimas 5 contraseñas"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Password_Expiration": {
+        "termino": "Password Expiration",
+        "definicion": "Politica que fuerza cambio de contraseña periodicamente. Caduca tras X dias. Mitiga riesgo de credenciales comprometidas",
+        "ejemplos": [
+          "Cambio cada 90 dias",
+          "Expiracion 60 dias",
+          "NIST ya NO recomienda expiracion automatica",
+          "Cambio solo si compromiso"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Minimum_Password_Age": {
+        "termino": "Minimum Password Age",
+        "definicion": "Tiempo minimo que debe usarse contraseña antes de cambiarla. Previene cambios rapidos para burlar historial. Minimo 1 dia tipico",
+        "ejemplos": [
+          "1 dia minimo",
+          "Evita cambiar 12 veces seguidas para reutilizar antigua",
+          "Complementa Password History"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "ML": {
+        "termino": "ML (Machine Learning)",
+        "definicion": "Aprendizaje automatico. IA que aprende de datos sin programacion explicita. Deteccion anomalias, threat hunting",
+        "ejemplos": [
+          "Deteccion malware con ML",
+          "Behavioral analysis",
+          "Anomaly detection",
+          "Neural networks",
+          "Supervised/Unsupervised learning"
+        ],
+        "prioridad": "ALTA"
+      }
+    }
+  },
+  "Dominio_2_Amenazas_Vulnerabilidades_Mitigaciones": {
+    "peso_examen": "22%",
+    "definiciones": {
+      "Threat_Actor": {
+        "termino": "Threat Actor (Actor de Amenaza)",
+        "definicion": "Entidad que representa una amenaza. Tipos: Nation-state (estado), APT (amenaza persistente avanzada), Hacktivist (activismo), Insider (interno), Script kiddie (aficionado)",
+        "ejemplos": [
+          "APT28 (Fancy Bear) - grupo ruso",
+          "Insider malicioso filtrando datos",
+          "Script kiddie usando exploits públicos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "APT": {
+        "termino": "APT (Advanced Persistent Threat)",
+        "definicion": "Ataque cibernetico sofisticado y prolongado. Bien financiado (nation-states). Objetivo especifico. Persistente en red",
+        "ejemplos": [
+          "APT29 (Cozy Bear - Rusia)",
+          "APT28 (Fancy Bear)",
+          "Tacticas de evasion avanzadas",
+          "Meses/años en red sin detectar"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Phishing": {
+        "termino": "Phishing",
+        "definicion": "Ataque de ingeniería social mediante email fraudulento que simula ser legítimo para robar credenciales o instalar malware",
+        "ejemplos": [
+          "Email falso de 'banco' pidiendo verificar cuenta",
+          "Link a página clonada de login",
+          "Adjunto malicioso simulando ser factura"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Spear_Phishing": {
+        "termino": "Spear Phishing",
+        "definicion": "Phishing dirigido a persona o organización específica. Altamente personalizado con información de OSINT",
+        "ejemplos": [
+          "Email al CFO simulando ser del CEO pidiendo transferencia",
+          "Investigación previa en LinkedIn del objetivo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Whaling": {
+        "termino": "Whaling",
+        "definicion": "Spear phishing dirigido específicamente a ejecutivos de alto nivel (C-level)",
+        "ejemplos": [
+          "Fraude al CEO",
+          "BEC (Business Email Compromise) a director financiero"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "BEC": {
+        "termino": "BEC (Business Email Compromise)",
+        "definicion": "Ataque sofisticado de phishing dirigido a empresas. Suplanta identidad de ejecutivo o proveedor para transferencias fraudulentas",
+        "ejemplos": [
+          "Email falso del CEO pidiendo transferencia urgente",
+          "Factura falsa de proveedor legítimo",
+          "Millones de dólares perdidos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Smishing": {
+        "termino": "Smishing",
+        "definicion": "Phishing mediante SMS. Mensaje de texto con link malicioso o pidiendo información sensible",
+        "ejemplos": [
+          "SMS: 'Su paquete no pudo entregarse, haga clic aquí'",
+          "Mensaje de 'banco' pidiendo verificar tarjeta"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Vishing": {
+        "termino": "Vishing",
+        "definicion": "Phishing por voz (llamada telefónica). Atacante se hace pasar por entidad legítima",
+        "ejemplos": [
+          "Llamada de 'soporte Microsoft' diciendo que PC está infectado",
+          "Falso banco pidiendo verificar transacción"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Pretexting": {
+        "termino": "Pretexting",
+        "definicion": "Técnica de ingeniería social donde atacante crea escenario falso (pretexto) para engañar y obtener información",
+        "ejemplos": [
+          "Llamar haciéndose pasar por IT support pidiendo password",
+          "Crear historia falsa de emergencia para obtener acceso"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Impersonation": {
+        "termino": "Impersonation (Suplantación de identidad)",
+        "definicion": "Hacerse pasar por otra persona u organización legítima para ganar confianza y acceso",
+        "ejemplos": [
+          "Vestirse como técnico de IT",
+          "Email que parece del CEO",
+          "Página web que imita banco"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Typosquatting": {
+        "termino": "Typosquatting (URL Hijacking)",
+        "definicion": "Registro de dominios con errores tipograficos de sitios populares. Explota errores de escritura usuarios. Phishing y distribucion malware",
+        "ejemplos": [
+          "gogle.com en vez de google.com",
+          "amazom.com",
+          "fcebook.com",
+          "Captura trafico mal escrito"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Watering_Hole": {
+        "termino": "Watering Hole Attack",
+        "definicion": "Comprometen sitio web legítimo que visita el objetivo para infectar a visitantes. Ataque indirecto",
+        "ejemplos": [
+          "Infectar sitio de noticias de industria específica",
+          "Visitantes descargan malware al navegar"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Malware": {
+        "termino": "Malware",
+        "definicion": "Software malicioso diseñado para dañar, explotar o comprometer sistemas. Tipos: virus, gusano, troyano, ransomware, spyware, rootkit",
+        "ejemplos": [
+          "WannaCry (ransomware)",
+          "Emotet (troyano)",
+          "Stuxnet (gusano)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Ransomware": {
+        "termino": "Ransomware",
+        "definicion": "Malware que cifra archivos de victima. Exige pago (rescate) para clave de descifrado. Doble extorsion: cifrado + amenaza de publicacion",
+        "ejemplos": [
+          "WannaCry",
+          "Ryuk",
+          "REvil",
+          "Locky",
+          "Bitcoin payment",
+          "Cifrado AES + RSA",
+          "Atacar backups"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Trojan": {
+        "termino": "Troyano (Trojan)",
+        "definicion": "Malware disfrazado de software legítimo. NO se auto-replica. Puerta trasera para el atacante",
+        "ejemplos": [
+          "Emotet",
+          "TrickBot",
+          "Aplicación crackeada con malware oculto"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RAT": {
+        "termino": "RAT (Remote Access Trojan)",
+        "definicion": "Troyano que permite control remoto completo del sistema comprometido. Acceso backdoor persistente",
+        "ejemplos": [
+          "njRAT",
+          "DarkComet",
+          "Control total: webcam, keylogger, robo de archivos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Worm": {
+        "termino": "Worm",
+        "definicion": "Malware autorreplicante. Se propaga automaticamente por red sin intervencion humana. Consume recursos de red",
+        "ejemplos": [
+          "Morris Worm",
+          "Code Red",
+          "SQL Slammer",
+          "Conficker",
+          "Propagacion por vulnerabilidades",
+          "Saturacion de red"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Logic_Bomb": {
+        "termino": "Logic Bomb",
+        "definicion": "Codigo malicioso que permanece inactivo hasta que se cumple condicion especifica. Entonces ejecuta payload. Dificil de detectar",
+        "ejemplos": [
+          "Activacion en fecha especifica",
+          "Trigger: despido empleado",
+          "Borrar datos si no login 30 dias",
+          "Sabotaje interno"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Rootkit": {
+        "termino": "Rootkit",
+        "definicion": "Malware que se oculta en el sistema operativo a nivel kernel o boot. Muy difícil de detectar y eliminar",
+        "ejemplos": [
+          "Rootkit en firmware UEFI",
+          "Bootkit que infecta MBR",
+          "Sony BMG rootkit (2005)"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "PUP": {
+        "termino": "PUP (Potentially Unwanted Program)",
+        "definicion": "Software no necesariamente malicioso pero no deseado. Instalado sin conocimiento claro del usuario. Adware, toolbars",
+        "ejemplos": [
+          "Toolbar de navegador instalada con otro software",
+          "Adware que muestra anuncios",
+          "Bloatware preinstalado"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Botnet": {
+        "termino": "Botnet",
+        "definicion": "Red de equipos infectados (zombies) controlados remotamente. Usada para DDoS, spam, cryptomining. Comando y control (C2)",
+        "ejemplos": [
+          "Mirai botnet",
+          "Zeus botnet",
+          "IoT botnets",
+          "Miles/millones de dispositivos",
+          "C2 server",
+          "IRC/HTTP C2"
+        ],
+        "prioridad": "ALTA"
+      },
+      "C2": {
+        "termino": "C2 (Command and Control)",
+        "definicion": "Servidor que controla malware/bots remotamente. Envía comandos y recibe datos robados",
+        "ejemplos": [
+          "Bot se conecta a C2 para recibir instrucciones",
+          "Exfiltración de datos a servidor C2"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SQL_Injection": {
+        "termino": "SQL Injection (SQLi)",
+        "definicion": "Vulnerabilidad que permite inyectar código SQL malicioso en queries. Compromete base de datos",
+        "ejemplos": [
+          "' OR 1=1-- para bypass de autenticación",
+          "UNION SELECT para extraer datos",
+          "xp_cmdshell para ejecución de comandos en SQL Server"
+        ],
+        "prioridad": "ALTA"
+      },
+      "XSS": {
+        "termino": "XSS (Cross-Site Scripting)",
+        "definicion": "Inyeccion de script malicioso en sitio web confiable. Browser del usuario ejecuta script del atacante. Roba cookies/sesiones",
+        "ejemplos": [
+          "Reflected XSS: script en URL",
+          "Stored XSS: script guardado en DB",
+          "DOM-based XSS",
+          "Mitigacion: sanitizar input, CSP"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CSRF": {
+        "termino": "CSRF (Cross-Site Request Forgery)",
+        "definicion": "Ataque que engaña a usuario para ejecutar acciones no deseadas en sitio donde esta autenticado. Explota confianza del sitio en navegador",
+        "ejemplos": [
+          "Cambiar contraseña sin conocimiento",
+          "Transferencia bancaria forzada",
+          "Mitigacion: CSRF tokens",
+          "SameSite cookies"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RCE": {
+        "termino": "RCE (Remote Code Execution)",
+        "definicion": "Vulnerabilidad que permite ejecutar código arbitrario en sistema remoto. Muy crítica (CVSS 9-10)",
+        "ejemplos": [
+          "Log4Shell permite RCE",
+          "Exploit que ejecuta comandos del atacante",
+          "Compromiso total del servidor"
+        ],
+        "prioridad": "ALTA"
+      },
+      "LDAP_Injection": {
+        "termino": "LDAP Injection",
+        "definicion": "Inyeccion de codigo en consultas LDAP. Manipula filtros de busqueda LDAP. Bypass de autenticacion o extraccion de datos. Similar a SQLi",
+        "ejemplos": [
+          "usuario=*)(uid=*))(|(uid=*",
+          "Bypass login LDAP",
+          "Extraccion de objetos AD",
+          "Input validation + parametrizacion"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "XML_Injection": {
+        "termino": "XML Injection",
+        "definicion": "Inyeccion de codigo XML malicioso. Manipula parseo de XML. XXE (External Entity) para leer archivos. Ataque a aplicaciones que procesan XML",
+        "ejemplos": [
+          "<!ENTITY xxe SYSTEM \"file:///etc/passwd\">",
+          "Leer archivos internos",
+          "SSRF via XXE",
+          "Deshabilitar external entities"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Buffer_Overflow": {
+        "termino": "Buffer Overflow",
+        "definicion": "Vulnerabilidad por escribir más datos de los que cabe en buffer de memoria. Permite sobrescribir memoria adyacente y ejecutar código arbitrario",
+        "ejemplos": [
+          "Stack overflow",
+          "Heap overflow",
+          "Explotación de servicio con input sin validar"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DLL_Injection": {
+        "termino": "DLL Injection (Inyección DLL)",
+        "definicion": "Técnica para inyectar código malicioso (DLL) en proceso legítimo de Windows. Evasión de detección",
+        "ejemplos": [
+          "Malware inyecta DLL en explorer.exe",
+          "Rootkit usando DLL injection"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "TOC_TOU": {
+        "termino": "TOC/TOU (Time of Check/Time of Use)",
+        "definicion": "Vulnerabilidad de condicion de carrera. Estado de recurso cambia entre verificacion y uso. Race condition attack",
+        "ejemplos": [
+          "Verificar permisos archivo, luego cambiar archivo antes de usar",
+          "Symbolic link attack",
+          "File system race"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Directory_Traversal": {
+        "termino": "Directory Traversal",
+        "definicion": "Ataque que accede a archivos fuera de directorio web. Usa secuencias \"../\" para subir directorios. Lectura de archivos sensibles del sistema",
+        "ejemplos": [
+          "../../etc/passwd",
+          "../../../windows/system32/config/sam",
+          "Input validation",
+          "Whitelist de archivos permitidos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Zero_Day": {
+        "termino": "Zero-Day",
+        "definicion": "Vulnerabilidad desconocida por el fabricante. No existe parche. Ventana de 0 días para defenderse",
+        "ejemplos": [
+          "Log4Shell antes de ser descubierta públicamente",
+          "Exploit usado por APT antes de patch"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DoS": {
+        "termino": "DoS (Denial of Service)",
+        "definicion": "Ataque que satura un servicio para hacerlo inaccesible. Desde una sola fuente",
+        "ejemplos": [
+          "Ping flood",
+          "SYN flood desde una IP",
+          "Objetivo: hacer caer el servicio"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DDoS": {
+        "termino": "DDoS (Distributed Denial of Service)",
+        "definicion": "Ataque desde múltiples fuentes (botnet) para saturar un servicio y hacerlo inaccesible. Versión distribuida del DoS",
+        "ejemplos": [
+          "Ataque SYN flood desde botnet",
+          "Amplificación DNS/NTP",
+          "Botnet Mirai atacando Dyn (2016)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Reflected_DDoS": {
+        "termino": "Reflected DDoS",
+        "definicion": "Ataque DDoS que usa servidores intermedios para amplificar trafico. Falsifica IP origen (spoofing). Servidores reflejan respuestas a victima",
+        "ejemplos": [
+          "DNS amplification",
+          "NTP amplification",
+          "Factor 50x-100x amplificacion",
+          "Abuso de servidores publicos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DNS_Spoofing": {
+        "termino": "DNS Spoofing (Envenenamiento DNS)",
+        "definicion": "Proporcionar información DNS falsa al resolver para redirigir tráfico a servidor malicioso",
+        "ejemplos": [
+          "Modificar cache DNS para redirigir google.com a IP maliciosa",
+          "Ataque Man-in-the-Middle via DNS"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Domain_Hijacking": {
+        "termino": "Domain Hijacking",
+        "definicion": "Apropiacion ilegitima de dominio. Cambio no autorizado de registrante o DNS. Phishing, robo de credenciales del registrar",
+        "ejemplos": [
+          "Robo credenciales GoDaddy",
+          "Transferencia no autorizada a otro registrar",
+          "Cambio de DNS a servidor atacante"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Bluesnarfing": {
+        "termino": "Bluesnarfing",
+        "definicion": "Acceso no autorizado a dispositivo Bluetooth. Robo de datos (contactos, mensajes, fotos). Explota vulnerabilidades Bluetooth",
+        "ejemplos": [
+          "Robo contactos telefono",
+          "Acceso calendario",
+          "Descarga mensajes SMS",
+          "Vulnerabilidad Bluetooth legacy"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Bluejacking": {
+        "termino": "Bluejacking",
+        "definicion": "Envío de mensajes no solicitados a dispositivos Bluetooth cercanos. Molesto pero NO roba datos",
+        "ejemplos": [
+          "Enviar mensaje 'Hola' a todos los dispositivos BT cercanos",
+          "Marketing invasivo via Bluetooth"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Wireless_Jamming": {
+        "termino": "Wireless Jamming",
+        "definicion": "Ataque DoS que interfiere señal inalámbrica usando ruido en misma frecuencia. Hace inaccesible WiFi/Bluetooth/GPS",
+        "ejemplos": [
+          "Jamming de señal WiFi 2.4GHz",
+          "Bloquear GPS",
+          "Ataque de denegación de servicio físico"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "NFC_Attacks": {
+        "termino": "Ataques NFC",
+        "definicion": "Vulnerabilidades en Near Field Communication: eavesdropping (escucha), data interception, relay attacks, DoS",
+        "ejemplos": [
+          "Relay attack para duplicar tarjeta de pago",
+          "Eavesdropping en transacción NFC",
+          "Corto alcance dificulta ataques remotos"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "RFID_Cloning": {
+        "termino": "RFID Cloning",
+        "definicion": "Copiar datos de tarjeta/tag RFID a otro dispositivo RFID. Clonación de credenciales de acceso",
+        "ejemplos": [
+          "Clonar tarjeta de acceso al edificio",
+          "Duplicar tag RFID de parking",
+          "Legítimo para backups, malicioso para acceso no autorizado"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "MitM": {
+        "termino": "MitM (Man-in-the-Middle)",
+        "definicion": "Atacante se interpone entre dos partes que se comunican para interceptar/modificar tráfico. También llamado On-Path attack",
+        "ejemplos": [
+          "ARP spoofing en LAN",
+          "SSL stripping",
+          "Rogue WiFi AP",
+          "Interceptar credenciales en texto claro"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Session_Hijacking": {
+        "termino": "Session Hijacking (Secuestro de sesión)",
+        "definicion": "Robo de Session ID válido para suplantar usuario autenticado. NO requiere credenciales",
+        "ejemplos": [
+          "Robar cookie de sesión via XSS",
+          "Sniffing de Session ID en red no cifrada",
+          "Acceder a cuenta sin password"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Pass_the_Hash": {
+        "termino": "Pass the Hash",
+        "definicion": "Técnica de autenticación usando hash de contraseña capturado sin necesidad de descifrar. Común en Windows NTLM",
+        "ejemplos": [
+          "Usar hash NTLM para autenticarse sin conocer password en texto claro",
+          "Movimiento lateral en AD"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Replay_Attack": {
+        "termino": "Replay Attack",
+        "definicion": "Capturar y reenviar tráfico de autenticación válido para ganar acceso. Mitigación: timestamps, nonces",
+        "ejemplos": [
+          "Capturar token de autenticación y reenviarlo",
+          "Repetir transacción bancaria capturada"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Brute_Force": {
+        "termino": "Brute Force Attack",
+        "definicion": "Ataque que prueba TODAS las combinaciones posibles de contraseñas hasta encontrar la correcta. Alto uso de recursos",
+        "ejemplos": [
+          "Probar todas las contraseñas de 8 caracteres",
+          "Crackear hash con diccionario + variaciones",
+          "Mitigación: lockout, MFA, contraseñas largas"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Dictionary_Attack": {
+        "termino": "Dictionary Attack",
+        "definicion": "Ataque que prueba contraseñas desde lista predefinida (diccionario) de passwords comunes. Más rápido que brute force",
+        "ejemplos": [
+          "Lista: password, 123456, admin, qwerty",
+          "Rockyou.txt (14M passwords)",
+          "Más eficiente que probar todo el keyspace"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Password_Spraying": {
+        "termino": "Password Spraying",
+        "definicion": "Probar POCAS contraseñas comunes contra MUCHAS cuentas. Evita lockout de cuenta individual",
+        "ejemplos": [
+          "Password123 contra 1000 usuarios",
+          "Evita bloqueo por intentos fallidos en una cuenta",
+          "Más sigiloso que brute force"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Birthday_Attack": {
+        "termino": "Birthday Attack",
+        "definicion": "Ataque criptográfico basado en paradoja del cumpleaños. Busca colisiones en funciones hash",
+        "ejemplos": [
+          "Encontrar 2 inputs diferentes con mismo hash MD5",
+          "Explotar colisiones en firmas digitales"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Downgrade_Attack": {
+        "termino": "Downgrade Attack",
+        "definicion": "Forzar uso de protocolo/cifrado más débil y obsoleto para facilitar compromiso",
+        "ejemplos": [
+          "Forzar TLS 1.0 en lugar de TLS 1.3",
+          "SSL stripping a HTTP",
+          "POODLE attack contra SSL 3.0"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Privilege_Escalation": {
+        "termino": "Privilege Escalation (Escalada de privilegios)",
+        "definicion": "Obtener permisos superiores a los asignados inicialmente. Vertical (usuario → admin) u horizontal (usuario → otro usuario)",
+        "ejemplos": [
+          "Exploit de kernel para root",
+          "Sudo misconfiguration",
+          "Movimiento lateral entre cuentas"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CVE": {
+        "termino": "CVE (Common Vulnerabilities and Exposures)",
+        "definicion": "Sistema de identificacion unica de vulnerabilidades. Formato: CVE-YEAR-NUMBER. Mantenido por MITRE",
+        "ejemplos": [
+          "CVE-2021-44228 (Log4Shell)",
+          "CVE-2014-0160 (Heartbleed)",
+          "Usado en patch management y scanners"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CVSS": {
+        "termino": "CVSS (Common Vulnerability Scoring System)",
+        "definicion": "Sistema de puntuación de gravedad de vulnerabilidades. Escala 0.0-10.0. Crítico (9.0-10.0), Alto (7.0-8.9), Medio (4.0-6.9), Bajo (0.1-3.9)",
+        "ejemplos": [
+          "Log4Shell: CVSS 10.0 (Crítico)",
+          "Factores: vector de ataque, complejidad, privilegios requeridos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IoC": {
+        "termino": "IoC (Indicator of Compromise)",
+        "definicion": "Evidencia forense que indica posible intrusión o actividad maliciosa. Hashes, IPs, dominios, patrones de comportamiento",
+        "ejemplos": [
+          "Hash MD5 de malware conocido",
+          "IP de servidor C2",
+          "Múltiples logins fallidos",
+          "Tráfico a dominio sospechoso"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Sideloading": {
+        "termino": "Sideloading",
+        "definicion": "Instalar apps móviles desde fuentes NO oficiales (fuera de App Store/Play Store). Riesgo de malware",
+        "ejemplos": [
+          "Instalar APK desde sitio web",
+          "Apps no verificadas",
+          "Bypass de protecciones de tienda oficial"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Rooting": {
+        "termino": "Rooting (Android)",
+        "definicion": "Obtener acceso root/administrativo completo en dispositivo Android. Anula garantía y rompe seguridad",
+        "ejemplos": [
+          "SuperSU",
+          "Magisk",
+          "Acceso total al sistema operativo",
+          "Bypass de restricciones del fabricante"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Jailbreaking": {
+        "termino": "Jailbreaking (iOS)",
+        "definicion": "Obtener acceso root en dispositivo iOS eliminando restricciones de Apple. Instalar apps no autorizadas",
+        "ejemplos": [
+          "Cydia",
+          "Acceso a filesystem",
+          "Instalar apps fuera de App Store"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Firmware": {
+        "termino": "Firmware",
+        "definicion": "Software embebido en chip hardware. Controla funciones de bajo nivel del dispositivo. Difícil de actualizar",
+        "ejemplos": [
+          "BIOS/UEFI",
+          "Firmware de router",
+          "Firmware de SSD",
+          "Rootkits pueden infectar firmware"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Input_Validation": {
+        "termino": "Input Validation",
+        "definicion": "Validar toda entrada de usuario antes de procesarla. Previene injection, XSS, buffer overflow. Whitelist mejor que blacklist",
+        "ejemplos": [
+          "Rechazar caracteres especiales en formularios",
+          "Validar tipo de dato (numeros, emails)",
+          "Parametrized queries contra SQL injection"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Error_Handling": {
+        "termino": "Error Handling",
+        "definicion": "Manejo seguro de errores sin revelar informacion sensible. Mensajes genericos al usuario, detalles solo en logs internos",
+        "ejemplos": [
+          "NO mostrar stack traces a usuarios",
+          "Mensajes genericos: Error procesando solicitud",
+          "Loggear detalles completos en servidor"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Data_Sanitization": {
+        "termino": "Data Sanitization",
+        "definicion": "Eliminar/sobrescribir datos de forma permanente. Metodos: Overwriting, Degaussing, Destruccion fisica, Crypto-shredding",
+        "ejemplos": [
+          "DoD 5220.22-M (7 pases)",
+          "Degaussing de discos magneticos",
+          "Triturar discos SSD",
+          "Eliminar claves de cifrado (crypto-shredding)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Degaussing": {
+        "termino": "Degaussing",
+        "definicion": "Eliminar datos de medios magneticos (HDD, cintas) usando campo magnetico intenso. Destruye datos y hace medio inutilizable",
+        "ejemplos": [
+          "Degausser para HDDs antes de desechar",
+          "NO funciona en SSDs (usar destruccion fisica)",
+          "Certificacion de sanitizacion"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "False_Negative": {
+        "termino": "False Negative",
+        "definicion": "Sistema de seguridad NO detecta amenaza real. Falso sentido de seguridad. MAS PELIGROSO que falso positivo",
+        "ejemplos": [
+          "Antivirus no detecta malware nuevo",
+          "IDS no alerta sobre intrusion real",
+          "Firewall permite trafico malicioso"
+        ],
+        "prioridad": "ALTA"
+      },
+      "False_Positive": {
+        "termino": "False Positive",
+        "definicion": "Sistema de seguridad alerta sobre actividad normal como amenaza. Genera fatiga de alertas y reduce eficiencia",
+        "ejemplos": [
+          "Antivirus bloquea software legitimo",
+          "IDS alerta sobre escaneo de seguridad autorizado",
+          "DLP bloquea transferencia legitima"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MITRE_ATT&CK": {
+        "termino": "MITRE ATT&CK",
+        "definicion": "Framework de tacticas y tecnicas de adversarios. Base de conocimiento de comportamiento de atacantes. Matriz de TTPs",
+        "ejemplos": [
+          "14 tacticas: Reconnaissance, Initial Access, Execution...",
+          "Tecnicas numeradas: T1059.001 (PowerShell)",
+          "Usado para threat hunting y CTI"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SCAP": {
+        "termino": "SCAP (Security Content Automation Protocol)",
+        "definicion": "Suite de especificaciones para automatizar gestion de vulnerabilidades, medicion de configuracion, compliance. Incluye CVE, CVSS, CCE, CPE",
+        "ejemplos": [
+          "SCAP scanners (Nessus, OpenSCAP)",
+          "Validacion automatica de configuraciones contra baseline",
+          "Integracion con SIEM"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Attack_Surface": {
+        "termino": "Attack Surface",
+        "definicion": "Suma de todos los puntos de vulnerabilidad donde atacante puede interactuar/comprometer sistema. Mayor superficie = mayor riesgo",
+        "ejemplos": [
+          "Puertos abiertos",
+          "Aplicaciones web",
+          "APIs",
+          "Usuarios",
+          "Reduccion: deshabilitar servicios innecesarios"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Threat_Vector": {
+        "termino": "Threat Vector",
+        "definicion": "Metodo/ruta que atacante usa para introducir amenaza. Email, malware, drive-by download, ingenieria social",
+        "ejemplos": [
+          "Email phishing",
+          "USB malicioso",
+          "Descarga drive-by",
+          "Mensajeria instantanea",
+          "Archivos PDF/Office maliciosos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Image_Based_Threats": {
+        "termino": "Image-Based Threat Vectors",
+        "definicion": "Amenazas mediante imagenes: Steganography (ocultar datos), Deepfakes (manipulacion), Malware-embedded images",
+        "ejemplos": [
+          "Steganografia en PNG",
+          "Deepfake de CEO para BEC",
+          "Exploit en JPEG",
+          "Brand impersonation con logos"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SQLi": {
+        "termino": "SQL Injection (SQLi)",
+        "definicion": "Inyeccion de codigo SQL malicioso en campos de entrada para ejecutar comandos no autorizados en base de datos",
+        "ejemplos": [
+          "OR 1=1-- para bypass de login",
+          "UNION SELECT para exfiltrar datos",
+          "Mitigacion: parametrized queries",
+          "Input validation"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Memory_Injection": {
+        "termino": "Memory Injection",
+        "definicion": "Introducir codigo externo en espacio de memoria de proceso en ejecucion. Tecnica de evasion de AV",
+        "ejemplos": [
+          "DLL injection",
+          "Process hollowing",
+          "Reflective DLL injection",
+          "Usado por malware avanzado"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Race_Condition": {
+        "termino": "Race Condition",
+        "definicion": "Vulnerabilidad donde resultado depende de secuencia/timing de eventos. Acceso concurrente a recurso compartido causa comportamiento inesperado",
+        "ejemplos": [
+          "TOC/TOU (Time-of-Check/Time-of-Use)",
+          "Dos threads modifican variable simultaneamente",
+          "Sincronizacion incorrecta"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Malicious_Update": {
+        "termino": "Malicious Application Update",
+        "definicion": "Malware instalado via actualizacion falsa de software. Vector: codigo sin firmar, canal HTTP, servidor comprometido, supply chain attack",
+        "ejemplos": [
+          "NotPetya via actualizacion MeDoc",
+          "SolarWinds supply chain attack",
+          "Fake Flash update",
+          "Mitigacion: code signing, HTTPS"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Legacy_Hardware_Vulnerability": {
+        "termino": "Legacy Hardware Vulnerabilities",
+        "definicion": "Vulnerabilidad principal: falta de actualizaciones de seguridad y parches. Hardware obsoleto sin soporte",
+        "ejemplos": [
+          "Windows XP sin parches",
+          "Hardware sin actualizacion firmware",
+          "End-of-Life equipment",
+          "Mitigacion: segmentacion de red"
+        ],
+        "prioridad": "ALTA"
+      },
+      "VM_Escape": {
+        "termino": "VM Escape",
+        "definicion": "Vulnerabilidad de virtualizacion donde activos de una VM acceden/comprometen otra VM. Rompe aislamiento entre VMs",
+        "ejemplos": [
+          "Exploit en hypervisor",
+          "Compartir recursos entre VMs inseguro",
+          "Resource reuse vulnerability",
+          "Mitigacion: parchar hypervisor"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Wireless_Disassociation": {
+        "termino": "Wireless Disassociation",
+        "definicion": "Ataque que envia frames de desasociacion falsos. Desconecta clientes de AP. Tipo de DoS inalambrico. Frames de gestion no autenticados",
+        "ejemplos": [
+          "aireplay-ng --deauth",
+          "Preparacion para WPA handshake capture",
+          "Evil Twin attack",
+          "Frame management spoofing"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IV_Attack": {
+        "termino": "IV Attack",
+        "definicion": "Ataque contra cifrado WEP. Explota debilidad de Initialization Vector (IV) de 24 bits. Colecta IVs para crackear clave WEP",
+        "ejemplos": [
+          "airodump-ng captura IVs",
+          "aircrack-ng crackea WEP",
+          "40000-85000 IVs necesarios",
+          "WEP obsoleto"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "War_Driving": {
+        "termino": "War Driving",
+        "definicion": "Busqueda de redes WiFi vulnerables conduciendo vehiculo. Mapeo de redes inalambricas. Identifica redes abiertas o debiles",
+        "ejemplos": [
+          "Kismet",
+          "NetStumbler",
+          "WiGLE.net (mapa mundial)",
+          "GPS + WiFi adapter",
+          "Buscar WEP o WPA debil"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Session_Replay": {
+        "termino": "Session Replay",
+        "definicion": "Ataque que captura y reenvía sesion valida. Intercepta trafico autenticado. Replay de tokens o cookies de sesion. Bypass de autenticacion",
+        "ejemplos": [
+          "Captura token JWT",
+          "Replay cookie de sesion",
+          "Kerberos ticket replay",
+          "Mitigacion: nonce, timestamp, SSL/TLS"
+        ],
+        "prioridad": "ALTA"
+      }
+    }
+  },
+  "Dominio_3_Arquitectura_Seguridad": {
+    "peso_examen": "18%",
+    "definiciones": {
+      "Firewall": {
+        "termino": "Firewall",
+        "definicion": "Dispositivo o software que filtra tráfico de red según reglas. Tipos: filtrado de paquetes, stateful, capa de aplicación (L7), NGFW",
+        "ejemplos": [
+          "Bloquear puerto 23 (Telnet)",
+          "Permitir HTTP/HTTPS saliente",
+          "Palo Alto NGFW con inspección deep packet"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Layer_7_Firewall": {
+        "termino": "Layer 7 Firewall (Application Layer Firewall)",
+        "definicion": "Firewall que inspecciona capa de aplicacion OSI. Analiza contenido payload (no solo headers). Filtrado profundo pero mas lento",
+        "ejemplos": [
+          "WAF (Web Application Firewall)",
+          "Inspecciona HTTP payload",
+          "Bloquea SQL injection",
+          "Mas lento que Layer 3/4"
+        ],
+        "prioridad": "ALTA"
+      },
+      "WAF": {
+        "termino": "WAF (Web Application Firewall)",
+        "definicion": "Firewall específico para proteger aplicaciones web. Filtra tráfico HTTP/HTTPS. Protege contra SQLi, XSS, CSRF",
+        "ejemplos": [
+          "Cloudflare WAF",
+          "AWS WAF",
+          "ModSecurity"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IDS": {
+        "termino": "IDS (Intrusion Detection System)",
+        "definicion": "Sistema que DETECTA intrusiones pero NO bloquea. Genera alertas. Tipos: NIDS (red), HIDS (host)",
+        "ejemplos": [
+          "Snort en modo IDS",
+          "Detección de escaneo de puertos",
+          "Alerta de tráfico C2"
+        ],
+        "prioridad": "ALTA"
+      },
+      "HIDS": {
+        "termino": "HIDS (Host-based IDS)",
+        "definicion": "IDS instalado en host individual. Monitoriza logs, filesystem, procesos del sistema local",
+        "ejemplos": [
+          "OSSEC",
+          "Detecta cambios no autorizados en archivos de sistema"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "NIDS": {
+        "termino": "NIDS (Network-based IDS)",
+        "definicion": "Sistema de deteccion de intrusiones a nivel de red. Monitorea trafico sin bloquearlo. Modo pasivo. Genera alertas",
+        "ejemplos": [
+          "Snort en modo IDS",
+          "Monitoreo de span port",
+          "Deteccion de escaneos y ataques",
+          "NO bloquea - solo alerta"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IPS": {
+        "termino": "IPS (Intrusion Prevention System)",
+        "definicion": "Sistema que DETECTA Y BLOQUEA intrusiones en línea (inline). IDS + prevención activa",
+        "ejemplos": [
+          "Snort en modo IPS",
+          "Bloqueo automático de IP atacante",
+          "Drop de paquetes maliciosos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "HIPS": {
+        "termino": "HIPS (Host-based Intrusion Prevention System)",
+        "definicion": "IPS instalado en host individual. Monitorea y bloquea actividad maliciosa en sistema. Respuesta activa a amenazas locales",
+        "ejemplos": [
+          "Bloquea exploit en endpoint",
+          "Monitoreo system calls",
+          "Previene buffer overflow",
+          "Complementa antivirus"
+        ],
+        "prioridad": "ALTA"
+      },
+      "NIPS": {
+        "termino": "NIPS (Network-based IPS)",
+        "definicion": "Sistema de prevencion de intrusiones a nivel de red. Modo inline - puede bloquear trafico. Accion proactiva",
+        "ejemplos": [
+          "Snort en modo IPS",
+          "Inline entre segmentos",
+          "Bloquea ataques automaticamente",
+          "Drop packets maliciosos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "VPN": {
+        "termino": "VPN (Virtual Private Network)",
+        "definicion": "Túnel cifrado sobre red pública. Conecta sitios remotos o usuarios de forma segura. Protocolos: IPSec, SSL/TLS, WireGuard",
+        "ejemplos": [
+          "Empleado remoto conecta a red corporativa",
+          "Site-to-site VPN entre oficinas",
+          "OpenVPN, WireGuard"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Site_to_Site_VPN": {
+        "termino": "Site-to-Site VPN",
+        "definicion": "VPN que conecta dos redes completas. Tipicamente entre oficinas. Gateway VPN en cada lado. IPsec comun. Always-on",
+        "ejemplos": [
+          "Oficina central a sucursal",
+          "IPsec site-to-site",
+          "Router VPN endpoints",
+          "Conecta LANs completas"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Remote_Access_VPN": {
+        "termino": "Remote Access VPN (Client-to-Site)",
+        "definicion": "VPN para usuarios individuales que conectan a red corporativa desde ubicación remota. Requiere cliente VPN",
+        "ejemplos": [
+          "Teletrabajo con cliente OpenVPN",
+          "SSL VPN via navegador"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Split_Tunnel_VPN": {
+        "termino": "Split Tunnel VPN",
+        "definicion": "VPN que permite tráfico simultáneo por VPN (corporativo) y directo a Internet (no corporativo). Ahorra ancho de banda pero menos seguro",
+        "ejemplos": [
+          "Tráfico a red corporativa via VPN, Netflix directo a Internet",
+          "Conserva bandwidth de empresa"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Full_Tunnel_VPN": {
+        "termino": "Full Tunnel VPN",
+        "definicion": "TODO el tráfico pasa por VPN, incluso Internet. Más seguro pero consume más ancho de banda corporativo",
+        "ejemplos": [
+          "Todo el tráfico inspeccionado por firewall corporativo",
+          "Más control de seguridad"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "IPSec": {
+        "termino": "IPSec",
+        "definicion": "Suite de protocolos para VPN a nivel IP. Modos: transporte (solo payload), túnel (paquete completo). Componentes: AH (autenticación), ESP (cifrado)",
+        "ejemplos": [
+          "Site-to-site VPN corporativa",
+          "IKE para negociación de claves",
+          "ESP para confidencialidad"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "IKE": {
+        "termino": "IKE (Internet Key Exchange)",
+        "definicion": "Protocolo para establecer conexión segura e intercambiar claves en IPSec VPN. Fase 1: autenticación, Fase 2: negociación de claves de sesión",
+        "ejemplos": [
+          "IKEv2 más rápido y seguro que IKEv1",
+          "Establecer SA (Security Association) en IPSec"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "ESP": {
+        "termino": "ESP (Encapsulating Security Payload)",
+        "definicion": "Componente de IPSec que proporciona CONFIDENCIALIDAD (cifrado), integridad y autenticación del payload",
+        "ejemplos": [
+          "ESP en modo túnel cifra todo el paquete IP",
+          "Protocolo 50"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "AH": {
+        "termino": "AH (Authentication Header)",
+        "definicion": "Componente de IPSec que proporciona SOLO autenticación e integridad, NO cifrado. Menos usado que ESP",
+        "ejemplos": [
+          "Protocolo 51",
+          "Verifica que paquete no fue modificado pero NO lo cifra"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "IPSec_Transport_Mode": {
+        "termino": "IPSec Transport Mode",
+        "definicion": "Modo IPSec que cifra SOLO el payload (datos), NO el header IP. Usado para host-to-host",
+        "ejemplos": [
+          "Comunicación cifrada entre dos servidores",
+          "Header IP visible"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "IPSec_Tunnel_Mode": {
+        "termino": "IPSec Tunnel Mode",
+        "definicion": "Modo IPSec que cifra TODO el paquete original (header + payload) y añade nuevo header IP. Usado en VPN site-to-site",
+        "ejemplos": [
+          "VPN entre oficinas",
+          "Paquete completo protegido"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SSL_VPN": {
+        "termino": "SSL VPN",
+        "definicion": "VPN basada en SSL/TLS. Acceso mediante navegador web (clientless) o cliente ligero. Más fácil de usar que IPSec para usuarios remotos",
+        "ejemplos": [
+          "Acceso remoto sin cliente dedicado",
+          "Portal web corporativo seguro",
+          "Cisco AnyConnect"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SASE": {
+        "termino": "SASE (Secure Access Service Edge)",
+        "definicion": "Framework Gartner. Red + seguridad en servicio cloud unico. SD-WAN + CASB + FWaaS + ZTNA + SWG. Cloud-native",
+        "ejemplos": [
+          "Gartner framework",
+          "Convergencia red + seguridad",
+          "Replace MPLS + VPN",
+          "Cloud-delivered security",
+          "Zero Trust Network Access"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SD_WAN": {
+        "termino": "SD-WAN (Software-Defined WAN)",
+        "definicion": "Red WAN definida por software que simplifica gestión y permite usar múltiples tipos de conexión (MPLS, Internet, LTE)",
+        "ejemplos": [
+          "Optimizar tráfico entre sucursales",
+          "Failover automático entre conexiones",
+          "Gestión centralizada"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "SDN": {
+        "termino": "SDN (Software-Defined Networking)",
+        "definicion": "Red definida por software. Separa plano de control de plano de datos. Gestion centralizada via controlador. Programable y flexible",
+        "ejemplos": [
+          "OpenFlow protocol",
+          "Controlador SDN centralizado",
+          "Network automation",
+          "Dynamic policy enforcement"
+        ],
+        "prioridad": "ALTA"
+      },
+      "VLAN": {
+        "termino": "VLAN (Virtual Local Area Network)",
+        "definicion": "Segmentacion logica de red. Divide red fisica en multiples redes virtuales. Aislamiento de broadcast. Seguridad por segmentacion",
+        "ejemplos": [
+          "VLAN 10 = Contabilidad",
+          "VLAN 20 = IT",
+          "VLAN tagging 802.1Q",
+          "Trunk port",
+          "Access port"
+        ],
+        "prioridad": "ALTA"
+      },
+      "VLSM": {
+        "termino": "VLSM (Variable Length Subnet Mask)",
+        "definicion": "Subredes de diferentes tamaños en misma red. Uso eficiente de IPs. Permite subnetting flexible. Optimiza espacio de direcciones",
+        "ejemplos": [
+          "/24 para usuarios (254 hosts)",
+          "/30 para enlaces punto-a-punto (2 hosts)",
+          "Subnetting eficiente"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DMZ": {
+        "termino": "DMZ (Demilitarized Zone)",
+        "definicion": "Segmento de red aislado entre Internet y red interna. Aloja servicios públicos (web, email) accesibles desde exterior",
+        "ejemplos": [
+          "Servidor web público en DMZ",
+          "Firewall entre Internet-DMZ y DMZ-LAN"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ACL": {
+        "termino": "ACL (Access Control List)",
+        "definicion": "Lista de reglas de control de acceso. Filtra trafico por IP, puerto, protocolo. Implementada en routers, switches, firewalls",
+        "ejemplos": [
+          "Permit tcp 192.168.1.0/24 any eq 80",
+          "Deny ip any any",
+          "Router ACL",
+          "Firewall rules",
+          "Order matters"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Implicit_Deny": {
+        "termino": "Implicit Deny (Denegación Implícita)",
+        "definicion": "Regla por defecto en ACL/firewall: denegar TODO lo que no esté explícitamente permitido. Principio de seguridad",
+        "ejemplos": [
+          "Última regla invisible: deny any any",
+          "Whitelist approach",
+          "Más seguro que permit by default"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "NAC": {
+        "termino": "NAC (Network Access Control)",
+        "definicion": "Control de acceso a la red a nivel de puerto. Verifica cumplimiento de seguridad antes de permitir acceso. Protocolo: 802.1X",
+        "ejemplos": [
+          "Verificar antivirus actualizado antes de dar acceso",
+          "BYOD con verificación de políticas",
+          "Cisco ISE"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "IEEE_802_1X": {
+        "termino": "IEEE 802.1X",
+        "definicion": "Estandar de control de acceso de red basado en puerto. Autenticacion antes de acceso a red. Usa EAP. Supplicant-Authenticator-Auth Server",
+        "ejemplos": [
+          "WPA2-Enterprise",
+          "EAP-TLS autenticacion",
+          "RADIUS backend",
+          "Switch port authentication",
+          "NAC enforcement"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Proxy": {
+        "termino": "Proxy Server (Servidor Proxy)",
+        "definicion": "Intermediario entre cliente e Internet. Filtra, cachea y anonimiza trafico. Forward o reverse proxy. Control y seguridad",
+        "ejemplos": [
+          "Squid proxy",
+          "Web proxy",
+          "Forward proxy (salida)",
+          "Reverse proxy (entrada)",
+          "Content filtering"
+        ],
+        "prioridad": "ALTA"
+      },
+      "PAC": {
+        "termino": "PAC (Proxy Auto-Configuration)",
+        "definicion": "Archivo script que define como navegadores seleccionan proxy. Reglas automaticas de enrutamiento web. Formato JavaScript",
+        "ejemplos": [
+          "proxy.pac file",
+          "function FindProxyForURL()",
+          "DIRECT vs PROXY rules",
+          "Automatic proxy selection"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "RAS": {
+        "termino": "RAS (Remote Access Service)",
+        "definicion": "Servicio que proporciona acceso remoto seguro a red. VPN, dial-up, terminal services. Permite trabajo remoto",
+        "ejemplos": [
+          "Windows RAS",
+          "VPN concentrator",
+          "Remote Desktop Gateway",
+          "Acceso remoto empleados"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Port_Mirroring": {
+        "termino": "Port Mirroring (Duplicacion de puertos)",
+        "definicion": "Copia trafico de puerto(s) a puerto monitor. Permite analisis pasivo de red. SPAN port. Usado para IDS, analisis trafico",
+        "ejemplos": [
+          "SPAN port en Cisco",
+          "Mirror port 1-10 to port 24",
+          "IDS monitoring",
+          "Packet capture sin interrupcion"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Network_Tap": {
+        "termino": "Network Tap",
+        "definicion": "Dispositivo hardware que copia tráfico de red de forma pasiva. Más confiable que port mirroring para monitorización",
+        "ejemplos": [
+          "Tap en cable de fibra",
+          "Monitorización de red sin afectar rendimiento",
+          "IDS/SIEM conectado a tap"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Air_Gap": {
+        "termino": "Air Gap (Entrehierro)",
+        "definicion": "Aislamiento fisico completo de red. Sistema sin conexion a redes externas. Maxima seguridad por separacion fisica",
+        "ejemplos": [
+          "Sistema SCADA aislado",
+          "Red clasificada militar",
+          "Sistema critico sin Internet",
+          "Transferencia via USB solo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Containerization": {
+        "termino": "Containerización",
+        "definicion": "Empaquetar aplicación y dependencias en unidad autocontenida (container) que corre aislada. Más ligero que VM",
+        "ejemplos": [
+          "Docker",
+          "Kubernetes",
+          "Microservicios en containers",
+          "Aislamiento de aplicaciones"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Virtualization": {
+        "termino": "Virtualización",
+        "definicion": "Ejecutar múltiples sistemas operativos virtuales (VMs) en un host físico mediante hypervisor",
+        "ejemplos": [
+          "VMware ESXi",
+          "Hyper-V",
+          "VirtualBox",
+          "Consolidación de servidores"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Sandboxing": {
+        "termino": "Sandboxing",
+        "definicion": "Entorno aislado para ejecutar código sospechoso sin riesgo para sistema principal. Análisis seguro de malware",
+        "ejemplos": [
+          "Ejecutar archivo sospechoso en VM desechable",
+          "Cuckoo Sandbox",
+          "Navegador en sandbox"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SIEM": {
+        "termino": "SIEM (Security Information and Event Management)",
+        "definicion": "Plataforma centralizada que recopila, correlaciona y analiza logs de múltiples fuentes. Genera alertas de seguridad",
+        "ejemplos": [
+          "Splunk",
+          "Elastic Security",
+          "QRadar",
+          "Correlación: 1000 login fallidos en 1 min = brute force"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SOAR": {
+        "termino": "SOAR (Security Orchestration, Automation and Response)",
+        "definicion": "Plataforma que automatiza respuesta a incidentes mediante playbooks. Orquesta múltiples herramientas de seguridad",
+        "ejemplos": [
+          "Playbook de phishing: detectar → cuarentenar email → bloquear dominio → notificar usuario",
+          "Cortex XSOAR, Splunk Phantom"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "EDR": {
+        "termino": "EDR (Endpoint Detection and Response)",
+        "definicion": "Solución que detecta amenazas en endpoints por comportamiento. Permite investigación forense y respuesta remota",
+        "ejemplos": [
+          "CrowdStrike Falcon",
+          "SentinelOne",
+          "Detección de ransomware por comportamiento anómalo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "XDR": {
+        "termino": "XDR (Extended Detection and Response)",
+        "definicion": "Evolución de EDR que integra telemetría de múltiples fuentes (endpoint, red, cloud, email) para detección y respuesta unificada",
+        "ejemplos": [
+          "Correlación entre endpoint y red",
+          "Detección multi-capa",
+          "Palo Alto Cortex XDR"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "WIDS": {
+        "termino": "WIDS (Wireless IDS)",
+        "definicion": "IDS específico para redes WiFi. Detecta rogue APs, ataques de deauth, evil twins, accesos no autorizados",
+        "ejemplos": [
+          "Detectar AP no autorizado",
+          "Alertar sobre ataque de deautenticación",
+          "Aircrack-ng para análisis"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "UTM": {
+        "termino": "UTM (Unified Threat Management)",
+        "definicion": "Dispositivo all-in-one que combina firewall, IPS, antivirus, anti-spam, VPN, filtrado web en una sola solución",
+        "ejemplos": [
+          "Fortinet FortiGate",
+          "Sophos UTM",
+          "Seguridad completa para PYMES"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "NGFW": {
+        "termino": "NGFW (Next-Generation Firewall)",
+        "definicion": "Firewall avanzado con deep packet inspection, IPS, application awareness, threat intelligence integrada",
+        "ejemplos": [
+          "Palo Alto Networks",
+          "Bloquear Facebook pero permitir LinkedIn",
+          "Inspección SSL/TLS"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SWG": {
+        "termino": "SWG (Secure Web Gateway)",
+        "definicion": "Proxy avanzado que filtra tráfico web malicioso. Protege navegación: anti-malware, filtrado URL, DLP, inspección SSL",
+        "ejemplos": [
+          "Zscaler",
+          "Filtrar categorías de sitios",
+          "Bloquear descarga de malware",
+          "Cloud-based proxy"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CASB": {
+        "termino": "CASB (Cloud Access Security Broker)",
+        "definicion": "Intermediario de seguridad entre usuarios y aplicaciones cloud. Visibilidad, DLP, compliance, threat protection en SaaS",
+        "ejemplos": [
+          "Controlar uso de Dropbox/OneDrive",
+          "DLP en Office 365",
+          "Detectar shadow IT"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DLP": {
+        "termino": "DLP (Data Loss Prevention)",
+        "definicion": "Sistema que detecta y previene exfiltración/fuga de datos sensibles. Monitoriza datos en reposo, uso y tránsito",
+        "ejemplos": [
+          "Bloquear email con números de tarjetas",
+          "Alertar si copian PII a USB",
+          "Detectar subida de datos confidenciales a cloud"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SNMP": {
+        "termino": "SNMP (Simple Network Management Protocol)",
+        "definicion": "Protocolo para gestionar y monitorizar dispositivos de red. Versiones: v1/v2c (inseguras), v3 (cifrada)",
+        "ejemplos": [
+          "Monitorizar CPU/memoria de router",
+          "SNMPv3 con autenticación",
+          "Puerto 161/162"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "RTO": {
+        "termino": "RTO (Recovery Time Objective)",
+        "definicion": "Tiempo máximo aceptable de inactividad de un sistema tras un desastre. Cuánto tiempo puede estar caído",
+        "ejemplos": [
+          "RTO de 4 horas para sistema crítico",
+          "Si RTO = 1 hora → necesitas hot site"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RPO": {
+        "termino": "RPO (Recovery Point Objective)",
+        "definicion": "Cantidad máxima aceptable de pérdida de datos medida en tiempo. Cuánto dato puedes perder",
+        "ejemplos": [
+          "RPO de 1 hora = backups cada hora máximo",
+          "RPO = 0 → replicación síncrona en tiempo real"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MTBF": {
+        "termino": "MTBF (Mean Time Between Failures)",
+        "definicion": "Tiempo promedio entre fallos de un componente. Métrica de fiabilidad",
+        "ejemplos": [
+          "Disco duro con MTBF de 1,000,000 horas",
+          "Mayor MTBF = más fiable"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "MTTR": {
+        "termino": "MTTR (Mean Time to Repair)",
+        "definicion": "Tiempo promedio para reparar componente tras fallo. Métrica de mantenibilidad",
+        "ejemplos": [
+          "MTTR de 2 horas para servidores críticos",
+          "Menor MTTR = recuperación más rápida"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Backup_3_2_1": {
+        "termino": "Regla 3-2-1 de Backup",
+        "definicion": "3 copias de datos, en 2 tipos de medios diferentes, 1 copia offsite (fuera del sitio)",
+        "ejemplos": [
+          "Original + backup en NAS + backup en nube",
+          "Protección contra ransomware y desastres físicos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Snapshot": {
+        "termino": "Snapshot (Instantanea)",
+        "definicion": "Captura punto-en-tiempo de VM o volumen. Estado completo en momento especifico. Rollback rapido. NO es backup completo a largo plazo",
+        "ejemplos": [
+          "VMware snapshot antes de update",
+          "AWS EBS snapshot",
+          "Rollback en minutos",
+          "No reemplaza backups"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Replication": {
+        "termino": "Replication (Replicacion)",
+        "definicion": "Copia continua de datos a ubicacion secundaria. Sincrona (RPO=0) o asincrona (RPO>0). Alta disponibilidad y DR",
+        "ejemplos": [
+          "Database replication",
+          "Storage replication",
+          "Active-Passive replica",
+          "Replicacion sincrona cara pero RPO=0"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Journaling": {
+        "termino": "Journaling (Llevar un diario)",
+        "definicion": "Registro de cambios antes de aplicarlos. Filesystem journaling. Recuperacion tras crash. Integridad de datos garantizada",
+        "ejemplos": [
+          "ext4 journal",
+          "NTFS journal",
+          "Database WAL",
+          "Previene corrupcion tras fallo"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "RAID": {
+        "termino": "RAID (Redundant Array of Independent Disks)",
+        "definicion": "Configuración de múltiples discos para redundancia y/o rendimiento. Niveles: 0 (striping), 1 (mirroring), 5 (striping + paridad), 10 (mirror + stripe)",
+        "ejemplos": [
+          "RAID 0: rendimiento, NO redundancia",
+          "RAID 1: espejo para tolerancia a fallos",
+          "RAID 5: balance rendimiento/redundancia (mín 3 discos)",
+          "RAID 10: máximo rendimiento y redundancia (mín 4 discos)"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Load_Balancing": {
+        "termino": "Load Balancing",
+        "definicion": "Distribución de carga de trabajo entre múltiples servidores para mejorar rendimiento y disponibilidad",
+        "ejemplos": [
+          "HAProxy",
+          "F5 BigIP",
+          "Round-robin, least connections",
+          "Distribución de tráfico web entre servidores"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Hot_Site": {
+        "termino": "Hot Site",
+        "definicion": "Centro de datos de backup completamente operacional con replicación en tiempo real. RTO/RPO mínimos (minutos). MUY costoso",
+        "ejemplos": [
+          "Failover automático en minutos",
+          "Sistema crítico 24/7",
+          "Replicación síncrona de datos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Warm_Site": {
+        "termino": "Warm Site (Sitio Calido)",
+        "definicion": "Sitio DR con infraestructura basica. Equipos instalados pero no completamente configurados. RTO medio (horas/dias). Balance costo/tiempo",
+        "ejemplos": [
+          "Servidores listos, datos desactualizados",
+          "RTO 12-24 horas",
+          "Requiere restore reciente",
+          "Costo medio DR"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Cold_Site": {
+        "termino": "Cold Site (Sitio Frio)",
+        "definicion": "Sitio DR solo con espacio fisico y servicios basicos. Sin equipos preinstalados. RTO largo (dias/semanas). Opcion mas economica",
+        "ejemplos": [
+          "Solo edificio + electricidad + Internet",
+          "RTO > 1 semana",
+          "Envio e instalacion equipos necesario",
+          "Minimo costo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Tabletop_Exercise": {
+        "termino": "Tabletop Exercise",
+        "definicion": "Simulacro de mesa donde equipo discute respuesta a escenario hipotético de incidente. NO es práctica real",
+        "ejemplos": [
+          "Discutir qué hacer ante ransomware",
+          "Revisión de IRP sin ejecutar acciones",
+          "Identificar gaps en procedimientos"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Simulation": {
+        "termino": "Simulation (Ejercicio de simulación)",
+        "definicion": "Ejercicio realista que simula ataque real para probar respuesta. Más completo que tabletop",
+        "ejemplos": [
+          "Simular phishing real",
+          "Red team vs Blue team",
+          "Ejecutar acciones de respuesta"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "PDU": {
+        "termino": "PDU (Power Distribution Unit)",
+        "definicion": "Dispositivo que distribuye electricidad a múltiples equipos en rack. Puede monitorizar consumo",
+        "ejemplos": [
+          "Regleta inteligente de rack",
+          "PDU con gestión remota",
+          "Monitorización de consumo por puerto"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "UPS": {
+        "termino": "UPS (Uninterruptible Power Supply)",
+        "definicion": "Sistema de alimentación ininterrumpida. Batería que proporciona energía temporal durante corte eléctrico",
+        "ejemplos": [
+          "UPS de 10 min para apagado seguro",
+          "UPS enterprise para mantener datacenter hasta generador arranca"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Backup_Generator": {
+        "termino": "Backup Generator (Generador de Respaldo)",
+        "definicion": "Generador electrico que arranca cuando falla alimentacion principal. Diesel/gas. Autonomia horas/dias. Complementa UPS",
+        "ejemplos": [
+          "Generador diesel datacenter",
+          "Arranque automatico 30 seg",
+          "Tanque 24-48h autonomia",
+          "Testing mensual requerido"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Dual_Power_Supply": {
+        "termino": "Dual Power Supply",
+        "definicion": "Servidor con dos fuentes de alimentación redundantes. Tolerancia a fallo de PSU",
+        "ejemplos": [
+          "Servidor con 2 PSU a circuitos diferentes",
+          "Si una falla, otra mantiene servidor"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Cloud_IaaS": {
+        "termino": "IaaS (Infrastructure as a Service)",
+        "definicion": "Modelo cloud que proporciona infraestructura virtualizada. Usuario gestiona OS, aplicaciones. Proveedor gestiona hardware",
+        "ejemplos": [
+          "AWS EC2",
+          "Azure Virtual Machines",
+          "Google Compute Engine"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Cloud_PaaS": {
+        "termino": "PaaS (Platform as a Service)",
+        "definicion": "Plataforma de desarrollo en cloud. Proveedor gestiona OS y runtime. Usuario solo desarrolla aplicación",
+        "ejemplos": [
+          "Heroku",
+          "Google App Engine",
+          "Azure App Service"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Cloud_SaaS": {
+        "termino": "SaaS (Software as a Service)",
+        "definicion": "Aplicación completa en cloud. Usuario solo consume el servicio. Proveedor gestiona todo",
+        "ejemplos": [
+          "Office 365",
+          "Salesforce",
+          "Gmail",
+          "Dropbox"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CSP": {
+        "termino": "CSP (Cloud Service Provider)",
+        "definicion": "Proveedor de servicios cloud que ofrece infraestructura, plataforma o software en modelo serverless/cloud",
+        "ejemplos": [
+          "AWS",
+          "Azure",
+          "Google Cloud",
+          "Gestiona infraestructura para serverless"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Hybrid_Cloud": {
+        "termino": "Hybrid Cloud",
+        "definicion": "Combinación de cloud público, privado y/o on-premises. Datos/apps pueden moverse entre entornos",
+        "ejemplos": [
+          "Datos sensibles on-prem, aplicaciones en public cloud",
+          "Burst a cloud en picos de demanda"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "VPC": {
+        "termino": "VPC (Virtual Private Cloud)",
+        "definicion": "Red privada virtual aislada dentro de cloud público. Control completo sobre red (subnets, routing, gateways)",
+        "ejemplos": [
+          "AWS VPC",
+          "Azure Virtual Network",
+          "Segmentación lógica en cloud"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "VDI": {
+        "termino": "VDI (Virtual Desktop Infrastructure)",
+        "definicion": "Escritorios virtuales centralizados. Usuario accede a escritorio Windows/Linux desde thin client o navegador",
+        "ejemplos": [
+          "VMware Horizon",
+          "Citrix Virtual Apps and Desktops",
+          "Azure Virtual Desktop",
+          "BYOD accediendo a escritorio corporativo"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Screened_Subnet": {
+        "termino": "Screened Subnet (DMZ)",
+        "definicion": "Subred ligeramente protegida entre Internet y red interna. Servidores publicos en DMZ. Doble firewall tipico. Buffer zone de seguridad",
+        "ejemplos": [
+          "Web servers en DMZ",
+          "Email relay en DMZ",
+          "Firewall Internet-DMZ-LAN",
+          "Dual firewall architecture"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Firewall_Implicit_Deny": {
+        "termino": "Implicit Deny (Firewall)",
+        "definicion": "Regla por defecto: denegar todo trafico no explicitamente permitido. Ultima regla implicita en ACLs",
+        "ejemplos": [
+          "ACL: permit tcp any any eq 443; permit tcp any any eq 80; [implicit deny all]",
+          "Principio de minimo privilegio en firewalls"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Agent_Based_Filtering": {
+        "termino": "Agent-Based Filtering",
+        "definicion": "Filtrado web mediante agente instalado en endpoint. Funciona incluso fuera de red corporativa. Control de contenido en laptop remota",
+        "ejemplos": [
+          "Software de filtrado web en laptop corporativa",
+          "Politicas aplicadas localmente",
+          "Alternativa a proxy centralizado"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "URL_Scanning": {
+        "termino": "URL Scanning",
+        "definicion": "Analisis de URLs en tiempo real para detectar phishing, malware, sitios maliciosos. Reputacion de dominios",
+        "ejemplos": [
+          "Bloquear URLs de phishing",
+          "Categorizar sitios web (social media, gambling)",
+          "Servicios: Google Safe Browsing, VirusTotal"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DNS_Filtering": {
+        "termino": "DNS Filtering",
+        "definicion": "Bloquear resoluciones DNS de dominios maliciosos. Previene acceso a phishing, malware, C&C. Nivel de red",
+        "ejemplos": [
+          "Cisco Umbrella",
+          "Quad9 (9.9.9.9)",
+          "Bloquear malware.com devolviendo NXDOMAIN o IP de bloqueo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Group_Policy": {
+        "termino": "Group Policy (GPO)",
+        "definicion": "Configuracion centralizada en Active Directory para controlar usuarios/computadoras Windows. Politicas de seguridad, software, scripts",
+        "ejemplos": [
+          "Politica de contraseñas para dominio",
+          "Desplegar software via GPO",
+          "Configurar firewall de Windows",
+          "Deshabilitar USB"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SELinux_MAC": {
+        "termino": "SELinux (Security-Enhanced Linux)",
+        "definicion": "Implementacion de Mandatory Access Control (MAC) en Linux. Politicas de seguridad a nivel kernel. Confina procesos",
+        "ejemplos": [
+          "Modos: Enforcing (bloquea), Permissive (alerta), Disabled",
+          "Contextos de seguridad en archivos/procesos",
+          "Politicas targeted/strict"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "IMAPS": {
+        "termino": "IMAPS (IMAP over SSL/TLS)",
+        "definicion": "Protocolo de email cifrado. Puerto 993/TCP. IMAP con capa SSL/TLS para confidencialidad",
+        "ejemplos": [
+          "Configurar cliente email con IMAPS puerto 993",
+          "Alternativa segura a IMAP puerto 143",
+          "Cifrado de credenciales y emails"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "POP3S": {
+        "termino": "POP3S (POP3 over SSL/TLS)",
+        "definicion": "Protocolo de email cifrado. Puerto 995/TCP. POP3 con capa SSL/TLS",
+        "ejemplos": [
+          "Puerto 995 vs POP3 puerto 110",
+          "Descarga de emails con cifrado",
+          "Menos usado que IMAPS"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "FIM": {
+        "termino": "FIM (File Integrity Monitoring)",
+        "definicion": "Monitoreo de cambios en archivos criticos. Detecta modificaciones no autorizadas. Hash baseline + comparacion. Alerta cambios sospechosos",
+        "ejemplos": [
+          "Tripwire",
+          "OSSEC FIM",
+          "Detecta cambio en /etc/passwd",
+          "PCI DSS requirement 11.5",
+          "Hash comparison"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MAC_Model": {
+        "termino": "MAC (Mandatory Access Control)",
+        "definicion": "Control de acceso basado en clasificacion de seguridad. Sistema operativo impone politicas. Usuario NO puede modificar permisos",
+        "ejemplos": [
+          "SELinux",
+          "AppArmor",
+          "Etiquetas: Top Secret, Secret, Confidential, Unclassified",
+          "Usado en entornos militares/gubernamentales"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RuBAC": {
+        "termino": "RuBAC (Rule-Based Access Control)",
+        "definicion": "Control de acceso basado en reglas. Combina multiples condiciones: tiempo, ubicacion, tipo de dispositivo, etc.",
+        "ejemplos": [
+          "Permitir acceso solo de 8am-6pm",
+          "Bloquear acceso desde IPs fuera del pais",
+          "ACLs de firewall son tipo RuBAC"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "ABAC": {
+        "termino": "ABAC (Attribute-Based Access Control)",
+        "definicion": "Control de acceso basado en atributos de: usuario, recurso, entorno. Politicas dinamicas y granulares",
+        "ejemplos": [
+          "Permitir acceso si: departamento=HR AND ubicacion=oficina AND hora_laboral=true",
+          "AWS IAM policies",
+          "XACML standard"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Time_of_Day_Restrictions": {
+        "termino": "Time-of-Day Restrictions",
+        "definicion": "Limitar acceso a sistemas/recursos basado en horario. Parte de RuBAC",
+        "ejemplos": [
+          "Acceso a sistema nominas solo 8am-6pm",
+          "Deshabilitar cuentas fuera de horario laboral",
+          "GPO con restricciones horarias"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "PEAP": {
+        "termino": "PEAP (Protected EAP)",
+        "definicion": "Protocolo de autenticacion 802.1X. Crea tunel TLS antes de autenticar. Protege credenciales. EAP dentro de TLS",
+        "ejemplos": [
+          "PEAP-MSCHAPv2 (Windows)",
+          "WPA2-Enterprise",
+          "RADIUS + PEAP",
+          "Certificado servidor RADIUS",
+          "Tunel TLS cifrado"
+        ],
+        "prioridad": "ALTA"
+      },
+      "EAP_TTLS": {
+        "termino": "EAP-TTLS",
+        "definicion": "EAP Tunneled TLS. Similar a PEAP pero mas flexible. Tunel TLS para autenticacion. Soporta metodos legacy dentro de tunel",
+        "ejemplos": [
+          "EAP-TTLS/PAP",
+          "Certificado solo en servidor",
+          "Alternativa a PEAP",
+          "Mayor compatibilidad que PEAP"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "EAP_TLS": {
+        "termino": "EAP-TLS",
+        "definicion": "EAP Transport Layer Security. Metodo mas seguro 802.1X. Requiere certificados en cliente Y servidor. Mutual authentication",
+        "ejemplos": [
+          "WPA2-Enterprise mas seguro",
+          "Certificado digital cliente",
+          "PKI requerida",
+          "No transmite contraseñas"
+        ],
+        "prioridad": "ALTA"
+      },
+      "WPA_Enterprise": {
+        "termino": "WPA Enterprise",
+        "definicion": "WPA/WPA2/WPA3 con autenticacion 802.1X. Servidor RADIUS. Credenciales individuales por usuario. Para empresas",
+        "ejemplos": [
+          "RADIUS server",
+          "EAP-TLS",
+          "PEAP-MSCHAPv2",
+          "Credenciales AD",
+          "Mas seguro que PSK"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Beacon_Frame": {
+        "termino": "Beacon Frame",
+        "definicion": "Frame de gestion WiFi. AP anuncia presencia y caracteristicas. Contiene SSID, capacidades, tasas. Broadcast periodico",
+        "ejemplos": [
+          "SSID broadcast",
+          "Intervalo 100ms tipico",
+          "Contiene: SSID, canales, cifrado soportado",
+          "Detectable por scanners WiFi"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "DAC": {
+        "termino": "DAC (Discretionary Access Control)",
+        "definicion": "Control de acceso discrecional. Propietario del recurso decide permisos. Usuarios pueden compartir recursos. Menos restrictivo",
+        "ejemplos": [
+          "Permisos NTFS en Windows",
+          "chmod en Linux",
+          "Usuario puede dar permisos a otros",
+          "ACL definidas por owner"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Least_Privilege": {
+        "termino": "Least Privilege",
+        "definicion": "Principio de minimo privilegio. Usuarios/procesos solo acceso necesario para tarea. Reduce superficie de ataque. Best practice seguridad",
+        "ejemplos": [
+          "Usuario sin admin rights",
+          "Cuenta servicio limitada",
+          "Just-in-time admin access",
+          "Reduce impacto de compromiso"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Clearance_Levels": {
+        "termino": "Clearance Levels",
+        "definicion": "Niveles de autorizacion de seguridad. Clasificacion jerarquica. Gobierno/militar. Sujeto debe tener clearance >= clasificacion objeto",
+        "ejemplos": [
+          "Top Secret",
+          "Secret",
+          "Confidential",
+          "Unclassified",
+          "Need-to-know",
+          "Modelo Bell-LaPadula"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Geofencing": {
+        "termino": "Geofencing",
+        "definicion": "Perimetro virtual geografico. Reglas basadas en ubicacion GPS. Permite/bloquea acceso segun localizacion. Control de acceso contextual",
+        "ejemplos": [
+          "Acceso solo desde oficina",
+          "Bloquear login fuera del pais",
+          "MDM geofencing",
+          "Alertas salida de zona"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Adaptive_Identity": {
+        "termino": "Adaptive Identity (Identidad Adaptativa)",
+        "definicion": "Control de acceso Zero Trust dinamico. Considera contexto: identidad, dispositivo, ubicacion, comportamiento. Decisiones de acceso en tiempo real",
+        "ejemplos": [
+          "MFA si login inusual",
+          "Bloqueo desde pais no autorizado",
+          "Require device compliance",
+          "Azure Conditional Access"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Honeynet": {
+        "termino": "Honeynet",
+        "definicion": "Red de honeypots interconectados. Simula red completa de organizacion. Atrae atacantes para estudiar TTPs. Investigacion de amenazas",
+        "ejemplos": [
+          "Red falsa con servidores, workstations, routers falsos",
+          "Monitoreo completo de ataques",
+          "Research de malware"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Honeytoken": {
+        "termino": "Honeytoken",
+        "definicion": "Dato falso usado como trampa. Alerta cuando se accede. Credenciales falsas, archivos señuelo. Deteccion de breach",
+        "ejemplos": [
+          "Credenciales falsas en archivo",
+          "Entrada DB ficticia",
+          "Fake API key",
+          "Email señuelo",
+          "Alerta si se usa"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "IPsec": {
+        "termino": "IPsec (IP Security)",
+        "definicion": "Suite de protocolos para seguridad IP. Cifrado, autenticacion e integridad. VPNs site-to-site. Layer 3 del modelo OSI",
+        "ejemplos": [
+          "VPN IPsec",
+          "AH (Authentication Header)",
+          "ESP (Encapsulating Security Payload)",
+          "IKE (Internet Key Exchange)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IPsec_Transport_Mode": {
+        "termino": "IPsec Transport Mode",
+        "definicion": "Modo IPsec que cifra solo payload (datos). Header IP original sin cifrar. Usado host-to-host. Menos overhead que Tunnel",
+        "ejemplos": [
+          "Comunicacion host a host",
+          "No modifica IP header",
+          "ESP transport",
+          "Menor overhead que tunnel mode"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "PSK": {
+        "termino": "PSK (Pre-Shared Key)",
+        "definicion": "Clave secreta compartida previamente entre partes. Usado en WPA/WPA2-Personal. Autenticacion simetrica. Mas simple que 802.1X",
+        "ejemplos": [
+          "Contraseña WiFi casera",
+          "WPA2-Personal",
+          "WPA3-Personal SAE",
+          "IPsec PSK authentication"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Data_Masking": {
+        "termino": "Data Masking (Enmascaramiento de datos)",
+        "definicion": "Ocultar datos sensibles reemplazandolos con caracteres. Protege datos en pantalla. No modifica datos originales en BD",
+        "ejemplos": [
+          "****1234 (numero tarjeta)",
+          "Asteriscos en password field",
+          "XXX-XX-1234 (SSN)",
+          "Ocultar PII en UI"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Blockchain": {
+        "termino": "Blockchain",
+        "definicion": "Libro mayor distribuido publico. Registro inmutable de transacciones. Descentralizado. Criptografia + consenso. Base de criptomonedas",
+        "ejemplos": [
+          "Bitcoin blockchain",
+          "Ethereum",
+          "Smart contracts",
+          "Registro inmutable",
+          "Proof of Work/Stake"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "EFS": {
+        "termino": "EFS (Encrypting File System)",
+        "definicion": "Sistema de cifrado de archivos de Windows. Cifrado a nivel de archivo/carpeta. Transparente para usuario. Basado en certificados usuario",
+        "ejemplos": [
+          "Cifrar carpeta Mis Documentos",
+          "EFS en NTFS",
+          "Certificado usuario para clave",
+          "Data at rest encryption"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Split_Tunneling": {
+        "termino": "Split Tunneling",
+        "definicion": "VPN que permite trafico simultaneo por VPN y red publica. Trafico corporativo via VPN, Internet directo. Ahorra ancho de banda",
+        "ejemplos": [
+          "Acceso recursos empresa via VPN, Netflix via ISP",
+          "Reduce latencia Internet",
+          "Riesgo: bypass VPN security"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "GDPR": {
+        "termino": "GDPR (General Data Protection Regulation)",
+        "definicion": "Reglamento UE de proteccion de datos personales. Derecho privacidad ciudadanos UE. Multas severas por incumplimiento. RGPD en español",
+        "ejemplos": [
+          "Right to be forgotten",
+          "Data breach notification 72h",
+          "Consent requirement",
+          "Multas hasta 4% revenue"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Machine_Language": {
+        "termino": "Machine Language (Lenguaje Maquina)",
+        "definicion": "Codigo binario ejecutable directamente por CPU. No legible por humanos. Nivel mas bajo de programacion. 0s y 1s",
+        "ejemplos": [
+          "01001000 01100101",
+          "Instrucciones CPU directas",
+          "Compilado desde assembly",
+          "Arquitectura especifica"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Secure_Baseline": {
+        "termino": "Secure Baseline (Linea de Base Segura)",
+        "definicion": "Configuracion estandar de seguridad minima. Template de hardening. Configuraciones y ajustes fundamentales. Punto de partida seguro",
+        "ejemplos": [
+          "CIS Benchmarks",
+          "DISA STIGs",
+          "Windows Security Baseline",
+          "Disable unnecessary services",
+          "Strong passwords"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Remote_Wipe": {
+        "termino": "Remote Wipe (Borrado Remoto)",
+        "definicion": "Borrado remoto de datos en dispositivo movil perdido/robado. MDM feature. Protege datos corporativos. Factory reset remoto",
+        "ejemplos": [
+          "MDM remote wipe",
+          "Find My iPhone erase",
+          "Android Device Manager wipe",
+          "Proteccion tras robo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CAPTCHA": {
+        "termino": "CAPTCHA",
+        "definicion": "Test para distinguir humanos de bots. Desafio-respuesta visual/audio. Previene automatizacion. reCAPTCHA de Google popular",
+        "ejemplos": [
+          "Seleccionar semaforos en imagenes",
+          "Escribir texto distorsionado",
+          "reCAPTCHA v3 (invisible)",
+          "Anti-bot protection"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Degaussing": {
+        "termino": "Degaussing (Desmagnetizacion)",
+        "definicion": "Eliminacion de datos mediante desmagnetizacion de medios magneticos. Campo magnetico fuerte borra datos. Destruye disco para reutilizacion",
+        "ejemplos": [
+          "Degausser para HDDs",
+          "Desmagnetizador cintas magneticas",
+          "Inutiliza disco tras proceso",
+          "NO funciona en SSD"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Data_Retention_Policy": {
+        "termino": "Data Retention Policy (Politica de Retencion de Datos)",
+        "definicion": "Politica que especifica cuanto tiempo retener datos antes de eliminarlos. Requisitos legales y compliance. Ciclo de vida de datos",
+        "ejemplos": [
+          "Emails: 7 años",
+          "Logs: 90 dias",
+          "Backups: 30 dias",
+          "Compliance GDPR, HIPAA",
+          "Legal hold exceptions"
+        ],
+        "prioridad": "ALTA"
+      },
+      "VTC": {
+        "termino": "VTC (Video Teleconferencing)",
+        "definicion": "Videoconferencia en tiempo real. Audio y video simultaneo entre individuos o grupos. Zoom, Teams, WebEx",
+        "ejemplos": [
+          "Zoom meetings",
+          "Microsoft Teams",
+          "Cisco WebEx",
+          "Google Meet",
+          "Require encryption (TLS)"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Non_Persistent_VDI": {
+        "termino": "Non-Persistent VDI",
+        "definicion": "VDI que resetea a estado original tras cada sesion. Escritorio compartido entre usuarios. No guarda cambios. Mas seguro",
+        "ejemplos": [
+          "Escritorio reset al logout",
+          "Comparte golden image",
+          "Mas economico que persistent",
+          "Ideal para task workers"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SHTTP": {
+        "termino": "SHTTP (Secure HTTP)",
+        "definicion": "Protocolo obsoleto para datos seguros web. DEPRECATED. Reemplazado por HTTPS. No confundir con HTTPS",
+        "ejemplos": [
+          "Obsoleto desde 1990s",
+          "Reemplazado por HTTPS/TLS",
+          "NO es lo mismo que HTTPS",
+          "RFC 2660"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "CMS": {
+        "termino": "CMS (Content Management System)",
+        "definicion": "Sistema gestion de contenido web. Crear y mantener sitios web sin codigo. WordPress, Drupal, Joomla",
+        "ejemplos": [
+          "WordPress",
+          "Drupal",
+          "Joomla",
+          "Vulnerabilidades si no actualizado",
+          "Plugins riesgosos"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SMTPS": {
+        "termino": "SMTPS (SMTP Secure)",
+        "definicion": "SMTP sobre SSL/TLS implícito. Puerto 465. Deprecated en favor de STARTTLS. Cifrado desde inicio conexion",
+        "ejemplos": [
+          "Puerto 465",
+          "SSL/TLS desde inicio",
+          "Deprecated (usar STARTTLS)",
+          "Cifrado email submission"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "STARTTLS": {
+        "termino": "STARTTLS",
+        "definicion": "Comando para upgradear conexion plaintext a TLS. Usado en SMTP, IMAP, POP3. Explicit TLS. Puerto estandar + upgrade",
+        "ejemplos": [
+          "SMTP puerto 587 + STARTTLS",
+          "Upgrade conexion a TLS",
+          "Mejor que SMTPS deprecated",
+          "Fallback a plaintext posible"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SOW": {
+        "termino": "SOW (Statement of Work)",
+        "definicion": "Declaracion de trabajo detallada. Describe trabajo a realizar en proyecto. Alcance, entregables, timeline, costo",
+        "ejemplos": [
+          "SOW bajo MSA",
+          "Define entregables especificos",
+          "Proyecto pentest SOW",
+          "Alcance y precio detallados"
+        ],
+        "prioridad": "ALTA"
+      },
+      "TKIP": {
+        "termino": "TKIP (Temporal Key Integrity Protocol)",
+        "definicion": "Protocolo seguridad WPA1. Mejora WEP. Claves temporales por paquete. Obsoleto (usar CCMP/WPA2)",
+        "ejemplos": [
+          "WPA con TKIP",
+          "Mejor que WEP pero obsoleto",
+          "Vulnerabilidades conocidas",
+          "Usar WPA2/CCMP"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CCMP": {
+        "termino": "CCMP (Counter Mode CBC-MAC Protocol)",
+        "definicion": "Protocolo cifrado WPA2/WPA3. Basado en AES. Reemplazo de TKIP. Modo contador + autenticacion CBC-MAC",
+        "ejemplos": [
+          "WPA2 encryption",
+          "AES-128 o AES-256",
+          "Mas seguro que TKIP",
+          "WPA3 usa CCMP"
+        ],
+        "prioridad": "ALTA"
+      },
+      "GRE": {
+        "termino": "GRE (Generic Routing Encapsulation)",
+        "definicion": "Protocolo tunelizacion Cisco. Encapsula diversos protocolos de capa 3. VPN site-to-site. NO cifra (usar con IPsec)",
+        "ejemplos": [
+          "GRE tunnel Cisco",
+          "Encapsula IP, IPv6, IPX",
+          "GRE over IPsec para cifrado",
+          "IP protocol 47"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "AIS": {
+        "termino": "AIS (Automated Indicator Sharing)",
+        "definicion": "Iniciativa DHS para compartir indicadores de amenazas en tiempo real. Gobierno + sector privado. STIX/TAXII",
+        "ejemplos": [
+          "US-CERT AIS",
+          "STIX format",
+          "TAXII transport",
+          "Threat intel sharing",
+          "Indicadores IoC automaticos"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CBC_Mode": {
+        "termino": "CBC (Cipher Block Chaining)",
+        "definicion": "Modo cifrado de bloques. Cada bloque XOR con anterior. IV para primer bloque. Popular pero vulnerable a padding oracle",
+        "ejemplos": [
+          "AES-CBC",
+          "IV necesario",
+          "Padding oracle vulnerability",
+          "Encadenamiento de bloques",
+          "Usado en TLS antiguo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CTR_Mode": {
+        "termino": "CTR (Counter Mode)",
+        "definicion": "Modo cifrado que convierte block cipher en stream cipher. Usa contador + IV. Paralelizable. No padding",
+        "ejemplos": [
+          "AES-CTR",
+          "Paralelizable (rapido)",
+          "No padding needed",
+          "GCM usa CTR",
+          "Nonce/counter unico critico"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "ECB_Mode": {
+        "termino": "ECB (Electronic Codebook)",
+        "definicion": "Modo cifrado de bloques MAS DEBIL. Cada bloque cifrado independiente. Patrones visibles. NO USAR",
+        "ejemplos": [
+          "AES-ECB (INSEGURO)",
+          "Bloques identicos = cifrado identico",
+          "Patrones visibles en imagenes",
+          "NUNCA usar en produccion"
+        ],
+        "prioridad": "ALTA"
+      },
+      "AUP": {
+        "termino": "AUP (Acceptable Use Policy)",
+        "definicion": "Politica de uso aceptable. Reglas de comportamiento para usuarios de sistemas IT. Que esta permitido/prohibido",
+        "ejemplos": [
+          "No uso personal excesivo",
+          "Prohibido pirateria",
+          "No acceso no autorizado",
+          "Consecuencias violaciones",
+          "Firma requerida"
+        ],
+        "prioridad": "ALTA"
+      }
+    }
+  },
+  "Dominio_4_Operaciones_Seguridad": {
+    "peso_examen": "28%",
+    "definiciones": {
+      "Static_Code_Analysis": {
+        "termino": "Static Code Analysis (Analisis de Codigo Estatico)",
+        "definicion": "Analisis de codigo fuente sin ejecutarlo. Busca bugs, vulnerabilidades, code smells. SAST. Parte de DevSecOps",
+        "ejemplos": [
+          "SonarQube",
+          "Checkmarx",
+          "Fortify",
+          "Encuentra SQL injection en codigo",
+          "Pre-deployment testing"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Dynamic_Code_Analysis": {
+        "termino": "Dynamic Code Analysis",
+        "definicion": "Analisis de aplicacion en EJECUCION. Detecta vulnerabilidades en runtime. Parte de DAST",
+        "ejemplos": [
+          "Burp Suite",
+          "OWASP ZAP",
+          "Detecta: XSS, CSRF, autenticacion rota",
+          "Fuzzing de inputs",
+          "Testing en staging/QA"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Package_Monitoring": {
+        "termino": "Package Monitoring",
+        "definicion": "Monitoreo de dependencias de software (bibliotecas, frameworks). Detecta vulnerabilidades conocidas en paquetes terceros",
+        "ejemplos": [
+          "OWASP Dependency-Check",
+          "Snyk",
+          "GitHub Dependabot",
+          "Alertar sobre Log4j vulnerable",
+          "npm audit / pip-audit"
+        ],
+        "prioridad": "ALTA"
+      },
+      "TAXII": {
+        "termino": "TAXII (Trusted Automated Exchange of Intelligence Information)",
+        "definicion": "Protocolo para compartir threat intelligence. Transporte de datos STIX. APIs para intercambio automatizado de IoCs",
+        "ejemplos": [
+          "TAXII server recibe feeds de IoCs",
+          "Integrar con SIEM/firewall",
+          "Formato STIX para datos de amenazas"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Dark_Web": {
+        "termino": "Dark Web",
+        "definicion": "Red overlay anonima (Tor, I2P). Requiere software especial. Usado para: anonimato, mercados ilegales, leaks de datos",
+        "ejemplos": [
+          "Tor Browser",
+          "Dominios .onion",
+          "Monitoreo de credenciales filtradas",
+          "Threat intelligence de foros de hackers"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Bug_Bounty": {
+        "termino": "Bug Bounty",
+        "definicion": "Programa de recompensas por descubrir vulnerabilidades. Researchers eticos reportan bugs a cambio de pago",
+        "ejemplos": [
+          "HackerOne",
+          "Bugcrowd",
+          "Programas de Google, Microsoft, Apple",
+          "Responsible disclosure"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DLP": {
+        "termino": "DLP (Data Loss Prevention)",
+        "definicion": "Tecnologia para prevenir fuga de datos sensibles. Monitorea, detecta, bloquea transferencias no autorizadas. Network-based, Endpoint-based, Cloud-based",
+        "ejemplos": [
+          "Bloquear envio de datos PII por email",
+          "Prevenir copia a USB",
+          "Detectar subida de datos a Dropbox",
+          "Politicas basadas en contenido/contexto"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SNMP": {
+        "termino": "SNMP (Simple Network Management Protocol)",
+        "definicion": "Protocolo de gestion de dispositivos de red. Puertos 161 (agent), 162 (trap). Versiones: v1/v2c (inseguros), v3 (cifrado)",
+        "ejemplos": [
+          "Monitoreo de routers/switches",
+          "MIB (Management Information Base)",
+          "SNMPv3 con autenticacion y cifrado",
+          "Community strings en v1/v2c"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "OID": {
+        "termino": "OID (Object Identifier)",
+        "definicion": "Identificador unico jerarquico en sistemas como SNMP, X.509, LDAP. Notacion numerica separada por puntos",
+        "ejemplos": [
+          "1.3.6.1.2.1.1 (MIB-2 system group)",
+          "OID en certificados X.509 para extensiones",
+          "Estructura arbol: ISO.org.dod.internet..."
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Signatures": {
+        "termino": "Signatures (Security)",
+        "definicion": "Patrones conocidos de malware/ataques. Usados por antivirus, IDS/IPS. Requiere actualizacion constante. Inefectivo contra zero-day",
+        "ejemplos": [
+          "Antivirus detecta hash de malware conocido",
+          "IDS detecta patron de exploit",
+          "Snort rules",
+          "YARA rules"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Orchestration": {
+        "termino": "Orchestration (Orquestacion)",
+        "definicion": "Coordinacion y gestion automatizada de multiples tareas y sistemas. Workflow automation complejo. Mas avanzado que automatizacion simple",
+        "ejemplos": [
+          "SOAR platform",
+          "Kubernetes orchestration",
+          "Incident response orchestration",
+          "Coordina scripts + APIs + sistemas"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Automation": {
+        "termino": "Automation (Security)",
+        "definicion": "Automatizacion de tareas repetitivas de seguridad. Scripts, runbooks, respuestas automaticas. Reduce tiempo de respuesta",
+        "ejemplos": [
+          "Auto-bloqueo de IPs maliciosas",
+          "Patch deployment automatico",
+          "Respuesta automatica a incidentes",
+          "Scripting con Python/PowerShell"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Technical_Debt": {
+        "termino": "Technical Debt",
+        "definicion": "Costo implicito de trabajo adicional futuro por soluciones rapidas/suboptimas. En seguridad: sistemas legacy sin parches, workarounds",
+        "ejemplos": [
+          "Sistema Windows Server 2008 sin soporte",
+          "Hardcoded credentials pendientes de refactorizar",
+          "Configuraciones temporales que quedaron permanentes"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "E_Discovery": {
+        "termino": "E-Discovery (Electronic Discovery / Descubrimiento Electronico)",
+        "definicion": "Identificar, recopilar y producir ESI (Electronically Stored Information) para litigio. Proceso legal forense digital",
+        "ejemplos": [
+          "Email discovery en lawsuit",
+          "Forensic collection",
+          "Legal hold",
+          "Chain of custody",
+          "Produccion de evidencia digital"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Metadata": {
+        "termino": "Metadata (Metadatos)",
+        "definicion": "Datos que describen otros datos. Info sobre archivo sin ser contenido. Autor, fecha creacion, modificacion, ubicacion GPS en fotos",
+        "ejemplos": [
+          "EXIF en fotos (GPS, camara)",
+          "Autor documento Word",
+          "Email headers",
+          "Timestamp archivos",
+          "HTML meta tags"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "PCAP": {
+        "termino": "PCAP (Packet Capture)",
+        "definicion": "Captura de paquetes de red para analisis. Formato de archivo .pcap. Wireshark, tcpdump. Analisis trafico y troubleshooting",
+        "ejemplos": [
+          "tcpdump -w capture.pcap",
+          "Wireshark analysis",
+          "Captura todo trafico red",
+          "Analisis forense de red"
+        ],
+        "prioridad": "ALTA"
+      },
+      "XML": {
+        "termino": "XML (eXtensible Markup Language)",
+        "definicion": "Lenguaje de marcado para estructurar datos en formato legible para humanos y maquinas. Usado en configuraciones, APIs, SAML",
+        "ejemplos": [
+          "SAML assertions",
+          "Archivos de configuracion",
+          "SOAP web services",
+          "Vulnerable a XXE (XML External Entity)"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "JSON": {
+        "termino": "JSON (JavaScript Object Notation)",
+        "definicion": "Formato ligero de intercambio de datos. Legible para humanos. Basado en sintaxis JavaScript. Alternativa a XML",
+        "ejemplos": [
+          "APIs REST",
+          "Archivos de configuracion",
+          "Mas simple que XML",
+          "Pares clave-valor"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CBC_Mode": {
+        "termino": "CBC (Cipher Block Chaining)",
+        "definicion": "Modo de cifrado de bloques que encadena bloques. Cada bloque cifrado depende del anterior. Usa IV (Initialization Vector)",
+        "ejemplos": [
+          "AES-CBC",
+          "Requiere IV aleatorio",
+          "Padding oracle attacks",
+          "Cifrado secuencial (no paralelo)"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CTR_Mode": {
+        "termino": "CTR (Counter Mode)",
+        "definicion": "Modo de cifrado que combina contador unico con clave para generar bloques pseudoaleatorios. Permite paralelizacion",
+        "ejemplos": [
+          "AES-CTR",
+          "Cifrado paralelo",
+          "Convierte block cipher en stream cipher",
+          "No requiere padding"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Vulnerability_Scanning": {
+        "termino": "Vulnerability Scanning",
+        "definicion": "Escaneo automatizado de vulnerabilidades. Identifica debilidades de seguridad. Nessus, Qualys, OpenVAS",
+        "ejemplos": [
+          "Nessus scanner",
+          "OpenVAS",
+          "Qualys",
+          "CVE detection",
+          "Scheduled weekly scans",
+          "False positives comunes"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SASE": {
+        "termino": "SASE (Secure Access Service Edge)",
+        "definicion": "Framework cloud que combina funciones de red (SD-WAN) y seguridad (SWG, CASB, FWaaS, ZTNA) en servicio unico",
+        "ejemplos": [
+          "Convergencia de WAN y seguridad",
+          "Seguridad basada en identidad",
+          "Acceso seguro desde cualquier ubicacion",
+          "Cloudflare SASE, Zscaler"
+        ],
+        "prioridad": "ALTA"
+      },
+      "AUP": {
+        "termino": "AUP (Acceptable Use Policy)",
+        "definicion": "Politica que define uso aceptable de recursos IT de organizacion. Control directivo que guia comportamiento de usuarios",
+        "ejemplos": [
+          "No uso personal de email corporativo",
+          "Prohibir descarga de software no autorizado",
+          "Politicas de redes sociales"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Red_Team": {
+        "termino": "Red Team",
+        "definicion": "Equipo que simula atacantes reales. Pentest ofensivo y realista. Prueba controles de seguridad. Tacticas adversarias",
+        "ejemplos": [
+          "Simular APT",
+          "Pentest sin conocimiento previo (black-box)",
+          "Social engineering incluido",
+          "Objetivos: comprometer red"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Blue_Team": {
+        "termino": "Blue Team",
+        "definicion": "Equipo de defensa. Detecta y responde a ataques. Monitoriza logs y alertas. Defiende contra Red Team",
+        "ejemplos": [
+          "SOC analysts",
+          "SIEM monitoring",
+          "Incident response",
+          "Threat hunting",
+          "Detectar ataques Red Team"
+        ],
+        "prioridad": "ALTA"
+      },
+      "White_Team": {
+        "termino": "White Team",
+        "definicion": "Equipo neutral que arbitra ejercicio Red vs Blue. Establece reglas. Evalua desempeño. Administra ejercicio",
+        "ejemplos": [
+          "Coordina Red Team exercise",
+          "Define alcance",
+          "Evalua Blue Team response",
+          "Administra competencia CTF"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Purple_Team": {
+        "termino": "Purple Team",
+        "definicion": "Colaboracion entre Red y Blue Team. Comparten conocimientos. Mejoran defensas mediante feedback. No es equipo separado",
+        "ejemplos": [
+          "Red Team explica tecnicas usadas",
+          "Blue Team mejora deteccion",
+          "Sesiones de feedback",
+          "Threat emulation conjunta"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Gray_Box_Testing": {
+        "termino": "Gray-Box Testing",
+        "definicion": "Pentest con conocimiento parcial. Informacion limitada del sistema. Mezcla de black-box y white-box. Mas realista que white-box",
+        "ejemplos": [
+          "Credenciales de usuario normal",
+          "Diagrama de red sin detalles",
+          "Lista de IPs sin configuraciones",
+          "Pentest semi-informado"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Active_Reconnaissance": {
+        "termino": "Active Reconnaissance",
+        "definicion": "Reconocimiento activo. Interaccion directa con objetivo. Genera trafico detectable. Escaneos, sondeos",
+        "ejemplos": [
+          "Nmap port scan",
+          "Vulnerability scan",
+          "DNS zone transfer",
+          "Banner grabbing",
+          "MAS detectable que passive"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Passive_Reconnaissance": {
+        "termino": "Passive Reconnaissance",
+        "definicion": "Reconocimiento pasivo. Sin contacto directo con objetivo. Recopilacion de info publica. No genera alertas",
+        "ejemplos": [
+          "Google dorking",
+          "WHOIS lookup",
+          "Shodan",
+          "DNS public records",
+          "LinkedIn recon",
+          "Archive.org",
+          "NO detectable"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Fuzzing": {
+        "termino": "Fuzzing",
+        "definicion": "Tecnica de testing automatizada. Envia inputs invalidos/aleatorios/inesperados. Busca crashes o comportamiento anormal. Encuentra vulnerabilidades",
+        "ejemplos": [
+          "AFL fuzzer",
+          "Peach Fuzzer",
+          "Burp Intruder",
+          "Descubrir buffer overflows",
+          "Input malformado",
+          "Mutation-based fuzzing"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Code_Signing": {
+        "termino": "Code Signing",
+        "definicion": "Firma digital de codigo/software. Verifica autenticidad y integridad. Certificado del desarrollador. Previene modificacion maliciosa",
+        "ejemplos": [
+          "Certificado EV Code Signing",
+          "Firma ejecutables .exe",
+          "macOS Gatekeeper",
+          "Windows SmartScreen",
+          "Hash + firma privada"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Normalization": {
+        "termino": "Normalization",
+        "definicion": "Proceso de convertir datos a formato estandar. En SIEM: unificar logs de multiples fuentes. Facilita correlacion y analisis",
+        "ejemplos": [
+          "Timestamp en UTC",
+          "IP en formato estandar",
+          "Campos comunes (src_ip, dst_ip)",
+          "SIEM parsea logs diversos"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Concurrent_Session_Usage": {
+        "termino": "Concurrent Session Usage",
+        "definicion": "Indicador de compromiso. Mismo usuario logueado simultaneamente en multiples ubicaciones. Posible robo de credenciales",
+        "ejemplos": [
+          "Usuario en NYC y Tokyo simultaneamente",
+          "Alerta SIEM sesion duplicada",
+          "Indicador de account sharing o compromiso"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Impossible_Travel": {
+        "termino": "Impossible Travel",
+        "definicion": "Indicador de compromiso. Login desde ubicaciones geograficamente imposibles en tiempo corto. Usuario en Madrid y luego 1h despues en Tokio",
+        "ejemplos": [
+          "Login Paris 10am, luego Sydney 10:30am",
+          "Azure AD Identity Protection",
+          "Indicador robo de credenciales"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Missing_Logs": {
+        "termino": "Missing Logs",
+        "definicion": "Indicador de compromiso. Ausencia o borrado de logs. Atacantes eliminan evidencia. Gap en logs de auditoria",
+        "ejemplos": [
+          "Atacante ejecuta wevtutil cl Security",
+          "Gap de 3 horas en logs",
+          "Log tampering",
+          "Indicador anti-forensics"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Out_of_Cycle_Logging": {
+        "termino": "Out-of-Cycle Logging",
+        "definicion": "Registros fuera del ciclo normal. Logs en horarios inusuales. Actividad fuera de horario laboral. Indicador de actividad sospechosa",
+        "ejemplos": [
+          "Admin login 3am domingo",
+          "Backup ejecutado horario no planificado",
+          "Script cron fuera de schedule"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Incident_Response_Preparation": {
+        "termino": "Incident Response - Preparation",
+        "definicion": "Primera fase de IR. Preparacion previa a incidentes. Crear plan IR, entrenar equipo, herramientas listas. Proactividad",
+        "ejemplos": [
+          "Crear IR plan",
+          "Training SOC team",
+          "Deploy SIEM",
+          "Contact list",
+          "Tabletop exercises"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Incident_Response_Detection": {
+        "termino": "Incident Response - Detection and Analysis",
+        "definicion": "Segunda fase de IR. Detectar e identificar incidentes. Analizar alcance, impacto y causa raiz. Determinar severidad",
+        "ejemplos": [
+          "SIEM alert",
+          "Analizar logs",
+          "Identificar IOC",
+          "Determine scope",
+          "Classify incident severity"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Incident_Response_Containment": {
+        "termino": "Incident Response - Containment, Eradication, Recovery",
+        "definicion": "Tercera fase de IR. Contener amenaza, erradicar malware, recuperar sistemas. Limitar daño y restaurar operaciones",
+        "ejemplos": [
+          "Aislar sistema infectado",
+          "Remove malware",
+          "Restore from backup",
+          "Patch vulnerabilities"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Incident_Response_Post_Incident": {
+        "termino": "Incident Response - Post-Incident Activity",
+        "definicion": "Cuarta fase de IR. Actividades tras incidente. Lessons learned, actualizar procedimientos, mejorar defensas. Documentacion",
+        "ejemplos": [
+          "Post-mortem meeting",
+          "Update IR plan",
+          "Document incident",
+          "Improve detection rules",
+          "Training updates"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SDLC": {
+        "termino": "SDLC (Software Development Life Cycle)",
+        "definicion": "Proceso de creacion y mantenimiento de software. Fases: Planificacion, Analisis, Diseño, Implementacion, Testing, Deploy, Mantenimiento",
+        "ejemplos": [
+          "Waterfall SDLC",
+          "Agile SDLC",
+          "DevOps integration",
+          "Secure SDLC",
+          "Planning > Design > Code > Test > Deploy"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ARO": {
+        "termino": "ARO (Annualized Rate of Occurrence)",
+        "definicion": "Frecuencia estimada anual de amenaza. Cuantas veces al año ocurre incidente. Calculo de riesgo: SLE x ARO = ALE",
+        "ejemplos": [
+          "Ransomware: ARO = 0.5 (cada 2 años)",
+          "Inundacion: ARO = 0.1 (cada 10 años)",
+          "ALE = SLE x ARO"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Right_to_be_Forgotten": {
+        "termino": "Right to be Forgotten (Derecho a ser Olvidado)",
+        "definicion": "Derecho GDPR de solicitar eliminacion de datos personales. Derecho de supresion. Eliminar info de busquedas y fuentes publicas",
+        "ejemplos": [
+          "Eliminar datos de Google Search",
+          "Delete cuenta y datos personales",
+          "GDPR Article 17",
+          "Excepciones legales aplican"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "User_Onboarding": {
+        "termino": "User Onboarding (Incorporacion de Usuario)",
+        "definicion": "Proceso de añadir nuevo empleado a sistemas. Crear cuentas, asignar permisos, hardware, training. Checklist de incorporacion",
+        "ejemplos": [
+          "Crear cuenta AD",
+          "Asignar laptop",
+          "Configurar email",
+          "Access card",
+          "Security training",
+          "Sign NDA"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "User_Offboarding": {
+        "termino": "User Offboarding (Baja de Usuario)",
+        "definicion": "Proceso cuando empleado deja empresa. Revocar accesos, recuperar activos, exit interview. Checklist de despido",
+        "ejemplos": [
+          "Disable AD account",
+          "Recuperar laptop y access card",
+          "Revoke VPN",
+          "Exit interview",
+          "Return company assets"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Data_Processor": {
+        "termino": "Data Processor (Procesador de Datos)",
+        "definicion": "Entidad que procesa datos personales en nombre del controlador. Sigue instrucciones del controlador. Responsabilidad compartida GDPR",
+        "ejemplos": [
+          "Cloud provider (AWS, Azure)",
+          "Payroll service",
+          "Email marketing platform",
+          "Procesa datos segun instrucciones"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Data_Controller": {
+        "termino": "Data Controller (Controlador de Datos / Responsable del Tratamiento)",
+        "definicion": "Entidad que determina propositos y medios de procesamiento de datos personales. Responsabilidad principal GDPR. Decide QUE y COMO",
+        "ejemplos": [
+          "Empresa que recopila datos clientes",
+          "Hospital con datos pacientes",
+          "Determina retencion y uso de datos"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "IoC": {
+        "termino": "IoC (Indicator of Compromise)",
+        "definicion": "Evidencia forense de actividad maliciosa. Artefactos que indican breach o compromiso. Hash malware, IP C2, dominios maliciosos",
+        "ejemplos": [
+          "Hash MD5 de malware",
+          "IP de C2 server",
+          "Dominio malicioso",
+          "Registry key sospechosa",
+          "Unusual outbound traffic"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MDM": {
+        "termino": "MDM (Mobile Device Management)",
+        "definicion": "Gestion centralizada de dispositivos moviles. Control configuracion, seguridad, apps. Remote wipe. Enforce policies",
+        "ejemplos": [
+          "Intune",
+          "MobileIron",
+          "AirWatch",
+          "Remote wipe",
+          "App whitelist/blacklist",
+          "Enforce encryption",
+          "BYOD management"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RFID": {
+        "termino": "RFID (Radio Frequency Identification)",
+        "definicion": "Identificacion por radiofrecuencia. Etiquetas RFID almacenan datos. Lectura sin contacto. Tracking de objetos y acceso",
+        "ejemplos": [
+          "RFID access card",
+          "Inventory tracking",
+          "Passive RFID (sin bateria)",
+          "Active RFID (con bateria)",
+          "RFID cloning risk"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CVE": {
+        "termino": "CVE (Common Vulnerabilities and Exposures)",
+        "definicion": "Sistema de identificacion de vulnerabilidades publicas. ID unico CVE-YEAR-NUMBER. MITRE mantiene base de datos. Referencia estandar",
+        "ejemplos": [
+          "CVE-2021-44228 (Log4Shell)",
+          "CVE-2014-0160 (Heartbleed)",
+          "CVE database MITRE",
+          "Referencia estandar industria"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MAC_Model": {
+        "termino": "MAC (Mandatory Access Control)",
+        "definicion": "Control de acceso obligatorio. Sistema operativo impone politica. Basado en clasificacion y clearance. Usado en entornos militares/gobierno",
+        "ejemplos": [
+          "SELinux",
+          "Clearance: Top Secret, Secret",
+          "Labels en objetos",
+          "No discretion del usuario",
+          "Bell-LaPadula model"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "DKIM": {
+        "termino": "DKIM (DomainKeys Identified Mail)",
+        "definicion": "Autenticacion de email mediante firma digital. Verifica remitente y integridad mensaje. Clave privada firma, publica en DNS verifica",
+        "ejemplos": [
+          "DKIM-Signature header",
+          "DNS TXT record con clave publica",
+          "Previene email spoofing",
+          "Parte de email authentication"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DMARC": {
+        "termino": "DMARC (Domain-based Message Authentication, Reporting and Conformance)",
+        "definicion": "Politica que especifica como manejar emails que fallan SPF/DKIM. Quarantine, Reject o None. Reportes de compliance",
+        "ejemplos": [
+          "DMARC DNS record",
+          "p=reject (rechazar emails falsos)",
+          "p=quarantine",
+          "Reportes agregados RUA",
+          "Combina SPF + DKIM"
+        ],
+        "prioridad": "ALTA"
+      },
+      "OpenID_Connect": {
+        "termino": "OpenID Connect",
+        "definicion": "Capa de autenticacion sobre OAuth 2.0. Verifica identidad usuario. ID Token (JWT). SSO moderno para web/mobile",
+        "ejemplos": [
+          "Sign in with Google",
+          "Azure AD authentication",
+          "ID Token JWT",
+          "UserInfo endpoint",
+          "OAuth 2.0 + Identity layer"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ABAC": {
+        "termino": "ABAC (Attribute-Based Access Control)",
+        "definicion": "Control de acceso basado en atributos. Reglas granulares con multiples atributos: usuario, recurso, entorno. Muy flexible",
+        "ejemplos": [
+          "Acceso si: rol=manager AND dept=HR AND time=business_hours",
+          "XACML",
+          "Context-aware access",
+          "Dynamic rules"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Biometrics": {
+        "termino": "Biometrics (Biometria)",
+        "definicion": "Autenticacion mediante caracteristicas biologicas o comportamentales. Huella, facial, iris, voz. Algo que eres",
+        "ejemplos": [
+          "Fingerprint scanner",
+          "Face ID",
+          "Iris scan",
+          "Voice recognition",
+          "Gait analysis",
+          "FAR y FRR metrics"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Security_Key": {
+        "termino": "Security Key (Llave de Seguridad)",
+        "definicion": "Token hardware de autenticacion. USB/NFC. FIDO2/U2F. Phishing-resistant MFA. Dispositivo fisico para 2FA",
+        "ejemplos": [
+          "YubiKey",
+          "Google Titan Key",
+          "USB security key",
+          "NFC tap",
+          "WebAuthn",
+          "Phishing-resistant"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IRP": {
+        "termino": "IRP (Incident Response Plan)",
+        "definicion": "Plan documentado de respuesta a incidentes. Describe pasos en cada fase. Roles, responsabilidades, procedimientos. Playbooks",
+        "ejemplos": [
+          "Ransomware playbook",
+          "Data breach response plan",
+          "Contact escalation list",
+          "IR phases documented"
+        ],
+        "prioridad": "ALTA"
+      }
+    }
+  },
+  "Dominio_5_Gestion_Programa_Seguridad": {
+    "peso_examen": "20%",
+    "definiciones": {
+      "BCP": {
+        "termino": "BCP (Business Continuity Plan)",
+        "definicion": "Plan para mantener operaciones criticas durante/despues de desastre. Estrategias de continuidad de negocio",
+        "ejemplos": [
+          "Procedimientos de failover a sitio secundario",
+          "Funciones criticas del negocio priorizadas",
+          "Testing anual de BCP"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DRP": {
+        "termino": "DRP (Disaster Recovery Plan)",
+        "definicion": "Plan para recuperar sistemas IT despues de desastre. Subset de BCP enfocado en tecnologia. RTO/RPO objectives",
+        "ejemplos": [
+          "Procedimientos de restore desde backup",
+          "RTO: 4 horas, RPO: 1 hora",
+          "Hot/Warm/Cold sites",
+          "Testing de DR"
+        ],
+        "prioridad": "ALTA"
+      },
+      "IRP": {
+        "termino": "IRP (Incident Response Plan)",
+        "definicion": "Plan documentado para responder a incidentes de seguridad. Define roles, procedimientos, comunicacion, escalacion",
+        "ejemplos": [
+          "NIST 800-61: Preparation, Detection, Analysis, Containment, Eradication, Recovery, Post-Incident",
+          "Playbooks por tipo de incidente",
+          "CSIRT/SOC procedures"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Incident_Response_Stages": {
+        "termino": "Fases de Respuesta a Incidentes",
+        "definicion": "Preparacion → Deteccion/Analisis → Contencion → Erradicacion → Recuperacion → Lecciones Aprendidas (NIST 800-61)",
+        "ejemplos": [
+          "Preparation: entrenar equipo, herramientas",
+          "Detection: SIEM alerta",
+          "Containment: aislar host",
+          "Eradication: eliminar malware",
+          "Recovery: restaurar servicios",
+          "Lessons Learned: post-mortem"
+        ],
+        "prioridad": "ALTA"
+      },
+      "OVAL": {
+        "termino": "OVAL (Open Vulnerability and Assessment Language)",
+        "definicion": "Lenguaje XML para automatizar evaluacion de vulnerabilidades. MITRE standard. Describe tests de seguridad",
+        "ejemplos": [
+          "OVAL definitions",
+          "Vulnerability scanners usan OVAL",
+          "XML format",
+          "MITRE maintained",
+          "Compliance checking"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "NTP": {
+        "termino": "NTP (Network Time Protocol)",
+        "definicion": "Protocolo sincronizacion de relojes en red. UDP puerto 123. Critico para logs, Kerberos, certificados",
+        "ejemplos": [
+          "time.nist.gov",
+          "Puerto UDP 123",
+          "Stratum levels",
+          "Kerberos require NTP",
+          "NTP amplification attack posible"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ICMP": {
+        "termino": "ICMP (Internet Control Message Protocol)",
+        "definicion": "Protocolo mensajes de error y control IP. Ping, traceroute. Usado para diagnostico red. Puede ser abusado",
+        "ejemplos": [
+          "Ping (echo request/reply)",
+          "Traceroute",
+          "Destination unreachable",
+          "ICMP flood DDoS",
+          "Firewalls bloquean ICMP"
+        ],
+        "prioridad": "ALTA"
+      },
+      "BYOD": {
+        "termino": "BYOD (Bring Your Own Device)",
+        "definicion": "Modelo donde empleados usan dispositivos personales para trabajo. Riesgos seguridad. Require MDM, policies",
+        "ejemplos": [
+          "iPhone personal para email empresa",
+          "MDM enrollment",
+          "BYOD policy",
+          "Security risks",
+          "Work/personal data mixing"
+        ],
+        "prioridad": "ALTA"
+      },
+      "COPE": {
+        "termino": "COPE (Corporate Owned, Personally Enabled)",
+        "definicion": "Empresa posee dispositivo, permite uso personal. Control corporativo + flexibilidad personal. Balance seguridad/usabilidad",
+        "ejemplos": [
+          "Empresa da iPhone, permite apps personales",
+          "MDM managed",
+          "Mas control que BYOD",
+          "Empresa paga dispositivo"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CYOD": {
+        "termino": "CYOD (Choose Your Own Device)",
+        "definicion": "Empleado elige de lista aprobada por empresa. Empresa posee y gestiona. Balance eleccion/control",
+        "ejemplos": [
+          "Elegir entre iPhone o Samsung aprobados",
+          "Lista dispositivos certificados",
+          "Empresa posee",
+          "Estandarizacion parcial"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "RAD": {
+        "termino": "RAD (Rapid Application Development)",
+        "definicion": "Metodologia desarrollo rapido de software. Prototipos iterativos. Colaboracion usuario. Enfoque agil",
+        "ejemplos": [
+          "Prototyping rapido",
+          "Iteraciones cortas",
+          "User feedback continuo",
+          "Low-code platforms",
+          "Menos documentacion"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "UEM": {
+        "termino": "UEM (Unified Endpoint Management)",
+        "definicion": "Gestion unificada de todos endpoints. Moviles, PCs, tablets, IoT, wearables. Evolucion de MDM + EMM",
+        "ejemplos": [
+          "VMware Workspace ONE",
+          "Microsoft Intune UEM",
+          "Gestiona mobiles + PCs + IoT",
+          "Consola unica management"
+        ],
+        "prioridad": "ALTA"
+      },
+      "CTO": {
+        "termino": "CTO (Chief Technology Officer)",
+        "definicion": "Director de Tecnologia. Ejecutivo responsable de decisiones tecnologicas y estrategia tech. C-level",
+        "ejemplos": [
+          "Estrategia tecnologica empresa",
+          "Innovacion tech",
+          "Arquitectura IT",
+          "Reporta a CEO",
+          "C-suite executive"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Risk_Exception": {
+        "termino": "Risk Exception",
+        "definicion": "Aprobacion formal para NO remediar riesgo identificado. Decision de negocio. Acepta riesgo temporalmente con justificacion. Requiere autorizacion senior",
+        "ejemplos": [
+          "Sistema legacy critico no parcheable",
+          "Costo de remediacion > impacto",
+          "Necesita aprobacion CISO",
+          "Revision periodica"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Risk_Mitigation": {
+        "termino": "Risk Mitigation",
+        "definicion": "Reducir probabilidad o impacto de riesgo. Implementar controles de seguridad. Estrategia mas comun. No elimina riesgo completamente",
+        "ejemplos": [
+          "Instalar firewall",
+          "Aplicar parches",
+          "Implementar MFA",
+          "Training usuarios",
+          "Reduce riesgo a nivel aceptable"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MTTR": {
+        "termino": "MTTR (Mean Time To Repair)",
+        "definicion": "Tiempo promedio para reparar sistema tras fallo. Metrica de disponibilidad. Incluye deteccion + resolucion. Menor MTTR = mejor",
+        "ejemplos": [
+          "MTTR 2 horas",
+          "Calcular: suma tiempos reparacion / numero incidentes",
+          "Objetivo: reducir MTTR",
+          "KPI de IT ops"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MTBF": {
+        "termino": "MTBF (Mean Time Between Failures)",
+        "definicion": "Tiempo promedio entre fallos de sistema. Metrica de fiabilidad. Mayor MTBF = mas confiable. Predice disponibilidad",
+        "ejemplos": [
+          "Disco duro MTBF 1 millon horas",
+          "MTBF servidor 10000 horas",
+          "Calcular disponibilidad: MTBF/(MTBF+MTTR)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RPO": {
+        "termino": "RPO (Recovery Point Objective)",
+        "definicion": "Maxima perdida de datos aceptable. Medido en tiempo. Frecuencia minima de backups. RPO 1 hora = backup cada hora",
+        "ejemplos": [
+          "RPO 4 horas",
+          "RPO 0 (sin perdida datos) requiere replica sincrona",
+          "Define frecuencia backup"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RTO": {
+        "termino": "RTO (Recovery Time Objective)",
+        "definicion": "Tiempo maximo aceptable para restaurar servicio. Downtime maximo tolerable. Define urgencia de recuperacion. Menor RTO = mayor costo",
+        "ejemplos": [
+          "RTO 2 horas",
+          "RTO critico: minutos (hot site)",
+          "RTO 48h (cold site)",
+          "Define tipo de sitio DR"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Risk_Appetite": {
+        "termino": "Risk Appetite",
+        "definicion": "Cantidad de riesgo que organizacion esta dispuesta a aceptar. Nivel estrategico. Define limites de risk-taking. Guia decisiones de seguridad",
+        "ejemplos": [
+          "Startup tech: alto risk appetite (innovacion)",
+          "Banco: bajo risk appetite (regulacion)",
+          "Define threshold de aceptacion"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Risk_Transference": {
+        "termino": "Risk Transference",
+        "definicion": "Transferir riesgo a tercero. Tipicamente via seguro o contrato. Compartir impacto financiero. No elimina riesgo tecnico",
+        "ejemplos": [
+          "Seguro cibernetico",
+          "Outsourcing a MSP",
+          "Cloud provider SLA",
+          "Clausulas contractuales"
+        ],
+        "prioridad": "ALTA"
+      },
+      "SLA": {
+        "termino": "SLA (Service Level Agreement)",
+        "definicion": "Acuerdo formal de nivel de servicio. Define expectativas y metricas. Uptime, tiempo de respuesta. Penalizaciones por incumplimiento",
+        "ejemplos": [
+          "99.9% uptime",
+          "Respuesta en 4 horas",
+          "SLA AWS",
+          "Creditos por downtime",
+          "Medicion mensual"
+        ],
+        "prioridad": "ALTA"
+      },
+      "MOU": {
+        "termino": "MOU (Memorandum of Understanding)",
+        "definicion": "Documento de entendimiento mutuo. No legalmente vinculante. Intenciones y objetivos comunes. Menos formal que contrato",
+        "ejemplos": [
+          "MOU entre organizaciones para compartir threat intelligence",
+          "Acuerdo colaboracion entre departamentos",
+          "NO ejecutable legalmente"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "MSA": {
+        "termino": "MSA (Master Service Agreement)",
+        "definicion": "Acuerdo marco de servicio. Contrato general que gobierna relacion. Terminos y condiciones base. SOWs especificos derivan de MSA",
+        "ejemplos": [
+          "MSA con proveedor IT",
+          "Define terminos generales",
+          "SOW individuales para proyectos",
+          "Reduce negociacion repetitiva"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Work_Order": {
+        "termino": "Work Order (WO)",
+        "definicion": "Orden de trabajo especifica. Describe tarea o proyecto puntual. Derivado de MSA o contrato. Alcance, costo, timeline",
+        "ejemplos": [
+          "WO: Instalar firewall nueva sucursal",
+          "WO bajo MSA existente",
+          "Define entregables especificos"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "BPA": {
+        "termino": "BPA (Business Partnership Agreement)",
+        "definicion": "Acuerdo de asociacion empresarial. Define relacion entre socios de negocio. Responsabilidades, profit-sharing, governance",
+        "ejemplos": [
+          "BPA joint venture",
+          "Revenue sharing 60/40",
+          "Decision-making authority",
+          "Exit clauses"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Tabletop_Exercise": {
+        "termino": "Tabletop Exercise",
+        "definicion": "Ejercicio de simulacion de incidente basado en discusion. Participantes discuten respuesta a escenario. Sin ejecucion tecnica. Training de IR",
+        "ejemplos": [
+          "Simular ransomware attack",
+          "Equipo discute pasos de respuesta",
+          "Identificar gaps en plan IR",
+          "No afecta produccion"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Root_Cause_Analysis": {
+        "termino": "Root Cause Analysis",
+        "definicion": "Analisis de causa raiz. Investigacion profunda de incidente. Identifica causa fundamental (no sintomas). Previene recurrencia",
+        "ejemplos": [
+          "5 Whys technique",
+          "Fishbone diagram",
+          "Post-incident RCA",
+          "Sintoma: outage. Causa raiz: falta patch management"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Chain_of_Custody": {
+        "termino": "Chain of Custody",
+        "definicion": "Cadena de custodia de evidencia digital. Documentacion de quien manejo evidencia y cuando. Preserva integridad legal. Forense",
+        "ejemplos": [
+          "Formulario de custodia",
+          "Hash MD5/SHA de evidencia",
+          "Log de acceso a evidencia",
+          "Admisibilidad en corte"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RAID_0": {
+        "termino": "RAID 0",
+        "definicion": "Disk Striping sin redundancia. Datos distribuidos en multiples discos. Mayor rendimiento. SIN tolerancia a fallos. Fallo de 1 disco = perdida total",
+        "ejemplos": [
+          "Minimo 2 discos",
+          "Rendimiento maximo",
+          "NO backup",
+          "Capacidad total = suma discos",
+          "NO recomendado para datos criticos"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RAID_5": {
+        "termino": "RAID 5",
+        "definicion": "Disk Striping con paridad distribuida. Tolera fallo de 1 disco. Buen balance rendimiento/redundancia. Minimo 3 discos",
+        "ejemplos": [
+          "Minimo 3 discos",
+          "Tolerancia 1 fallo",
+          "Capacidad = (N-1) discos",
+          "Calculo paridad XOR",
+          "Popular en servidores"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RAID_10": {
+        "termino": "RAID 10",
+        "definicion": "RAID 1+0. Combinacion de mirroring y striping. Mirrors primero, luego stripes. Alta redundancia y rendimiento. Minimo 4 discos",
+        "ejemplos": [
+          "Minimo 4 discos",
+          "Tolera multiples fallos (1 por mirror)",
+          "Capacidad = 50%",
+          "Alto costo",
+          "Alto rendimiento + alta disponibilidad"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Hot_Site": {
+        "termino": "Hot Site",
+        "definicion": "Sitio DR completamente equipado y operacional. Replica exacta de produccion. RTO minimo (minutos/horas). Costo mas alto",
+        "ejemplos": [
+          "Failover automatico",
+          "Datos sincronizados tiempo real",
+          "RTO < 1 hora",
+          "Personal en standby",
+          "Mayor costo DR"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Warm_Site": {
+        "termino": "Warm Site",
+        "definicion": "Sitio DR parcialmente equipado. Infraestructura basica disponible. Requiere configuracion y datos. RTO medio (horas/dias). Costo moderado",
+        "ejemplos": [
+          "Servidores instalados pero no configurados",
+          "RTO 12-24 horas",
+          "Restore backup necesario",
+          "Balance costo/tiempo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Cold_Site": {
+        "termino": "Cold Site",
+        "definicion": "Sitio DR solo con espacio fisico y servicios basicos. Sin equipos preinstalados. RTO largo (dias/semanas). Menor costo",
+        "ejemplos": [
+          "Solo edificio con electricidad y conectividad",
+          "RTO > 1 semana",
+          "Requiere envio e instalacion equipos",
+          "Opcion mas economica"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Mobile_Site": {
+        "termino": "Mobile Site",
+        "definicion": "Sitio DR portatil. Trailer o contenedor con equipos IT. Se transporta a ubicacion necesaria. Flexible pero limitado",
+        "ejemplos": [
+          "Trailer con servidores",
+          "Despliegue en emergencia",
+          "DR temporal",
+          "Uso en desastres naturales"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Snapshot": {
+        "termino": "Snapshot",
+        "definicion": "Imagen punto-en-tiempo de sistema/datos. Captura estado instantaneo. Restauracion rapida. NO reemplaza backup completo",
+        "ejemplos": [
+          "VMware snapshot antes de cambio",
+          "LVM snapshot",
+          "Rollback rapido",
+          "Storage snapshot",
+          "NO es backup a largo plazo"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Replication": {
+        "termino": "Replication",
+        "definicion": "Copia continua de datos a ubicacion secundaria. Sincrona o asincrona. Alta disponibilidad. Parte de estrategia DR",
+        "ejemplos": [
+          "Replicacion sincrona (RPO=0)",
+          "Replicacion asincrona (RPO>0)",
+          "Database replication",
+          "Storage replication"
+        ],
+        "prioridad": "ALTA"
+      },
+      "Journaling": {
+        "termino": "Journaling",
+        "definicion": "Registro de cambios antes de aplicarlos. Filesystem journaling. Permite recuperacion tras crash. Integridad de datos",
+        "ejemplos": [
+          "ext4 journal",
+          "NTFS journal",
+          "Database transaction log",
+          "Recuperacion consistente tras fallo"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "PDU": {
+        "termino": "PDU (Power Distribution Unit)",
+        "definicion": "Unidad de distribucion electrica. Distribuye energia a equipos en rack. Inteligente (monitoreo) o basica. Redundancia de alimentacion",
+        "ejemplos": [
+          "PDU dual para redundancia",
+          "Monitorizacion remota consumo",
+          "Switched PDU (apagado remoto)",
+          "PDU en rack datacenter"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "Backup_Generator": {
+        "termino": "Backup Generator",
+        "definicion": "Generador electrico de respaldo. Arranca cuando falla alimentacion principal. Diesel/gas. Complementa UPS. Autonomia horas/dias",
+        "ejemplos": [
+          "Generador diesel 500kW",
+          "Arranque automatico en 30 seg",
+          "Tanque combustible 24h autonomia",
+          "Testing mensual"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SEH": {
+        "termino": "SEH (Structured Exception Handling)",
+        "definicion": "Mecanismo Windows para manejar excepciones de software. Estructura de manejo de errores. Vulnerable a exploits (SEH overwrite)",
+        "ejemplos": [
+          "SEH chain",
+          "SEH overwrite exploit",
+          "Buffer overflow to SEH",
+          "SafeSEH mitigation",
+          "SEHOP protection"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Technical_Debt": {
+        "termino": "Technical Debt (Deuda Tecnica)",
+        "definicion": "Costo de decisiones de desarrollo a corto plazo. Acumulacion de shortcuts en codigo. Problemas futuros por soluciones rapidas",
+        "ejemplos": [
+          "Codigo legacy sin documentar",
+          "Parches rapidos sin refactor",
+          "Bibliotecas obsoletas",
+          "Acumula interes como deuda financiera"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "Risk_Register": {
+        "termino": "Risk Register (Registro de Riesgos)",
+        "definicion": "Documento que identifica, evalua y rastrea riesgos. Lista completa de riesgos con: descripcion, probabilidad, impacto, mitigacion",
+        "ejemplos": [
+          "Riesgo 1: Ransomware - Alta prob, Alto impacto - Mitigacion: Backups",
+          "Risk ID, Owner, Status",
+          "Living document"
+        ],
+        "prioridad": "ALTA"
+      },
+      "PCI_DSS": {
+        "termino": "PCI DSS (Payment Card Industry Data Security Standard)",
+        "definicion": "Estandar de seguridad para industria de pagos. Protege datos de tarjetas. 12 requisitos. Obligatorio para procesadores de tarjetas",
+        "ejemplos": [
+          "Cifrar datos cardholder",
+          "Firewall entre Internet y cardholder data",
+          "No almacenar CVV",
+          "Auditorias anuales"
+        ],
+        "prioridad": "ALTA"
+      },
+      "ISO": {
+        "termino": "ISO (International Organization for Standardization)",
+        "definicion": "Organizacion internacional de estandarizacion. Desarrolla estandares globales. ISO 27001 (seguridad info), ISO 9001 (calidad)",
+        "ejemplos": [
+          "ISO 27001 (ISMS)",
+          "ISO 27002 (Security controls)",
+          "ISO 9001 (Quality)",
+          "ISO 22301 (Business continuity)"
+        ],
+        "prioridad": "ALTA"
+      },
+      "OTG": {
+        "termino": "OTG (USB On-The-Go)",
+        "definicion": "USB que permite dispositivos actuar como host y periferico. Conectar USB devices sin PC. Moviles pueden ser host",
+        "ejemplos": [
+          "Conectar USB drive a smartphone",
+          "Phone como host USB",
+          "Cable OTG adapter",
+          "Riesgo BadUSB attacks"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      },
+      "GPS": {
+        "termino": "GPS (Global Positioning System)",
+        "definicion": "Sistema posicionamiento global por satelite. Localizacion geografica. Geotagging, tracking. Privacy concerns",
+        "ejemplos": [
+          "Smartphone GPS",
+          "Geofencing apps",
+          "Location tracking",
+          "Privacy risks",
+          "Geotagging photos",
+          "Find My iPhone"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "MBR": {
+        "termino": "MBR (Master Boot Record)",
+        "definicion": "Primer sector disco (512 bytes). Info particiones + bootloader. Legacy (pre-UEFI). Vulnerable a bootkits",
+        "ejemplos": [
+          "Sector 0 del disco",
+          "Bootloader legacy",
+          "Max 4 particiones primarias",
+          "Reemplazado por GPT/UEFI",
+          "MBR rootkits"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CSO": {
+        "termino": "CSO (Chief Security Officer)",
+        "definicion": "Director de Seguridad. Ejecutivo responsable de seguridad fisica y ciberseguridad. Protege activos, datos, personas",
+        "ejemplos": [
+          "Oversee CISO + physical security",
+          "Risk management",
+          "Security strategy",
+          "Reporta a CEO/COO",
+          "C-level executive"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "CSP": {
+        "termino": "CSP (Cloud Service Provider)",
+        "definicion": "Proveedor servicios cloud. Ofrece IaaS, PaaS, SaaS via Internet. AWS, Azure, GCP",
+        "ejemplos": [
+          "AWS",
+          "Microsoft Azure",
+          "Google Cloud",
+          "IaaS/PaaS/SaaS",
+          "Shared responsibility model"
+        ],
+        "prioridad": "ALTA"
+      },
+      "RTP": {
+        "termino": "RTP (Real-time Transport Protocol)",
+        "definicion": "Protocolo para entregar audio/video sobre redes IP. Tiempo real. VoIP, streaming. Usado con RTCP",
+        "ejemplos": [
+          "VoIP calls",
+          "Video streaming",
+          "WebRTC",
+          "SRTP (secure RTP)",
+          "UDP-based",
+          "Usado con SIP"
+        ],
+        "prioridad": "MEDIA"
+      },
+      "SNMP": {
+        "termino": "SNMP (Simple Network Management Protocol)",
+        "definicion": "Protocolo gestion y monitoreo dispositivos de red. Colecta metricas. UDP 161/162. SNMPv3 seguro",
+        "ejemplos": [
+          "Monitor routers/switches",
+          "MIB (Management Information Base)",
+          "SNMPv3 authentication",
+          "Puerto UDP 161",
+          "SNMP traps"
+        ],
+        "prioridad": "ALTA"
+      },
+      "DARPA": {
+        "termino": "DARPA (Defense Advanced Research Projects Agency)",
+        "definicion": "Agencia investigacion Defensa USA. Creador de Internet (ARPANET). Investigacion tecnologias avanzadas",
+        "ejemplos": [
+          "Creador ARPANET (precursor Internet)",
+          "GPS development",
+          "Investigacion militar avanzada",
+          "Innovation tech"
+        ],
+        "prioridad": "COMPLEMENTARIO"
+      }
+    }
+  }
+}

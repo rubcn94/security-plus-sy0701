@@ -1,0 +1,68 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+# Archivos de editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Archivos Python (si hubiera scripts futuros)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Archivos de logs
+*.log
+
+# Archivos personales de estudio
+notas-personales/
+mis-ejercicios/
+simulacros-privados/
+
+# Archivos grandes (evitar subir ISOs, VMs)
+*.iso
+*.ova
+*.vmdk
+*.vdi
+*.vhd
+
+# Material comercial (no debe estar en repo público)
+cursos-pagos/
+material-premium/
+
+# Builds y salidas
+build/
+dist/
+*.egg-info/
+
+# Node (por si hay herramientas JavaScript futuras)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Certificados y claves (NUNCA subir)
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+*.ovpn
+
+# Configuraciones locales
+config.local.*
+.env
+secrets.*
