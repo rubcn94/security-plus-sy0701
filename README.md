@@ -2,7 +2,7 @@
 
 [![CompTIA Security+](https://img.shields.io/badge/CompTIA-Security%2B%20SY0--701-red?style=for-the-badge&logo=comptia)](https://www.comptia.org/certifications/security)
 [![Licencia](https://img.shields.io/badge/Licencia-CC%20BY--NC--SA%204.0-lightgrey?style=for-the-badge)](LICENSE)
-[![Cobertura](https://img.shields.io/badge/Cobertura-100%25%20Objetivos-brightgreen?style=for-the-badge)](docs/objetivos-oficiales.pdf)
+[![Cobertura](https://img.shields.io/badge/Cobertura-100%25%20Objetivos-brightgreen?style=for-the-badge)](https://www.comptia.org/certifications/security)
 
 > **Plan de estudio estructurado de 8 semanas para aprobar CompTIA Security+ SY0-701 con 85%+ de score**
 
@@ -29,12 +29,11 @@ Este repositorio contiene **TODO el material necesario** para aprobar el examen 
 ### Opción 1: Plan Completo 8 Semanas (Recomendado)
 
 ```bash
-1. Descarga el repositorio
-2. Abre: plan-8-semanas/README.md
-3. Empieza con Semana 1-2
-4. Sigue checkboxes día a día (2-3 horas/día)
-5. Completa labs y ejercicios
-6. Semana 8: Simulacro + Examen Real
+1. Lee: plan-8-semanas/README.md
+2. Empieza con: plan-8-semanas/semana-1-2-fundamentos/README.md
+3. Sigue checkboxes día a día (2-3 horas/día)
+4. Completa labs y ejercicios
+5. Semana 8: Simulacro + Examen Real
 ```
 
 **Tiempo total**: 112-168 horas
@@ -79,7 +78,7 @@ security-plus-sy0701/
 │
 ├── flashcards/                   # 382 flashcards en 3 formatos
 │   ├── flashcards.html           # HTML interactivo (filtrable por dominio/prioridad)
-│   ├── flashcards.csv            # Para importar a Anki
+│   ├── flashcards.csv            # Para importar a Anki (si existe)
 │   └── flashcards.pdf            # PDF imprimible (220 ALTA + 162 MEDIA)
 │
 ├── laboratorios/                 # 15 labs prácticos paso a paso
@@ -91,18 +90,13 @@ security-plus-sy0701/
 │   └── dominio-5/                # 3 labs (Risk analysis, Compliance, Third-party)
 │
 ├── guias-practicas/              # Guías de referencia
-│   ├── cheat-sheet-comandos.md   # Comandos para PBQs (IMPRIME Y LLEVA AL EXAMEN)
-│   ├── analisis-logs.md          # 20 ejemplos reales con IOCs
-│   └── ejercicios-calculos.md    # 12 ejercicios con soluciones
+│   ├── cheat-sheet-comandos-pbqs.md   # Comandos para PBQs (IMPRIME Y LLEVA AL EXAMEN)
+│   ├── analisis-logs.md               # 20 ejemplos reales con IOCs
+│   └── ejercicios-calculos.md         # 12 ejercicios con soluciones
 │
 ├── diccionario/                  # Términos por dominio
 │   ├── diccionario-completo.json # 436 términos (formato estructurado)
 │   └── diccionario-completo.md   # 436 términos (formato markdown)
-│
-├── docs/                         # Documentación adicional
-│   ├── objetivos-oficiales.pdf   # Objetivos CompTIA oficiales
-│   ├── faq.md                    # Preguntas frecuentes
-│   └── recursos-externos.md      # Links a recursos complementarios
 │
 └── README.md                     # Este archivo
 ```
@@ -132,7 +126,7 @@ Abre: flashcards/flashcards.html en tu navegador
 - Modo estudio interactivo
 ```
 
-**O usa Anki** (spaced repetition):
+**O usa Anki** (spaced repetition) si el CSV existe:
 ```bash
 Importa: flashcards/flashcards.csv a Anki
 ```
@@ -144,7 +138,7 @@ Imprime: flashcards/flashcards.pdf
 
 ### Paso 3: Sigue el Plan
 
-**Día 1**: Abre `plan-8-semanas/semana-1-2-fundamentos/README.md`
+**Día 1**: Abre [plan-8-semanas/semana-1-2-fundamentos/README.md](plan-8-semanas/semana-1-2-fundamentos/README.md)
 - Lee objetivos de la semana
 - Sigue checklist día 1
 - Marca completado ✅
@@ -164,16 +158,16 @@ Imprime: flashcards/flashcards.pdf
 - Kali Linux (gratis)
 
 **Labs críticos** (NO SALTAR):
-- LAB 1.2: Zero Trust con VPN y MFA
-- LAB 2.1: Análisis de Malware
-- LAB 3.1: Firewall y Segmentación
-- LAB 3.2: IDS/IPS con Suricata
-- LAB 4.2: Respuesta a Incidentes ⚠️ MÁS IMPORTANTE
+- [LAB 1.2: Zero Trust con VPN y MFA](laboratorios/dominio-1/)
+- [LAB 2.1: Análisis de Malware](laboratorios/dominio-2/)
+- [LAB 3.1: Firewall y Segmentación](laboratorios/dominio-3/)
+- [LAB 3.2: IDS/IPS con Suricata](laboratorios/dominio-3/)
+- [LAB 4.2: Respuesta a Incidentes](laboratorios/dominio-4/) ⚠️ MÁS IMPORTANTE
 
 ### Paso 5: Análisis de Logs
 
 **Crítico para PBQs**:
-- Lee `guias-practicas/analisis-logs.md`
+- Lee [guias-practicas/guia-analisis-logs.md](guias-practicas/guia-analisis-logs.md)
 - Analiza 20 ejemplos reales
 - Speed challenge: 3 minutos por log
 
@@ -250,7 +244,7 @@ Hosts = 2^(32 - CIDR) - 2
 - [ ] Repasa orden IR (6 fases)
 - [ ] Repasa orden volatilidad (8 niveles)
 - [ ] Repasa Windows Event IDs (9 críticos)
-- [ ] Imprime cheat sheet de comandos
+- [ ] Imprime [cheat sheet de comandos](guias-practicas/cheat-sheet-comandos-pbqs.md)
 - [ ] Duerme 8 horas
 
 ### Durante el Examen
@@ -280,12 +274,12 @@ Hosts = 2^(32 - CIDR) - 2
 
 | Dominio | Peso | Material | Status |
 |---------|------|----------|--------|
-| D1: Conceptos Generales | 12% | 8 videos + 3 labs | ✅ 100% |
-| D2: Amenazas y Mitigaciones | 22% | 12 videos + 2 labs | ✅ 100% |
-| D3: Arquitectura | 18% | 10 videos + 3 labs | ✅ 100% |
-| D4: Operaciones | **28%** | 12 videos + 3 labs | ✅ 100% |
-| D5: Governance | 20% | 8 videos + 3 labs | ✅ 100% |
-| **TOTAL** | **100%** | **50 temas + 15 labs** | **✅ 100%** |
+| D1: Conceptos Generales | 12% | Plan Semana 1 + 3 labs | ✅ 100% |
+| D2: Amenazas y Mitigaciones | 22% | Plan Semana 1-2 + 2 labs | ✅ 100% |
+| D3: Arquitectura | 18% | Plan Semana 3-4 + 3 labs | ✅ 100% |
+| D4: Operaciones | **28%** | Plan Semana 5-6 + 3 labs | ✅ 100% |
+| D5: Governance | 20% | Plan Semana 7-8 + 3 labs | ✅ 100% |
+| **TOTAL** | **100%** | **8 semanas + 15 labs** | **✅ 100%** |
 
 **Material adicional**:
 - 382 flashcards (88% del diccionario completo)
@@ -342,7 +336,7 @@ Este material está licenciado bajo [Creative Commons Attribution-NonCommercial-
 - CIS Benchmarks
 
 **Herramientas usadas**:
-- Claude Code (organización y estructuración)
+- Anthropic Claude (organización y estructuración)
 - VirtualBox (labs)
 - Markdown (documentación)
 
@@ -351,18 +345,17 @@ Este material está licenciado bajo [Creative Commons Attribution-NonCommercial-
 ## 📧 Contacto
 
 **¿Tienes preguntas?**
-- Abre un [Issue](https://github.com/tu-usuario/security-plus-sy0701/issues)
-- Lee el [FAQ](docs/faq.md)
+- Abre un [Issue](https://github.com/rubcn94/security-plus-sy0701/issues)
 
 **¿Aprobaste usando este material?**
-- ¡Cuéntanos tu experiencia! Abre un [Issue](https://github.com/tu-usuario/security-plus-sy0701/issues) con tu historia
+- ¡Cuéntanos tu experiencia! Abre un [Issue](https://github.com/rubcn94/security-plus-sy0701/issues) con tu historia y score
 
 ---
 
 ## ⭐ Dale una Estrella
 
-Si este material te ayudó a aprobar Security+, considera:
-- ⭐ Darle una estrella a este repo
+Si este material te ayudó o te está ayudando a estudiar Security+, considera:
+- ⭐ Darle una estrella a este repo (arriba a la derecha)
 - 🔀 Compartirlo con amigos que estén estudiando
 - 💬 Dejar tu feedback en Issues
 
@@ -370,10 +363,10 @@ Si este material te ayudó a aprobar Security+, considera:
 
 ## 📈 Estadísticas
 
-![GitHub stars](https://img.shields.io/github/stars/tu-usuario/security-plus-sy0701?style=social)
-![GitHub forks](https://img.shields.io/github/forks/tu-usuario/security-plus-sy0701?style=social)
-![GitHub issues](https://img.shields.io/github/issues/tu-usuario/security-plus-sy0701)
-![GitHub last commit](https://img.shields.io/github/last-commit/tu-usuario/security-plus-sy0701)
+![GitHub stars](https://img.shields.io/github/stars/rubcn94/security-plus-sy0701?style=social)
+![GitHub forks](https://img.shields.io/github/forks/rubcn94/security-plus-sy0701?style=social)
+![GitHub issues](https://img.shields.io/github/issues/rubcn94/security-plus-sy0701)
+![GitHub last commit](https://img.shields.io/github/last-commit/rubcn94/security-plus-sy0701)
 
 ---
 
@@ -406,4 +399,4 @@ Si este material te ayudó a aprobar Security+, considera:
 
 **¡Mucha suerte en tu examen Security+!** 🚀
 
-**Score esperado: 85-92%**
+**Score esperado siguiendo el plan completo: 85-92%**
