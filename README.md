@@ -77,7 +77,7 @@ security-plus-sy0701/
 │   └── semana-7-8-governance/    # Dominio 5 + Repaso (20%)
 │
 ├── flashcards/                   # 382 flashcards en 2 formatos
-│   ├── flashcards.html           # HTML interactivo (filtrable por dominio/prioridad)
+│   ├── flashcards.html           # ⭐ Interactivo: click para voltear, filtros, funciona offline
 │   └── flashcards.csv            # Para importar a Anki (si existe)
 │
 ├── laboratorios/                 # 15 labs prácticos paso a paso
@@ -119,11 +119,18 @@ security-plus-sy0701/
 ### Paso 2: Descarga los Materiales
 
 **Flashcards HTML** (recomendado):
+
+Sistema interactivo de 382 flashcards con funcionalidad de voltear tarjetas:
+
 ```bash
-Abre: flashcards/flashcards.html en tu navegador
-- Filtra por dominio (D1, D2, D3, D4, D5)
-- Filtra por prioridad (ALTA, MEDIA)
-- Modo estudio interactivo
+1. Descarga el archivo: flashcards/flashcards.html
+2. Abre con doble-click (se abre en tu navegador)
+3. Funciones disponibles:
+   - Click en tarjeta para ver definición (voltea la tarjeta)
+   - Filtra por dominio (D1, D2, D3, D4, D5)
+   - Filtra por prioridad (ALTA, MEDIA)
+   - Barajado aleatorio para repasar
+   - Funciona 100% offline (no requiere internet)
 ```
 
 **O usa Anki** (spaced repetition) si el CSV existe:
