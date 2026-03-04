@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backups
+*.bak
+*.old
+*~
+*.tmp
+
+# Large PDFs (mantener solo los esenciales)
+# Los PDFs están en 03_PDFs_Referencia/
+# Mantener solo los generados, no los de referencia externa
+
+# Archivos temporales de desarrollo
+soc_extensions_part*.json
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-*
+
+# Windows
+*.lnk
