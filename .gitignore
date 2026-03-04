@@ -1,3 +1,21 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+*.old
+
+# Archivos de editor / IDEs
+.vscode/
+.idea/
+*.sublime-*
+
 # Python
 __pycache__/
 *.py[cod]
@@ -6,35 +24,51 @@ __pycache__/
 .Python
 env/
 venv/
+ENV/
 *.egg-info/
+build/
+dist/
 
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Backups
-*.bak
-*.old
-*~
-*.tmp
-
-# Large PDFs (mantener solo los esenciales)
-# Los PDFs están en 03_PDFs_Referencia/
-# Mantener solo los generados, no los de referencia externa
+# Archivos de logs
+*.log
 
 # Archivos temporales de desarrollo
 soc_extensions_part*.json
-*.swp
-*.swo
-
-# Logs
-*.log
-
-# IDEs
-.vscode/
-.idea/
-*.sublime-*
 
 # Windows
 *.lnk
+
+# Archivos personales de estudio
+notas-personales/
+mis-ejercicios/
+simulacros-privados/
+
+# Archivos grandes (evitar subir ISOs, VMs)
+*.iso
+*.ova
+*.vmdk
+*.vdi
+*.vhd
+
+# Material comercial (no debe estar en repo público)
+cursos-pagos/
+material-premium/
+
+# Node (por si hay herramientas JavaScript futuras)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Certificados y claves (NUNCA subir)
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+*.ovpn
+
+# Configuraciones locales
+config.local.*
+.env
+secrets.*
