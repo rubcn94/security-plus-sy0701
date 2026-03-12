@@ -1,0 +1,383 @@
+Termino;Definicion;Ejemplos;Prioridad;Dominio
+CIA_Triad;;;ALTA;Conceptos Generales de Seguridad
+AAA;;;ALTA;Conceptos Generales de Seguridad
+Zero_Trust;;;ALTA;Conceptos Generales de Seguridad
+Defense_in_Depth;;;ALTA;Conceptos Generales de Seguridad
+Security_Control_Types;;;ALTA;Conceptos Generales de Seguridad
+Security_Control_Categories;;;ALTA;Conceptos Generales de Seguridad
+AES;;;ALTA;Conceptos Generales de Seguridad
+RSA;;;ALTA;Conceptos Generales de Seguridad
+DHE;;;ALTA;Conceptos Generales de Seguridad
+Hashing;;;ALTA;Conceptos Generales de Seguridad
+SHA;;;ALTA;Conceptos Generales de Seguridad
+Digital_Signature;;;ALTA;Conceptos Generales de Seguridad
+DSA;;;ALTA;Conceptos Generales de Seguridad
+ECDSA;;;ALTA;Conceptos Generales de Seguridad
+PKI;;;ALTA;Conceptos Generales de Seguridad
+Certificate;;;ALTA;Conceptos Generales de Seguridad
+CA;;;ALTA;Conceptos Generales de Seguridad
+OCSP;;;ALTA;Conceptos Generales de Seguridad
+TPM;;;ALTA;Conceptos Generales de Seguridad
+FDE;;;ALTA;Conceptos Generales de Seguridad
+WPA2_WPA3;;;ALTA;Conceptos Generales de Seguridad
+SAE;;;ALTA;Conceptos Generales de Seguridad
+802.1X;;;ALTA;Conceptos Generales de Seguridad
+MDM;;;ALTA;Conceptos Generales de Seguridad
+DKIM;;;ALTA;Conceptos Generales de Seguridad
+DMARC;;;ALTA;Conceptos Generales de Seguridad
+SPF;;;ALTA;Conceptos Generales de Seguridad
+OpenID_Connect;;;ALTA;Conceptos Generales de Seguridad
+SAML_Features;;;ALTA;Conceptos Generales de Seguridad
+Biometrics_Types;;;ALTA;Conceptos Generales de Seguridad
+Hardware_Tokens;;;ALTA;Conceptos Generales de Seguridad
+Security_Key;;;ALTA;Conceptos Generales de Seguridad
+Password_Policies;;;ALTA;Conceptos Generales de Seguridad
+OTP;;;ALTA;Conceptos Generales de Seguridad
+Just_in_Time_Permissions;;;ALTA;Conceptos Generales de Seguridad
+SHA_3;;;ALTA;Conceptos Generales de Seguridad
+Digital_Certificate;;;ALTA;Conceptos Generales de Seguridad
+Vishing;;;ALTA;Conceptos Generales de Seguridad
+Pharming;;;ALTA;Conceptos Generales de Seguridad
+MSSP;;;ALTA;Conceptos Generales de Seguridad
+STARTTLS;;;ALTA;Conceptos Generales de Seguridad
+CCMP;;;ALTA;Conceptos Generales de Seguridad
+Password_Manager;;;ALTA;Conceptos Generales de Seguridad
+Dictionary_Attack;;;ALTA;Conceptos Generales de Seguridad
+ML;;;ALTA;Conceptos Generales de Seguridad
+Threat_Actor;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+APT;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Phishing;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Spear_Phishing;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+BEC;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Impersonation;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Typosquatting;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Malware;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Ransomware;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Trojan;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+RAT;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Worm;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Botnet;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+C2;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+SQL_Injection;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+XSS;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+CSRF;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+RCE;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+XML_Injection;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Directory_Traversal;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Zero_Day;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+DoS;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+DDoS;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Reflected_DDoS;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+DNS_Spoofing;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+MitM;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Session_Hijacking;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Brute_Force;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Dictionary_Attack;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Password_Spraying;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Privilege_Escalation;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+CVE;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+CVSS;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+IoC;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Input_Validation;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Error_Handling;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Data_Sanitization;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+False_Negative;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+False_Positive;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+MITRE_ATT&CK;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Attack_Surface;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Threat_Vector;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+SQLi;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Memory_Injection;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Malicious_Update;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Legacy_Hardware_Vulnerability;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+VM_Escape;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Wireless_Disassociation;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Session_Replay;;;ALTA;Amenazas, Vulnerabilidades y Mitigaciones
+Firewall;;;ALTA;Arquitectura de Seguridad
+Layer_7_Firewall;;;ALTA;Arquitectura de Seguridad
+WAF;;;ALTA;Arquitectura de Seguridad
+IDS;;;ALTA;Arquitectura de Seguridad
+NIDS;;;ALTA;Arquitectura de Seguridad
+IPS;;;ALTA;Arquitectura de Seguridad
+HIPS;;;ALTA;Arquitectura de Seguridad
+NIPS;;;ALTA;Arquitectura de Seguridad
+VPN;;;ALTA;Arquitectura de Seguridad
+Site_to_Site_VPN;;;ALTA;Arquitectura de Seguridad
+SASE;;;ALTA;Arquitectura de Seguridad
+SDN;;;ALTA;Arquitectura de Seguridad
+VLAN;;;ALTA;Arquitectura de Seguridad
+DMZ;;;ALTA;Arquitectura de Seguridad
+ACL;;;ALTA;Arquitectura de Seguridad
+IEEE_802_1X;;;ALTA;Arquitectura de Seguridad
+Proxy;;;ALTA;Arquitectura de Seguridad
+RAS;;;ALTA;Arquitectura de Seguridad
+Air_Gap;;;ALTA;Arquitectura de Seguridad
+SIEM;;;ALTA;Arquitectura de Seguridad
+EDR;;;ALTA;Arquitectura de Seguridad
+NGFW;;;ALTA;Arquitectura de Seguridad
+DLP;;;ALTA;Arquitectura de Seguridad
+RTO;;;ALTA;Arquitectura de Seguridad
+RPO;;;ALTA;Arquitectura de Seguridad
+Backup_3_2_1;;;ALTA;Arquitectura de Seguridad
+Snapshot;;;ALTA;Arquitectura de Seguridad
+Replication;;;ALTA;Arquitectura de Seguridad
+Load_Balancing;;;ALTA;Arquitectura de Seguridad
+Hot_Site;;;ALTA;Arquitectura de Seguridad
+Warm_Site;;;ALTA;Arquitectura de Seguridad
+Cold_Site;;;ALTA;Arquitectura de Seguridad
+UPS;;;ALTA;Arquitectura de Seguridad
+Cloud_IaaS;;;ALTA;Arquitectura de Seguridad
+Cloud_SaaS;;;ALTA;Arquitectura de Seguridad
+Screened_Subnet;;;ALTA;Arquitectura de Seguridad
+Firewall_Implicit_Deny;;;ALTA;Arquitectura de Seguridad
+URL_Scanning;;;ALTA;Arquitectura de Seguridad
+DNS_Filtering;;;ALTA;Arquitectura de Seguridad
+Group_Policy;;;ALTA;Arquitectura de Seguridad
+FIM;;;ALTA;Arquitectura de Seguridad
+MAC_Model;;;ALTA;Arquitectura de Seguridad
+PEAP;;;ALTA;Arquitectura de Seguridad
+EAP_TLS;;;ALTA;Arquitectura de Seguridad
+WPA_Enterprise;;;ALTA;Arquitectura de Seguridad
+DAC;;;ALTA;Arquitectura de Seguridad
+Least_Privilege;;;ALTA;Arquitectura de Seguridad
+Adaptive_Identity;;;ALTA;Arquitectura de Seguridad
+IPsec;;;ALTA;Arquitectura de Seguridad
+PSK;;;ALTA;Arquitectura de Seguridad
+GDPR;;;ALTA;Arquitectura de Seguridad
+Secure_Baseline;;;ALTA;Arquitectura de Seguridad
+Remote_Wipe;;;ALTA;Arquitectura de Seguridad
+Data_Retention_Policy;;;ALTA;Arquitectura de Seguridad
+STARTTLS;;;ALTA;Arquitectura de Seguridad
+SOW;;;ALTA;Arquitectura de Seguridad
+CCMP;;;ALTA;Arquitectura de Seguridad
+CBC_Mode;;;ALTA;Arquitectura de Seguridad
+ECB_Mode;;;ALTA;Arquitectura de Seguridad
+AUP;;;ALTA;Arquitectura de Seguridad
+Static_Code_Analysis;;;ALTA;Operaciones de Seguridad
+Dynamic_Code_Analysis;;;ALTA;Operaciones de Seguridad
+Package_Monitoring;;;ALTA;Operaciones de Seguridad
+DLP;;;ALTA;Operaciones de Seguridad
+Signatures;;;ALTA;Operaciones de Seguridad
+Orchestration;;;ALTA;Operaciones de Seguridad
+Automation;;;ALTA;Operaciones de Seguridad
+PCAP;;;ALTA;Operaciones de Seguridad
+Vulnerability_Scanning;;;ALTA;Operaciones de Seguridad
+SASE;;;ALTA;Operaciones de Seguridad
+AUP;;;ALTA;Operaciones de Seguridad
+Red_Team;;;ALTA;Operaciones de Seguridad
+Blue_Team;;;ALTA;Operaciones de Seguridad
+Gray_Box_Testing;;;ALTA;Operaciones de Seguridad
+Active_Reconnaissance;;;ALTA;Operaciones de Seguridad
+Passive_Reconnaissance;;;ALTA;Operaciones de Seguridad
+Fuzzing;;;ALTA;Operaciones de Seguridad
+Code_Signing;;;ALTA;Operaciones de Seguridad
+Impossible_Travel;;;ALTA;Operaciones de Seguridad
+Missing_Logs;;;ALTA;Operaciones de Seguridad
+Incident_Response_Preparation;;;ALTA;Operaciones de Seguridad
+Incident_Response_Detection;;;ALTA;Operaciones de Seguridad
+Incident_Response_Containment;;;ALTA;Operaciones de Seguridad
+Incident_Response_Post_Incident;;;ALTA;Operaciones de Seguridad
+SDLC;;;ALTA;Operaciones de Seguridad
+IoC;;;ALTA;Operaciones de Seguridad
+MDM;;;ALTA;Operaciones de Seguridad
+CVE;;;ALTA;Operaciones de Seguridad
+DKIM;;;ALTA;Operaciones de Seguridad
+DMARC;;;ALTA;Operaciones de Seguridad
+OpenID_Connect;;;ALTA;Operaciones de Seguridad
+Biometrics;;;ALTA;Operaciones de Seguridad
+Security_Key;;;ALTA;Operaciones de Seguridad
+IRP;;;ALTA;Operaciones de Seguridad
+BCP;;;ALTA;Gestin del Programa de Seguridad
+DRP;;;ALTA;Gestin del Programa de Seguridad
+IRP;;;ALTA;Gestin del Programa de Seguridad
+Incident_Response_Stages;;;ALTA;Gestin del Programa de Seguridad
+NTP;;;ALTA;Gestin del Programa de Seguridad
+ICMP;;;ALTA;Gestin del Programa de Seguridad
+BYOD;;;ALTA;Gestin del Programa de Seguridad
+UEM;;;ALTA;Gestin del Programa de Seguridad
+Risk_Exception;;;ALTA;Gestin del Programa de Seguridad
+Risk_Mitigation;;;ALTA;Gestin del Programa de Seguridad
+MTTR;;;ALTA;Gestin del Programa de Seguridad
+MTBF;;;ALTA;Gestin del Programa de Seguridad
+RPO;;;ALTA;Gestin del Programa de Seguridad
+RTO;;;ALTA;Gestin del Programa de Seguridad
+Risk_Transference;;;ALTA;Gestin del Programa de Seguridad
+SLA;;;ALTA;Gestin del Programa de Seguridad
+Tabletop_Exercise;;;ALTA;Gestin del Programa de Seguridad
+Root_Cause_Analysis;;;ALTA;Gestin del Programa de Seguridad
+Chain_of_Custody;;;ALTA;Gestin del Programa de Seguridad
+RAID_0;;;ALTA;Gestin del Programa de Seguridad
+RAID_5;;;ALTA;Gestin del Programa de Seguridad
+RAID_10;;;ALTA;Gestin del Programa de Seguridad
+Hot_Site;;;ALTA;Gestin del Programa de Seguridad
+Warm_Site;;;ALTA;Gestin del Programa de Seguridad
+Cold_Site;;;ALTA;Gestin del Programa de Seguridad
+Snapshot;;;ALTA;Gestin del Programa de Seguridad
+Replication;;;ALTA;Gestin del Programa de Seguridad
+Risk_Register;;;ALTA;Gestin del Programa de Seguridad
+PCI_DSS;;;ALTA;Gestin del Programa de Seguridad
+ISO;;;ALTA;Gestin del Programa de Seguridad
+CSP;;;ALTA;Gestin del Programa de Seguridad
+SNMP;;;ALTA;Gestin del Programa de Seguridad
+Gap Analysis;Proceso de identificar diferencias entre el estado actual de seguridad de una organización y el estado deseado/requerido;Comparar seguridad actual con ISO 27001 | Identificar controles faltantes para compliance PCI DSS;MEDIA;D1
+Honeypot;Sistema trampa que simula ser vulnerable para atraer atacantes y estudiar sus técnicas. Contiene vulnerabilidades aparentes monitorizadas;Servidor SSH falso con credenciales débiles | Base de datos con datos ficticios | Detectar técnicas de ataques;MEDIA;D1
+RC4 (Rivest Cipher 4);Cifrado de flujo obsoleto. Usado en WEP y SSL antiguo. Vulnerabilidades conocidas. Deprecated;WEP encryption (inseguro) | SSL/TLS antiguo (prohibido) | Stream cipher | Vulnerabilidades Fluhrer-McGrew;MEDIA;D1
+Modos de Cifrado de Bloque;Formas de aplicar cifrado por bloques. ECB (simple/débil), CBC (encadenado), CFB (feedback), GCM (autenticado), CTR (contador);ECB: NO usar (patrones visibles) | CBC: requiere IV | GCM: cifrado + autenticación | AES-256-GCM en TLS 1.3;MEDIA;D1
+ECC (Elliptic Curve Cryptography);Criptografía de curva elíptica. Seguridad similar a RSA con claves más cortas. Eficiente para IoT y móviles;ECDSA (firma digital) | ECDHE (intercambio de claves) | ECC 256-bit = RSA 3072-bit en seguridad;MEDIA;D1
+ECDHE (Elliptic Curve Diffie-Hellman Ephemeral);Versión de Diffie-Hellman basada en curvas elípticas con claves efímeras. Más eficiente que DHE tradicional;TLS 1.3 usa ECDHE | Perfect Forward Secrecy con menor coste computacional;MEDIA;D1
+HMAC (Hash-based Message Authentication Code);Combina función hash con clave secreta para verificar autenticidad E integridad del mensaje;HMAC-SHA256 en JWT | Verificar que mensaje no fue alterado y proviene de quien dice;MEDIA;D1
+PBKDF2 (Password-Based Key Derivation Function 2);Algoritmo de key stretching que aplica función hash múltiples veces (iteraciones) para derivar clave desde password. Protege contra brute force;100,000 iteraciones SHA-256 | Almacenamiento seguro de contraseñas | Alternativas: bcrypt, scrypt, Argon2;MEDIA;D1
+SAN Certificate (Subject Alternative Name);Certificado que puede asegurar múltiples dominios/subdominios. Extensión del campo SAN en X.509;Certificado para www.ejemplo.com, mail.ejemplo.com, ftp.ejemplo.com | Más flexible que wildcard;MEDIA;D1
+Wildcard Certificate;Certificado que asegura un dominio principal y TODOS sus subdominios de primer nivel usando asterisco (*);*.ejemplo.com cubre: www.ejemplo.com, mail.ejemplo.com, ftp.ejemplo.com | NO cubre sub.sub.ejemplo.com;MEDIA;D1
+Certificado Autofirmado;Certificado NO emitido por CA. La entidad se firma a sí misma. NO confiable por defecto en navegadores. Uso en entornos internos/dev;Servidor de prueba local | Red interna corporativa | Navegador muestra advertencia de seguridad;MEDIA;D1
+CRL (Certificate Revocation List);Lista de certificados revocados publicada por CA. Actualizada periodicamente. Mas lento que OCSP;Descarga de CRL completa | Verificacion offline | Actualizada cada 24-48 horas | Tamaño puede ser grande;MEDIA;D1
+HSM (Hardware Security Module);Dispositivo hardware dedicado para gestión segura de claves criptográficas. Nivel empresarial. FIPS 140-2/3 certified;Almacenar claves raíz de CA | Firma de transacciones bancarias | Thales, AWS CloudHSM;MEDIA;D1
+KDC (Key Distribution Center);Servidor centralizado que distribuye claves criptográficas y autentica usuarios. Componente principal de Kerberos;Kerberos KDC emite TGT (Ticket Granting Ticket) | Active Directory usa KDC;MEDIA;D1
+SED (Self-Encrypting Drive);Disco duro/SSD con cifrado por hardware integrado. Transparente para el usuario. Más rápido que software;SSD Samsung con cifrado AES-256 | Protección si roban laptop | Cumplimiento FIPS;MEDIA;D1
+EFS (Encrypting File System);Sistema de cifrado a nivel de archivo en Windows NTFS. Cifra archivos/carpetas individuales, NO todo el disco;Cifrar carpeta 'Documentos' en Windows | Protección por usuario | Transparente tras autenticación;MEDIA;D1
+Data Masking (Enmascaramiento);Ocultar datos sensibles reemplazándolos con caracteres genéricos. Preserva formato pero no contenido real;Mostrar **** en campo de contraseña | 4532-****-****-1234 para número de tarjeta | Base de datos de prueba con datos enmascarados;MEDIA;D1
+Tokenización;Reemplazar dato sensible con token/referencia no sensible. Dato real se almacena en bóveda segura separada;Token de pago en lugar de número de tarjeta real | PCI DSS compliance | Dato original NO se puede recuperar del token sin acceso a bóveda;MEDIA;D1
+S/MIME (Secure/Multipurpose Internet Mail Extensions);Estándar para cifrar y firmar digitalmente emails. Requiere certificados X.509;Email cifrado en Outlook | Firma digital de correo | Certificado personal para S/MIME;MEDIA;D1
+SFTP (SSH File Transfer Protocol);Protocolo de transferencia de archivos sobre SSH. Cifrado completo. NO es FTP sobre SSL;Puerto 22 (SSH) | Alternativa segura a FTP | FileZilla con SFTP;MEDIA;D1
+LEAP (Lightweight EAP);Protocolo de autenticacion inalambrica DEPRECADO de Cisco. Vulnerable a ataques de diccionario. Reemplazado por PEAP y EAP-TLS;NO usar en produccion - obsoleto | Usar WPA2/WPA3 Enterprise con PEAP o EAP-TLS en su lugar;MEDIA;D1
+SSID (Service Set Identifier);Nombre de red inalambrica. Puede ocultarse (SSID oculto) pero no es medida de seguridad efectiva;Cambiar SSID por defecto del router | Ocultar SSID no previene ataques de descubrimiento;MEDIA;D1
+Site Survey (Wireless);Analisis de ubicacion para diseño de red inalambrica. Identifica: cobertura, interferencias, potencia de señal optima, ubicacion de APs;Heat map de cobertura Wi-Fi | Detectar interferencias de 2.4GHz (microondas, Bluetooth) | Optimizar ubicacion de APs para roaming;MEDIA;D1
+CAPTCHA;Challenge-Response para distinguir humanos de bots. Previene ataques automatizados (brute force, scraping, spam);Imagenes distorsionadas con texto | Seleccionar semaforos en imagenes (reCAPTCHA v2) | reCAPTCHA v3 analiza comportamiento sin interaccion;MEDIA;D1
+PEM (Privacy Enhanced Mail);Formato codificacion Base64 para certificados y claves. Texto ASCII entre headers BEGIN/END. Estandar de facto;-----BEGIN CERTIFICATE----- | -----END PRIVATE KEY----- | Base64 encoded | Formato texto legible;MEDIA;D1
+Key Fob;Token fisico que genera OTP (One-Time Password) basado en tiempo (TOTP) o contador (HOTP). Factor de autenticacion;RSA SecurID | Codigo de 6-8 digitos cambia cada 30-60 segundos | Sincronizado con servidor AAA;MEDIA;D1
+RFID Badge;Tarjeta con chip RFID para control de acceso fisico. Comunicacion por radiofrecuencia sin contacto;Tarjeta de empleado para puertas | Frecuencias: 125kHz (LF), 13.56MHz (HF) | Vulnerable a clonacion y skimming;MEDIA;D1
+PKI Trust Models;Modelos de confianza en infraestructura de clave publica: Single CA, Hierarchical, Mesh, Web of Trust, Bridge, Hybrid;Hierarchical: root CA + intermediate CAs | Mesh: cross-certification entre CAs | Bridge: conectar PKIs separadas;MEDIA;D1
+EV Certificate (Extended Validation);Certificado con validacion extendida. Mayor nivel de verificacion de identidad. Mostraba barra verde en navegadores antiguos;Validacion exhaustiva de organizacion | Usado por bancos y ecommerce | Mayor confianza del usuario;MEDIA;D1
+Disinformation;Informacion falsa o engañosa difundida deliberadamente para manipular o engañar. Diferente de misinformacion (no intencional);Campañas de desinformacion en redes sociales | Deepfakes | Propaganda maliciosa;MEDIA;D1
+Quishing;Phishing mediante codigos QR maliciosos. Victima escanea QR que lleva a sitio phishing o descarga malware;QR falso en email | QR en parking meter scam | Redireccion a sitio phishing;MEDIA;D1
+Watering Hole Attack;Compromiso de sitio web frecuentado por objetivo. Infectar sitio legitimo para atacar a sus visitantes;Infectar sitio de industria especifica | Comprometer blog tecnico para atacar desarrolladores | Plataforma: Websites;MEDIA;D1
+MSP (Managed Service Provider);Proveedor externo de servicios IT completos. Gestion de infraestructura, soporte, mantenimiento para empresas sin personal IT;Gestion de red y servidores | Help desk | Backup y DR | Monitoreo 24/7;MEDIA;D1
+PPP (Point-to-Point Protocol);Protocolo para enlace punto a punto dedicado entre dos dispositivos de red. Autenticacion, cifrado, compresion;Conexiones dial-up | Enlace entre routers | Autenticacion PAP/CHAP | Base de PPTP y PPPoE;MEDIA;D1
+Non-Persistent VDI;Escritorio virtual que revierte a estado original al cerrar sesion. Compartido entre usuarios. Cambios no se guardan;Kioscos publicos | Call centers | Usuario cierra sesion → desktop se resetea | Ahorro de almacenamiento;MEDIA;D1
+CMS (Content Management System);Sistema de gestion de contenido web. Simplifica creacion y mantenimiento de sitios web sin codigo;WordPress | Drupal | Joomla | Vulnerabilidades: plugins desactualizados | Requiere hardening;MEDIA;D1
+SOW (Statement of Work);Documento detallado que describe trabajo a realizar en proyecto. Define entregables, cronograma, costos, requisitos;SOW para implementacion de red | Alcance del proyecto | Entregables especificos | Diferente de SLA/MSA;MEDIA;D1
+TKIP (Temporal Key Integrity Protocol);Protocolo de cifrado para mejorar WEP. Usado en WPA1. DEPRECADO - reemplazado por CCMP en WPA2;WPA con TKIP (obsoleto) | Claves temporales por paquete | Usar WPA2/WPA3 con CCMP/AES;MEDIA;D1
+GRE (Generic Routing Encapsulation);Protocolo de tunelizacion para encapsular protocolos de red dentro de IP. Usado en VPNs. NO cifrado por defecto;GRE over IPsec para VPN | Tunel punto a punto | Protocolo 47 | Combinar con IPsec para seguridad;MEDIA;D1
+AIS (Automated Indicator Sharing);Iniciativa de gobierno USA (DHS) para compartir indicadores de amenazas ciberneticas en tiempo real entre organizaciones;Compartir IoCs entre gobierno y sector privado | Formato STIX/TAXII | Programa DHS CISA;MEDIA;D1
+Key Stretching;Tecnica que incrementa tiempo de calculo para derivar clave. Dificulta ataques de fuerza bruta. Aplica funcion hash multiples veces;PBKDF2 | bcrypt | scrypt | Argon2 | 10000+ iteraciones | Combate password cracking;MEDIA;D1
+Password History;Politica que recuerda N contraseñas previas. Impide reutilizacion de contraseñas antiguas. Mejora seguridad en cambios periodicos;Recordar ultimas 12 contraseñas | Windows: Store 24 passwords | No reutilizar ultimas 5 contraseñas;MEDIA;D1
+Password Expiration;Politica que fuerza cambio de contraseña periodicamente. Caduca tras X dias. Mitiga riesgo de credenciales comprometidas;Cambio cada 90 dias | Expiracion 60 dias | NIST ya NO recomienda expiracion automatica | Cambio solo si compromiso;MEDIA;D1
+Whaling;Spear phishing dirigido específicamente a ejecutivos de alto nivel (C-level);Fraude al CEO | BEC (Business Email Compromise) a director financiero;MEDIA;D2
+Smishing;Phishing mediante SMS. Mensaje de texto con link malicioso o pidiendo información sensible;SMS: 'Su paquete no pudo entregarse, haga clic aquí' | Mensaje de 'banco' pidiendo verificar tarjeta;MEDIA;D2
+Vishing;Phishing por voz (llamada telefónica). Atacante se hace pasar por entidad legítima;Llamada de 'soporte Microsoft' diciendo que PC está infectado | Falso banco pidiendo verificar transacción;MEDIA;D2
+Pretexting;Técnica de ingeniería social donde atacante crea escenario falso (pretexto) para engañar y obtener información;Llamar haciéndose pasar por IT support pidiendo password | Crear historia falsa de emergencia para obtener acceso;MEDIA;D2
+Watering Hole Attack;Comprometen sitio web legítimo que visita el objetivo para infectar a visitantes. Ataque indirecto;Infectar sitio de noticias de industria específica | Visitantes descargan malware al navegar;MEDIA;D2
+Logic Bomb;Codigo malicioso que permanece inactivo hasta que se cumple condicion especifica. Entonces ejecuta payload. Dificil de detectar;Activacion en fecha especifica | Trigger: despido empleado | Borrar datos si no login 30 dias | Sabotaje interno;MEDIA;D2
+Rootkit;Malware que se oculta en el sistema operativo a nivel kernel o boot. Muy difícil de detectar y eliminar;Rootkit en firmware UEFI | Bootkit que infecta MBR | Sony BMG rootkit (2005);MEDIA;D2
+LDAP Injection;Inyeccion de codigo en consultas LDAP. Manipula filtros de busqueda LDAP. Bypass de autenticacion o extraccion de datos. Similar a SQLi;usuario=*)(uid=*))(|(uid=* | Bypass login LDAP | Extraccion de objetos AD | Input validation + parametrizacion;MEDIA;D2
+Buffer Overflow;Vulnerabilidad por escribir más datos de los que cabe en buffer de memoria. Permite sobrescribir memoria adyacente y ejecutar código arbitrario;Stack overflow | Heap overflow | Explotación de servicio con input sin validar;MEDIA;D2
+DLL Injection (Inyección DLL);Técnica para inyectar código malicioso (DLL) en proceso legítimo de Windows. Evasión de detección;Malware inyecta DLL en explorer.exe | Rootkit usando DLL injection;MEDIA;D2
+TOC/TOU (Time of Check/Time of Use);Vulnerabilidad de condicion de carrera. Estado de recurso cambia entre verificacion y uso. Race condition attack;Verificar permisos archivo, luego cambiar archivo antes de usar | Symbolic link attack | File system race;MEDIA;D2
+Domain Hijacking;Apropiacion ilegitima de dominio. Cambio no autorizado de registrante o DNS. Phishing, robo de credenciales del registrar;Robo credenciales GoDaddy | Transferencia no autorizada a otro registrar | Cambio de DNS a servidor atacante;MEDIA;D2
+Bluesnarfing;Acceso no autorizado a dispositivo Bluetooth. Robo de datos (contactos, mensajes, fotos). Explota vulnerabilidades Bluetooth;Robo contactos telefono | Acceso calendario | Descarga mensajes SMS | Vulnerabilidad Bluetooth legacy;MEDIA;D2
+Wireless Jamming;Ataque DoS que interfiere señal inalámbrica usando ruido en misma frecuencia. Hace inaccesible WiFi/Bluetooth/GPS;Jamming de señal WiFi 2.4GHz | Bloquear GPS | Ataque de denegación de servicio físico;MEDIA;D2
+Pass the Hash;Técnica de autenticación usando hash de contraseña capturado sin necesidad de descifrar. Común en Windows NTLM;Usar hash NTLM para autenticarse sin conocer password en texto claro | Movimiento lateral en AD;MEDIA;D2
+Replay Attack;Capturar y reenviar tráfico de autenticación válido para ganar acceso. Mitigación: timestamps, nonces;Capturar token de autenticación y reenviarlo | Repetir transacción bancaria capturada;MEDIA;D2
+Downgrade Attack;Forzar uso de protocolo/cifrado más débil y obsoleto para facilitar compromiso;Forzar TLS 1.0 en lugar de TLS 1.3 | SSL stripping a HTTP | POODLE attack contra SSL 3.0;MEDIA;D2
+Sideloading;Instalar apps móviles desde fuentes NO oficiales (fuera de App Store/Play Store). Riesgo de malware;Instalar APK desde sitio web | Apps no verificadas | Bypass de protecciones de tienda oficial;MEDIA;D2
+Rooting (Android);Obtener acceso root/administrativo completo en dispositivo Android. Anula garantía y rompe seguridad;SuperSU | Magisk | Acceso total al sistema operativo | Bypass de restricciones del fabricante;MEDIA;D2
+Jailbreaking (iOS);Obtener acceso root en dispositivo iOS eliminando restricciones de Apple. Instalar apps no autorizadas;Cydia | Acceso a filesystem | Instalar apps fuera de App Store;MEDIA;D2
+Firmware;Software embebido en chip hardware. Controla funciones de bajo nivel del dispositivo. Difícil de actualizar;BIOS/UEFI | Firmware de router | Firmware de SSD | Rootkits pueden infectar firmware;MEDIA;D2
+Degaussing;Eliminar datos de medios magneticos (HDD, cintas) usando campo magnetico intenso. Destruye datos y hace medio inutilizable;Degausser para HDDs antes de desechar | NO funciona en SSDs (usar destruccion fisica) | Certificacion de sanitizacion;MEDIA;D2
+SCAP (Security Content Automation Protocol);Suite de especificaciones para automatizar gestion de vulnerabilidades, medicion de configuracion, compliance. Incluye CVE, CVSS, CCE, CPE;SCAP scanners (Nessus, OpenSCAP) | Validacion automatica de configuraciones contra baseline | Integracion con SIEM;MEDIA;D2
+Image-Based Threat Vectors;Amenazas mediante imagenes: Steganography (ocultar datos), Deepfakes (manipulacion), Malware-embedded images;Steganografia en PNG | Deepfake de CEO para BEC | Exploit en JPEG | Brand impersonation con logos;MEDIA;D2
+Race Condition;Vulnerabilidad donde resultado depende de secuencia/timing de eventos. Acceso concurrente a recurso compartido causa comportamiento inesperado;TOC/TOU (Time-of-Check/Time-of-Use) | Dos threads modifican variable simultaneamente | Sincronizacion incorrecta;MEDIA;D2
+IV Attack;Ataque contra cifrado WEP. Explota debilidad de Initialization Vector (IV) de 24 bits. Colecta IVs para crackear clave WEP;airodump-ng captura IVs | aircrack-ng crackea WEP | 40000-85000 IVs necesarios | WEP obsoleto;MEDIA;D2
+HIDS (Host-based IDS);IDS instalado en host individual. Monitoriza logs, filesystem, procesos del sistema local;OSSEC | Detecta cambios no autorizados en archivos de sistema;MEDIA;D3
+Remote Access VPN (Client-to-Site);VPN para usuarios individuales que conectan a red corporativa desde ubicación remota. Requiere cliente VPN;Teletrabajo con cliente OpenVPN | SSL VPN via navegador;MEDIA;D3
+Split Tunnel VPN;VPN que permite tráfico simultáneo por VPN (corporativo) y directo a Internet (no corporativo). Ahorra ancho de banda pero menos seguro;Tráfico a red corporativa via VPN, Netflix directo a Internet | Conserva bandwidth de empresa;MEDIA;D3
+Full Tunnel VPN;TODO el tráfico pasa por VPN, incluso Internet. Más seguro pero consume más ancho de banda corporativo;Todo el tráfico inspeccionado por firewall corporativo | Más control de seguridad;MEDIA;D3
+IPSec;Suite de protocolos para VPN a nivel IP. Modos: transporte (solo payload), túnel (paquete completo). Componentes: AH (autenticación), ESP (cifrado);Site-to-site VPN corporativa | IKE para negociación de claves | ESP para confidencialidad;MEDIA;D3
+IKE (Internet Key Exchange);Protocolo para establecer conexión segura e intercambiar claves en IPSec VPN. Fase 1: autenticación, Fase 2: negociación de claves de sesión;IKEv2 más rápido y seguro que IKEv1 | Establecer SA (Security Association) en IPSec;MEDIA;D3
+ESP (Encapsulating Security Payload);Componente de IPSec que proporciona CONFIDENCIALIDAD (cifrado), integridad y autenticación del payload;ESP en modo túnel cifra todo el paquete IP | Protocolo 50;MEDIA;D3
+IPSec Tunnel Mode;Modo IPSec que cifra TODO el paquete original (header + payload) y añade nuevo header IP. Usado en VPN site-to-site;VPN entre oficinas | Paquete completo protegido;MEDIA;D3
+SSL VPN;VPN basada en SSL/TLS. Acceso mediante navegador web (clientless) o cliente ligero. Más fácil de usar que IPSec para usuarios remotos;Acceso remoto sin cliente dedicado | Portal web corporativo seguro | Cisco AnyConnect;MEDIA;D3
+VLSM (Variable Length Subnet Mask);Subredes de diferentes tamaños en misma red. Uso eficiente de IPs. Permite subnetting flexible. Optimiza espacio de direcciones;/24 para usuarios (254 hosts) | /30 para enlaces punto-a-punto (2 hosts) | Subnetting eficiente;MEDIA;D3
+Implicit Deny (Denegación Implícita);Regla por defecto en ACL/firewall: denegar TODO lo que no esté explícitamente permitido. Principio de seguridad;Última regla invisible: deny any any | Whitelist approach | Más seguro que permit by default;MEDIA;D3
+NAC (Network Access Control);Control de acceso a la red a nivel de puerto. Verifica cumplimiento de seguridad antes de permitir acceso. Protocolo: 802.1X;Verificar antivirus actualizado antes de dar acceso | BYOD con verificación de políticas | Cisco ISE;MEDIA;D3
+PAC (Proxy Auto-Configuration);Archivo script que define como navegadores seleccionan proxy. Reglas automaticas de enrutamiento web. Formato JavaScript;proxy.pac file | function FindProxyForURL() | DIRECT vs PROXY rules | Automatic proxy selection;MEDIA;D3
+Port Mirroring (Duplicacion de puertos);Copia trafico de puerto(s) a puerto monitor. Permite analisis pasivo de red. SPAN port. Usado para IDS, analisis trafico;SPAN port en Cisco | Mirror port 1-10 to port 24 | IDS monitoring | Packet capture sin interrupcion;MEDIA;D3
+Containerización;Empaquetar aplicación y dependencias en unidad autocontenida (container) que corre aislada. Más ligero que VM;Docker | Kubernetes | Microservicios en containers | Aislamiento de aplicaciones;MEDIA;D3
+Virtualización;Ejecutar múltiples sistemas operativos virtuales (VMs) en un host físico mediante hypervisor;VMware ESXi | Hyper-V | VirtualBox | Consolidación de servidores;MEDIA;D3
+Sandboxing;Entorno aislado para ejecutar código sospechoso sin riesgo para sistema principal. Análisis seguro de malware;Ejecutar archivo sospechoso en VM desechable | Cuckoo Sandbox | Navegador en sandbox;MEDIA;D3
+SOAR (Security Orchestration, Automation and Response);Plataforma que automatiza respuesta a incidentes mediante playbooks. Orquesta múltiples herramientas de seguridad;Playbook de phishing: detectar → cuarentenar email → bloquear dominio → notificar usuario | Cortex XSOAR, Splunk Phantom;MEDIA;D3
+UTM (Unified Threat Management);Dispositivo all-in-one que combina firewall, IPS, antivirus, anti-spam, VPN, filtrado web en una sola solución;Fortinet FortiGate | Sophos UTM | Seguridad completa para PYMES;MEDIA;D3
+SWG (Secure Web Gateway);Proxy avanzado que filtra tráfico web malicioso. Protege navegación: anti-malware, filtrado URL, DLP, inspección SSL;Zscaler | Filtrar categorías de sitios | Bloquear descarga de malware | Cloud-based proxy;MEDIA;D3
+CASB (Cloud Access Security Broker);Intermediario de seguridad entre usuarios y aplicaciones cloud. Visibilidad, DLP, compliance, threat protection en SaaS;Controlar uso de Dropbox/OneDrive | DLP en Office 365 | Detectar shadow IT;MEDIA;D3
+SNMP (Simple Network Management Protocol);Protocolo para gestionar y monitorizar dispositivos de red. Versiones: v1/v2c (inseguras), v3 (cifrada);Monitorizar CPU/memoria de router | SNMPv3 con autenticación | Puerto 161/162;MEDIA;D3
+Journaling (Llevar un diario);Registro de cambios antes de aplicarlos. Filesystem journaling. Recuperacion tras crash. Integridad de datos garantizada;ext4 journal | NTFS journal | Database WAL | Previene corrupcion tras fallo;MEDIA;D3
+RAID (Redundant Array of Independent Disks);Configuración de múltiples discos para redundancia y/o rendimiento. Niveles: 0 (striping), 1 (mirroring), 5 (striping + paridad), 10 (mirror + stripe);RAID 0: rendimiento, NO redundancia | RAID 1: espejo para tolerancia a fallos | RAID 5: balance rendimiento/redundancia (mín 3 discos) | RAID 10: máximo rendimiento y redundancia (mín 4 discos);MEDIA;D3
+Tabletop Exercise;Simulacro de mesa donde equipo discute respuesta a escenario hipotético de incidente. NO es práctica real;Discutir qué hacer ante ransomware | Revisión de IRP sin ejecutar acciones | Identificar gaps en procedimientos;MEDIA;D3
+Simulation (Ejercicio de simulación);Ejercicio realista que simula ataque real para probar respuesta. Más completo que tabletop;Simular phishing real | Red team vs Blue team | Ejecutar acciones de respuesta;MEDIA;D3
+Backup Generator (Generador de Respaldo);Generador electrico que arranca cuando falla alimentacion principal. Diesel/gas. Autonomia horas/dias. Complementa UPS;Generador diesel datacenter | Arranque automatico 30 seg | Tanque 24-48h autonomia | Testing mensual requerido;MEDIA;D3
+PaaS (Platform as a Service);Plataforma de desarrollo en cloud. Proveedor gestiona OS y runtime. Usuario solo desarrolla aplicación;Heroku | Google App Engine | Azure App Service;MEDIA;D3
+CSP (Cloud Service Provider);Proveedor de servicios cloud que ofrece infraestructura, plataforma o software en modelo serverless/cloud;AWS | Azure | Google Cloud | Gestiona infraestructura para serverless;MEDIA;D3
+Hybrid Cloud;Combinación de cloud público, privado y/o on-premises. Datos/apps pueden moverse entre entornos;Datos sensibles on-prem, aplicaciones en public cloud | Burst a cloud en picos de demanda;MEDIA;D3
+VPC (Virtual Private Cloud);Red privada virtual aislada dentro de cloud público. Control completo sobre red (subnets, routing, gateways);AWS VPC | Azure Virtual Network | Segmentación lógica en cloud;MEDIA;D3
+Agent-Based Filtering;Filtrado web mediante agente instalado en endpoint. Funciona incluso fuera de red corporativa. Control de contenido en laptop remota;Software de filtrado web en laptop corporativa | Politicas aplicadas localmente | Alternativa a proxy centralizado;MEDIA;D3
+SELinux (Security-Enhanced Linux);Implementacion de Mandatory Access Control (MAC) en Linux. Politicas de seguridad a nivel kernel. Confina procesos;Modos: Enforcing (bloquea), Permissive (alerta), Disabled | Contextos de seguridad en archivos/procesos | Politicas targeted/strict;MEDIA;D3
+IMAPS (IMAP over SSL/TLS);Protocolo de email cifrado. Puerto 993/TCP. IMAP con capa SSL/TLS para confidencialidad;Configurar cliente email con IMAPS puerto 993 | Alternativa segura a IMAP puerto 143 | Cifrado de credenciales y emails;MEDIA;D3
+POP3S (POP3 over SSL/TLS);Protocolo de email cifrado. Puerto 995/TCP. POP3 con capa SSL/TLS;Puerto 995 vs POP3 puerto 110 | Descarga de emails con cifrado | Menos usado que IMAPS;MEDIA;D3
+RuBAC (Rule-Based Access Control);Control de acceso basado en reglas. Combina multiples condiciones: tiempo, ubicacion, tipo de dispositivo, etc.;Permitir acceso solo de 8am-6pm | Bloquear acceso desde IPs fuera del pais | ACLs de firewall son tipo RuBAC;MEDIA;D3
+ABAC (Attribute-Based Access Control);Control de acceso basado en atributos de: usuario, recurso, entorno. Politicas dinamicas y granulares;Permitir acceso si: departamento=HR AND ubicacion=oficina AND hora_laboral=true | AWS IAM policies | XACML standard;MEDIA;D3
+Time-of-Day Restrictions;Limitar acceso a sistemas/recursos basado en horario. Parte de RuBAC;Acceso a sistema nominas solo 8am-6pm | Deshabilitar cuentas fuera de horario laboral | GPO con restricciones horarias;MEDIA;D3
+EAP-TTLS;EAP Tunneled TLS. Similar a PEAP pero mas flexible. Tunel TLS para autenticacion. Soporta metodos legacy dentro de tunel;EAP-TTLS/PAP | Certificado solo en servidor | Alternativa a PEAP | Mayor compatibilidad que PEAP;MEDIA;D3
+Clearance Levels;Niveles de autorizacion de seguridad. Clasificacion jerarquica. Gobierno/militar. Sujeto debe tener clearance >= clasificacion objeto;Top Secret | Secret | Confidential | Unclassified | Need-to-know | Modelo Bell-LaPadula;MEDIA;D3
+Geofencing;Perimetro virtual geografico. Reglas basadas en ubicacion GPS. Permite/bloquea acceso segun localizacion. Control de acceso contextual;Acceso solo desde oficina | Bloquear login fuera del pais | MDM geofencing | Alertas salida de zona;MEDIA;D3
+Honeynet;Red de honeypots interconectados. Simula red completa de organizacion. Atrae atacantes para estudiar TTPs. Investigacion de amenazas;Red falsa con servidores, workstations, routers falsos | Monitoreo completo de ataques | Research de malware;MEDIA;D3
+Honeytoken;Dato falso usado como trampa. Alerta cuando se accede. Credenciales falsas, archivos señuelo. Deteccion de breach;Credenciales falsas en archivo | Entrada DB ficticia | Fake API key | Email señuelo | Alerta si se usa;MEDIA;D3
+IPsec Transport Mode;Modo IPsec que cifra solo payload (datos). Header IP original sin cifrar. Usado host-to-host. Menos overhead que Tunnel;Comunicacion host a host | No modifica IP header | ESP transport | Menor overhead que tunnel mode;MEDIA;D3
+Data Masking (Enmascaramiento de datos);Ocultar datos sensibles reemplazandolos con caracteres. Protege datos en pantalla. No modifica datos originales en BD;****1234 (numero tarjeta) | Asteriscos en password field | XXX-XX-1234 (SSN) | Ocultar PII en UI;MEDIA;D3
+EFS (Encrypting File System);Sistema de cifrado de archivos de Windows. Cifrado a nivel de archivo/carpeta. Transparente para usuario. Basado en certificados usuario;Cifrar carpeta Mis Documentos | EFS en NTFS | Certificado usuario para clave | Data at rest encryption;MEDIA;D3
+Split Tunneling;VPN que permite trafico simultaneo por VPN y red publica. Trafico corporativo via VPN, Internet directo. Ahorra ancho de banda;Acceso recursos empresa via VPN, Netflix via ISP | Reduce latencia Internet | Riesgo: bypass VPN security;MEDIA;D3
+CAPTCHA;Test para distinguir humanos de bots. Desafio-respuesta visual/audio. Previene automatizacion. reCAPTCHA de Google popular;Seleccionar semaforos en imagenes | Escribir texto distorsionado | reCAPTCHA v3 (invisible) | Anti-bot protection;MEDIA;D3
+Degaussing (Desmagnetizacion);Eliminacion de datos mediante desmagnetizacion de medios magneticos. Campo magnetico fuerte borra datos. Destruye disco para reutilizacion;Degausser para HDDs | Desmagnetizador cintas magneticas | Inutiliza disco tras proceso | NO funciona en SSD;MEDIA;D3
+Non-Persistent VDI;VDI que resetea a estado original tras cada sesion. Escritorio compartido entre usuarios. No guarda cambios. Mas seguro;Escritorio reset al logout | Comparte golden image | Mas economico que persistent | Ideal para task workers;MEDIA;D3
+CMS (Content Management System);Sistema gestion de contenido web. Crear y mantener sitios web sin codigo. WordPress, Drupal, Joomla;WordPress | Drupal | Joomla | Vulnerabilidades si no actualizado | Plugins riesgosos;MEDIA;D3
+SMTPS (SMTP Secure);SMTP sobre SSL/TLS implícito. Puerto 465. Deprecated en favor de STARTTLS. Cifrado desde inicio conexion;Puerto 465 | SSL/TLS desde inicio | Deprecated (usar STARTTLS) | Cifrado email submission;MEDIA;D3
+TKIP (Temporal Key Integrity Protocol);Protocolo seguridad WPA1. Mejora WEP. Claves temporales por paquete. Obsoleto (usar CCMP/WPA2);WPA con TKIP | Mejor que WEP pero obsoleto | Vulnerabilidades conocidas | Usar WPA2/CCMP;MEDIA;D3
+GRE (Generic Routing Encapsulation);Protocolo tunelizacion Cisco. Encapsula diversos protocolos de capa 3. VPN site-to-site. NO cifra (usar con IPsec);GRE tunnel Cisco | Encapsula IP, IPv6, IPX | GRE over IPsec para cifrado | IP protocol 47;MEDIA;D3
+AIS (Automated Indicator Sharing);Iniciativa DHS para compartir indicadores de amenazas en tiempo real. Gobierno + sector privado. STIX/TAXII;US-CERT AIS | STIX format | TAXII transport | Threat intel sharing | Indicadores IoC automaticos;MEDIA;D3
+CTR (Counter Mode);Modo cifrado que convierte block cipher en stream cipher. Usa contador + IV. Paralelizable. No padding;AES-CTR | Paralelizable (rapido) | No padding needed | GCM usa CTR | Nonce/counter unico critico;MEDIA;D3
+TAXII (Trusted Automated Exchange of Intelligence Information);Protocolo para compartir threat intelligence. Transporte de datos STIX. APIs para intercambio automatizado de IoCs;TAXII server recibe feeds de IoCs | Integrar con SIEM/firewall | Formato STIX para datos de amenazas;MEDIA;D4
+Dark Web;Red overlay anonima (Tor, I2P). Requiere software especial. Usado para: anonimato, mercados ilegales, leaks de datos;Tor Browser | Dominios .onion | Monitoreo de credenciales filtradas | Threat intelligence de foros de hackers;MEDIA;D4
+Bug Bounty;Programa de recompensas por descubrir vulnerabilidades. Researchers eticos reportan bugs a cambio de pago;HackerOne | Bugcrowd | Programas de Google, Microsoft, Apple | Responsible disclosure;MEDIA;D4
+SNMP (Simple Network Management Protocol);Protocolo de gestion de dispositivos de red. Puertos 161 (agent), 162 (trap). Versiones: v1/v2c (inseguros), v3 (cifrado);Monitoreo de routers/switches | MIB (Management Information Base) | SNMPv3 con autenticacion y cifrado | Community strings en v1/v2c;MEDIA;D4
+Technical Debt;Costo implicito de trabajo adicional futuro por soluciones rapidas/suboptimas. En seguridad: sistemas legacy sin parches, workarounds;Sistema Windows Server 2008 sin soporte | Hardcoded credentials pendientes de refactorizar | Configuraciones temporales que quedaron permanentes;MEDIA;D4
+E-Discovery (Electronic Discovery / Descubrimiento Electronico);Identificar, recopilar y producir ESI (Electronically Stored Information) para litigio. Proceso legal forense digital;Email discovery en lawsuit | Forensic collection | Legal hold | Chain of custody | Produccion de evidencia digital;MEDIA;D4
+Metadata (Metadatos);Datos que describen otros datos. Info sobre archivo sin ser contenido. Autor, fecha creacion, modificacion, ubicacion GPS en fotos;EXIF en fotos (GPS, camara) | Autor documento Word | Email headers | Timestamp archivos | HTML meta tags;MEDIA;D4
+XML (eXtensible Markup Language);Lenguaje de marcado para estructurar datos en formato legible para humanos y maquinas. Usado en configuraciones, APIs, SAML;SAML assertions | Archivos de configuracion | SOAP web services | Vulnerable a XXE (XML External Entity);MEDIA;D4
+JSON (JavaScript Object Notation);Formato ligero de intercambio de datos. Legible para humanos. Basado en sintaxis JavaScript. Alternativa a XML;APIs REST | Archivos de configuracion | Mas simple que XML | Pares clave-valor;MEDIA;D4
+CBC (Cipher Block Chaining);Modo de cifrado de bloques que encadena bloques. Cada bloque cifrado depende del anterior. Usa IV (Initialization Vector);AES-CBC | Requiere IV aleatorio | Padding oracle attacks | Cifrado secuencial (no paralelo);MEDIA;D4
+CTR (Counter Mode);Modo de cifrado que combina contador unico con clave para generar bloques pseudoaleatorios. Permite paralelizacion;AES-CTR | Cifrado paralelo | Convierte block cipher en stream cipher | No requiere padding;MEDIA;D4
+Purple Team;Colaboracion entre Red y Blue Team. Comparten conocimientos. Mejoran defensas mediante feedback. No es equipo separado;Red Team explica tecnicas usadas | Blue Team mejora deteccion | Sesiones de feedback | Threat emulation conjunta;MEDIA;D4
+Normalization;Proceso de convertir datos a formato estandar. En SIEM: unificar logs de multiples fuentes. Facilita correlacion y analisis;Timestamp en UTC | IP en formato estandar | Campos comunes (src_ip, dst_ip) | SIEM parsea logs diversos;MEDIA;D4
+Concurrent Session Usage;Indicador de compromiso. Mismo usuario logueado simultaneamente en multiples ubicaciones. Posible robo de credenciales;Usuario en NYC y Tokyo simultaneamente | Alerta SIEM sesion duplicada | Indicador de account sharing o compromiso;MEDIA;D4
+Out-of-Cycle Logging;Registros fuera del ciclo normal. Logs en horarios inusuales. Actividad fuera de horario laboral. Indicador de actividad sospechosa;Admin login 3am domingo | Backup ejecutado horario no planificado | Script cron fuera de schedule;MEDIA;D4
+ARO (Annualized Rate of Occurrence);Frecuencia estimada anual de amenaza. Cuantas veces al año ocurre incidente. Calculo de riesgo: SLE x ARO = ALE;Ransomware: ARO = 0.5 (cada 2 años) | Inundacion: ARO = 0.1 (cada 10 años) | ALE = SLE x ARO;MEDIA;D4
+Right to be Forgotten (Derecho a ser Olvidado);Derecho GDPR de solicitar eliminacion de datos personales. Derecho de supresion. Eliminar info de busquedas y fuentes publicas;Eliminar datos de Google Search | Delete cuenta y datos personales | GDPR Article 17 | Excepciones legales aplican;MEDIA;D4
+User Onboarding (Incorporacion de Usuario);Proceso de añadir nuevo empleado a sistemas. Crear cuentas, asignar permisos, hardware, training. Checklist de incorporacion;Crear cuenta AD | Asignar laptop | Configurar email | Access card | Security training | Sign NDA;MEDIA;D4
+User Offboarding (Baja de Usuario);Proceso cuando empleado deja empresa. Revocar accesos, recuperar activos, exit interview. Checklist de despido;Disable AD account | Recuperar laptop y access card | Revoke VPN | Exit interview | Return company assets;MEDIA;D4
+Data Processor (Procesador de Datos);Entidad que procesa datos personales en nombre del controlador. Sigue instrucciones del controlador. Responsabilidad compartida GDPR;Cloud provider (AWS, Azure) | Payroll service | Email marketing platform | Procesa datos segun instrucciones;MEDIA;D4
+Data Controller (Controlador de Datos / Responsable del Tratamiento);Entidad que determina propositos y medios de procesamiento de datos personales. Responsabilidad principal GDPR. Decide QUE y COMO;Empresa que recopila datos clientes | Hospital con datos pacientes | Determina retencion y uso de datos;MEDIA;D4
+RFID (Radio Frequency Identification);Identificacion por radiofrecuencia. Etiquetas RFID almacenan datos. Lectura sin contacto. Tracking de objetos y acceso;RFID access card | Inventory tracking | Passive RFID (sin bateria) | Active RFID (con bateria) | RFID cloning risk;MEDIA;D4
+MAC (Mandatory Access Control);Control de acceso obligatorio. Sistema operativo impone politica. Basado en clasificacion y clearance. Usado en entornos militares/gobierno;SELinux | Clearance: Top Secret, Secret | Labels en objetos | No discretion del usuario | Bell-LaPadula model;MEDIA;D4
+ABAC (Attribute-Based Access Control);Control de acceso basado en atributos. Reglas granulares con multiples atributos: usuario, recurso, entorno. Muy flexible;Acceso si: rol=manager AND dept=HR AND time=business_hours | XACML | Context-aware access | Dynamic rules;MEDIA;D4
+OVAL (Open Vulnerability and Assessment Language);Lenguaje XML para automatizar evaluacion de vulnerabilidades. MITRE standard. Describe tests de seguridad;OVAL definitions | Vulnerability scanners usan OVAL | XML format | MITRE maintained | Compliance checking;MEDIA;D5
+COPE (Corporate Owned, Personally Enabled);Empresa posee dispositivo, permite uso personal. Control corporativo + flexibilidad personal. Balance seguridad/usabilidad;Empresa da iPhone, permite apps personales | MDM managed | Mas control que BYOD | Empresa paga dispositivo;MEDIA;D5
+CYOD (Choose Your Own Device);Empleado elige de lista aprobada por empresa. Empresa posee y gestiona. Balance eleccion/control;Elegir entre iPhone o Samsung aprobados | Lista dispositivos certificados | Empresa posee | Estandarizacion parcial;MEDIA;D5
+Risk Appetite;Cantidad de riesgo que organizacion esta dispuesta a aceptar. Nivel estrategico. Define limites de risk-taking. Guia decisiones de seguridad;Startup tech: alto risk appetite (innovacion) | Banco: bajo risk appetite (regulacion) | Define threshold de aceptacion;MEDIA;D5
+MOU (Memorandum of Understanding);Documento de entendimiento mutuo. No legalmente vinculante. Intenciones y objetivos comunes. Menos formal que contrato;MOU entre organizaciones para compartir threat intelligence | Acuerdo colaboracion entre departamentos | NO ejecutable legalmente;MEDIA;D5
+MSA (Master Service Agreement);Acuerdo marco de servicio. Contrato general que gobierna relacion. Terminos y condiciones base. SOWs especificos derivan de MSA;MSA con proveedor IT | Define terminos generales | SOW individuales para proyectos | Reduce negociacion repetitiva;MEDIA;D5
+Journaling;Registro de cambios antes de aplicarlos. Filesystem journaling. Permite recuperacion tras crash. Integridad de datos;ext4 journal | NTFS journal | Database transaction log | Recuperacion consistente tras fallo;MEDIA;D5
+PDU (Power Distribution Unit);Unidad de distribucion electrica. Distribuye energia a equipos en rack. Inteligente (monitoreo) o basica. Redundancia de alimentacion;PDU dual para redundancia | Monitorizacion remota consumo | Switched PDU (apagado remoto) | PDU en rack datacenter;MEDIA;D5
+Backup Generator;Generador electrico de respaldo. Arranca cuando falla alimentacion principal. Diesel/gas. Complementa UPS. Autonomia horas/dias;Generador diesel 500kW | Arranque automatico en 30 seg | Tanque combustible 24h autonomia | Testing mensual;MEDIA;D5
+GPS (Global Positioning System);Sistema posicionamiento global por satelite. Localizacion geografica. Geotagging, tracking. Privacy concerns;Smartphone GPS | Geofencing apps | Location tracking | Privacy risks | Geotagging photos | Find My iPhone;MEDIA;D5
+MBR (Master Boot Record);Primer sector disco (512 bytes). Info particiones + bootloader. Legacy (pre-UEFI). Vulnerable a bootkits;Sector 0 del disco | Bootloader legacy | Max 4 particiones primarias | Reemplazado por GPT/UEFI | MBR rootkits;MEDIA;D5
+CSO (Chief Security Officer);Director de Seguridad. Ejecutivo responsable de seguridad fisica y ciberseguridad. Protege activos, datos, personas;Oversee CISO + physical security | Risk management | Security strategy | Reporta a CEO/COO | C-level executive;MEDIA;D5
+RTP (Real-time Transport Protocol);Protocolo para entregar audio/video sobre redes IP. Tiempo real. VoIP, streaming. Usado con RTCP;VoIP calls | Video streaming | WebRTC | SRTP (secure RTP) | UDP-based | Usado con SIP;MEDIA;D5

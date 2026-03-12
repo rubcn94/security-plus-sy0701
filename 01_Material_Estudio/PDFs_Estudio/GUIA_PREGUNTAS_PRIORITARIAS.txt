@@ -1,0 +1,763 @@
+================================================================================
+ GUIA DE PREGUNTAS PRIORITARIAS - CompTIA Security+ SY0-701
+================================================================================
+
+Esta guia te indica que preguntas marcar en tu PDF impreso
+segun la prioridad de los conceptos que cubren.
+
+Total preguntas analizadas: 725
+  • ALTA prioridad:  24 preguntas
+  • MEDIA prioridad: 126 preguntas
+  • Otras:           575 preguntas
+
+================================================================================
+
+╔==============================================================================╗
+║                PREGUNTAS DE ALTA PRIORIDAD (marcar con ROJO)                 ║
+╚==============================================================================╝
+
+Total: 24 preguntas
+
+RESUMEN POR PAGINA:
+--------------------------------------------------------------------------------
+  Pagina  32: Preguntas 7
+  Pagina  37: Preguntas 9
+  Pagina  39: Preguntas 1, 2
+  Pagina  45: Preguntas 2
+  Pagina  52: Preguntas 2
+  Pagina  59: Preguntas 2
+  Pagina  67: Preguntas 2
+  Pagina  72: Preguntas 2
+  Pagina  81: Preguntas 1
+  Pagina  86: Preguntas 2
+  Pagina  89: Preguntas 1
+  Pagina  90: Preguntas 6
+  Pagina  93: Preguntas 2
+  Pagina  96: Preguntas 2
+  Pagina  98: Preguntas 1
+  Pagina  99: Preguntas 2
+  Pagina 120: Preguntas 2
+  Pagina 150: Preguntas 115
+  Pagina 174: Preguntas 242
+  Pagina 177: Preguntas 257
+  Pagina 178: Preguntas 260
+  Pagina 185: Preguntas 13
+  Pagina 196: Preguntas 14
+
+DETALLE:
+--------------------------------------------------------------------------------
+
+[ALTA] Pag  32 - Pregunta #7
+       ¿Cuál de los siguientes actores tiene típicamente el mayor nivel de financiación? Flashcards — 2.1 (...
+       Conceptos: phishing, spear phishing
+
+[ALTA] Pag  37 - Pregunta #9
+       Un ataque BEC es un ejemplo de:
+       Conceptos: phishing, vishing
+
+[ALTA] Pag  39 - Pregunta #1
+       ¿Cuál es la diferencia entre phishing y spear phishing?
+       Conceptos: phishing, spear phishing
+
+[ALTA] Pag  39 - Pregunta #2
+       ¿Cómo se llama el ataque de phishing dirigido a ejecutivos de alto nivel?
+       Conceptos: phishing, whaling, vishing
+
+[ALTA] Pag  45 - Pregunta #2
+       ¿Qué tipo de ataque explota la condición de carrera (race condition)? Flashcards — 2.3 (4 tarjetas) ...
+       Conceptos: trojan, sqli, buffer overflow
+
+[ALTA] Pag  52 - Pregunta #2
+       Un rootkit modifica el sistema operativo para ocultar su presencia. ¿Cuál es el método MÁS efectivo ...
+       Conceptos: trojan, ransomware
+
+[ALTA] Pag  59 - Pregunta #2
+       ¿Qué hace un CASB (Cloud Access Security Broker)? Flashcards — 3.1 (3 tarjetas) Q: IaaS / PaaS / Saa...
+       Conceptos: iaas, saas, ids vs ips
+
+[ALTA] Pag  67 - Pregunta #2
+       ¿Qué establece la regla 3-2-1 para backups? Flashcards — 3.3 (4 tarjetas) Q: Data at rest / in trans...
+       Conceptos: diferencial, incr
+
+[ALTA] Pag  72 - Pregunta #2
+       ¿Cuál de los siguientes sitios de recuperación tiene el menor tiempo de activación pero el mayor Fla...
+       Conceptos: cold site, warm
+
+[ALTA] Pag  81 - Pregunta #1
+       Reconocimiento 2. Escaneo/Enumeracion 3. Explotacion 4. Post-explotacion 5. Informe/Remediation Post...
+       Conceptos: white, black, mitre att&ck
+
+[ALTA] Pag  86 - Pregunta #2
+       ¿Qué mide una puntuación CVSS de 9.8? Flashcards — 4.3 (4 tarjetas) Q: Fases de un pentest Reconocim...
+       Conceptos: white, black
+
+[ALTA] Pag  89 - Pregunta #1
+       ¿Qué es 'alert fatigue' en el contexto de un SOC?
+       Conceptos: siem, alert fatigue
+
+[ALTA] Pag  90 - Pregunta #6
+       ¿Cuál es la diferencia entre un Network TAP y un puerto SPAN? perder paquetes bajo carga) Flashcards...
+       Conceptos: siem, alert tuning, alert fatigue
+
+[ALTA] Pag  93 - Pregunta #2
+       ¿Qué hace DMARC en la seguridad del correo electrónico? (rechazar, cuarentena, monitorizar) Flashcar...
+       Conceptos: rbac, abac
+
+[ALTA] Pag  96 - Pregunta #2
+       ¿Qué tipo de modelo de control de acceso conecta los permisos de los usuarios con sus responsabilida...
+       Conceptos: rbac, abac
+
+[ALTA] Pag  98 - Pregunta #1
+       ¿Cuál es la diferencia entre RBAC y ABAC? hora, ubicación, etc.)
+       Conceptos: rbac, abac
+
+[ALTA] Pag  99 - Pregunta #2
+       ¿Qué es PAM (Privileged Access Management) y por qué es importante? Flashcards — 4.6 (4 tarjetas) Q:...
+       Conceptos: phishing, rbac, abac
+
+[ALTA] Pag 120 - Pregunta #2
+       El ataque SolarWinds (2020) es el ejemplo más citado de ataque a la cadena de suministro. ¿Qué hicie...
+       Conceptos: phishing, zero-day
+
+[ALTA] Pag 150 - Pregunta #115
+       ¿Qué tipo de modelo de control de acceso conecta los permisos de los usuarios con sus responsabilida...
+       Conceptos: rbac, abac
+
+[ALTA] Pag 174 - Pregunta #242
+       ¿Qué modelo de control de acceso permite definir reglas granulares que consideran los roles de los u...
+       Conceptos: rbac, abac
+
+[ALTA] Pag 177 - Pregunta #257
+       ¿Cuál de las siguientes respuestas se refiere a un mecanismo de seguridad impuesto por SELinux sobre...
+       Conceptos: rbac, abac
+
+[ALTA] Pag 178 - Pregunta #260
+       ¿Qué modelo de control de acceso define reglas de control de acceso con el uso de declaraciones que ...
+       Conceptos: rbac, abac
+
+[ALTA] Pag 185 - Pregunta #13
+       ¿Qué tipo de modelo de control de acceso conecta los permisos de los usuarios con sus responsabilida...
+       Conceptos: rbac, abac
+
+[ALTA] Pag 196 - Pregunta #14
+       Un modelo de servicio de computación en la nube que ofrece acceso remoto a aplicaciones basado en un...
+       Conceptos: iaas, saas, paas
+
+
+
+╔==============================================================================╗
+║              PREGUNTAS DE MEDIA PRIORIDAD (marcar con NARANJA)               ║
+╚==============================================================================╝
+
+Total: 126 preguntas
+
+RESUMEN POR PAGINA:
+--------------------------------------------------------------------------------
+  Pagina  10: Preguntas 2, 3
+  Pagina  14: Preguntas 54
+  Pagina  15: Preguntas 2, 4
+  Pagina  17: Preguntas 3
+  Pagina  21: Preguntas 4
+  Pagina  22: Preguntas 3
+  Pagina  23: Preguntas 12
+  Pagina  28: Preguntas 3, 4
+  Pagina  30: Preguntas 1, 2
+  Pagina  31: Preguntas 3, 4, 5, 1, 2, 3, 4
+  Pagina  32: Preguntas 5
+  Pagina  35: Preguntas 8, 22, 1
+  Pagina  36: Preguntas 2, 3
+  Pagina  37: Preguntas 6
+  Pagina  38: Preguntas 12, 15
+  Pagina  39: Preguntas 18
+  Pagina  43: Preguntas 3
+  Pagina  45: Preguntas 1
+  Pagina  48: Preguntas 1, 2
+  Pagina  49: Preguntas 5
+  Pagina  50: Preguntas 10
+  Pagina  51: Preguntas 15, 17
+  Pagina  59: Preguntas 1
+  Pagina  64: Preguntas 75
+  Pagina  72: Preguntas 13
+  Pagina  78: Preguntas 2
+  Pagina  79: Preguntas 3
+  Pagina  80: Preguntas 5
+  Pagina  83: Preguntas 4
+  Pagina  84: Preguntas 4
+  Pagina  85: Preguntas 8, 9
+  Pagina  89: Preguntas 2
+  Pagina  90: Preguntas 3, 4
+  Pagina  96: Preguntas 3, 4
+  Pagina 101: Preguntas 1, 3, 5
+  Pagina 104: Preguntas 2
+  Pagina 113: Preguntas 2
+  Pagina 117: Preguntas 10
+  Pagina 119: Preguntas 41
+  Pagina 120: Preguntas 3
+  Pagina 124: Preguntas 3
+  Pagina 127: Preguntas 2, 3
+  Pagina 131: Preguntas 23
+  Pagina 140: Preguntas 68
+  Pagina 144: Preguntas 87, 91
+  Pagina 145: Preguntas 94
+  Pagina 148: Preguntas 108
+  Pagina 149: Preguntas 111, 112, 113
+  Pagina 152: Preguntas 128
+  Pagina 153: Preguntas 131, 132
+  Pagina 154: Preguntas 134, 135, 136, 137, 138, 139
+  Pagina 155: Preguntas 140, 143
+  Pagina 156: Preguntas 146, 148
+  Pagina 157: Preguntas 151, 153
+  Pagina 158: Preguntas 154, 156, 158
+  Pagina 159: Preguntas 163
+  Pagina 160: Preguntas 168
+  Pagina 161: Preguntas 171, 174
+  Pagina 162: Preguntas 180
+  Pagina 165: Preguntas 194
+  Pagina 166: Preguntas 202
+  Pagina 167: Preguntas 203
+  Pagina 168: Preguntas 212
+  Pagina 170: Preguntas 222
+  Pagina 172: Preguntas 230
+  Pagina 174: Preguntas 240
+  Pagina 176: Preguntas 250, 253
+  Pagina 177: Preguntas 256, 258
+  Pagina 183: Preguntas 2, 3, 5
+  Pagina 184: Preguntas 8
+  Pagina 187: Preguntas 7
+  Pagina 192: Preguntas 6
+  Pagina 193: Preguntas 11
+  Pagina 194: Preguntas 4
+  Pagina 195: Preguntas 9
+  Pagina 196: Preguntas 1
+  Pagina 198: Preguntas 9, 1
+  Pagina 199: Preguntas 5
+  Pagina 200: Preguntas 8, 9, 10
+  Pagina 203: Preguntas 12
+  Pagina 205: Preguntas 6
+  Pagina 206: Preguntas 10
+
+DETALLE:
+--------------------------------------------------------------------------------
+
+[MEDIA] Pag  10 - Pregunta #2
+        Un guardia de seguridad en la entrada de un edificio es un ejemplo de control de seguridad de qué ca...
+        Conceptos: operacional, disuasorio
+
+[MEDIA] Pag  10 - Pregunta #3
+        ¿Cuál es la diferencia principal entre un control DISUASORIO y un control PREVENTIVO? Flashcards — 1...
+        Conceptos: disuasorio, compensatorio
+
+[MEDIA] Pag  14 - Pregunta #54
+        La implementación del cifrado completo del dispositivo es uno de los métodos para proteger los datos...
+        Conceptos: siem
+
+[MEDIA] Pag  15 - Pregunta #2
+        En la arquitectura Zero Trust, ¿cuál es el rol del Policy Decision Point (PDP)?
+        Conceptos: siem
+
+[MEDIA] Pag  15 - Pregunta #4
+        ¿Cuál de los siguientes protocolos implementa AAA en redes inalámbricas y de acceso remoto? Flashcar...
+        Conceptos: tacacs+
+
+[MEDIA] Pag  17 - Pregunta #3
+        ¿Cuál de los siguientes es un entorno SEGURO para probar cambios antes de implementarlos en producci...
+        Conceptos: certificado x.509, sandbox, gestion
+
+[MEDIA] Pag  21 - Pregunta #4
+        Compara el hash: si coincide, el mensaje es autentico e integro Garantiza: autenticidad + integridad...
+        Conceptos: esteganografia, tokenizacion
+
+[MEDIA] Pag  22 - Pregunta #3
+        ¿Cuál es el nombre de un protocolo de red que protege el tráfico web mediante cifrado SSL/TLS? [EN: ...
+        Conceptos: ftps, sftp
+
+[MEDIA] Pag  23 - Pregunta #12
+        ¿Cuál de las siguientes respuestas se refiere a un protocolo de intercambio de claves criptográficas...
+        Conceptos: ecdhe, mime
+
+[MEDIA] Pag  28 - Pregunta #3
+        ¿Qué es una 'rainbow table' y cómo se contrarresta?
+        Conceptos: salt, rainbow table
+
+[MEDIA] Pag  28 - Pregunta #4
+        ¿Cuál de las siguientes afirmaciones sobre TLS 1.3 es correcta? Flashcards — 1.4 (9 tarjetas) Q: AES...
+        Conceptos: salt, ocsp, hash: sha-256
+
+[MEDIA] Pag  30 - Pregunta #1
+        Elija una respuesta de la lista desplegable de la derecha para hacer coincidir un tipo de actor de a...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  30 - Pregunta #2
+        Relacione cada tipo de actor de amenaza con su correspondiente atributo de recursos/financiación. Pr...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  31 - Pregunta #3
+        Asigne el atributo de nivel de sofisticación a cada tipo de actor de amenazas que se enumera a conti...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  31 - Pregunta #4
+        En la lista desplegable de la derecha, seleccione las motivaciones típicas detrás de las acciones de...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  31 - Pregunta #5
+        ¿Cuál de los siguientes términos se utiliza para describir ciberataques sofisticados y prolongados, ...
+        Conceptos: ddos, mitm
+
+[MEDIA] Pag  31 - Pregunta #1
+        ¿Cuál de los siguientes actores de amenaza tiene típicamente más recursos y mayor sofisticación?
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  31 - Pregunta #2
+        Un empleado descontento que filtra información confidencial de su empresa es un ejemplo de:
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  31 - Pregunta #3
+        ¿Cuál de los siguientes actores usa como vector principal el acceso INTERNO a la organización?
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag  31 - Pregunta #4
+        Un nation-state actor tiene como motivación principal:
+        Conceptos: nation-state actor
+
+[MEDIA] Pag  32 - Pregunta #5
+        ¿Qué nivel de sofisticación técnica caracteriza a un script kiddie?
+        Conceptos: zero-day, script kiddie
+
+[MEDIA] Pag  35 - Pregunta #8
+        El término "secuestro de URL" (también conocido como "Typosquatting") se refiere a una práctica enga...
+        Conceptos: phishing, typosquatting
+
+[MEDIA] Pag  35 - Pregunta #22
+        Una superficie de ataque es la suma de todos los puntos potenciales (vulnerabilidades) a través de l...
+        Conceptos: phishing
+
+[MEDIA] Pag  35 - Pregunta #1
+        Una superficie de ataque es la suma de todos los puntos potenciales (vulnerabilidades) a través de l...
+        Conceptos: phishing
+
+[MEDIA] Pag  36 - Pregunta #2
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un vector de amenaza basado en correo...
+        Conceptos: phishing
+
+[MEDIA] Pag  36 - Pregunta #3
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un ejemplo de un vector de amenaza po...
+        Conceptos: phishing
+
+[MEDIA] Pag  37 - Pregunta #6
+        Una técnica de ingeniería social mediante la cual los atacantes, disfrazados de una solicitud legíti...
+        Conceptos: phishing
+
+[MEDIA] Pag  38 - Pregunta #12
+        ¿Cuál sería una respuesta apropiada del usuario ante un intento de phishing por correo electrónico? ...
+        Conceptos: phishing, sandbox
+
+[MEDIA] Pag  38 - Pregunta #15
+        ¿Cuáles son las características del modo empresarial WPA2/WPA3? (Seleccione 3 respuestas) [EN: What ...
+        Conceptos: wpa2, wpa3
+
+[MEDIA] Pag  39 - Pregunta #18
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un protocolo de autenticación de red ...
+        Conceptos: salt, peap
+
+[MEDIA] Pag  43 - Pregunta #3
+        Un mal funcionamiento en un acceso secuencial preprogramado a un recurso compartido se describe * Re...
+        Conceptos: incr
+
+[MEDIA] Pag  45 - Pregunta #1
+        ¿Qué es una vulnerabilidad 'zero-day'?
+        Conceptos: zero-day
+
+[MEDIA] Pag  48 - Pregunta #1
+        El malware que restringe el acceso a un sistema informático cifrando archivos o bloqueando todo el s...
+        Conceptos: ransomware
+
+[MEDIA] Pag  48 - Pregunta #2
+        ¿Qué tipo de troyano permite el acceso remoto no autorizado a un sistema comprometido? [EN: Which ty...
+        Conceptos: trojan
+
+[MEDIA] Pag  49 - Pregunta #5
+        A diferencia de los simples ataques DoS que normalmente se realizan desde un solo sistema, un ataque...
+        Conceptos: ddos, botnet
+
+[MEDIA] Pag  50 - Pregunta #10
+        ¿Qué ataque inalámbrico se centra en explotar las vulnerabilidades encontradas en WEP? [EN: Which wi...
+        Conceptos: blue, bluejacking
+
+[MEDIA] Pag  51 - Pregunta #15
+        Una situación en la que un atacante intercepta y retransmite un intercambio de datos válido entre un...
+        Conceptos: phishing
+
+[MEDIA] Pag  51 - Pregunta #17
+        ¿Cuál de las siguientes URL es un indicador potencial de un ataque de cruce de directorio? [EN: Whic...
+        Conceptos: directory traversal
+
+[MEDIA] Pag  59 - Pregunta #1
+        En el modelo IaaS, ¿de qué es responsable el cliente?
+        Conceptos: iaas, gestion
+
+[MEDIA] Pag  64 - Pregunta #75
+        Un mecanismo de transporte dedicado para información sobre amenazas cibernéticas se denomina: 3.3 - ...
+        Conceptos: clasificacion de datos, tokenizacion, anonimizacion
+
+[MEDIA] Pag  72 - Pregunta #13
+        ¿Cuál de las siguientes soluciones de redundancia de energía sería la más adecuada para proporcionar...
+        Conceptos: redundancia
+
+[MEDIA] Pag  78 - Pregunta #2
+        ¿Para qué sirve ASLR (Address Space Layout Randomization)? Flashcards — 4.1 (3 tarjetas) Q: SAST vs ...
+        Conceptos: buffer overflow, sast, dast
+
+[MEDIA] Pag  79 - Pregunta #3
+        ¿Cuál es la diferencia entre BYOD y COPE en gestión de dispositivos?
+        Conceptos: byod, cope
+
+[MEDIA] Pag  80 - Pregunta #5
+        ¿Para qué sirve un SBOM (Software Bill of Materials)? Flashcards — 4.2 (2 tarjetas) Q: EOL vs EOSL E...
+        Conceptos: mitre att&ck, nessus, nmap
+
+[MEDIA] Pag  83 - Pregunta #4
+        Validacion: verificar que la vulnerabilidad fue corregida (rescan) HERRAMIENTAS DE IDENTIFICACION: ■...
+        Conceptos: nessus, compensatorio
+
+[MEDIA] Pag  84 - Pregunta #4
+        Un mecanismo de transporte dedicado para información sobre amenazas cibernéticas se denomina:
+        Conceptos: mime, taxii
+
+[MEDIA] Pag  85 - Pregunta #8
+        ¿Cuál de los siguientes términos se refiere a un marco y una base de conocimientos que proporciona c...
+        Conceptos: stix, taxii
+
+[MEDIA] Pag  85 - Pregunta #9
+        ¿Cuál de las siguientes opciones se refiere a un sistema que identifica, define y cataloga vulnerabi...
+        Conceptos: stix, taxii
+
+[MEDIA] Pag  89 - Pregunta #2
+        En el contexto de SIEM, ¿qué es la correlación de eventos?
+        Conceptos: siem
+
+[MEDIA] Pag  90 - Pregunta #3
+        ¿Cuál es la diferencia entre Verdadero Positivo (TP) y Falso Positivo (FP)?
+        Conceptos: siem
+
+[MEDIA] Pag  90 - Pregunta #4
+        Un Falso Negativo (FN) en un IDS significa:
+        Conceptos: siem
+
+[MEDIA] Pag  96 - Pregunta #3
+        Ejemplos de propiedades utilizadas para definir políticas de acceso en el modelo de control de acces...
+        Conceptos: abac
+
+[MEDIA] Pag  96 - Pregunta #4
+        ¿Cuál de los modelos de control de acceso enumerados a continuación aplica el conjunto más estricto ...
+        Conceptos: rbac
+
+[MEDIA] Pag 101 - Pregunta #1
+        ¿Qué es un playbook en el contexto de SOAR?
+        Conceptos: soar
+
+[MEDIA] Pag 101 - Pregunta #3
+        ¿Cuál es la diferencia entre automatización y orquestación en seguridad? como flujo de trabajo
+        Conceptos: soar
+
+[MEDIA] Pag 101 - Pregunta #5
+        ¿Qué es un runbook en operaciones de seguridad?
+        Conceptos: soar
+
+[MEDIA] Pag 104 - Pregunta #2
+        ¿Por qué se analiza la RAM antes del disco duro en una investigación forense? Flashcards — 4.8 (3 ta...
+        Conceptos: siem
+
+[MEDIA] Pag 113 - Pregunta #2
+        ¿Cuál de los siguientes acuerdos establece los niveles de servicio entre un proveedor y un cliente? ...
+        Conceptos: ransomware, onboarding, gestion
+
+[MEDIA] Pag 117 - Pregunta #10
+        ¿Cuál de las siguientes define la cantidad máxima aceptable de pérdida de datos medida en un momento...
+        Conceptos: mtbf, sast, mttr
+
+[MEDIA] Pag 119 - Pregunta #41
+        Un valor MTBF alto indica que un componente o sistema proporciona baja confiabilidad y es más probab...
+        Conceptos: due diligence, mtbf, gestion
+
+[MEDIA] Pag 120 - Pregunta #3
+        ¿Qué es un MSA (Master Service Agreement)? específicos Flashcards — 5.3 (2 tarjetas) Q: Due Diligenc...
+        Conceptos: due diligence, due care
+
+[MEDIA] Pag 124 - Pregunta #3
+        ¿Qué es un 'right to audit' en un contrato con proveedor? Flashcards — 5.5 (1 tarjetas) Q: Auditoría...
+        Conceptos: right to
+
+[MEDIA] Pag 127 - Pregunta #2
+        ¿Con qué frecuencia se recomienda realizar simulaciones de phishing?
+        Conceptos: phishing
+
+[MEDIA] Pag 127 - Pregunta #3
+        ¿Qué concepto describe el entrenamiento específico según el rol del empleado (ej: diferente para des...
+        Conceptos: phishing, directi
+
+[MEDIA] Pag 131 - Pregunta #23
+        ¿Cuál de las siguientes soluciones proporciona la funcionalidad AAA? (Seleccione todo lo que corresp...
+        Conceptos: tacacs+
+
+[MEDIA] Pag 140 - Pregunta #68
+        ¿Cuál de las siguientes URL es un indicador potencial de un ataque de cruce de directorio? [EN: Whic...
+        Conceptos: directory traversal
+
+[MEDIA] Pag 144 - Pregunta #87
+        La implementación del cifrado completo del dispositivo es uno de los métodos para proteger los datos...
+        Conceptos: siem
+
+[MEDIA] Pag 144 - Pregunta #91
+        ¿Cuáles son las características del modo empresarial WPA2/WPA3? (Seleccione 3 respuestas)
+        Conceptos: wpa2, wpa3
+
+[MEDIA] Pag 145 - Pregunta #94
+        ¿Cuál de las siguientes respuestas se refiere a un protocolo de autenticación inalámbrica obsoleto d...
+        Conceptos: eap-tls, salt, peap
+
+[MEDIA] Pag 148 - Pregunta #108
+        ¿Cuál de los siguientes protocolos permite la transferencia segura de archivos? (Seleccione todo lo ...
+        Conceptos: ftps, sftp
+
+[MEDIA] Pag 149 - Pregunta #111
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un método de autenticación que permit...
+        Conceptos: dmarc, dkim
+
+[MEDIA] Pag 149 - Pregunta #112
+        ¿Cuál de las siguientes respuestas se refiere a un mecanismo de autenticación de correo electrónico ...
+        Conceptos: dmarc, dkim
+
+[MEDIA] Pag 149 - Pregunta #113
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un estándar criptográfico (y un forma...
+        Conceptos: dmarc, dkim
+
+[MEDIA] Pag 152 - Pregunta #128
+        ¿Cuál de las siguientes respuestas se refiere a una disposición contractual que otorga a una parte e...
+        Conceptos: right to
+
+[MEDIA] Pag 153 - Pregunta #131
+        En la comunicación por correo electrónico, ¿qué señales pueden ayudar a reconocer un intento de [EN:...
+        Conceptos: phishing
+
+[MEDIA] Pag 153 - Pregunta #132
+        ¿Cuáles de las siguientes afirmaciones sobre los honeypots son ciertas? (Seleccione 2 respuestas) [E...
+        Conceptos: siem
+
+[MEDIA] Pag 154 - Pregunta #134
+        Elija una respuesta de la lista desplegable de la derecha para hacer coincidir un tipo de actor de a...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag 154 - Pregunta #135
+        Relacione cada tipo de actor de amenaza con su correspondiente atributo de recursos/financiación. Pr...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag 154 - Pregunta #136
+        Asigne el atributo de nivel de sofisticación a cada tipo de actor de amenazas que se enumera a conti...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag 154 - Pregunta #137
+        En la lista desplegable de la derecha, seleccione las motivaciones típicas detrás de las acciones de...
+        Conceptos: script kiddie, hacktivista, insider
+
+[MEDIA] Pag 154 - Pregunta #138
+        ¿Cuál de los siguientes términos se utiliza para describir ciberataques sofisticados y prolongados, ...
+        Conceptos: ddos, mitm
+
+[MEDIA] Pag 154 - Pregunta #139
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un vector de amenaza basado en correo...
+        Conceptos: phishing
+
+[MEDIA] Pag 155 - Pregunta #140
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un ejemplo de un vector de amenaza po...
+        Conceptos: phishing
+
+[MEDIA] Pag 155 - Pregunta #143
+        ¿Cuál de las siguientes respuestas se refiere a vectores de amenazas de software sin agentes? (Selec...
+        Conceptos: phishing
+
+[MEDIA] Pag 156 - Pregunta #146
+        ¿Qué ataque de ingeniería social se basa en el robo de identidad? [EN: Which social engineering atta...
+        Conceptos: phishing
+
+[MEDIA] Pag 156 - Pregunta #148
+        El término "secuestro de URL" (también conocido como "Typosquatting") se refiere a una práctica enga...
+        Conceptos: phishing, typosquatting
+
+[MEDIA] Pag 157 - Pregunta #151
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a una vulnerabilidad de seguridad que p...
+        Conceptos: sqli, csrf
+
+[MEDIA] Pag 157 - Pregunta #153
+        El malware que restringe el acceso a un sistema informático cifrando archivos o bloqueando todo el s...
+        Conceptos: ransomware
+
+[MEDIA] Pag 158 - Pregunta #154
+        ¿Qué tipo de troyano permite el acceso remoto no autorizado a un sistema comprometido? [EN: Which ty...
+        Conceptos: trojan
+
+[MEDIA] Pag 158 - Pregunta #156
+        A diferencia de los simples ataques DoS que normalmente se realizan desde un solo sistema, un ataque...
+        Conceptos: ddos, botnet
+
+[MEDIA] Pag 158 - Pregunta #158
+        La práctica de obtener acceso no autorizado a un dispositivo Bluetooth se conoce como:
+        Conceptos: phishing, blue, bluesnarfing
+
+[MEDIA] Pag 159 - Pregunta #163
+        ¿Cuál de los siguientes exploits apunta a un protocolo utilizado para administrar y acceder a recurs...
+        Conceptos: ldap, csrf
+
+[MEDIA] Pag 160 - Pregunta #168
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a la tecnología de seguridad de red dis...
+        Conceptos: ngfw
+
+[MEDIA] Pag 161 - Pregunta #171
+        Un mecanismo de transporte dedicado para información sobre amenazas cibernéticas se
+        Conceptos: mime, taxii
+
+[MEDIA] Pag 161 - Pregunta #174
+        ¿Cuál de los siguientes términos se refiere a un marco y una base de conocimientos que proporciona c...
+        Conceptos: stix, taxii
+
+[MEDIA] Pag 162 - Pregunta #180
+        ¿Cuál de los términos enumerados a continuación se refiere al proceso de creación y mantenimiento de...
+        Conceptos: saas
+
+[MEDIA] Pag 165 - Pregunta #194
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un método de autenticación secreto co...
+        Conceptos: 802.1x, wpa2
+
+[MEDIA] Pag 166 - Pregunta #202
+        ¿Cuáles son los rasgos característicos de una ID de sesión? (Seleccione todo lo que corresponda) [EN...
+        Conceptos: incr
+
+[MEDIA] Pag 167 - Pregunta #203
+        ¿Cómo se llama una solución que aumenta la eficiencia de la gestión del espacio de direcciones IP al...
+        Conceptos: incr, mpls
+
+[MEDIA] Pag 168 - Pregunta #212
+        ¿Cuál de las siguientes respuestas se refiere a tecnología de software diseñada para simplificar la ...
+        Conceptos: saas
+
+[MEDIA] Pag 170 - Pregunta #222
+        ¿Cuál de las siguientes respuestas se refiere a un marco de ciberseguridad que combina funciones de ...
+        Conceptos: casb, sase, sd-wan
+
+[MEDIA] Pag 172 - Pregunta #230
+        ¿Cuál de las siguientes soluciones de redundancia de energía sería la más adecuada para proporcionar...
+        Conceptos: redundancia
+
+[MEDIA] Pag 174 - Pregunta #240
+        ¿Cuál de las respuestas enumeradas a continuación se refiere al proceso de mantener la integridad de...
+        Conceptos: siem
+
+[MEDIA] Pag 176 - Pregunta #250
+        ¿Cuál de las siguientes define la cantidad máxima aceptable de pérdida de datos medida en un momento...
+        Conceptos: mtbf, sast, mttr
+
+[MEDIA] Pag 176 - Pregunta #253
+        ¿Qué tipo de software permite un control centralizado sobre la configuración, monitoreo y seguridad ...
+        Conceptos: siem
+
+[MEDIA] Pag 177 - Pregunta #256
+        ¿Cuál de las siguientes opciones se refiere a un sistema que identifica, define y cataloga vulnerabi...
+        Conceptos: stix, taxii
+
+[MEDIA] Pag 177 - Pregunta #258
+        ¿Cuál de las siguientes respuestas se refiere a un marco de políticas que permite a los propietarios...
+        Conceptos: dmarc, dkim
+
+[MEDIA] Pag 183 - Pregunta #2
+        ¿Cuál de los términos enumerados a continuación se refiere al proceso de creación y mantenimiento de...
+        Conceptos: saas
+
+[MEDIA] Pag 183 - Pregunta #3
+        ¿Cuál de las siguientes respuestas se refiere a una solución de seguridad de red que proporciona un ...
+        Conceptos: ngfw
+
+[MEDIA] Pag 183 - Pregunta #5
+        ¿Cuál es el nombre de un protocolo de red que protege el tráfico web mediante cifrado SSL/TLS? [EN: ...
+        Conceptos: ftps, sftp
+
+[MEDIA] Pag 184 - Pregunta #8
+        ¿Cuál de los siguientes protocolos de transferencia de archivos no proporciona cifrado? [EN: Which o...
+        Conceptos: ftps, sftp
+
+[MEDIA] Pag 187 - Pregunta #7
+        ¿Cuál de las siguientes respuestas se refiere a un método de autenticación secreto compartido utiliz...
+        Conceptos: 802.1x, wpa2
+
+[MEDIA] Pag 192 - Pregunta #6
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un estándar de la industria para eval...
+        Conceptos: siem
+
+[MEDIA] Pag 193 - Pregunta #11
+        Un tipo de ciberataque centrado en hacer que un sitio web, servicio o red no esté disponible para lo...
+        Conceptos: sqli, csrf
+
+[MEDIA] Pag 194 - Pregunta #4
+        ¿Cuál de los siguientes términos se refiere a un marco y una base de conocimientos que proporciona c...
+        Conceptos: stix, taxii
+
+[MEDIA] Pag 195 - Pregunta #9
+        ¿Qué tipo de software se utiliza para prevenir, detectar y eliminar malware de sistemas y redes info...
+        Conceptos: saas
+
+[MEDIA] Pag 196 - Pregunta #1
+        Un protocolo de red utilizado para la transferencia segura de archivos a través de SSH se conoce
+        Conceptos: ftps, sftp
+
+[MEDIA] Pag 198 - Pregunta #9
+        ¿Cuál de las respuestas enumeradas a continuación se refiere al proceso de mantener la integridad de...
+        Conceptos: siem
+
+[MEDIA] Pag 198 - Pregunta #1
+        ¿Cuál es la forma más rápida de comprobar la validez de un certificado digital? [EN: What is the fas...
+        Conceptos: ocsp, ospf
+
+[MEDIA] Pag 199 - Pregunta #5
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un protocolo de red utilizado para si...
+        Conceptos: incr
+
+[MEDIA] Pag 200 - Pregunta #8
+        ¿Cuál de las respuestas enumeradas a continuación se refiere a un protocolo de autenticación inalámb...
+        Conceptos: eap-tls, salt, peap
+
+[MEDIA] Pag 200 - Pregunta #9
+        ¿Qué registros DNS TXT se utilizan para la gestión de spam? (Seleccione 3 respuestas) [EN: Which DNS...
+        Conceptos: dmarc, dkim
+
+[MEDIA] Pag 200 - Pregunta #10
+        Un enfoque de desarrollo de software que tiene como objetivo la creación rápida de aplicaciones y la...
+        Conceptos: saas
+
+[MEDIA] Pag 203 - Pregunta #12
+        ¿Cuál de las siguientes respuestas se refiere a un marco de ciberseguridad que combina funciones de ...
+        Conceptos: siem, sase
+
+[MEDIA] Pag 205 - Pregunta #6
+        ¿Cuál de las siguientes respuestas se refiere a una herramienta de software diseñada para simplifica...
+        Conceptos: saas
+
+[MEDIA] Pag 206 - Pregunta #10
+        ¿Cuál de las siguientes tecnologías permite el manejo automatizado de múltiples incidentes de [EN: W...
+        Conceptos: siem, sase
+
+
+
+================================================================================
+ ESTADISTICAS Y RECOMENDACIONES
+================================================================================
+
+Cobertura de preguntas prioritarias:
+  • ALTA:    24 preguntas (  3.3%)
+  • MEDIA:  126 preguntas ( 17.4%)
+  • TOTAL:  150 preguntas ( 20.7%)
+
+RECOMENDACION:
+  1. Estudia primero el PDF condensado (13 paginas)
+  2. Practica las 24 preguntas marcadas ROJO (ALTA)
+  3. Practica las 126 preguntas marcadas NARANJA (MEDIA)
+  4. Esto cubre el 21% de las preguntas mas importantes
+
+================================================================================

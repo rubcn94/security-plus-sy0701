@@ -1,0 +1,218 @@
+{
+  "1": {
+    "high": [
+      "Preventivo/Detectivo/Correctivo",
+      "Triada CIA (Confidencialidad/Integridad/Disponibilidad)",
+      "AES / RSA / ECC",
+      "Hash: SHA-256 / MD5 (obsoleto)",
+      "PKI / CA / Certificado X.509",
+      "Zero Trust + PEP/PDP",
+      "Tecnico/Gestion/Operacional/Fisico",
+      "AAA: RADIUS / TACACS+"
+    ],
+    "med": [
+      "Compensatorio/Disuasorio/Directivo",
+      "No Repudio + Firma Digital",
+      "Backout Plan / Sandbox",
+      "CRL / OCSP / HSTS",
+      "Salt / Rainbow Table",
+      "TLS 1.3 / Cipher suites",
+      "Change Management / CCB",
+      "Allow list / Deny list",
+      "Gap Analysis + Baseline"
+    ],
+    "low": [
+      "Esteganografia / Blockchain",
+      "Mantrap / Bollard / CCTV",
+      "Wildcard cert / SAN cert",
+      "LDAP / Kerberos / NTLM",
+      "OAuth 2.0 / OIDC / SAML",
+      "JWT / OTP / Password Manager",
+      "DH / DHE / ECDHE / PFS",
+      "Key escrow / STIX / TAXII",
+      "Entropy / CSPRNG",
+      "SSH / RDP / SFTP / FTPS",
+      "SNMP v1/v2c (inseg) / v3 (seg)"
+    ]
+  },
+  "2": {
+    "high": [
+      "APT / Nation-state actor",
+      "Phishing / Smishing / Vishing",
+      "SQLi / XSS (reflected/stored)",
+      "Virus vs Worm (diferencia clave)",
+      "Ransomware / RAT / Trojan",
+      "Buffer Overflow / TOCTOU",
+      "IOC / Shadow IT",
+      "MITRE ATT&CK / TTP"
+    ],
+    "med": [
+      "Insider / Script kiddie",
+      "Spear phishing / Whaling",
+      "Directory Traversal / Zero-day",
+      "Rootkit / Fileless / Logic Bomb",
+      "Keylogger / Spyware / Botnet",
+      "DoS / DDoS / Amplification",
+      "DNS Poisoning / ARP Poisoning",
+      "MITM / SSL Stripping / HSTS",
+      "Brute Force / Dictionary / Spray",
+      "Supply chain: SolarWinds ejemplo",
+      "WannaCry: Worm+Ransomware"
+    ],
+    "low": [
+      "Hacktivista / Crimen organizado",
+      "Typosquatting / Watering hole",
+      "CSRF / SSRF",
+      "IOC vs IOA",
+      "Quishing (QR phishing)",
+      "VM Escape / Resource Reuse",
+      "WEP/WPA/WPA2/WPA3",
+      "EOL / EOSL / Firmware",
+      "ICS/SCADA / PLC / HMI / Purdue Model",
+      "Pass-the-Hash / Replay",
+      "802.1X / EAP / PEAP / EAP-TLS",
+      "Birthday Attack / Downgrade",
+      "MFA fatigue / Push bombing",
+      "Bluesnarfing / Bluejacking / NFC",
+      "Evil Twin / Rogue AP"
+    ]
+  },
+  "3": {
+    "high": [
+      "IaaS/PaaS/SaaS responsabilidad compartida",
+      "VPN: IPSec / SSL / Split tunnel",
+      "DLP / Clasificacion de datos",
+      "RTO vs RPO (diferencia)",
+      "NGFW / IDS vs IPS",
+      "Regla 3-2-1 Backups",
+      "Hot/Warm/Cold Site",
+      "GDPR: 72h notif / Right to forget"
+    ],
+    "med": [
+      "Publica/Privada/Hibrida/Multi-cloud",
+      "Proxy / Reverse Proxy",
+      "Data at rest/transit/use",
+      "MTTR / MTBF",
+      "WAF / NAC / SIEM / SOAR",
+      "HSM / TPM / Secure Boot",
+      "Tokenizacion / Anonimizacion",
+      "DRP / BCP / BIA",
+      "CASB / CSPM / SASE",
+      "PII / PHI / Privacy by design",
+      "Failover / HA / Redundancia",
+      "S/MIME / PGP / STARTTLS",
+      "SPF / DKIM / DMARC"
+    ],
+    "low": [
+      "Edge computing / Fog computing",
+      "DNS Sinkhole / DNSSEC",
+      "Pseudonimizacion / Masking",
+      "MPLS / SD-WAN",
+      "BGP / OSPF / RIP / EIGRP",
+      "DHCP snooping / ARP inspection",
+      "NTP (critico para Kerberos)",
+      "Degaussing / Wiping / Purging",
+      "Crypto-shredding / NIST 800-88",
+      "Geofencing / MDM",
+      "Network TAP / SPAN port",
+      "BGP hijacking (Pakistan→YouTube)",
+      "MTPD / MBCO",
+      "Backup: completo/incr/diferencial"
+    ]
+  },
+  "4": {
+    "high": [
+      "SIEM correlacion de eventos",
+      "MFA: algo que sabes/tienes/eres",
+      "Fases IR: Prep→Detect→Contain→Recovery",
+      "Orden volatilidad forense: RAM primero",
+      "RBAC / ABAC / MAC / DAC",
+      "Vuln scan vs Pentest",
+      "AV (firmas) vs EDR (comportamiento)",
+      "4624 (login OK) / 4625 (login fallido)"
+    ],
+    "med": [
+      "CIS Benchmarks / Baselines",
+      "Asset inventory / CMDB",
+      "Black/White/Grey-box pentest",
+      "Alert tuning / Alert fatigue",
+      "Host firewall / HIDS / HIPS",
+      "TOTP (30s) / FIDO2 passkeys",
+      "SOAR Playbooks",
+      "CVSS 0-10: Critico >= 9",
+      "NetFlow / PCAP / Wireshark",
+      "SDLC seguro / SAST / DAST",
+      "CVE / NVD / KEV",
+      "SSO riesgo: IdP comprometido",
+      "Cadena de custodia forense",
+      "Log retention: 90d min / 1a PCI"
+    ],
+    "low": [
+      "MDM / MAM / BYOD / COPE",
+      "Vulnerability scanning (Nessus)",
+      "XDR: EDR+red+cloud+email",
+      "CI/CD + SAST automatico",
+      "IaC / Terraform / CloudFormation",
+      "PAM / JIT / Ephemeral access",
+      "Autopsy / FTK / Volatility",
+      "DEP / ASLR / Stack canary",
+      "Bug bounty (HackerOne)",
+      "Nmap / Nessus / Metasploit",
+      "Burp Suite (web app)",
+      "Red/Blue/Purple Team",
+      "Fuzzing / fuzz testing",
+      "Tabletop exercise",
+      "Lessons learned obligatorio",
+      "Attack surface reduction",
+      "FAR / FRR / CER (biometria)",
+      "TTP / MITRE ATT&CK",
+      "802.1X NAC / Air gap",
+      "Contenedores: Docker / K8s",
+      "API security / Rate limiting",
+      "Web filtering / Proxy",
+      "Code signing / SBOM",
+      "Input validation / Least privilege"
+    ]
+  },
+  "5": {
+    "high": [
+      "Riesgo = Amenaza x Vulnerabilidad x Impacto",
+      "SLE / ARO / ALE (formula: ALE=SLE*ARO)",
+      "GDPR: 72h, right to forget, multas",
+      "HIPAA: PHI, BAA, cifrado obligatorio",
+      "PCI DSS: 12 requisitos",
+      "Aceptar/Transferir/Mitigar/Evitar riesgo",
+      "Jerarquia: Politica→Estandar→Procedimiento"
+    ],
+    "med": [
+      "AUP / NDA / Clean desk policy",
+      "SLA / MSA / BPA / MOU / MOA",
+      "ALE < Coste control → no implantar",
+      "NIST CSF: ID→Protect→Detect→Respond→Recover",
+      "ISO 27001 (certificable)",
+      "Risk appetite vs Risk tolerance",
+      "SOC 2 Type I vs Type II",
+      "BIA: identifica procesos criticos",
+      "FedRAMP / FISMA / CMMC",
+      "Due Diligence / Due Care",
+      "Qualitativa vs Cuantitativa",
+      "Separation of duties / SOD"
+    ],
+    "low": [
+      "Onboarding / Offboarding procesos",
+      "Job rotation / Mandatory vacation",
+      "Background check / Vetting",
+      "Cyber insurance",
+      "Data Owner/Steward/Custodian",
+      "DPO (GDPR obligatorio)",
+      "Right to audit en contratos",
+      "Cross-border data transfer",
+      "Phishing simulation trimestral",
+      "Role-based training",
+      "Cultura sin castigo al reporte",
+      "Security awareness (anual min)",
+      "PII / PHI / Privacy by design",
+      "Data minimization / Consent"
+    ]
+  }
+}

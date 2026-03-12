@@ -72,3 +72,64 @@ id_rsa*
 config.local.*
 .env
 secrets.*
+
+# Archivos de laboratorio y VMs (NO subir)
+EJECUTAR_DENTRO_VM.md
+ESTADO_VMS_LABORATORIO.md
+INDEX_VICTIM_FILES.md
+INSTRUCCIONES_SETUP_VICTIM.md
+INVENTARIO_FINAL.json
+LABORATORIO.md
+README_LOCAL_BACKUP.md
+README_VICTIM_SETUP.md
+SETUP_VM_VICTIMA.md
+SOLUCION_RED.md
+START_HERE_VICTIM.md
+STATUS_VICTIM_VM.md
+ram_dump.lime
+nul
+
+# Scripts de setup de VMs (backup local)
+check_lab_network.sh
+configure_windowsserver_network.ps1
+create_victim_snapshot.ps1
+debug_network.sh
+restore_victim.ps1
+setup_kali.sh
+setup_kali_faltante.sh
+setup_kali_manual.sh
+setup_ubuntu.sh
+setup_ubuntu_manual.sh
+setup_victim_config.sh
+setup_victim_services.ps1
+setup_victim_vulnerabilities.sh
+setup_windowsserver_lab.md
+start_lab.ps1
+test_network_final.sh
+
+# Scripts de desarrollo/procesamiento (temporales)
+completar_objetivos_faltantes.py
+completar_puntos_incompletos.py
+completar_teoria_faltante.py
+generar_guia_por_dominios.py
+generate_soc_material.py
+merge_terms.py
+revisar_puntos_incompletos.py
+soc_extensions_additional.py
+verificar_todos_objetivos.py
+
+# Cookies y archivos de descarga
+*.cookies.txt
+youtube_cookies.txt
+www.youtube.com_cookies.txt
+
+# Backups y archivos antiguos
+07_Backup_Old/
+05_Bloques_PDF/
+
+# Configuración local de Claude
+.claude/
+laboratorios/dominio-5/.claude/
+
+# Repositorio dentro del repositorio
+GitHub_Repo/

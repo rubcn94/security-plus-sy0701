@@ -30,33 +30,24 @@ TIEMPO ESTIMADO: 30-45 min
 --------------------------------------------------------------------------------
  COMANDOS Y CONFIGURACIONES
 --------------------------------------------------------------------------------
-# Crear archivo de prueba
-echo "Este es un mensaje secreto para el lab de cifrado." > archivo.txt
+# Cifrar archivo con AES-256
+openssl enc -aes-256-cbc -salt -in archivo.txt -out archivo.enc
 
-# Cifrar archivo con AES-256-CBC
-openssl enc -aes-256-cbc -salt -pbkdf2 -in archivo.txt -out archivo.enc
+# Descifrar
+openssl enc -d -aes-256-cbc -in archivo.enc -out archivo.txt
 
-# Descifrar archivo
-openssl enc -d -aes-256-cbc -pbkdf2 -in archivo.enc -out archivo_descifrado.txt
-
-# Generar clave privada RSA de 2048 bits
+# Generar par RSA
 openssl genrsa -out private.pem 2048
-
-# Extraer clave pública
 openssl rsa -in private.pem -pubout -out public.pem
 
-# Cifrar mensaje pequeño con clave pública RSA
-echo "Clave AES secreta: lab123" > mensaje.txt
-openssl pkeyutl -encrypt -inkey public.pem -pubin -in mensaje.txt -out mensaje.enc
+# Cifrar con RSA (archivos pequeños)
+openssl rsautl -encrypt -inkey public.pem -pubin -in mensaje.txt -out mensaje.enc
 
-# Descifrar con clave privada RSA
-openssl pkeyutl -decrypt -inkey private.pem -in mensaje.enc -out mensaje_descifrado.txt
+# Descifrar con RSA
+openssl rsautl -decrypt -inkey private.pem -in mensaje.enc -out mensaje.txt
 
-# Generar hash SHA-256
+# Hash SHA-256
 openssl dgst -sha256 archivo.txt
-
-# Guardar hash como referencia
-openssl dgst -sha256 archivo.txt > hash_oficial.txt
 
 # Firmar digitalmente
 openssl dgst -sha256 -sign private.pem -out firma.sig archivo.txt
@@ -75,9 +66,5 @@ openssl dgst -sha256 -verify public.pem -signature firma.sig archivo.txt
 --------------------------------------------------------------------------------
  NOTAS
 --------------------------------------------------------------------------------
-  • rsautl está deprecado desde OpenSSL 3.0 — usar pkeyutl en su lugar
-  • -pbkdf2 es obligatorio con OpenSSL 3.x para derivación de clave segura
-  • Cifrado híbrido: AES cifra el archivo, RSA cifra solo la clave AES (TLS/HTTPS)
-  • SHA-1 y MD5 obsoletos por colisiones — usar SHA-256 o superior
 
 
