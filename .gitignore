@@ -127,6 +127,12 @@ www.youtube.com_cookies.txt
 07_Backup_Old/
 05_Bloques_PDF/
 
+# Archivos de sesión / temporales
+files.zip
+
+# Backups de JSON
+*.json.bak
+
 # Configuración local de Claude
 .claude/
 laboratorios/dominio-5/.claude/

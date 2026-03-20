@@ -1,0 +1,4557 @@
+{
+  "title": "CompTIA Security+ SY0-701 — Cheat Sheet",
+  "panes": [
+    {
+      "id": "p0",
+      "tab": "Nemotecnias",
+      "sections": [],
+      "mnemonics": [
+        {
+          "title": "6 tipos de control",
+          "mnemonic": "Por Dios, Del Cielo Caen Dones",
+          "items": "Preventivo · Disuasorio · Detective · Correctivo · Compensatorio · Directivo"
+        },
+        {
+          "title": "4 categorías",
+          "mnemonic": "Todo Gato Odia el Frío",
+          "items": "Técnico · Gestión · Operacional · Físico"
+        },
+        {
+          "title": "CIA",
+          "items": "Cifrado → Confidencialidad · Hash → Integridad · Redundancia → Disponibilidad"
+        },
+        {
+          "title": "IR fases NIST",
+          "mnemonic": "Papá Dice Cosas Locas",
+          "items": "Preparación · Detección · Contención/Erradicación/Recuperación · Lecciones"
+        },
+        {
+          "title": "NIST CSF",
+          "mnemonic": "Investiga Para Detectar Rápido y Recuperar",
+          "items": "Identify · Protect · Detect · Respond · Recover"
+        },
+        {
+          "title": "Backup 3-2-1",
+          "items": "3 copias · 2 soportes · 1 offsite"
+        },
+        {
+          "title": "MFA — STE",
+          "items": "Sabes (PIN) · Tienes (token) · Eres (huella)"
+        },
+        {
+          "title": "Volatilidad forense",
+          "items": "RAM → Swap → Procesos → Red → Disco → Logs → Backups"
+        },
+        {
+          "title": "WiFi",
+          "items": "WEP ❌ → WPA ⚠ → WPA2-Personal → WPA2-Enterprise → WPA3 ✅"
+        },
+        {
+          "title": "Docs — PEPG",
+          "items": "Política (qué) → Estándar (cuánto) → Procedimiento (cómo) → Guía (sugiere)"
+        },
+        {
+          "title": "Acceso — MDRA",
+          "items": "MAC (SO manda) · DAC (propietario) · RBAC (rol) · ABAC (atributos)"
+        },
+        {
+          "title": "Datos",
+          "items": "Owner decide → Steward cuida calidad → Custodian implementa IT"
+        }
+      ],
+      "formulas": {
+        "ALE": "ALE = SLE × ARO",
+        "SLE": "SLE = Valor activo × Factor exposición",
+        "rule": "Si ALE < Coste control → NO implementar",
+        "CVSS": "0-3.9 Bajo · 4-6.9 Medio · 7-8.9 Alto · 9-10 Crítico",
+        "RAID": "RAID 0=stripe (rápido, 0 redundancia) · RAID 1=mirror (copia exacta) · RAID 5=paridad distribuida (min 3, tolera 1 fallo) · RAID 10=mirror+stripe (min 4, rendimiento+redundancia)"
+      }
+    },
+    {
+      "id": "p1",
+      "tab": "D1",
+      "weight": "12%",
+      "title": "Conceptos Generales de Seguridad",
+      "sections": [
+        {
+          "priority": "ALTA",
+          "title": "Controles de seguridad (6×4=24)",
+          "items": [
+            {
+              "text": "Categorías (el QUÉ): Técnico (firewall, AV) · Gestión (políticas) · Operacional (personas) · Físico (cerraduras, CCTV)"
+            },
+            {
+              "text": "Tipos (el CÓMO): Preventivo (ANTES) · Disuasorio (desanima) · Detective (detecta) · Correctivo (DESPUÉS) · Compensatorio (TEMPORAL) · Directivo (más DÉBIL)"
+            }
+          ],
+          "tips": [
+            "Firewall = técnico + preventivo · CCTV = físico + detective · Política contraseñas = gestión + directivo · Guardia puerta = físico + preventivo"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Tríada CIA",
+          "items": [
+            {
+              "text": "Confidencialidad — Solo acceso autorizado → cifrado. AES at rest, TLS in transit"
+            },
+            {
+              "text": "Integridad — Datos no modificados → hash. ICS/SCADA: pérdida integridad = consecuencias FÍSICAS"
+            },
+            {
+              "text": "Disponibilidad — Sistemas operativos cuando se necesitan → redundancia (RAID, clustering, load balancer, UPS, generador, hot site)"
+            },
+            {
+              "text": "Firma digital = Hash + Clave PRIVADA del emisor → integridad + no repudio"
+            }
+          ],
+          "tips": [
+            "Cifrado = confidencialidad · Hash = integridad · Firma digital = integridad + no repudio · Redundancia = disponibilidad"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "AAA + RADIUS/TACACS+",
+          "items": [
+            {
+              "text": "Authentication — ¿Quién eres? (password, MFA, certificado)"
+            },
+            {
+              "text": "Authorization — ¿Qué puedes hacer? (roles, ACLs, grupos)"
+            },
+            {
+              "text": "Accounting — ¿Qué hiciste? (logs, sesiones, datos transferidos)"
+            }
+          ],
+          "comparisons": [
+            {
+              "left": "RADIUS",
+              "left_details": "UDP · Cifra SOLO password · WiFi/VPN · Puertos 1812/1813 · Combina auth+authz en 1 paso"
+            },
+            {
+              "right": "TACACS+",
+              "right_details": "TCP · Cifra TODO el paquete · Dispositivos Cisco · Puerto 49 · Separa auth, authz y acct"
+            }
+          ],
+          "tips": [
+            "Switches Cisco → TACACS+ · WiFi 802.1X → RADIUS · ¿Más seguro? → TACACS+ (cifra todo)"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Zero Trust",
+          "items": [
+            {
+              "text": "Aplica a TODOS: users internos, externos, dispositivos. No hay zona de confianza"
+            },
+            {
+              "text": "Identidad adaptativa — Contexto tiempo real: IP, ubicación, hora, dispositivo, comportamiento"
+            },
+            {
+              "text": "PDP (Policy Decision Point) — DECIDE: permitir, denegar, o pedir MFA extra"
+            },
+            {
+              "text": "PEP (Policy Enforcement Point) — EJECUTA la decisión del PDP"
+            },
+            {
+              "text": "Attestation — Verificar que dispositivo/software es legítimo antes de confiar"
+            },
+            {
+              "text": "Device attestation — TPM, certificado, health check"
+            },
+            {
+              "text": "Software attestation — Firma de código, Secure Boot, hashes contra baseline"
+            },
+            {
+              "text": "Remote attestation — Servidor verifica estado de seguridad de endpoint remoto"
+            }
+          ],
+          "tips": [
+            "Attestation → identidad adaptativa → PDP → PEP"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Cifrado simétrico vs asimétrico",
+          "comparisons": [
+            {
+              "left": "Simétrico",
+              "left_details": "1 clave · Rápido · AES (128/192/256), ChaCha20, 3DES (obsoleto)"
+            },
+            {
+              "right": "Asimétrico",
+              "right_details": "Par público/privada · Lento · RSA (2048+), ECC, Diffie-Hellman"
+            }
+          ],
+          "items": [
+            {
+              "text": "En práctica (TLS): Asimétrico intercambia clave → Simétrico cifra datos"
+            },
+            {
+              "text": "ECC > RSA: Misma seguridad con claves más cortas → ideal IoT y móviles"
+            },
+            {
+              "text": "AES-GCM — modo de cifrado autenticado: confidencialidad (AES) + integridad (GMAC) en una operación. Usado en TLS 1.3"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Hashing",
+          "items": [
+            {
+              "text": "Hash = huella digital. Mismo input = mismo output. 1 bit cambia = hash totalmente distinto"
+            },
+            {
+              "text": "Hash ≠ Cifrado: Hash es one-way (IRREVERSIBLE). Cifrado es REVERSIBLE con clave"
+            },
+            {
+              "text": "MD5 ❌ — 128 bits, colisiones, OBSOLETO"
+            },
+            {
+              "text": "SHA-1 ❌ — 160 bits, vulnerable, OBSOLETO"
+            },
+            {
+              "text": "SHA-256 / SHA-3 ✅ — Usar SIEMPRE como mínimo"
+            },
+            {
+              "text": "Salt — Valor aleatorio + password ANTES de hashear → derrota rainbow tables"
+            },
+            {
+              "text": "Pepper — Como salt pero SECRETO y compartido. Almacenado separado de BBDD"
+            },
+            {
+              "text": "Key stretching — Hash lento: bcrypt, PBKDF2, Argon2. Brute force inviable"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "TLS y PFS",
+          "items": [
+            {
+              "text": "PFS (Perfect Forward Secrecy) — Claves EFÍMERAS (DHE/ECDHE) por sesión. Si roban clave privada, NO descifran sesiones pasadas. TLS 1.3 OBLIGA PFS"
+            },
+            {
+              "text": "TLS 1.3 — Elimina MD5/RC4/DES · Handshake 1-RTT · PFS obligatorio"
+            },
+            {
+              "text": "HSTS — Fuerza HTTPS en navegador. Previene SSL stripping"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "PKI y certificados",
+          "items": [
+            {
+              "text": "Jerarquía: Root CA (offline) → Intermediate CA → Certificado entidad final"
+            },
+            {
+              "text": "CRL — Lista certificados revocados (periódica, puede estar desactualizada)"
+            },
+            {
+              "text": "OCSP — Consulta en tiempo real si certificado es válido"
+            },
+            {
+              "text": "Wildcard — *.dominio.com → subdominios pero NO sub-subdominios"
+            },
+            {
+              "text": "SAN — Múltiples dominios DIFERENTES en un solo certificado"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "LDAP, Kerberos, NTLM",
+          "items": [
+            {
+              "text": "LDAP — Puerto 389/636 (LDAPS). Consulta directorios (users, grupos)"
+            },
+            {
+              "text": "Kerberos — Tickets, max 5 min desfase. KDC emite TGT → Service Ticket"
+            },
+            {
+              "text": "NTLM ❌ — OBSOLETO, vulnerable a Pass-the-Hash. Deshabilitar → usar Kerberos"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "OAuth, OIDC, SAML (Federación y SSO web)",
+          "items": [
+            {
+              "text": "OAuth 2.0 = AUTORIZACIÓN (access token). NO autentica por sí solo"
+            },
+            {
+              "text": "OIDC = AUTENTICACIÓN (ID token). Capa sobre OAuth 2.0. 'Login con Google' = OIDC"
+            },
+            {
+              "text": "SAML — SSO empresarial con assertions XML. IdP → SP"
+            },
+            {
+              "text": "JWT — Header.Payload.Signature. Payload en Base64 (NO cifrado). Para cifrar → JWE"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Change management",
+          "items": [
+            {
+              "text": "CCB (Change Control Board) — Aprueba o rechaza cambios"
+            },
+            {
+              "text": "Backout plan — Plan para revertir si cambio falla. Probar en sandbox ANTES"
+            },
+            {
+              "text": "Sandbox — Entorno aislado idéntico a producción"
+            },
+            {
+              "text": "Siempre: Backup completo ANTES del cambio"
+            },
+            {
+              "text": "AppLocker / allow list — Solo ejecutables firmados (whitelist). Más seguro que deny list"
+            },
+            {
+              "text": "Deny list (blacklist) — Bloquea conocidos malos, permite todo lo demás"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Gestión de claves y verificación de certificados",
+          "items": [
+            {
+              "text": "Key escrow — almacenar copias de claves con un tercero de confianza. Para recuperar datos si el propietario no está disponible"
+            },
+            {
+              "text": "Key rotation — cambiar claves periódicamente (30/60/90 días). Limita impacto de compromiso"
+            },
+            {
+              "text": "Certificate pinning — asociar certificado específico a un dominio. Rechaza certificados de CAs comprometidas"
+            },
+            {
+              "text": "OCSP stapling — servidor incluye respuesta OCSP firmada en el handshake TLS. Más rápido y más privado que OCSP directo"
+            },
+            {
+              "text": "Measured Boot — registra mediciones de arranque en TPM pero NO detiene el arranque (a diferencia de Secure Boot). Para remote attestation"
+            },
+            {
+              "text": "Code signing — firma digital del software. SO verifica integridad + autenticidad antes de ejecutar"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Métricas de seguridad — KPI, KRI, MTTD",
+          "items": [
+            {
+              "text": "KPI (Key Performance Indicator) — mide RENDIMIENTO del programa: % endpoints parcheados, MTTD, phishing click rate"
+            },
+            {
+              "text": "KRI (Key Risk Indicator) — señal de RIESGO creciente: cuentas privilegiadas sin MFA, vulns críticas >30 días"
+            },
+            {
+              "text": "MTTD (Mean Time to Detect) — tiempo medio para detectar incidente (↓ = mejor)"
+            },
+            {
+              "text": "MTTR (Mean Time to Respond) — tiempo medio para responder/contener (↓ = mejor)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "tab": "D2",
+      "weight": "22%",
+      "title": "Amenazas, Vulnerabilidades y Mitigaciones",
+      "sections": [
+        {
+          "priority": "ALTA",
+          "title": "Actores de amenaza",
+          "items": [
+            {
+              "text": "Nation-state / APT — Más sofisticado, recursos ilimitados. Meses sin detectar"
+            },
+            {
+              "text": "Insider — Mayor riesgo REAL: acceso legítimo + conoce infraestructura"
+            },
+            {
+              "text": "Script kiddie — Bajo nivel técnico, usa herramientas de otros"
+            },
+            {
+              "text": "Crimen organizado — Motivación económica: ransomware, fraude"
+            },
+            {
+              "text": "Hacktivista — Motivación ideológica. DDoS, defacement, filtraciones"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Phishing e ingeniería social",
+          "items": [
+            {
+              "text": "Phishing — Email masivo falso → robar credenciales o instalar malware"
+            },
+            {
+              "text": "Spear phishing — Dirigido a persona/empresa específica"
+            },
+            {
+              "text": "Whaling — Spear phishing a ejecutivos C-level"
+            },
+            {
+              "text": "Smishing — Phishing por SMS"
+            },
+            {
+              "text": "Vishing — Phishing por voz"
+            },
+            {
+              "text": "Quishing — Phishing por QR code. URL no visible"
+            },
+            {
+              "text": "BEC — Suplantar CEO por email para transferencias"
+            },
+            {
+              "text": "Pretexting — Historia falsa creíble"
+            },
+            {
+              "text": "Watering hole — Infectar sitio que empleados visitan frecuentemente"
+            },
+            {
+              "text": "Typosquatting — Dominio con error tipográfico (gooogle.com)"
+            },
+            {
+              "text": "Shoulder surfing — Mirar pantalla/teclado víctima. Prevención: privacy screen"
+            },
+            {
+              "text": "Dumpster diving — Buscar info en basura. Prevención: triturar documentos"
+            },
+            {
+              "text": "Supply chain attack — Comprometer proveedor para atacar clientes. SolarWinds (2020)"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Malware",
+          "items": [
+            {
+              "text": "Virus — Necesita click/interacción. Se replica por archivos"
+            },
+            {
+              "text": "Worm — Automático, sin interacción. Se propaga por RED. WannaCry = Worm + Ransomware (EternalBlue)"
+            },
+            {
+              "text": "NotPetya (2017) — Wiper disfrazado de ransomware. EternalBlue. Borró datos irreversiblemente"
+            },
+            {
+              "text": "Ransomware — Cifra + pide rescate. Double extortion = cifra + exfiltra. Defensa: backup OFFLINE (3-2-1)"
+            },
+            {
+              "text": "Trojan — Parece legítimo, abre backdoor. RAT = control remoto total"
+            },
+            {
+              "text": "Trojan dropper / macro malware — .docm con macro VBA descarga payload"
+            },
+            {
+              "text": "Rootkit — En kernel SO. Invisible a AV. Secure Boot lo detecta"
+            },
+            {
+              "text": "Fileless — En RAM, usa PowerShell/WMI/certutil/wscript.exe (Living off the Land). AMSI escanea scripts en memoria"
+            },
+            {
+              "text": "Logic bomb — Código latente activado por condición"
+            },
+            {
+              "text": "Drive-by download — Descarga automática al visitar web SIN interacción"
+            },
+            {
+              "text": "Botnet — Red de infectados controlados por C2. Para DDoS"
+            },
+            {
+              "text": "Spyware / Keylogger / Adware — Espía actividad, registra teclas, muestra anuncios"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Vulnerabilidades de aplicación",
+          "items": [
+            {
+              "text": "SQLi — OR 1=1. Prevención: prepared statements, input validation"
+            },
+            {
+              "text": "XSS reflected — Payload en URL, afecta 1 user"
+            },
+            {
+              "text": "XSS stored — Payload en servidor, afecta TODOS"
+            },
+            {
+              "text": "Buffer overflow — Input sobrescribe memoria. Fuzzing lo descubre. ASLR + DEP/NX + stack canary"
+            },
+            {
+              "text": "TOCTOU — Race condition: valor cambia entre check y uso"
+            },
+            {
+              "text": "Directory traversal — ../../etc/passwd para navegar fuera directorio web"
+            },
+            {
+              "text": "CSRF — Explota confianza del SITIO en el navegador del user"
+            },
+            {
+              "text": "XSS — Explota confianza del NAVEGADOR en el sitio"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Ataques de red",
+          "items": [
+            {
+              "text": "DDoS amplification + reflection — IP falseada (reflection) + respuesta grande (amplification DNS ×86)"
+            },
+            {
+              "text": "SYN flood — Miles de SYN sin completar handshake → agota conexiones"
+            },
+            {
+              "text": "DNS poisoning — Falsear respuestas DNS. DNSSEC lo previene"
+            },
+            {
+              "text": "ARP poisoning — Capa 2, misma subred. Permite MITM"
+            },
+            {
+              "text": "MITM / On-path — Intercepta y modifica tráfico"
+            },
+            {
+              "text": "SSL stripping — Degrada HTTPS→HTTP. HSTS previene"
+            }
+          ],
+          "tips": [
+            "Cadena: ARP poisoning → MITM → SSL stripping → HSTS lo corta"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Ataques de passwords",
+          "items": [
+            {
+              "text": "Pass-the-Hash — Usa hash NTLM directamente. Mimikatz extrae hashes. Mitigación: Kerberos"
+            },
+            {
+              "text": "Brute force — Todas combinaciones. Offline = más rápido"
+            },
+            {
+              "text": "Dictionary attack — Lista palabras comunes + variaciones"
+            },
+            {
+              "text": "Spraying — Pocos passwords comunes × muchas cuentas → evita bloqueo"
+            },
+            {
+              "text": "Rainbow table — Hashes precalculados. SALT lo derrota"
+            },
+            {
+              "text": "Credential stuffing — Credenciales de OTRA brecha probadas en otro servicio"
+            },
+            {
+              "text": "Birthday attack — Busca colisiones hash. Derrota MD5/SHA-1"
+            }
+          ],
+          "tips": [
+            "Brute force → bloqueo + MFA · Spraying → UEBA · Rainbow → Salt · Pass-the-Hash → Kerberos"
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "WiFi y Bluetooth",
+          "items": [
+            {
+              "text": "WPA2-Enterprise + 802.1X + EAP-TLS = configuración más segura"
+            },
+            {
+              "text": "WPA3 — SAE en vez de PSK. Resistente a diccionario offline"
+            },
+            {
+              "text": "WPS — SIEMPRE deshabilitar. PIN roto en horas"
+            },
+            {
+              "text": "Evil Twin — AP falso mismo SSID. Ataque EXTERNO"
+            },
+            {
+              "text": "Rogue AP — AP no autorizado en red corporativa. INTERNO"
+            },
+            {
+              "text": "Bluesnarfing — Roba datos BT. Bluejacking — Solo envía mensajes"
+            },
+            {
+              "text": "Rooting (Android) / Jailbreaking (iOS) — Eliminar restricciones SO. MDM detecta"
+            },
+            {
+              "text": "BYOD / COPE / CYOD — Políticas de dispositivos móviles"
+            },
+            {
+              "text": "MDM — Herramienta: borrado remoto, políticas, app control"
+            },
+            {
+              "text": "VLAN hopping (double tagging) — Doble etiqueta 802.1Q para saltar VLANs"
+            },
+            {
+              "text": "MAC flooding — Inunda tabla CAM → switch actúa como hub"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "ICS/SCADA",
+          "items": [
+            {
+              "text": "ICS — Nombre general para sistemas control industrial"
+            },
+            {
+              "text": "SCADA — Tipo de ICS para monitorización a distancia"
+            },
+            {
+              "text": "Prioridad ICS: AIC (Availability primero)"
+            },
+            {
+              "text": "Stuxnet — Primer ciberarma. USB. Destruyó centrifugadoras iranís"
+            },
+            {
+              "text": "Purdue model — Nivel 0 (sensores) → Nivel 5 (internet)"
+            },
+            {
+              "text": "Modbus — Protocolo legacy SIN autenticación"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "IoT, embedded y constraints",
+          "items": [
+            {
+              "text": "IoT constraints — CPU/RAM limitada → no soporta cifrado fuerte"
+            },
+            {
+              "text": "Firmware updates — Muchos IoT sin mecanismo actualización"
+            },
+            {
+              "text": "Default credentials — Mirai botnet explotó esto (2016)"
+            },
+            {
+              "text": "Embedded systems — SO mínimo, función fija. Difícil parchear"
+            },
+            {
+              "text": "RTOS — SO tiempo real para sistemas críticos"
+            },
+            {
+              "text": "Mitigaciones IoT: VLAN aislada · cambiar credenciales · desactivar servicios innecesarios"
+            },
+            {
+              "text": "ECC > RSA para IoT (claves cortas)"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Mitigación",
+          "items": [
+            {
+              "text": "Segmentación de red — Limita movimiento lateral (VLANs, firewalls internos)"
+            },
+            {
+              "text": "EDR — Detecta por comportamiento + respuesta automática en endpoint"
+            },
+            {
+              "text": "UEBA — IA detecta anomalías vs baseline normal"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Threat intelligence",
+          "items": [
+            {
+              "text": "MITRE ATT&CK — Tácticas → Técnicas → Procedimientos"
+            },
+            {
+              "text": "Cyber Kill Chain (Lockheed Martin) — 7 fases lineales"
+            },
+            {
+              "text": "IOC — Evidencia post-ataque (reactivo)"
+            },
+            {
+              "text": "IOA — Ataque en curso (proactivo)"
+            },
+            {
+              "text": "STIX — Formato JSON estándar para amenazas"
+            },
+            {
+              "text": "TAXII — API para transportar STIX"
+            },
+            {
+              "text": "YARA — Reglas para identificar malware por patrones"
+            },
+            {
+              "text": "Sigma — Reglas genéricas para detección en SIEM"
+            },
+            {
+              "text": "Honeypot / Honeyfile / Honeytoken — Señuelos"
+            },
+            {
+              "text": "VirusTotal — Buscar hashes contra múltiples AV"
+            },
+            {
+              "text": "Beacon C2 — Malware envía peticiones regulares a C2. DNS Sinkhole detecta"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "tab": "D3",
+      "weight": "18%",
+      "title": "Arquitectura de Seguridad",
+      "sections": [
+        {
+          "priority": "ALTA",
+          "title": "Cloud — responsabilidad compartida",
+          "items": [
+            {
+              "text": "IaaS — Cliente: SO+apps+datos · Proveedor: hardware (AWS EC2)"
+            },
+            {
+              "text": "PaaS — Cliente: apps+datos · Proveedor: SO+plataforma (Heroku)"
+            },
+            {
+              "text": "SaaS — Cliente: solo datos/acceso · Proveedor: TODO (Gmail, O365)"
+            },
+            {
+              "text": "Proveedor SIEMPRE responsable de: seguridad FÍSICA del datacenter"
+            },
+            {
+              "text": "Modelos: Pública · Privada · Híbrida · Multi-cloud"
+            },
+            {
+              "text": "CSPM — Detecta misconfiguraciones multi-cloud automáticamente"
+            },
+            {
+              "text": "Container (Docker) — Comparte kernel, ligero. VM — SO completo, mayor aislamiento"
+            },
+            {
+              "text": "Container escape — Container con root + socket Docker = escape al HOST"
+            },
+            {
+              "text": "SDN — Gestión centralizada. Riesgo: controlador comprometido = toda la red"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Firewalls + IDS/IPS",
+          "items": [
+            {
+              "text": "Packet filter (stateless) — Capa 3. Solo IP/puerto. ACL router = packet filter"
+            },
+            {
+              "text": "Stateful firewall — Capa 3-4. Rastrea conexiones TCP. NO inspecciona payload"
+            },
+            {
+              "text": "NGFW — Capa 7. Firewall + IPS + inspección apps + TLS inspection"
+            },
+            {
+              "text": "WAF — Capa 7. ESPECÍFICO apps web: SQLi, XSS, CSRF"
+            },
+            {
+              "text": "TLS inspection — NGFW descifra HTTPS, inspecciona, re-cifra. MITM legítimo"
+            },
+            {
+              "text": "IDS — Detecta y ALERTA (pasivo, NO bloquea)"
+            },
+            {
+              "text": "IPS — Detecta y BLOQUEA (inline, puede causar FP)"
+            },
+            {
+              "text": "Fail-open = disponibilidad · Fail-closed = seguridad · Fail-over = redundancia"
+            },
+            {
+              "text": "NAC — Verifica estado dispositivo ANTES de dar acceso a red"
+            }
+          ],
+          "tips": [
+            "SQLi pasa por firewall stateful → necesitas WAF o NGFW (capa 7)"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "SIEM + SOAR",
+          "items": [
+            {
+              "text": "SIEM — Centraliza logs + correlaciona eventos + alertas. Elastic Stack (ELK) es alternativa open source"
+            },
+            {
+              "text": "SOAR — Recibe alertas SIEM → ejecuta playbooks automáticos"
+            },
+            {
+              "text": "MSSP — Proveedor externo seguridad: monitoreo 24/7, EDR, threat hunting"
+            },
+            {
+              "text": "Tabletop exercise — Discusión verbal sin sistemas. Barato, rápido"
+            },
+            {
+              "text": "Full-scale test — Sistemas REALES activados. Caro, arriesgado"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Datos en 3 estados",
+          "items": [
+            {
+              "text": "At rest — Disco/BBDD. AES-256, BitLocker, FileVault, LUKS"
+            },
+            {
+              "text": "In transit — Red. TLS 1.3, IPsec, SSH, SFTP, VPN"
+            },
+            {
+              "text": "In use — RAM. Más difícil. Intel SGX, enclaves. FDE no protege aquí"
+            },
+            {
+              "text": "DLP — Detecta fuga datos sensibles por email, USB, cloud. 3 estados"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Técnicas de protección de datos",
+          "items": [
+            {
+              "text": "Tokenización — Token aleatorio SIN relación matemática. Reversible con tabla. PCI DSS"
+            },
+            {
+              "text": "Anonimización — IRREVERSIBLE. Dato deja de ser PII. GDPR no aplica"
+            },
+            {
+              "text": "Pseudonimización — REVERSIBLE con clave. SIGUE siendo PII bajo GDPR"
+            },
+            {
+              "text": "Masking — Parcialmente visible: **** 1234"
+            },
+            {
+              "text": "PII → GDPR · PHI → HIPAA"
+            },
+            {
+              "text": "GDPR — 72h notificación · Right to forget · 4% facturación / 20M€"
+            }
+          ],
+          "tips": [
+            "¿Irreversible? → Anonimización · ¿Reversible con tabla? → Tokenización · ¿Con clave? → Pseudonimización"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Métricas de resiliencia — RTO, RPO, MTTR, MTBF",
+          "items": [
+            {
+              "text": "RTO (Recovery Time Objective) — Tiempo MÁXIMO para restaurar servicio"
+            },
+            {
+              "text": "RPO (Recovery Point Objective) — Pérdida MÁXIMA de datos tolerable"
+            },
+            {
+              "text": "MTTR (Mean Time To Repair) — ↓ = mejor"
+            },
+            {
+              "text": "MTBF (Mean Time Between Failures) — ↑ = mejor"
+            },
+            {
+              "text": "99.9% = ~8.7h/año · 99.99% = ~52 min/año · 99.999% = ~5 min/año"
+            },
+            {
+              "text": "Load balancer / Reverse proxy — Distribuye tráfico, oculta IPs internas"
+            }
+          ],
+          "tips": [
+            "¿Restaurar en 4h? = RTO · ¿Perder hasta 4h datos? = RPO"
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Sites y backups",
+          "items": [
+            {
+              "text": "Hot site — Minutos, muy caro, sincronizado 24/7"
+            },
+            {
+              "text": "Warm site — Horas-días, parcialmente listo"
+            },
+            {
+              "text": "Cold site — Días-semanas, solo espacio físico, barato"
+            },
+            {
+              "text": "Backup Completo — Todo. Restauración rápida"
+            },
+            {
+              "text": "Incremental — Cambios desde último backup (cualquiera). Restauración más lenta"
+            },
+            {
+              "text": "Diferencial — Cambios desde último COMPLETO. Siempre 2 para restaurar"
+            },
+            {
+              "text": "3-2-1: 3 copias · 2 soportes · 1 offsite · OFFLINE contra ransomware"
+            },
+            {
+              "text": "Snapshot — Estado VM en un momento. Rollback instantáneo"
+            },
+            {
+              "text": "BCP — Mantener TODO el negocio operativo. El más AMPLIO"
+            },
+            {
+              "text": "DRP — Recuperar infraestructura IT. Parte del BCP"
+            },
+            {
+              "text": "IRP — Responder a incidentes. PRIORIDAD si no tienes ningún plan"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "VPN y DNS",
+          "items": [
+            {
+              "text": "IPsec Transport — Cifra solo datos · Tunnel — Cifra todo (site-to-site)"
+            },
+            {
+              "text": "Split tunnel — Solo corp por VPN (riesgo) · Full tunnel — Todo por VPN"
+            },
+            {
+              "text": "DNS Sinkhole — Redirige dominios maliciosos → detecta hosts infectados"
+            },
+            {
+              "text": "DNSSEC — Firma respuestas DNS (previene poisoning, NO cifra)"
+            },
+            {
+              "text": "SASE — SD-WAN + seguridad cloud. Reemplaza VPN tradicional"
+            },
+            {
+              "text": "CASB — Intermediario users↔cloud. Descubre Shadow IT"
+            },
+            {
+              "text": "SWG — Filtra tráfico web saliente"
+            },
+            {
+              "text": "ZTNA — Acceso remoto sin VPN. Verifica identidad + dispositivo + contexto"
+            },
+            {
+              "text": "FWaaS — Firewall en la nube"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "HSM, TPM, Secure Boot",
+          "items": [
+            {
+              "text": "HSM — Dispositivo EXTERNO dedicado a criptografía. Nunca extrae clave privada"
+            },
+            {
+              "text": "TPM — Chip EN placa base: BitLocker, Secure Boot, números aleatorios"
+            },
+            {
+              "text": "Secure Boot — Verifica firma bootloader → previene rootkits. Depende de TPM"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Seguridad física",
+          "items": [
+            {
+              "text": "Mantrap / Vestíbulo — Dos puertas. Previene tailgating"
+            },
+            {
+              "text": "Bollards — Postes previenen ataques con vehículo"
+            },
+            {
+              "text": "Fencing — Valla perimetral 2.4m mínimo"
+            },
+            {
+              "text": "CCTV / PTZ — Detective + disuasorio"
+            },
+            {
+              "text": "Faraday cage — Bloquea señales EM. TEMPEST"
+            },
+            {
+              "text": "FM-200 — Gas supresión incendios datacenter"
+            },
+            {
+              "text": "Tailgating — Sin consentimiento · Piggybacking — Con consentimiento"
+            },
+            {
+              "text": "UPS — Alimentación temporal · Generador — Largo plazo"
+            },
+            {
+              "text": "Safe = armario seguro · Vault = sala acorazada"
+            }
+          ]
+        },
+        {
+          "priority": "COMPLEMENTARIO",
+          "title": "Sanitización de datos",
+          "items": [
+            {
+              "text": "Degaussing — Solo HDD/cintas. NO funciona en SSD"
+            },
+            {
+              "text": "Wiping — Sobrescritura. NO funciona bien en SSD (wear leveling)"
+            },
+            {
+              "text": "Crypto-shredding — Cifrar + destruir clave. Ideal para cloud/SSD"
+            },
+            {
+              "text": "NIST 800-88: Clear (interno) → Purge (externo, ATA Secure Erase) → Destroy (triturar)"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Arquitectura moderna — microsegmentación, cloud-native",
+          "items": [
+            {
+              "text": "Microsegmentation — cada workload en su propio segmento. Limita tráfico este-oeste (lateral movement)"
+            },
+            {
+              "text": "Jump server / bastion host — punto de acceso único y hardened a servidores internos. Logging completo, MFA obligatorio"
+            },
+            {
+              "text": "Immutable infrastructure — servidores nunca se parchean in-place: destruir y recrear desde imagen limpia. Elimina configuration drift"
+            },
+            {
+              "text": "Canary deployment — nueva versión al 5% primero, luego gradual. Si falla, solo afecta al subconjunto"
+            },
+            {
+              "text": "Service mesh (Istio) — mTLS automático entre microservicios, políticas de acceso, observabilidad"
+            },
+            {
+              "text": "API gateway — punto único de enforcement: autenticación OAuth, rate limiting, input validation, logging"
+            },
+            {
+              "text": "Deception technology — honeypots/honeyfiles/honeytokens distribuidos por la red. Cualquier interacción = alarma real (zero FP)"
+            },
+            {
+              "text": "Vendor lock-in — dependencia de tecnologías propietarias de un proveedor cloud. Mitigación: multi-cloud, contenedores portables"
+            },
+            {
+              "text": "Conditional access — políticas que evalúan dispositivo + ubicación + riesgo antes de conceder acceso. Zero Trust en Azure AD"
+            },
+            {
+              "text": "DPIA (Data Protection Impact Assessment) — GDPR Art. 35 lo exige para procesamiento de alto riesgo (datos biométricos, profiling)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "tab": "D4",
+      "weight": "28%",
+      "title": "Operaciones de Seguridad",
+      "sections": [
+        {
+          "priority": "ALTA",
+          "title": "AV → EDR → XDR",
+          "items": [
+            {
+              "text": "AV — Firmas conocidas, malware ya visto"
+            },
+            {
+              "text": "EDR — Comportamiento, respuesta en endpoint"
+            },
+            {
+              "text": "XDR — EDR + red + cloud + email. Visión unificada"
+            },
+            {
+              "text": "SIEM correlación — 1000 login fallidos en 1 min = brute force"
+            },
+            {
+              "text": "Detección por firmas — Solo detecta lo YA VISTO. AV clásico"
+            },
+            {
+              "text": "Detección por comportamiento — Detecta amenazas NUEVAS (zero-day). EDR/XDR"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Alertas — TP, FP, TN, FN",
+          "items": [
+            {
+              "text": "True Positive ✅ — Ataque real detectado"
+            },
+            {
+              "text": "False Positive — Falsa alarma"
+            },
+            {
+              "text": "True Negative ✅ — Tráfico legítimo no alertado"
+            },
+            {
+              "text": "False Negative ⛔ — Ataque NO detectado. EL MÁS PELIGROSO"
+            },
+            {
+              "text": "Alert fatigue — Demasiados FP → analistas ignoran → FN aumenta. Solución: tuning + SOAR"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Captura de tráfico — NetFlow, PCAP, TAP, SPAN",
+          "items": [
+            {
+              "text": "NetFlow — Metadatos (quién habla con quién). NO contenido"
+            },
+            {
+              "text": "PCAP / Wireshark / tcpdump — Tráfico COMPLETO. Evidencia forense"
+            },
+            {
+              "text": "Network TAP — Copia FÍSICA. Fiable, no pierde paquetes"
+            },
+            {
+              "text": "SPAN (Port Mirroring) — Copia SOFTWARE en switch. Puede perder paquetes"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "MFA y autenticación",
+          "items": [
+            {
+              "text": "3 factores: Sabes (PIN) + Tienes (token) + Eres (huella)"
+            },
+            {
+              "text": "MFA — 2+ factores DISTINTOS. PIN + password = NO es MFA (mismo tipo)"
+            },
+            {
+              "text": "TOTP — Código cada 30 seg (Google Authenticator). Factor 'tienes'"
+            },
+            {
+              "text": "FIDO2 / Passkeys — Sin contraseña, phishing-resistant"
+            },
+            {
+              "text": "SSO riesgo — IdP comprometido → TODOS los sistemas comprometidos"
+            },
+            {
+              "text": "Biometría: FAR ↓ = más seguro · FRR ↓ = más usable · CER = FAR=FRR (↓ mejor)"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Modelos de acceso — MAC, DAC, RBAC, ABAC",
+          "items": [
+            {
+              "text": "MAC — SO controla. SELinux. Más rígido. Gobierno/militar"
+            },
+            {
+              "text": "DAC — Propietario decide. Más flexible. Windows carpetas"
+            },
+            {
+              "text": "RBAC — Por rol. Más común en empresas"
+            },
+            {
+              "text": "ABAC — Atributos múltiples. Más granular. Hora+ubicación+rol"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "PAM y JIT",
+          "items": [
+            {
+              "text": "PAM — Gestión cuentas privilegiadas (admin, root). Sesiones grabadas, password vault"
+            },
+            {
+              "text": "JIT access — Acceso privilegiado SOLO cuando se necesita, expira después"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Incident Response — 4 fases NIST",
+          "items": [
+            {
+              "text": "1. Preparación — Equipo, herramientas, IR plan, contactos"
+            },
+            {
+              "text": "2. Detección y análisis — Identificar, alcance, triaje"
+            },
+            {
+              "text": "3. Contención → Erradicación → Recuperación"
+            },
+            {
+              "text": "4. Post-incidente — Lessons learned OBLIGATORIO"
+            },
+            {
+              "text": "Windows Events: 4624 login OK · 4625 login fallido · 4720 cuenta creada"
+            },
+            {
+              "text": "FIM — Verifica hashes archivos críticos. OSSEC, Tripwire"
+            },
+            {
+              "text": "Log retention: 90d mínimo · 1 año PCI DSS · 6 años HIPAA"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Forense digital",
+          "items": [
+            {
+              "text": "Orden volatilidad: RAM → Swap → Procesos → Red → Disco → Logs → Backups"
+            },
+            {
+              "text": "Write blocker — OBLIGATORIO antes de tocar disco"
+            },
+            {
+              "text": "Imagen forense — Copia bit a bit + hash SHA-256 verificado"
+            },
+            {
+              "text": "Cadena de custodia — Sin ella = inadmisible en juicio"
+            },
+            {
+              "text": "Memory forensics — Procesos ocultos, conexiones C2, fileless, claves en RAM"
+            },
+            {
+              "text": "LiME = volcado RAM Linux · Volatility = analizar volcado"
+            },
+            {
+              "text": "Legal hold — Preservar TODA evidencia para litigio. E-discovery = recopilar"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Vuln management y pentest",
+          "items": [
+            {
+              "text": "Vuln scan — Automático, identifica, NO explota"
+            },
+            {
+              "text": "Pentest — Simula ataque real, SÍ explota. Requiere autorización (RoE)"
+            },
+            {
+              "text": "Fases pentest: Recon → Scan (Nmap) → Exploitation (Metasploit) → Post-exploit → Informe"
+            },
+            {
+              "text": "Black box — Sin info · White box — Info completa · Grey box — Parcial (más común)"
+            },
+            {
+              "text": "Red Team — Ataca · Blue Team — Defiende · Purple Team — Colaboran"
+            },
+            {
+              "text": "Responsible disclosure — Dar tiempo al fabricante antes de publicar"
+            },
+            {
+              "text": "CVE — ID único vuln · NVD — Base datos NIST · KEV — CISA parchear urgente"
+            },
+            {
+              "text": "WSUS — Parches Windows centralizados · SCCM — Config + parches a escala"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "App security",
+          "items": [
+            {
+              "text": "SAST — Código SIN ejecutar. En CI/CD"
+            },
+            {
+              "text": "DAST — App EN EJECUCIÓN. Runtime"
+            },
+            {
+              "text": "Input validation — NUNCA confiar en datos user. Validar en SERVIDOR"
+            },
+            {
+              "text": "ASLR — Aleatoriza posiciones memoria"
+            },
+            {
+              "text": "DEP/NX — Marca memoria como no-ejecutable"
+            },
+            {
+              "text": "Canary — Valor centinela detecta overflow"
+            },
+            {
+              "text": "SBOM — Lista componentes y dependencias. Log4Shell demostró importancia"
+            },
+            {
+              "text": "Hardcoded credentials — Riesgo crítico. Solución: vault de secretos"
+            },
+            {
+              "text": "STRIDE — Framework threat modeling: Spoofing · Tampering · Repudiation · Info disclosure · DoS · Elevation"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Email security — SPF, DKIM, DMARC",
+          "items": [
+            {
+              "text": "SPF — DNS TXT con IPs autorizadas para enviar email"
+            },
+            {
+              "text": "DKIM — Firma criptográfica del contenido"
+            },
+            {
+              "text": "DMARC — Política si fallan SPF/DKIM: none / quarantine / reject"
+            },
+            {
+              "text": "S/MIME — Cifra email con clave pública del destinatario"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Automatización y SOAR",
+          "items": [
+            {
+              "text": "SOAR playbook: Phishing → cuarentenar → extraer IOCs → bloquear → notificar"
+            },
+            {
+              "text": "IaC — Terraform, CloudFormation. Configuración reproducible"
+            },
+            {
+              "text": "Configuration drift — Cambios manuales fuera de IaC. Terraform plan detecta"
+            },
+            {
+              "text": "CI/CD + SAST — Cada commit escanea vulnerabilidades"
+            },
+            {
+              "text": "DevSecOps — Seguridad en CADA fase SDLC. Shift-left"
+            },
+            {
+              "text": "Automatización = 1 tarea · Orquestación = coordina MÚLTIPLES automatizaciones"
+            },
+            {
+              "text": "Scripting: Bash (Linux) · PowerShell (Windows) · Python (APIs, parsing)"
+            },
+            {
+              "text": "PowerShell — Fileless lo abusa. Mitigación: constrained language mode + AMSI"
+            },
+            {
+              "text": "Microservicios — Servicios independientes. Mayor superficie, mejor aislamiento"
+            },
+            {
+              "text": "Serverless — FaaS. Riesgo: permisos excesivos, injection"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Operaciones avanzadas — playbooks, recertificación, bug bounty",
+          "items": [
+            {
+              "text": "Playbook = guía de DECISIÓN flexible (qué hacer según escenario IR). Runbook = instrucciones PASO A PASO técnicas (cómo hacerlo)"
+            },
+            {
+              "text": "Access recertification — revisión periódica de permisos por managers. Previene privilege creep"
+            },
+            {
+              "text": "Privilege creep — acumulación de permisos excesivos por cambios de rol sin revocar anteriores"
+            },
+            {
+              "text": "Bug bounty — programa que paga a investigadores por reportar vulnerabilidades. Plataformas: HackerOne, Bugcrowd"
+            },
+            {
+              "text": "Technical debt — coste acumulado de decisiones de corto plazo: algoritmos obsoletos, parches temporales no reemplazados"
+            },
+            {
+              "text": "Cross-training — al menos 2 personas conocen cada sistema crítico. Elimina dependencia individual (bus factor)"
+            },
+            {
+              "text": "Succession planning — preparar reemplazos para roles críticos (CISO, leads). Documentar conocimiento institucional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "tab": "D5",
+      "weight": "20%",
+      "title": "Gestión del Programa de Seguridad",
+      "sections": [
+        {
+          "priority": "ALTA",
+          "title": "Gestión de riesgos",
+          "items": [
+            {
+              "text": "Riesgo = Amenaza × Vulnerabilidad × Impacto"
+            },
+            {
+              "text": "ALE = SLE × ARO · SLE = Valor activo × Factor exposición"
+            },
+            {
+              "text": "Si ALE < Coste control → NO implementar"
+            },
+            {
+              "text": "Mitigar — Reducir probabilidad o impacto (controles)"
+            },
+            {
+              "text": "Transferir — Pasar a tercero (ciberseguro)"
+            },
+            {
+              "text": "Aceptar — Documentar y asumir. Válido si coste control > impacto"
+            },
+            {
+              "text": "Evitar — Eliminar la actividad (más extremo)"
+            },
+            {
+              "text": "Cualitativa — Categorías (Alto/Medio/Bajo). Sin €. Rápida, subjetiva"
+            },
+            {
+              "text": "Cuantitativa — Valores monetarios (SLE, ARO, ALE). Objetiva, más lenta"
+            },
+            {
+              "text": "Risk appetite — Cuánto riesgo QUIERE asumir (estratégico)"
+            },
+            {
+              "text": "Risk tolerance — Variación máxima aceptable (operativo)"
+            },
+            {
+              "text": "Risk register — Lista TODOS los riesgos: probabilidad, impacto, owner, tratamiento"
+            },
+            {
+              "text": "Gap analysis — Comparar postura actual vs mejores prácticas (ISO, NIST)"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Regulaciones y compliance",
+          "items": [
+            {
+              "text": "GDPR — Datos UE · 72h notif · Right to forget · 4% facturación / 20M€"
+            },
+            {
+              "text": "HIPAA — Datos médicos EEUU · PHI · BAA obligatorio"
+            },
+            {
+              "text": "PCI DSS — Tarjetas crédito · 12 requisitos · Logs 1 año"
+            },
+            {
+              "text": "NIST CSF — ID→Protect→Detect→Respond→Recover. Voluntario, NO certificable"
+            },
+            {
+              "text": "ISO 27001 — Certificable, auditoría externa, válido 3 años"
+            },
+            {
+              "text": "CMMC — Obligatorio para proveedores Dept Defensa EEUU"
+            },
+            {
+              "text": "FedRAMP — Seguridad cloud gobierno federal EEUU"
+            },
+            {
+              "text": "SOC 2 Type I — Diseño controles en un momento · Type II — Efectividad 6-12 meses"
+            },
+            {
+              "text": "SOX — Reporting financiero EEUU. Empresas cotizadas"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Jerarquía de documentos",
+          "items": [
+            {
+              "text": "Política — QUÉ hacer. Aprobada por dirección. Obligatoria"
+            },
+            {
+              "text": "Estándar — CUÁNTO (ej: passwords mínimo 12 caracteres)"
+            },
+            {
+              "text": "Procedimiento — CÓMO (paso a paso)"
+            },
+            {
+              "text": "Guía — Recomendación no obligatoria"
+            },
+            {
+              "text": "AUP — Uso aceptable recursos IT. TODOS firman"
+            },
+            {
+              "text": "NDA — Confidencialidad. Legalmente vinculante"
+            },
+            {
+              "text": "Data Owner — DECIDE clasificación y acceso"
+            },
+            {
+              "text": "Data Steward — Cuida CALIDAD"
+            },
+            {
+              "text": "Data Custodian — IT IMPLEMENTA controles técnicos"
+            },
+            {
+              "text": "DPO — Obligatorio GDPR. Supervisa cumplimiento privacidad"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Acuerdos con terceros",
+          "items": [
+            {
+              "text": "MOU — Intención compartida. NO vinculante"
+            },
+            {
+              "text": "MOA — Más formal que MOU"
+            },
+            {
+              "text": "SLA — Niveles servicio garantizados. Legal con penalizaciones"
+            },
+            {
+              "text": "MSA — Contrato marco términos generales"
+            },
+            {
+              "text": "SOW — Alcance específico UN proyecto dentro del MSA"
+            },
+            {
+              "text": "Right to audit — En TODOS los contratos con terceros"
+            },
+            {
+              "text": "Due diligence — ANTES de firmar · Due care — DURANTE la relación"
+            },
+            {
+              "text": "DPA — GDPR exige entre Controller y Processor"
+            },
+            {
+              "text": "BAA — HIPAA exige con terceros que manejan PHI"
+            },
+            {
+              "text": "ISA — Controles técnicos para conectar redes entre agencias gobierno"
+            }
+          ]
+        },
+        {
+          "priority": "ALTA",
+          "title": "Data governance y privacy",
+          "items": [
+            {
+              "text": "Clasificación: Public → Internal → Confidential → Restricted"
+            },
+            {
+              "text": "Data classification — Data Owner decide nivel"
+            },
+            {
+              "text": "Data minimization — Recoger SOLO datos necesarios (GDPR)"
+            },
+            {
+              "text": "Purpose limitation — Solo para propósito declarado"
+            },
+            {
+              "text": "Data inventory/mapping — Qué datos, dónde, quién accede"
+            },
+            {
+              "text": "Data sovereignty — Datos sujetos a leyes del PAÍS donde se almacenan"
+            },
+            {
+              "text": "Data locality/residency — Datos NO salen de una región"
+            },
+            {
+              "text": "Right to be forgotten — GDPR: borrado completo"
+            },
+            {
+              "text": "Data retention policy — Cuánto tiempo guardar. Eliminar cuando expire"
+            },
+            {
+              "text": "Roles GDPR: Data subject (persona) · Controller (decide) · Processor (procesa)"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "HR, formación, supply chain",
+          "items": [
+            {
+              "text": "Offboarding — Revocar TODOS accesos INMEDIATAMENTE el día de salida"
+            },
+            {
+              "text": "Separation of duties — Nadie controla proceso entero"
+            },
+            {
+              "text": "Job rotation — Detecta fraude · Mandatory vacation — Otro descubre irregularidades"
+            },
+            {
+              "text": "Least privilege = permisos mínimos · Need to know = info necesaria para función"
+            },
+            {
+              "text": "Shadow IT — Apps sin aprobación IT. CASB detecta"
+            },
+            {
+              "text": "Security awareness — Formación continua TODOS. Anual mínimo"
+            },
+            {
+              "text": "Phishing simulation — Trimestral. Quien cae → formación, NUNCA castigo"
+            },
+            {
+              "text": "Cultura sin castigo — Mejor reportar que esconder"
+            }
+          ]
+        },
+        {
+          "priority": "MEDIA",
+          "title": "Gobernanza avanzada — GRC, compliance unificado, risk exception",
+          "items": [
+            {
+              "text": "GRC (Governance, Risk, Compliance) — framework unificado de políticas + gestión de riesgos + cumplimiento regulatorio"
+            },
+            {
+              "text": "Unified compliance framework — mapear requisitos comunes entre regulaciones (GDPR, HIPAA, PCI DSS, SOX) para evitar duplicar controles"
+            },
+            {
+              "text": "Risk exception — autorización formal para incumplir temporalmente un control. Documentada, aprobada, con fecha de expiración"
+            },
+            {
+              "text": "Sideloading — instalar apps fuera de tienda oficial. Sin revisión de seguridad. MDM puede bloquearlo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "tab": "Puertos",
+      "ports": [
+        {
+          "port": "20/21",
+          "service": "FTP datos/control"
+        },
+        {
+          "port": "22",
+          "service": "SSH / SCP / SFTP"
+        },
+        {
+          "port": "23",
+          "service": "Telnet ❌"
+        },
+        {
+          "port": "25",
+          "service": "SMTP (servers)"
+        },
+        {
+          "port": "49",
+          "service": "TACACS+"
+        },
+        {
+          "port": "53",
+          "service": "DNS"
+        },
+        {
+          "port": "67/68",
+          "service": "DHCP"
+        },
+        {
+          "port": "69",
+          "service": "TFTP"
+        },
+        {
+          "port": "80",
+          "service": "HTTP"
+        },
+        {
+          "port": "88",
+          "service": "Kerberos"
+        },
+        {
+          "port": "110",
+          "service": "POP3"
+        },
+        {
+          "port": "123",
+          "service": "NTP"
+        },
+        {
+          "port": "143",
+          "service": "IMAP"
+        },
+        {
+          "port": "161",
+          "service": "SNMP agent"
+        },
+        {
+          "port": "162",
+          "service": "SNMP traps"
+        },
+        {
+          "port": "389",
+          "service": "LDAP"
+        },
+        {
+          "port": "443",
+          "service": "HTTPS / TLS"
+        },
+        {
+          "port": "465",
+          "service": "SMTPS"
+        },
+        {
+          "port": "514",
+          "service": "Syslog"
+        },
+        {
+          "port": "587",
+          "service": "SMTP submission"
+        },
+        {
+          "port": "636",
+          "service": "LDAPS"
+        },
+        {
+          "port": "990",
+          "service": "FTPS"
+        },
+        {
+          "port": "993",
+          "service": "IMAPS"
+        },
+        {
+          "port": "995",
+          "service": "POP3S"
+        },
+        {
+          "port": "1812",
+          "service": "RADIUS auth"
+        },
+        {
+          "port": "1813",
+          "service": "RADIUS acct"
+        },
+        {
+          "port": "3389",
+          "service": "RDP"
+        }
+      ],
+      "tips": [
+        "Puertos seguros = inseguro + TLS: HTTP 80→HTTPS 443 · LDAP 389→LDAPS 636 · IMAP 143→IMAPS 993 · POP3 110→POP3S 995",
+        "Inseguros: Telnet(23)→SSH(22) · FTP(21)→SFTP(22) · HTTP(80)→HTTPS(443) · SNMPv1/v2c(161)→SNMPv3 · LDAP(389)→LDAPS(636)"
+      ]
+    },
+    {
+      "id": "p7",
+      "tab": "Trampas",
+      "confusions": [
+        "SFTP ≠ FTPS — SFTP usa SSH (22) · FTPS usa SSL/TLS (990)",
+        "Cifrado ≠ Hashing — Cifrado REVERSIBLE · Hash IRREVERSIBLE",
+        "OAuth ≠ OIDC — OAuth = AUTORIZACIÓN · OIDC = AUTENTICACIÓN",
+        "IDS ≠ IPS — IDS solo ALERTA · IPS BLOQUEA",
+        "Virus ≠ Worm — Virus necesita click · Worm automático",
+        "Anon ≠ Pseudo — Anonimización irreversible · Pseudonimización reversible",
+        "RPO ≠ RTO — RPO = datos que pierdes · RTO = tiempo para volver online",
+        "Preventivo ≠ Correctivo — Preventivo ANTES · Correctivo DESPUÉS",
+        "Compensatorio = TEMPORAL mientras se arregla el control real",
+        "IOC ≠ IOA — IOC reactivo (ya pasó) · IOA proactivo (está pasando)"
+      ],
+      "common_trap_answers": [
+        "¿Qué ANTES de cambio crítico? → Backout plan + análisis impacto + backup",
+        "¿Mejor defensa ransomware? → Backup OFFLINE",
+        "¿Qué PRIMERO en forense? → Capturar RAM (más volátil)",
+        "¿Quién decide clasificación datos? → Data OWNER",
+        "¿TACACS+ o RADIUS más seguro? → TACACS+ (cifra TODO)",
+        "¿Control más débil? → DIRECTIVO",
+        "¿FN o FP más peligroso? → Falso NEGATIVO",
+        "¿SSD wiping funciona? → NO (wear leveling) → ATA Secure Erase o destrucción",
+        "¿GDPR notificación? → 72 HORAS",
+        "¿PCI DSS requisitos? → 12",
+        "¿Ocultar SSID es seguro? → NO (sniffers)",
+        "¿WPS seguro? → NO, SIEMPRE deshabilitar"
+      ]
+    },
+    {
+      "id": "p8",
+      "tab": "Flashcards",
+      "cards": [
+        {
+          "q": "¿6 tipos de control por función?",
+          "a": "Preventivo · Disuasorio · Detective · Correctivo · Compensatorio · Directivo"
+        },
+        {
+          "q": "¿4 categorías de control?",
+          "a": "Técnico · Gestión · Operacional · Físico"
+        },
+        {
+          "q": "Triada CIA — 3 pilares",
+          "a": "Confidencialidad (cifrado) · Integridad (hash) · Disponibilidad (redundancia)"
+        },
+        {
+          "q": "AAA — 3 componentes",
+          "a": "Authentication (quién eres) · Authorization (qué puedes) · Accounting (qué hiciste)"
+        },
+        {
+          "q": "RADIUS vs TACACS+",
+          "a": "RADIUS: UDP, cifra solo password · TACACS+: TCP, cifra TODO el paquete"
+        },
+        {
+          "q": "Zero Trust — PEP vs PDP",
+          "a": "PDP decide si conceder acceso · PEP aplica la decisión"
+        },
+        {
+          "q": "AES — características",
+          "a": "Simétrico · Bloques 128 bits · Claves: 128/192/256 · Estándar actual"
+        },
+        {
+          "q": "ECC ventaja sobre RSA",
+          "a": "Misma seguridad con claves MUCHO más cortas. ECC 256 ≈ RSA 3072"
+        },
+        {
+          "q": "¿Qué es el Salt?",
+          "a": "Valor aleatorio + password ANTES de hash. Previene rainbow tables"
+        },
+        {
+          "q": "CRL vs OCSP",
+          "a": "CRL: lista revocados (descarga periódica) · OCSP: consulta en tiempo real"
+        },
+        {
+          "q": "PFS — ¿qué ofrece?",
+          "a": "Claves sesión temporales. Si roban clave privada, tráfico pasado protegido"
+        },
+        {
+          "q": "Virus vs Worm vs Trojan",
+          "a": "Virus: necesita click · Worm: se propaga solo por red · Trojan: parece legítimo"
+        },
+        {
+          "q": "SQLi — ¿cómo prevenir?",
+          "a": "Prepared statements · Input validation · Least privilege en DB"
+        },
+        {
+          "q": "XSS Reflected vs Stored",
+          "a": "Reflected: en URL, 1 user · Stored: en servidor, afecta a todos"
+        },
+        {
+          "q": "Buffer Overflow — mitigaciones",
+          "a": "ASLR + DEP/NX + Stack canaries"
+        },
+        {
+          "q": "IaaS/PaaS/SaaS — responsabilidad",
+          "a": "IaaS: SO+apps+datos · PaaS: apps+datos · SaaS: solo datos/acceso"
+        },
+        {
+          "q": "IDS vs IPS",
+          "a": "IDS: detecta y alerta (pasivo) · IPS: detecta y bloquea (en línea)"
+        },
+        {
+          "q": "RTO vs RPO",
+          "a": "RTO: tiempo máximo restaurar · RPO: pérdida máxima datos tolerable"
+        },
+        {
+          "q": "Hot/Warm/Cold site",
+          "a": "Hot: minutos, caro · Warm: horas-días · Cold: días-semanas, solo espacio"
+        },
+        {
+          "q": "Regla 3-2-1 backups",
+          "a": "3 copias · 2 soportes diferentes · 1 fuera del sitio"
+        },
+        {
+          "q": "SAST vs DAST",
+          "a": "SAST: código estático sin ejecutar · DAST: app en ejecución, runtime"
+        },
+        {
+          "q": "SPF / DKIM / DMARC",
+          "a": "SPF: IPs autorizadas · DKIM: firma digital · DMARC: política si fallan"
+        },
+        {
+          "q": "Fases IR (NIST SP 800-61)",
+          "a": "Preparación → Detección → Contención/Erradicación/Recuperación → Post-incidente"
+        },
+        {
+          "q": "Orden volatilidad forense",
+          "a": "RAM → Swap → Procesos → Red → Disco → Logs → Backups"
+        },
+        {
+          "q": "Fórmula ALE",
+          "a": "ALE = SLE × ARO · Si ALE < coste control → NO implementar"
+        },
+        {
+          "q": "GDPR — 3 puntos clave",
+          "a": "72h notificación · Right to be forgotten · 4% facturación / 20M€"
+        },
+        {
+          "q": "MAC/DAC/RBAC/ABAC",
+          "a": "MAC: SO (rígido) · DAC: propietario · RBAC: rol · ABAC: atributos (granular)"
+        },
+        {
+          "q": "TP / FP / TN / FN",
+          "a": "TP: ataque detectado ✅ · FP: falsa alarma · TN: legítimo ok ✅ · FN: ataque no detectado ⛔"
+        },
+        {
+          "q": "Jerarquía docs gobernanza",
+          "a": "Política (qué) → Estándar (cuánto) → Procedimiento (cómo) → Guía (recomienda)"
+        },
+        {
+          "q": "Golden Ticket — ¿qué hace?",
+          "a": "Genera TGTs Kerberos falsos con hash KRBTGT → acceso TOTAL al dominio AD"
+        },
+        {
+          "q": "Lateral movement vs Privilege escalation",
+          "a": "Lateral: moverse entre SISTEMAS de la red. Privilege: subir permisos en el MISMO sistema"
+        },
+        {
+          "q": "Playbook vs Runbook",
+          "a": "Playbook: guía de DECISIÓN (qué hacer). Runbook: instrucciones PASO A PASO (cómo hacerlo)"
+        },
+        {
+          "q": "KPI vs KRI en seguridad",
+          "a": "KPI: RENDIMIENTO (MTTD, % parcheados). KRI: RIESGO creciente (cuentas sin MFA)"
+        },
+        {
+          "q": "Key escrow — ¿qué es?",
+          "a": "Almacenar copias de claves con tercero de confianza para recuperación"
+        },
+        {
+          "q": "Microsegmentation — ¿qué limita?",
+          "a": "Tráfico ESTE-OESTE (lateral movement). Cada workload en su propio segmento"
+        },
+        {
+          "q": "Immutable infrastructure — ¿cómo funciona?",
+          "a": "Nunca parchear in-place → destruir y recrear desde imagen limpia. Elimina configuration drift"
+        },
+        {
+          "q": "DPIA — ¿cuándo obligatorio GDPR?",
+          "a": "Procesamiento de ALTO RIESGO: datos biométricos, profiling automatizado, monitorización a gran escala"
+        },
+        {
+          "q": "Privilege creep — ¿qué es?",
+          "a": "Acumulación de permisos por cambios de rol sin revocar anteriores. Solución: access recertification"
+        }
+      ]
+    },
+    {
+      "id": "p9",
+      "tab": "Quiz",
+      "questions": [
+        {
+          "q": "¿Qué protocolo AAA cifra TODO el paquete?",
+          "options": [
+            "RADIUS",
+            "TACACS+",
+            "Kerberos",
+            "LDAP"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Cuál es la fórmula del ALE?",
+          "options": [
+            "ALE = SLE + ARO",
+            "ALE = SLE × ARO",
+            "ALE = ARO / SLE",
+            "ALE = SLE - ARO"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué malware se propaga automáticamente por la red?",
+          "options": [
+            "Virus",
+            "Trojan",
+            "Worm",
+            "Logic bomb"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué previene los ataques de rainbow table?",
+          "options": [
+            "ASLR",
+            "Salt",
+            "DEP",
+            "HSTS"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿GDPR obliga a notificar brechas en cuántas horas?",
+          "options": [
+            "24h",
+            "48h",
+            "72h",
+            "96h"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué componente Zero Trust DECIDE si conceder acceso?",
+          "options": [
+            "PEP",
+            "PDP",
+            "NAC",
+            "SIEM"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Cuál es el control de seguridad más débil?",
+          "options": [
+            "Preventivo",
+            "Compensatorio",
+            "Directivo",
+            "Detective"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué site de recuperación tiene el menor RTO?",
+          "options": [
+            "Cold site",
+            "Warm site",
+            "Hot site",
+            "Mobile site"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué es más peligroso: falso positivo o negativo?",
+          "options": [
+            "Falso positivo",
+            "Falso negativo",
+            "Son iguales",
+            "Depende"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿El degaussing funciona en SSDs?",
+          "options": [
+            "Sí",
+            "Solo NVMe",
+            "No, no son magnéticos",
+            "Con wiping sí"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Quién decide la clasificación de los datos?",
+          "options": [
+            "Data Custodian",
+            "Data Steward",
+            "Data Owner",
+            "DPO"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿SFTP usa qué protocolo subyacente?",
+          "options": [
+            "SSL/TLS",
+            "SSH",
+            "IPsec",
+            "HTTP"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué XSS afecta a TODOS los visitantes?",
+          "options": [
+            "Reflected",
+            "DOM-based",
+            "Stored",
+            "Session"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué protocolo autentica IPs que envían email?",
+          "options": [
+            "DKIM",
+            "DMARC",
+            "SPF",
+            "SMTP"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "En forense, ¿qué se captura PRIMERO?",
+          "options": [
+            "Disco",
+            "Logs SIEM",
+            "RAM",
+            "Backups"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Cuántos requisitos tiene PCI DSS?",
+          "options": [
+            "6",
+            "8",
+            "12",
+            "18"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué hace ASLR?",
+          "options": [
+            "Cifra disco",
+            "Aleatoriza memoria",
+            "Firma código",
+            "Detecta rootkits"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "En IaaS, ¿quién gestiona el SO?",
+          "options": [
+            "Proveedor",
+            "Cliente",
+            "Ambos",
+            "Automático"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué ataque usa QR code malicioso?",
+          "options": [
+            "Vishing",
+            "Smishing",
+            "Quishing",
+            "Pharming"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿WPA3 Personal usa qué autenticación?",
+          "options": [
+            "PSK",
+            "802.1X",
+            "SAE",
+            "EAP-TLS"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Jerarquía correcta de documentos?",
+          "options": [
+            "Estándar→Política→Guía→Proc",
+            "Política→Estándar→Proc→Guía",
+            "Guía→Política→Estándar→Proc",
+            "Proc→Estándar→Política→Guía"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué mide el CER en biometría?",
+          "options": [
+            "Coste sistema",
+            "Punto FAR=FRR",
+            "Velocidad scan",
+            "Resolución sensor"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Ocultar SSID protege la red WiFi?",
+          "options": [
+            "Sí",
+            "No, se descubre con sniffers",
+            "Solo con WPA3",
+            "Solo empresarial"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Evento Windows de login exitoso?",
+          "options": [
+            "4625",
+            "4720",
+            "4624",
+            "4648"
+          ],
+          "correct": 2
+        },
+        {
+          "q": "¿Qué hace un CASB?",
+          "options": [
+            "Cifra VPN",
+            "Intermediario users↔cloud",
+            "Detecta malware email",
+            "SSO"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué ataque genera TGTs Kerberos falsos con acceso total al dominio?",
+          "options": [
+            "Pass-the-Hash",
+            "Golden Ticket",
+            "Credential Stuffing",
+            "Brute Force"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué limita el tráfico este-oeste entre servidores?",
+          "options": [
+            "DMZ",
+            "Microsegmentation",
+            "Air gap",
+            "VPN"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué diferencia un playbook de un runbook?",
+          "options": [
+            "Son lo mismo",
+            "Playbook=decisión, Runbook=paso a paso",
+            "Runbook=decisión, Playbook=paso a paso",
+            "Ninguno se usa en IR"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué es OCSP stapling?",
+          "options": [
+            "Cifrar DNS",
+            "Servidor incluye respuesta OCSP en handshake TLS",
+            "Pinear certificado",
+            "Revocar certificado"
+          ],
+          "correct": 1
+        },
+        {
+          "q": "¿Qué mide MTTD?",
+          "options": [
+            "Tiempo medio entre fallos",
+            "Tiempo medio para DETECTAR incidente",
+            "Tiempo medio de reparación hardware",
+            "Uptime del servidor"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "p10",
+      "tab": "Glosario",
+      "terms": [
+        {
+          "acronym": "3DES",
+          "full_name": "Triple DES",
+          "description": "Cifrado simétrico que aplica DES 3 veces. Obsoleto → usar AES",
+          "domain": 1
+        },
+        {
+          "acronym": "4624",
+          "full_name": "Windows Event: Login OK",
+          "description": "Evento Windows que indica inicio de sesión exitoso",
+          "domain": 4
+        },
+        {
+          "acronym": "4625",
+          "full_name": "Windows Event: Login fallido",
+          "description": "Evento Windows que indica inicio de sesión fallido. En masa = brute force",
+          "domain": 4
+        },
+        {
+          "acronym": "4720",
+          "full_name": "Windows Event: Cuenta creada",
+          "description": "Evento Windows que indica que se creó una nueva cuenta de usuario",
+          "domain": 4
+        },
+        {
+          "acronym": "802.1X",
+          "full_name": "Port-Based NAC",
+          "description": "Estándar de control de acceso a red basado en puerto. Requiere autenticación antes de acceder",
+          "domain": 1
+        },
+        {
+          "acronym": "AAA",
+          "full_name": "Authentication, Authorization, Accounting",
+          "description": "Framework: quién eres → qué puedes → qué hiciste. Protocolos: RADIUS, TACACS+",
+          "domain": 1
+        },
+        {
+          "acronym": "ABAC",
+          "full_name": "Attribute-Based Access Control",
+          "description": "Permisos por atributos múltiples (rol, hora, ubicación). Más granular que RBAC",
+          "domain": 3
+        },
+        {
+          "acronym": "ACL",
+          "full_name": "Access Control List",
+          "description": "Reglas que permiten/deniegan acceso. Usadas en firewalls, routers, sistemas de archivos",
+          "domain": 3
+        },
+        {
+          "acronym": "Active Recon",
+          "full_name": "Reconocimiento activo",
+          "description": "Interactúa con objetivo. Nmap, Nessus. Puede detectarse en logs",
+          "domain": 4
+        },
+        {
+          "acronym": "AES",
+          "full_name": "Advanced Encryption Standard",
+          "description": "Cifrado simétrico. Bloques 128 bits. Claves: 128/192/256. Estándar actual",
+          "domain": 1
+        },
+        {
+          "acronym": "AES-GCM",
+          "full_name": "AES Galois/Counter Mode",
+          "description": "Cifrado autenticado: confidencialidad (AES) + integridad (GMAC) en una operación. TLS 1.3",
+          "domain": 1
+        },
+        {
+          "acronym": "AH",
+          "full_name": "Authentication Header (IPsec)",
+          "description": "IPsec: autenticación + integridad, pero NO confidencialidad. ESP sí cifra",
+          "domain": 3
+        },
+        {
+          "acronym": "Air Gap",
+          "full_name": "Aislamiento físico",
+          "description": "Sistema sin ninguna conexión de red. Máximo aislamiento. Stuxnet entró por USB",
+          "domain": 3
+        },
+        {
+          "acronym": "AIS",
+          "full_name": "Automated Indicator Sharing",
+          "description": "Iniciativa gobierno EEUU para compartir IOCs en tiempo real",
+          "domain": 1
+        },
+        {
+          "acronym": "ALE",
+          "full_name": "Annualized Loss Expectancy",
+          "description": "Pérdida anual esperada. ALE = SLE × ARO. Si ALE < coste control → NO implementar",
+          "domain": 5
+        },
+        {
+          "acronym": "Alert Fatigue",
+          "full_name": "Fatiga de alertas",
+          "description": "Demasiados FP → analistas ignoran → FN aumenta. Solución: tuning + SOAR",
+          "domain": 4
+        },
+        {
+          "acronym": "AMSI",
+          "full_name": "Antimalware Scan Interface",
+          "description": "API Windows que escanea scripts (PowerShell) en memoria antes de ejecutar",
+          "domain": 4
+        },
+        {
+          "acronym": "API Gateway",
+          "full_name": "Puerta de enlace API",
+          "description": "Punto único enforcement: autenticación OAuth, rate limiting, validation, logging",
+          "domain": 3
+        },
+        {
+          "acronym": "API Security",
+          "full_name": "Seguridad de APIs",
+          "description": "Rate limiting, OAuth tokens, input validation, key rotation. OWASP API Top 10",
+          "domain": 4
+        },
+        {
+          "acronym": "APT",
+          "full_name": "Advanced Persistent Threat",
+          "description": "Estado-nación. Recursos ilimitados, meses sin detectar. Espionaje, sabotaje",
+          "domain": 2
+        },
+        {
+          "acronym": "ARO",
+          "full_name": "Annualized Rate of Occurrence",
+          "description": "Frecuencia anual del incidente. Parte de la fórmula ALE = SLE × ARO",
+          "domain": 4
+        },
+        {
+          "acronym": "ASLR",
+          "full_name": "Address Space Layout Randomization",
+          "description": "Aleatoriza posiciones de memoria → dificulta exploits de buffer overflow",
+          "domain": 4
+        },
+        {
+          "acronym": "Attack Surface",
+          "full_name": "Superficie de ataque",
+          "description": "Suma de todos los puntos de entrada posibles. Minimizar = principio de seguridad",
+          "domain": 2
+        },
+        {
+          "acronym": "Attestation",
+          "full_name": "Atestación",
+          "description": "Verificar que dispositivo/software es legítimo y no manipulado. Clave en Zero Trust",
+          "domain": 1
+        },
+        {
+          "acronym": "AUP",
+          "full_name": "Acceptable Use Policy",
+          "description": "Define uso aceptable de recursos IT. Todos los empleados firman al incorporarse",
+          "domain": 3
+        },
+        {
+          "acronym": "Automation",
+          "full_name": "Automatización de seguridad",
+          "description": "Ejecutar tarea individual sin intervención humana. Ej: script que bloquea IP",
+          "domain": 4
+        },
+        {
+          "acronym": "Autopsy/FTK",
+          "full_name": "Herramientas forense digital",
+          "description": "Analizan discos e imágenes forenses. Recuperan archivos borrados",
+          "domain": 4
+        },
+        {
+          "acronym": "Backup 3-2-1",
+          "full_name": "Regla de backup",
+          "description": "3 copias · 2 soportes diferentes · 1 offsite. Backup offline contra ransomware",
+          "domain": 3
+        },
+        {
+          "acronym": "BCP",
+          "full_name": "Business Continuity Plan",
+          "description": "Cómo mantener el negocio operativo DURANTE y después del desastre",
+          "domain": 5
+        },
+        {
+          "acronym": "BEC",
+          "full_name": "Business Email Compromise",
+          "description": "Suplantar CEO por email para ordenar transferencias bancarias",
+          "domain": 2
+        },
+        {
+          "acronym": "Biometría",
+          "full_name": "Biometrics",
+          "description": "Auth por rasgos físicos: huella, iris, voz, retina. FAR/FRR/CER",
+          "domain": 1
+        },
+        {
+          "acronym": "Birthday Attack",
+          "full_name": "Ataque de cumpleaños",
+          "description": "Busca colisiones hash. Derrota MD5 y SHA-1",
+          "domain": 2
+        },
+        {
+          "acronym": "Blockchain",
+          "full_name": "Cadena de bloques",
+          "description": "Cadena de bloques enlazados con hash. Inmutable: cambiar 1 bloque invalida todos los siguientes",
+          "domain": 1
+        },
+        {
+          "acronym": "Blue Team",
+          "full_name": "Equipo azul",
+          "description": "Equipo defensor. Monitoriza, detecta y responde. Opera SIEM, EDR",
+          "domain": 4
+        },
+        {
+          "acronym": "Bluejacking",
+          "full_name": "Envío BT no solicitado",
+          "description": "Enviar mensajes no solicitados por Bluetooth. Molesto, no destructivo",
+          "domain": 2
+        },
+        {
+          "acronym": "Bluesnarfing",
+          "full_name": "Robo datos BT",
+          "description": "Acceso no autorizado a datos Bluetooth: contactos, emails, fotos",
+          "domain": 2
+        },
+        {
+          "acronym": "Bollards",
+          "full_name": "Postes de protección",
+          "description": "Postes hormigón/metal frente a edificios. Previene ataques con vehículo",
+          "domain": 3
+        },
+        {
+          "acronym": "Botnet",
+          "full_name": "Red de zombies",
+          "description": "Equipos infectados controlados remotamente → DDoS, spam, minería",
+          "domain": 2
+        },
+        {
+          "acronym": "BPA",
+          "full_name": "Business Partnership Agreement",
+          "description": "Contrato entre socios de negocio. Derechos, responsabilidades y obligaciones",
+          "domain": 5
+        },
+        {
+          "acronym": "Brute Force",
+          "full_name": "Fuerza bruta",
+          "description": "Probar todas las combinaciones. Offline = más rápido (sin bloqueo)",
+          "domain": 2
+        },
+        {
+          "acronym": "Buffer Overflow",
+          "full_name": "Desbordamiento de búfer",
+          "description": "Escribir más datos del buffer → sobrescribe memoria. Mitigación: ASLR+DEP+canary",
+          "domain": 2
+        },
+        {
+          "acronym": "Bug Bounty",
+          "full_name": "Recompensa por bugs",
+          "description": "Programa que paga por reportar vulnerabilidades. Ej: HackerOne, Bugcrowd",
+          "domain": 4
+        },
+        {
+          "acronym": "Burp Suite",
+          "full_name": "Proxy de apps web",
+          "description": "Intercepta y modifica tráfico HTTP/HTTPS. Para encontrar SQLi, XSS",
+          "domain": 4
+        },
+        {
+          "acronym": "BYOD",
+          "full_name": "Bring Your Own Device",
+          "description": "Empleado usa su propio dispositivo. Menor control, mayor riesgo",
+          "domain": 5
+        },
+        {
+          "acronym": "C2",
+          "full_name": "Command and Control",
+          "description": "Servidor que controla malware/botnet. El malware se conecta al C2 para recibir instrucciones",
+          "domain": 2
+        },
+        {
+          "acronym": "CA",
+          "full_name": "Certificate Authority",
+          "description": "Entidad de confianza que firma y emite certificados digitales. Ej: DigiCert, Let's Encrypt",
+          "domain": 1
+        },
+        {
+          "acronym": "Canary Deploy",
+          "full_name": "Despliegue canario",
+          "description": "Nueva versión al 5% primero, gradual. Si falla, rollback solo del subconjunto",
+          "domain": 4
+        },
+        {
+          "acronym": "CAPTCHA",
+          "full_name": "Completely Automated Public Turing test",
+          "description": "Mecanismo anti-bot. Verifica que el usuario es humano",
+          "domain": 1
+        },
+        {
+          "acronym": "CASB",
+          "full_name": "Cloud Access Security Broker",
+          "description": "Intermediario users↔cloud para aplicar políticas de seguridad",
+          "domain": 3
+        },
+        {
+          "acronym": "CCMP",
+          "full_name": "Counter Mode CBC-MAC Protocol",
+          "description": "Protocolo de cifrado usado en WPA2. Basado en AES",
+          "domain": 1
+        },
+        {
+          "acronym": "Cert Pinning",
+          "full_name": "Certificate Pinning",
+          "description": "Asociar certificado específico a un dominio. Rechaza certificados de CAs comprometidas",
+          "domain": 1
+        },
+        {
+          "acronym": "certutil",
+          "full_name": "Herramienta de certificados Windows",
+          "description": "Utilidad Windows para gestionar certificados. Abusada por atacantes en Living off the Land (fileless malware) para descargar payloads",
+          "domain": 2
+        },
+        {
+          "acronym": "Chain of Custody",
+          "full_name": "Cadena de custodia",
+          "description": "Registro de quién manejó evidencia, cuándo y cómo. Sin ella = inadmisible en juicio",
+          "domain": 4
+        },
+        {
+          "acronym": "CIA",
+          "full_name": "Confidentiality, Integrity, Availability",
+          "description": "Tríada CIA: Cifrado→Confidencialidad · Hash→Integridad · Redundancia→Disponibilidad",
+          "domain": 1
+        },
+        {
+          "acronym": "CMMC",
+          "full_name": "Cybersecurity Maturity Model Certification",
+          "description": "Marco de ciberseguridad para proveedores del Departamento de Defensa EEUU",
+          "domain": 5
+        },
+        {
+          "acronym": "Code Signing",
+          "full_name": "Firma de código",
+          "description": "Firma criptográfica del software. SO verifica antes de ejecutar",
+          "domain": 4
+        },
+        {
+          "acronym": "Cold Site",
+          "full_name": "Sitio frío",
+          "description": "Solo espacio físico + alimentación. Sin hardware. Días-semanas activar. Barato",
+          "domain": 3
+        },
+        {
+          "acronym": "Containerización",
+          "full_name": "Containerization",
+          "description": "Empaquetar apps con dependencias (Docker). Más ligero que VMs",
+          "domain": 3
+        },
+        {
+          "acronym": "COPE",
+          "full_name": "Corporate Owned, Personally Enabled",
+          "description": "Empresa da el dispositivo pero permite uso personal. Mayor control",
+          "domain": 5
+        },
+        {
+          "acronym": "CRC",
+          "full_name": "Cyclic Redundancy Check",
+          "description": "Función hash no criptográfica para verificación de errores",
+          "domain": 1
+        },
+        {
+          "acronym": "CRL",
+          "full_name": "Certificate Revocation List",
+          "description": "Lista de certificados revocados. Descarga periódica. Alternativa: OCSP (tiempo real)",
+          "domain": 1
+        },
+        {
+          "acronym": "CrowdStrike",
+          "full_name": "Proveedor EDR/MSSP",
+          "description": "Plataforma EDR líder. También ofrece servicios MSSP de monitoreo 24/7 y threat hunting",
+          "domain": 4
+        },
+        {
+          "acronym": "Crypto-shredding",
+          "full_name": "Destrucción criptográfica",
+          "description": "Cifrar datos + destruir la clave. Elegante para cloud. Datos inaccesibles",
+          "domain": 3
+        },
+        {
+          "acronym": "CSO",
+          "full_name": "Chief Security Officer",
+          "description": "Ejecutivo responsable de proteger activos, datos y personas",
+          "domain": 5
+        },
+        {
+          "acronym": "CSPM",
+          "full_name": "Cloud Security Posture Management",
+          "description": "Detecta misconfiguraciones en cloud. Postura de seguridad continua",
+          "domain": 3
+        },
+        {
+          "acronym": "CSRF",
+          "full_name": "Cross-Site Request Forgery",
+          "description": "Explota confianza del SITIO en el navegador. Engaña al user para enviar peticiones no autorizadas",
+          "domain": 2
+        },
+        {
+          "acronym": "CTO",
+          "full_name": "Chief Technology Officer",
+          "description": "Ejecutivo responsable de decisiones y planificación tecnológica",
+          "domain": 5
+        },
+        {
+          "acronym": "CVE",
+          "full_name": "Common Vulnerabilities and Exposures",
+          "description": "ID único para cada vulnerabilidad. Formato: CVE-AÑO-NÚMERO. Ej: CVE-2021-44228",
+          "domain": 2
+        },
+        {
+          "acronym": "CVSS",
+          "full_name": "Common Vulnerability Scoring System",
+          "description": "Puntuación 0-10: 9-10 Crítico · 7-8.9 Alto · 4-6.9 Medio · 0-3.9 Bajo",
+          "domain": 2
+        },
+        {
+          "acronym": "CYOD",
+          "full_name": "Choose Your Own Device",
+          "description": "Empleado elige entre lista de dispositivos aprobados por la empresa",
+          "domain": 5
+        },
+        {
+          "acronym": "DAC",
+          "full_name": "Discretionary Access Control",
+          "description": "El propietario del recurso decide quién accede. Más flexible, menos seguro. Ej: permisos Windows/Linux",
+          "domain": 3
+        },
+        {
+          "acronym": "Dark Web",
+          "full_name": "Web oscura",
+          "description": "Internet no indexada, acceso solo con Tor. Mercados ilegales, datos robados",
+          "domain": 4
+        },
+        {
+          "acronym": "DAST",
+          "full_name": "Dynamic Application Security Testing",
+          "description": "Prueba app en ejecución. Encuentra problemas de runtime/lógica de negocio",
+          "domain": 4
+        },
+        {
+          "acronym": "Data Classification",
+          "full_name": "Clasificación de datos",
+          "description": "Public → Internal → Confidential → Restricted. Data Owner decide nivel",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Controller",
+          "full_name": "Responsable del tratamiento",
+          "description": "Decide POR QUÉ y CÓMO se procesan datos personales (la empresa)",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Custodian",
+          "full_name": "Custodio de datos",
+          "description": "IT. Implementa los controles técnicos definidos por el Data Owner",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Inventory",
+          "full_name": "Inventario de datos",
+          "description": "Registro de QUÉ datos hay, DÓNDE están, QUIÉN accede. Requisito GDPR/HIPAA",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Locality",
+          "full_name": "Residencia de datos",
+          "description": "Requisito de que datos NO salgan de una región geográfica específica",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Masking",
+          "full_name": "Enmascaramiento de datos",
+          "description": "Ocultar parte del dato: **** **** **** 1234",
+          "domain": 1
+        },
+        {
+          "acronym": "Data Minimization",
+          "full_name": "Minimización de datos",
+          "description": "Recoger SOLO datos estrictamente necesarios. Principio clave GDPR",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Owner",
+          "full_name": "Propietario de datos",
+          "description": "Ejecutivo responsable. DECIDE clasificación y quiénes acceden",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Processor",
+          "full_name": "Encargado del tratamiento",
+          "description": "Procesa datos POR CUENTA del controller (proveedor cloud, payroll externo)",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Retention",
+          "full_name": "Retención de datos",
+          "description": "Cuánto tiempo guardar cada tipo. Eliminar al expirar. PCI DSS: 1 año logs",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Sovereignty",
+          "full_name": "Soberanía de datos",
+          "description": "Datos sujetos a leyes del PAÍS donde se almacenan. Cloud UE ≠ EEUU",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Steward",
+          "full_name": "Administrador de datos",
+          "description": "Responsable de calidad y gestión operativa de los datos",
+          "domain": 5
+        },
+        {
+          "acronym": "Data Subject",
+          "full_name": "Interesado / titular datos",
+          "description": "La persona cuyos datos se procesan. Tiene derechos bajo GDPR",
+          "domain": 5
+        },
+        {
+          "acronym": "DDoS",
+          "full_name": "Distributed Denial of Service",
+          "description": "Múltiples sistemas (botnet) atacan simultáneamente. Amplification: DNS ×86",
+          "domain": 2
+        },
+        {
+          "acronym": "Deception",
+          "full_name": "Deception Technology",
+          "description": "Honeypots/honeyfiles/tokens distribuidos. Cualquier interacción = alarma real",
+          "domain": 4
+        },
+        {
+          "acronym": "Defense in Depth",
+          "full_name": "Defensa en profundidad",
+          "description": "Múltiples capas de seguridad. Si una falla, la siguiente protege",
+          "domain": 1
+        },
+        {
+          "acronym": "Degaussing",
+          "full_name": "Desmagnetización",
+          "description": "Campo magnético intenso para borrar. Solo HDD/cintas. NO funciona en SSD",
+          "domain": 2
+        },
+        {
+          "acronym": "DEP",
+          "full_name": "Data Execution Prevention",
+          "description": "Marca memoria como no-ejecutable → previene ejecución de shellcode en stack",
+          "domain": 4
+        },
+        {
+          "acronym": "DES",
+          "full_name": "Data Encryption Standard",
+          "description": "Cifrado simétrico legacy. 56 bits. Obsoleto → reemplazado por AES",
+          "domain": 1
+        },
+        {
+          "acronym": "Device Attestation",
+          "full_name": "Atestación de dispositivo",
+          "description": "Dispositivo demuestra identidad y estado de salud (TPM, cert, health check)",
+          "domain": 1
+        },
+        {
+          "acronym": "DHE",
+          "full_name": "Diffie-Hellman Ephemeral",
+          "description": "DH con claves temporales por sesión. Proporciona PFS",
+          "domain": 1
+        },
+        {
+          "acronym": "Directory Traversal",
+          "full_name": "Recorrido de directorio",
+          "description": "Usar ../../ para acceder fuera del directorio web. Ej: ../../etc/passwd",
+          "domain": 2
+        },
+        {
+          "acronym": "DKIM",
+          "full_name": "DomainKeys Identified Mail",
+          "description": "Firma criptográfica en email. Receptor verifica con clave pública del DNS",
+          "domain": 1
+        },
+        {
+          "acronym": "DLL Injection",
+          "full_name": "Inyección DLL",
+          "description": "Inyectar código malicioso en proceso en ejecución cargando DLL maliciosa",
+          "domain": 2
+        },
+        {
+          "acronym": "DLP",
+          "full_name": "Data Loss Prevention",
+          "description": "Detecta y previene fuga de datos sensibles por email, USB, cloud",
+          "domain": 3
+        },
+        {
+          "acronym": "DMARC",
+          "full_name": "Domain-based Message Authentication",
+          "description": "Política si SPF/DKIM fallan: none (monitor) · quarantine (spam) · reject (bloquear)",
+          "domain": 1
+        },
+        {
+          "acronym": "DMZ",
+          "full_name": "Demilitarized Zone / Screened Subnet",
+          "description": "Zona entre internet e intranet. Servidores públicos aquí",
+          "domain": 3
+        },
+        {
+          "acronym": "DN",
+          "full_name": "Distinguished Name",
+          "description": "Identificador único en LDAP/X.500. Ej: CN=User,OU=IT,DC=empresa,DC=com",
+          "domain": 1
+        },
+        {
+          "acronym": "DNS Sinkhole",
+          "full_name": "Sumidero DNS",
+          "description": "Redirige dominios maliciosos a IP controlada → detecta hosts infectados",
+          "domain": 3
+        },
+        {
+          "acronym": "DNS Spoofing",
+          "full_name": "Envenenamiento DNS",
+          "description": "Falsear respuestas DNS para redirigir tráfico a servidor malicioso",
+          "domain": 2
+        },
+        {
+          "acronym": "DNSSEC",
+          "full_name": "DNS Security Extensions",
+          "description": "Firma criptográficamente respuestas DNS. Previene poisoning, NO cifra",
+          "domain": 3
+        },
+        {
+          "acronym": "Domain Hijacking",
+          "full_name": "Secuestro de dominio",
+          "description": "Tomar control del dominio de otro mediante acciones ilegales",
+          "domain": 2
+        },
+        {
+          "acronym": "DoS",
+          "full_name": "Denial of Service",
+          "description": "Sobrecarga un servicio para que deje de funcionar. Desde 1 sistema",
+          "domain": 2
+        },
+        {
+          "acronym": "Downgrade Attack",
+          "full_name": "Ataque de degradación",
+          "description": "Forzar uso de protocolo más débil. SSL stripping es un ejemplo",
+          "domain": 2
+        },
+        {
+          "acronym": "DPIA",
+          "full_name": "Data Protection Impact Assessment",
+          "description": "GDPR Art. 35: obligatorio para procesamiento de alto riesgo. DPO asesora",
+          "domain": 5
+        },
+        {
+          "acronym": "DPO",
+          "full_name": "Data Protection Officer",
+          "description": "Obligatorio GDPR para ciertas orgs. Supervisa cumplimiento de privacidad",
+          "domain": 5
+        },
+        {
+          "acronym": "DRP",
+          "full_name": "Disaster Recovery Plan",
+          "description": "Cómo RECUPERAR sistemas IT tras desastre. Parte del BCP, más técnico",
+          "domain": 5
+        },
+        {
+          "acronym": "DSA",
+          "full_name": "Digital Signature Algorithm",
+          "description": "Algoritmo asimétrico específico para crear/verificar firmas digitales",
+          "domain": 1
+        },
+        {
+          "acronym": "Due Care",
+          "full_name": "Debido cuidado",
+          "description": "Actuar responsablemente DURANTE la relación. Implementar controles apropiados",
+          "domain": 5
+        },
+        {
+          "acronym": "Due Diligence",
+          "full_name": "Debida diligencia",
+          "description": "Investigar adecuadamente ANTES de tomar una decisión o contratar",
+          "domain": 5
+        },
+        {
+          "acronym": "E-Discovery",
+          "full_name": "Electronic Discovery",
+          "description": "Identificar, recopilar y producir evidencia electrónica para procedimientos legales",
+          "domain": 4
+        },
+        {
+          "acronym": "ECC",
+          "full_name": "Elliptic Curve Cryptography",
+          "description": "Asimétrico. Misma seguridad que RSA con claves mucho más cortas. Ideal IoT/móvil",
+          "domain": 1
+        },
+        {
+          "acronym": "ECDHE",
+          "full_name": "Elliptic Curve Diffie-Hellman Ephemeral",
+          "description": "DHE con curvas elípticas. Más eficiente. Preferido en TLS moderno",
+          "domain": 1
+        },
+        {
+          "acronym": "ECDSA",
+          "full_name": "Elliptic Curve Digital Signature Algorithm",
+          "description": "Firma digital con ECC. Ideal para dispositivos con recursos limitados",
+          "domain": 1
+        },
+        {
+          "acronym": "EDR",
+          "full_name": "Endpoint Detection and Response",
+          "description": "Detecta por comportamiento + respuesta automática. Más avanzado que AV",
+          "domain": 3
+        },
+        {
+          "acronym": "EFS",
+          "full_name": "Encrypting File System",
+          "description": "Cifrado de archivos individuales en Windows (no disco completo)",
+          "domain": 1
+        },
+        {
+          "acronym": "Elastic Stack",
+          "full_name": "ELK: Elasticsearch + Logstash + Kibana",
+          "description": "Stack open source para centralizar y visualizar logs. Elasticsearch indexa, Logstash procesa, Kibana visualiza. Alternativa a SIEM comercial",
+          "domain": 4
+        },
+        {
+          "acronym": "ESP",
+          "full_name": "Encapsulating Security Payload (IPsec)",
+          "description": "IPsec: proporciona autenticación + integridad + confidencialidad",
+          "domain": 3
+        },
+        {
+          "acronym": "Esteganografía",
+          "full_name": "Steganography",
+          "description": "Ocultar datos dentro de otro archivo (imagen, audio) sin que sea visible",
+          "domain": 1
+        },
+        {
+          "acronym": "EternalBlue",
+          "full_name": "Exploit SMB MS17-010",
+          "description": "Exploit de NSA filtrado. Aprovecha vulnerabilidad SMB de Windows. Usado por WannaCry y NotPetya para propagarse",
+          "domain": 2
+        },
+        {
+          "acronym": "EV Cert",
+          "full_name": "Extended Validation Certificate",
+          "description": "Certificado con validación exhaustiva de identidad. Barra verde en navegador",
+          "domain": 1
+        },
+        {
+          "acronym": "Event Viewer",
+          "full_name": "Visor de eventos Windows",
+          "description": "Herramienta Windows para ver logs: Event 4624 (login OK), 4625 (login fallido), 4720 (cuenta creada). Borrado a las 3AM = anti-forensics",
+          "domain": 4
+        },
+        {
+          "acronym": "Evil Twin",
+          "full_name": "Gemelo malvado",
+          "description": "AP WiFi falso con mismo SSID que legítimo. Ataque MITM",
+          "domain": 2
+        },
+        {
+          "acronym": "Fail-closed",
+          "full_name": "Fallo cerrado",
+          "description": "Si el dispositivo falla → bloquea todo. Prioriza seguridad",
+          "domain": 3
+        },
+        {
+          "acronym": "Fail-open",
+          "full_name": "Fallo abierto",
+          "description": "Si el dispositivo falla → deja pasar todo. Prioriza disponibilidad",
+          "domain": 3
+        },
+        {
+          "acronym": "False Negative",
+          "full_name": "Falso negativo",
+          "description": "Ataque real NO detectado. El más peligroso",
+          "domain": 2
+        },
+        {
+          "acronym": "False Positive",
+          "full_name": "Falso positivo",
+          "description": "Falsa alarma. Tráfico legítimo alertado → genera alert fatigue",
+          "domain": 2
+        },
+        {
+          "acronym": "Faraday Cage",
+          "full_name": "Jaula de Faraday",
+          "description": "Bloquea señales electromagnéticas. Protege contra TEMPEST y jamming",
+          "domain": 3
+        },
+        {
+          "acronym": "FDE",
+          "full_name": "Full Disk Encryption",
+          "description": "Cifrado de disco completo: BitLocker (Win), FileVault (Mac), LUKS (Linux)",
+          "domain": 1
+        },
+        {
+          "acronym": "FedRAMP",
+          "full_name": "Federal Risk and Authorization Management",
+          "description": "Programa gobierno EEUU para evaluación de seguridad de servicios cloud",
+          "domain": 5
+        },
+        {
+          "acronym": "Fileless",
+          "full_name": "Malware sin archivo",
+          "description": "En RAM, usa PowerShell/WMI. Evade AV basado en archivos",
+          "domain": 2
+        },
+        {
+          "acronym": "FIM",
+          "full_name": "File Integrity Monitoring",
+          "description": "Detecta cambios no autorizados en archivos críticos. Contra rootkits",
+          "domain": 3
+        },
+        {
+          "acronym": "Firewall",
+          "full_name": "Cortafuegos",
+          "description": "Filtra tráfico por IP, puerto, protocolo. Stateful recuerda conexiones",
+          "domain": 3
+        },
+        {
+          "acronym": "Firmware",
+          "full_name": "Software embebido en hardware",
+          "description": "Solo el fabricante puede actualizar. IoT frecuentemente sin parchear",
+          "domain": 2
+        },
+        {
+          "acronym": "FM-200",
+          "full_name": "Gas de supresión de incendios",
+          "description": "Sistema de supresión de incendios por gas para datacenters. No daña equipos electrónicos (a diferencia de agua/espuma)",
+          "domain": 3
+        },
+        {
+          "acronym": "Full Tunnel",
+          "full_name": "Túnel completo",
+          "description": "TODO el tráfico va por VPN. Más seguro, mayor carga en servidor VPN",
+          "domain": 3
+        },
+        {
+          "acronym": "Fuzzing",
+          "full_name": "Fuzz testing",
+          "description": "Enviar entradas aleatorias/malformadas para encontrar crashes y vulnerabilidades",
+          "domain": 4
+        },
+        {
+          "acronym": "Gap Analysis",
+          "full_name": "Análisis de brechas",
+          "description": "Compara postura actual vs objetivo. Identifica brechas y prioriza mejoras",
+          "domain": 1
+        },
+        {
+          "acronym": "GDPR",
+          "full_name": "General Data Protection Regulation",
+          "description": "UE. 72h notificación · Right to forget · 4% facturación / 20M€",
+          "domain": 3
+        },
+        {
+          "acronym": "Geofencing",
+          "full_name": "Cerca geográfica virtual",
+          "description": "Activa/desactiva funciones según ubicación. Ej: bloquear cámara en trabajo",
+          "domain": 3
+        },
+        {
+          "acronym": "Golden Ticket",
+          "full_name": "Ataque Golden Ticket",
+          "description": "Generar TGTs Kerberos falsos con hash KRBTGT. Acceso total al dominio AD",
+          "domain": 2
+        },
+        {
+          "acronym": "GPO",
+          "full_name": "Group Policy Object",
+          "description": "Configuración centralizada en Windows AD. Aplica políticas a users/PCs",
+          "domain": 3
+        },
+        {
+          "acronym": "GPS",
+          "full_name": "Global Positioning System",
+          "description": "Funcionalidad de localización en móviles. Usado en geofencing, MDM",
+          "domain": 5
+        },
+        {
+          "acronym": "GRC",
+          "full_name": "Governance, Risk, Compliance",
+          "description": "Framework unificado: políticas + gestión riesgos + cumplimiento regulatorio",
+          "domain": 5
+        },
+        {
+          "acronym": "GRE",
+          "full_name": "Generic Routing Encapsulation",
+          "description": "Protocolo de tunelización. Encapsula diversos protocolos dentro de IP",
+          "domain": 1
+        },
+        {
+          "acronym": "Grey-Box",
+          "full_name": "Prueba caja gris",
+          "description": "Pentester con info parcial. Más realista que white-box. El más común",
+          "domain": 4
+        },
+        {
+          "acronym": "HAProxy",
+          "full_name": "Load balancer / reverse proxy",
+          "description": "Balanceador de carga y reverse proxy open source. Alta disponibilidad. Oculta IPs internas de servidores",
+          "domain": 3
+        },
+        {
+          "acronym": "HashiCorp Vault",
+          "full_name": "Gestor de secretos",
+          "description": "Vault de secretos: almacena credenciales, API keys, certificados. Solución a hardcoded credentials en código",
+          "domain": 4
+        },
+        {
+          "acronym": "HIDS",
+          "full_name": "Host-based IDS",
+          "description": "IDS en el host individual. Monitoriza archivos, procesos, logs del sistema",
+          "domain": 3
+        },
+        {
+          "acronym": "HIPAA",
+          "full_name": "Health Insurance Portability and Accountability Act",
+          "description": "Datos médicos EEUU. PHI. BAA obligatorio. Cifrado obligatorio",
+          "domain": 5
+        },
+        {
+          "acronym": "HIPS",
+          "full_name": "Host-based IPS",
+          "description": "IPS en el host. Detecta Y bloquea en el endpoint individual",
+          "domain": 3
+        },
+        {
+          "acronym": "HMAC",
+          "full_name": "Hash-based Message Authentication Code",
+          "description": "Hash + clave secreta → verifica autenticidad E integridad",
+          "domain": 1
+        },
+        {
+          "acronym": "Honeyfile",
+          "full_name": "Archivo señuelo",
+          "description": "Archivo atractivo (passwords.txt). Cualquier acceso = alarma real",
+          "domain": 1
+        },
+        {
+          "acronym": "Honeynet",
+          "full_name": "Red de honeypots",
+          "description": "Red completa de honeypots: servidores, routers, firewalls falsos",
+          "domain": 1
+        },
+        {
+          "acronym": "Honeypot",
+          "full_name": "Sistema señuelo",
+          "description": "Sistema falso que atrae atacantes para estudiar sus técnicas",
+          "domain": 1
+        },
+        {
+          "acronym": "Honeytoken",
+          "full_name": "Dato rastreable señuelo",
+          "description": "Credencial/dato falso rastreable. Si aparece publicado → delata al atacante",
+          "domain": 1
+        },
+        {
+          "acronym": "Hot Site",
+          "full_name": "Sitio caliente",
+          "description": "Copia exacta sincronizada 24/7. Minutos activar. Muy caro",
+          "domain": 3
+        },
+        {
+          "acronym": "HSM",
+          "full_name": "Hardware Security Module",
+          "description": "Dispositivo físico para operaciones criptográficas. Nunca extrae la clave privada",
+          "domain": 1
+        },
+        {
+          "acronym": "HSTS",
+          "full_name": "HTTP Strict Transport Security",
+          "description": "Fuerza HTTPS en el navegador → previene SSL stripping",
+          "domain": 1
+        },
+        {
+          "acronym": "IaaS",
+          "full_name": "Infrastructure as a Service",
+          "description": "Cliente: SO+apps+datos. Proveedor: hardware. Ej: AWS EC2",
+          "domain": 3
+        },
+        {
+          "acronym": "IDS",
+          "full_name": "Intrusion Detection System",
+          "description": "Detecta y ALERTA. Modo pasivo. NO bloquea tráfico",
+          "domain": 3
+        },
+        {
+          "acronym": "IKE",
+          "full_name": "Internet Key Exchange",
+          "description": "Protocolo para establecer conexiones seguras e intercambiar claves en VPN IPsec",
+          "domain": 3
+        },
+        {
+          "acronym": "Implicit Deny",
+          "full_name": "Denegación implícita",
+          "description": "Firewall: todo tráfico que no coincide con reglas de permiso → denegado automáticamente",
+          "domain": 3
+        },
+        {
+          "acronym": "Impossible Travel",
+          "full_name": "Viaje imposible",
+          "description": "Login desde Madrid y Tokyo con 10 min diferencia = alarma",
+          "domain": 4
+        },
+        {
+          "acronym": "Input Validation",
+          "full_name": "Validación de entrada",
+          "description": "Verificar datos del user: tipo y formato esperado. SERVIDOR, no solo JS. Previene SQLi, XSS",
+          "domain": 4
+        },
+        {
+          "acronym": "IOA",
+          "full_name": "Indicator of Attack",
+          "description": "Evidencia de ataque en curso. Más proactivo que IOC",
+          "domain": 2
+        },
+        {
+          "acronym": "IoC",
+          "full_name": "Indicator of Compromise",
+          "description": "Evidencia post-ataque: hash malware, IP C2, dominio sospechoso. Reactivo",
+          "domain": 2
+        },
+        {
+          "acronym": "IoT Constraints",
+          "full_name": "Limitaciones IoT",
+          "description": "CPU/RAM limitada, sin cifrado fuerte, firmware sin actualizar, credenciales por defecto",
+          "domain": 2
+        },
+        {
+          "acronym": "IPS",
+          "full_name": "Intrusion Prevention System",
+          "description": "Detecta y BLOQUEA. Modo inline. Puede interrumpir tráfico legítimo",
+          "domain": 3
+        },
+        {
+          "acronym": "IPsec",
+          "full_name": "IP Security",
+          "description": "Cifrado a nivel IP. Transport (solo datos) · Tunnel (todo el paquete)",
+          "domain": 3
+        },
+        {
+          "acronym": "IRP",
+          "full_name": "Incident Response Plan",
+          "description": "Plan documentado: Prep → Detect → Contain → Recover → Lessons. NIST SP 800-61",
+          "domain": 4
+        },
+        {
+          "acronym": "ISA",
+          "full_name": "Interconnection Security Agreement",
+          "description": "Acuerdo técnico: cómo conectar redes de forma segura. Obligatorio entre agencias gobierno",
+          "domain": 5
+        },
+        {
+          "acronym": "Jailbreaking",
+          "full_name": "Jailbreak iOS",
+          "description": "Eliminar restricciones iOS. Invalida MDM. Política: prohibir o borrar dispositivo",
+          "domain": 2
+        },
+        {
+          "acronym": "JIT",
+          "full_name": "Just-in-Time Permissions",
+          "description": "Acceso privilegiado solo cuando se necesita, expira después. Parte de PAM",
+          "domain": 1
+        },
+        {
+          "acronym": "Job Rotation",
+          "full_name": "Rotación de puestos",
+          "description": "Empleados rotan entre roles → detecta fraude, reduce dependencia de individuo",
+          "domain": 5
+        },
+        {
+          "acronym": "Jump Server",
+          "full_name": "Bastion Host",
+          "description": "Punto de acceso único y hardened a servidores internos. Logging + MFA obligatorio",
+          "domain": 3
+        },
+        {
+          "acronym": "JWT",
+          "full_name": "JSON Web Token",
+          "description": "Token compacto: Header.Payload.Signature. Payload NO cifrado por defecto",
+          "domain": 1
+        },
+        {
+          "acronym": "KDC",
+          "full_name": "Key Distribution Center",
+          "description": "Servidor centralizado Kerberos. Distribuye claves y autentica users/servicios",
+          "domain": 1
+        },
+        {
+          "acronym": "KEK",
+          "full_name": "Key Encryption Key",
+          "description": "Clave que cifra otras claves. Capa adicional de protección en gestión de claves",
+          "domain": 1
+        },
+        {
+          "acronym": "Kerberoasting",
+          "full_name": "Ataque Kerberoasting",
+          "description": "Extraer TGS de servicios AD para crackeo offline. Mitigación: passwords fuertes en service accounts",
+          "domain": 2
+        },
+        {
+          "acronym": "Kerberos",
+          "full_name": "Protocolo de autenticación",
+          "description": "Basado en tickets. Max 5 min desfase. KDC emite TGT. Base de AD",
+          "domain": 1
+        },
+        {
+          "acronym": "KEV",
+          "full_name": "Known Exploited Vulnerabilities",
+          "description": "Catálogo CISA: vulnerabilidades con exploit activo → parchear urgente",
+          "domain": 4
+        },
+        {
+          "acronym": "Key Escrow",
+          "full_name": "Custodia de claves",
+          "description": "Almacenar copias de claves de cifrado con un tercero de confianza para recuperación",
+          "domain": 1
+        },
+        {
+          "acronym": "Key Stretching",
+          "full_name": "Estiramiento de clave",
+          "description": "Hash lento a propósito: bcrypt, PBKDF2, Argon2. Contra brute force",
+          "domain": 1
+        },
+        {
+          "acronym": "Kibana",
+          "full_name": "Visualización de datos Elastic",
+          "description": "Dashboard de visualización del Elastic Stack. Permite crear gráficos y alertas sobre logs centralizados",
+          "domain": 4
+        },
+        {
+          "acronym": "KPI",
+          "full_name": "Key Performance Indicator",
+          "description": "Mide rendimiento del programa de seguridad: MTTD, % parcheados, phishing rate",
+          "domain": 1
+        },
+        {
+          "acronym": "KRI",
+          "full_name": "Key Risk Indicator",
+          "description": "Señal de riesgo creciente: cuentas sin MFA, vulns críticas sin parchear >30d",
+          "domain": 1
+        },
+        {
+          "acronym": "LDAP",
+          "full_name": "Lightweight Directory Access Protocol",
+          "description": "Consulta directorios (AD). Puerto 389 (claro) / 636 (LDAPS)",
+          "domain": 1
+        },
+        {
+          "acronym": "LDAP Injection",
+          "full_name": "Inyección LDAP",
+          "description": "Exploit que manipula consultas LDAP para acceder a datos de directorio",
+          "domain": 2
+        },
+        {
+          "acronym": "LEAP",
+          "full_name": "Lightweight EAP",
+          "description": "Protocolo auth inalámbrico Cisco. Obsoleto y vulnerable",
+          "domain": 1
+        },
+        {
+          "acronym": "Load Balancing",
+          "full_name": "Balanceo de carga",
+          "description": "Distribuye tráfico entre múltiples servidores → alta disponibilidad + rendimiento",
+          "domain": 3
+        },
+        {
+          "acronym": "Log4Shell",
+          "full_name": "CVE-2021-44228",
+          "description": "RCE crítico en log4j (Java). Afectó millones de apps. SBOM necesario para detectar",
+          "domain": 4
+        },
+        {
+          "acronym": "Logic Bomb",
+          "full_name": "Bomba lógica",
+          "description": "Código que se activa con evento (fecha, condición). Sin firma AV",
+          "domain": 2
+        },
+        {
+          "acronym": "MAC",
+          "full_name": "Mandatory Access Control",
+          "description": "El SO asigna etiquetas. User NO puede cambiar permisos. SELinux. Más rígido",
+          "domain": 3
+        },
+        {
+          "acronym": "Mandatory Vacation",
+          "full_name": "Vacaciones obligatorias",
+          "description": "Otro descubre irregularidades durante ausencia. Si se niega = alerta",
+          "domain": 5
+        },
+        {
+          "acronym": "Mantrap",
+          "full_name": "Vestíbulo / trampa de acceso",
+          "description": "Dos puertas: una cierra antes de abrir otra. Previene tailgating",
+          "domain": 3
+        },
+        {
+          "acronym": "MD5",
+          "full_name": "Message Digest 5",
+          "description": "Hash 128 bits. Obsoleto — colisiones conocidas. Solo para checksums no críticos",
+          "domain": 1
+        },
+        {
+          "acronym": "MDM",
+          "full_name": "Mobile Device Management",
+          "description": "Gestión centralizada de móviles: políticas, cifrado, borrado remoto, geofencing",
+          "domain": 1
+        },
+        {
+          "acronym": "Measured Boot",
+          "full_name": "Arranque medido",
+          "description": "Registra mediciones de arranque en TPM sin detener el boot. Para remote attestation",
+          "domain": 1
+        },
+        {
+          "acronym": "Metadata",
+          "full_name": "Metadatos",
+          "description": "Datos SOBRE datos: autor, fecha, ubicación. Puede revelar info del atacante",
+          "domain": 4
+        },
+        {
+          "acronym": "Metasploit",
+          "full_name": "Framework de pentesting",
+          "description": "Automatiza explotación de vulnerabilidades conocidas. SOLO con autorización",
+          "domain": 4
+        },
+        {
+          "acronym": "Microsegmentation",
+          "full_name": "Microsegmentación",
+          "description": "Cada workload en segmento aislado. Limita tráfico este-oeste y lateral movement",
+          "domain": 3
+        },
+        {
+          "acronym": "Microservices",
+          "full_name": "Microservicios",
+          "description": "Apps descompuestas en servicios independientes. Mayor superficie pero mejor aislamiento",
+          "domain": 4
+        },
+        {
+          "acronym": "Mimikatz",
+          "full_name": "Herramienta de extracción de credenciales",
+          "description": "Extrae hashes NTLM, tickets Kerberos y passwords en claro de memoria Windows. Usada en Pass-the-Hash y lateral movement",
+          "domain": 2
+        },
+        {
+          "acronym": "Mirai",
+          "full_name": "Botnet IoT",
+          "description": "Botnet que explotó credenciales por defecto en IoT (2016). DDoS masivo",
+          "domain": 2
+        },
+        {
+          "acronym": "Missing Logs",
+          "full_name": "Logs desaparecidos",
+          "description": "Alguien borró logs para cubrir huellas. Detectar borrado = alarma crítica",
+          "domain": 4
+        },
+        {
+          "acronym": "MitM",
+          "full_name": "Man-in-the-Middle / On-path",
+          "description": "Atacante entre 2 dispositivos. Lee/modifica tráfico. Sinónimo: AiTM",
+          "domain": 2
+        },
+        {
+          "acronym": "MITRE ATT&CK",
+          "full_name": "Adversarial Tactics, Techniques & Common Knowledge",
+          "description": "Framework: Tácticas (por qué) → Técnicas (cómo) → Procedimientos (pasos)",
+          "domain": 2
+        },
+        {
+          "acronym": "ML",
+          "full_name": "Machine Learning",
+          "description": "IA que aprende de datos. Usado en UEBA, detección de anomalías, anti-malware",
+          "domain": 1
+        },
+        {
+          "acronym": "MOA",
+          "full_name": "Memorandum of Agreement",
+          "description": "Más formal que MOU. Compromisos específicos. Puede no ser vinculante",
+          "domain": 5
+        },
+        {
+          "acronym": "MOU",
+          "full_name": "Memorandum of Understanding",
+          "description": "Acuerdo de intención. NO vinculante legalmente. Objetivos compartidos",
+          "domain": 5
+        },
+        {
+          "acronym": "MSA",
+          "full_name": "Master Service Agreement",
+          "description": "Contrato marco con términos generales. SOWs específicos como anexos",
+          "domain": 5
+        },
+        {
+          "acronym": "MSP",
+          "full_name": "Managed Service Provider",
+          "description": "Proveedor externo de servicios IT. Para empresas sin personal IT propio",
+          "domain": 1
+        },
+        {
+          "acronym": "MSSP",
+          "full_name": "Managed Security Service Provider",
+          "description": "Proveedor externo de servicios de seguridad. Monitoreo 24/7, SOC externo",
+          "domain": 1
+        },
+        {
+          "acronym": "MTBF",
+          "full_name": "Mean Time Between Failures",
+          "description": "Tiempo promedio entre fallos. Mayor = más fiable el sistema",
+          "domain": 3
+        },
+        {
+          "acronym": "MTTD",
+          "full_name": "Mean Time to Detect",
+          "description": "Tiempo medio para detectar un incidente. Menor = mejor",
+          "domain": 4
+        },
+        {
+          "acronym": "MTTR",
+          "full_name": "Mean Time To Repair",
+          "description": "Tiempo promedio para reparar. Menor = mejor respuesta",
+          "domain": 3
+        },
+        {
+          "acronym": "NAC",
+          "full_name": "Network Access Control",
+          "description": "Verifica que dispositivo cumple políticas ANTES de dar acceso a la red",
+          "domain": 3
+        },
+        {
+          "acronym": "NDA",
+          "full_name": "Non-Disclosure Agreement",
+          "description": "Confidencialidad. Protege info sensible compartida. Vinculante legalmente",
+          "domain": 5
+        },
+        {
+          "acronym": "Nessus",
+          "full_name": "Escáner de vulnerabilidades",
+          "description": "Identifica CVEs en sistemas y aplicaciones. Qualys es alternativa",
+          "domain": 4
+        },
+        {
+          "acronym": "NetFlow",
+          "full_name": "Metadatos de tráfico",
+          "description": "IP src/dst, puerto, protocolo, bytes. NO contenido. Quién habla con quién",
+          "domain": 4
+        },
+        {
+          "acronym": "Network TAP",
+          "full_name": "Test Access Point",
+          "description": "Dispositivo físico que copia tráfico de red de forma pasiva. Más fiable que SPAN",
+          "domain": 3
+        },
+        {
+          "acronym": "NFC Attack",
+          "full_name": "Ataque Near Field Communication",
+          "description": "Skimming, relay attacks a <4cm. Pagos sin contacto vulnerables",
+          "domain": 2
+        },
+        {
+          "acronym": "NGFW",
+          "full_name": "Next-Generation Firewall",
+          "description": "Firewall + IPS + inspección apps + SSL inspection. Capa 7",
+          "domain": 3
+        },
+        {
+          "acronym": "NIST CSF",
+          "full_name": "NIST Cybersecurity Framework",
+          "description": "Voluntario: Identify → Protect → Detect → Respond → Recover",
+          "domain": 5
+        },
+        {
+          "acronym": "Nmap",
+          "full_name": "Network Mapper",
+          "description": "Escáner de red y puertos. Detecta hosts, servicios, versiones, OS",
+          "domain": 4
+        },
+        {
+          "acronym": "NotPetya",
+          "full_name": "Wiper destructivo 2017",
+          "description": "Malware destructivo disfrazado de ransomware. Usó EternalBlue. Borró datos irreversiblemente. No era ransomware real",
+          "domain": 2
+        },
+        {
+          "acronym": "NTLM",
+          "full_name": "NT LAN Manager",
+          "description": "Auth Microsoft obsoleto. Vulnerable a Pass-the-Hash. Usar Kerberos",
+          "domain": 1
+        },
+        {
+          "acronym": "NVD",
+          "full_name": "National Vulnerability Database",
+          "description": "Base de datos NIST con todos los CVEs, scores CVSS y vectores de ataque",
+          "domain": 4
+        },
+        {
+          "acronym": "OAuth 2.0",
+          "full_name": "Open Authorization",
+          "description": "Framework de autorización (NO autenticación). Ej: 'Login con Google'",
+          "domain": 1
+        },
+        {
+          "acronym": "OCSP",
+          "full_name": "Online Certificate Status Protocol",
+          "description": "Verifica en tiempo real si un certificado es válido. Alternativa a CRL",
+          "domain": 1
+        },
+        {
+          "acronym": "OCSP Stapling",
+          "full_name": "OCSP Stapling",
+          "description": "Servidor incluye respuesta OCSP en handshake TLS. Más rápido y privado",
+          "domain": 1
+        },
+        {
+          "acronym": "Offboarding",
+          "full_name": "Baja de usuario",
+          "description": "Revocar accesos INMEDIATAMENTE el día de salida. Antes de salir del edificio",
+          "domain": 5
+        },
+        {
+          "acronym": "OID",
+          "full_name": "Object Identifier",
+          "description": "Identificador único para objetos PKI y SNMP MIB",
+          "domain": 1
+        },
+        {
+          "acronym": "OIDC",
+          "full_name": "OpenID Connect",
+          "description": "Capa de autenticación sobre OAuth 2.0. Devuelve ID Token (JWT)",
+          "domain": 1
+        },
+        {
+          "acronym": "Onboarding",
+          "full_name": "Incorporación",
+          "description": "Firma AUP/NDA, provisión cuentas, formación seguridad. Least privilege desde día 1",
+          "domain": 5
+        },
+        {
+          "acronym": "Orchestration",
+          "full_name": "Orquestación",
+          "description": "Coordinar MÚLTIPLES automatizaciones en un flujo de trabajo completo",
+          "domain": 4
+        },
+        {
+          "acronym": "OSSEC",
+          "full_name": "FIM / HIDS open source",
+          "description": "Sistema de detección de intrusiones basado en host + File Integrity Monitoring. Open source. Similar a Tripwire",
+          "domain": 4
+        },
+        {
+          "acronym": "OTP",
+          "full_name": "One-Time Password",
+          "description": "Contraseña de un solo uso. HOTP (contador) o TOTP (tiempo, 30 seg)",
+          "domain": 1
+        },
+        {
+          "acronym": "PaaS",
+          "full_name": "Platform as a Service",
+          "description": "Cliente: apps+datos. Proveedor: SO+plataforma. Ej: Heroku",
+          "domain": 3
+        },
+        {
+          "acronym": "PAC",
+          "full_name": "Proxy Auto-Configuration",
+          "description": "Script que configura automáticamente qué proxy usar para cada URL",
+          "domain": 3
+        },
+        {
+          "acronym": "Pass the Hash",
+          "full_name": "Pasar el hash",
+          "description": "Usar hash NTLM directamente para autenticarse sin conocer el password",
+          "domain": 2
+        },
+        {
+          "acronym": "Passive Recon",
+          "full_name": "Reconocimiento pasivo",
+          "description": "Sin interacción directa con objetivo. OSINT, WHOIS, Google. Difícil de detectar",
+          "domain": 4
+        },
+        {
+          "acronym": "Password Spraying",
+          "full_name": "Fumigación de contraseñas",
+          "description": "Pocos passwords comunes × muchas cuentas → evita bloqueo de cuenta",
+          "domain": 2
+        },
+        {
+          "acronym": "PBKDF2",
+          "full_name": "Password-Based Key Derivation Function 2",
+          "description": "Key stretching: hash lento para proteger passwords contra brute force",
+          "domain": 1
+        },
+        {
+          "acronym": "PCAP",
+          "full_name": "Packet Capture",
+          "description": "Captura tráfico de red completo. Herramienta: Wireshark. Evidencia forense",
+          "domain": 4
+        },
+        {
+          "acronym": "PCI DSS",
+          "full_name": "Payment Card Industry Data Security Standard",
+          "description": "Datos de tarjetas de crédito. 12 requisitos. Logs 1 año",
+          "domain": 5
+        },
+        {
+          "acronym": "PDU",
+          "full_name": "Power Distribution Unit",
+          "description": "Dispositivo que suministra y monitoriza energía eléctrica a múltiples tomas",
+          "domain": 3
+        },
+        {
+          "acronym": "PEAP",
+          "full_name": "Protected EAP",
+          "description": "Encapsula EAP dentro de TLS. Auth con contraseña de forma segura. Estándar abierto",
+          "domain": 3
+        },
+        {
+          "acronym": "PEM",
+          "full_name": "Privacy Enhanced Mail",
+          "description": "Formato de archivo para almacenar certificados X.509, claves, CRL",
+          "domain": 1
+        },
+        {
+          "acronym": "Pentest",
+          "full_name": "Prueba de penetración",
+          "description": "Simula ataque real. SÍ explota vulnerabilidades. Requiere autorización escrita (RoE)",
+          "domain": 4
+        },
+        {
+          "acronym": "PFS",
+          "full_name": "Perfect Forward Secrecy",
+          "description": "Claves temporales por sesión (DHE/ECDHE). TLS 1.3 lo obliga",
+          "domain": 1
+        },
+        {
+          "acronym": "pfSense",
+          "full_name": "Firewall open source",
+          "description": "Firewall/router open source basado en FreeBSD. Soporta VLANs, VPN, IDS/IPS. Usado para segmentación de red",
+          "domain": 3
+        },
+        {
+          "acronym": "Pharming",
+          "full_name": "Redirección DNS masiva",
+          "description": "Modificar DNS/hosts para redirigir a sitio falso sin que el user lo sepa",
+          "domain": 1
+        },
+        {
+          "acronym": "Phishing",
+          "full_name": "Suplantación por email",
+          "description": "Email masivo falso → robar credenciales o instalar malware. Urgencia+miedo",
+          "domain": 2
+        },
+        {
+          "acronym": "Phishing Sim",
+          "full_name": "Phishing Simulation",
+          "description": "Trimestral. Quien cae → formación inmediata, NO castigo. Objetivo: bajar % clics",
+          "domain": 5
+        },
+        {
+          "acronym": "Piggybacking",
+          "full_name": "Acceso compartido no autorizado",
+          "description": "Entrar con persona autorizada CON su consentimiento. Política lo prohíbe",
+          "domain": 3
+        },
+        {
+          "acronym": "PKCS",
+          "full_name": "Public Key Cryptography Standards",
+          "description": "Conjunto de estándares para técnicas criptográficas: claves, firmas, certificados",
+          "domain": 1
+        },
+        {
+          "acronym": "PKI",
+          "full_name": "Public Key Infrastructure",
+          "description": "Sistema jerárquico: Root CA → Intermediate CA → Certificados. Base de toda la cripto de clave pública",
+          "domain": 1
+        },
+        {
+          "acronym": "PPP",
+          "full_name": "Point-to-Point Protocol",
+          "description": "Protocolo básico para enlace punto a punto dedicado entre 2 dispositivos",
+          "domain": 1
+        },
+        {
+          "acronym": "Pretexting",
+          "full_name": "Pretexto",
+          "description": "Crear historia falsa creíble para obtener info. 'Soy de IT, necesito tu password'",
+          "domain": 2
+        },
+        {
+          "acronym": "Privilege Creep",
+          "full_name": "Acumulación de privilegios",
+          "description": "Permisos excesivos acumulados por cambios de rol sin revocar anteriores",
+          "domain": 4
+        },
+        {
+          "acronym": "Privilege Escalation",
+          "full_name": "Escalada de privilegios",
+          "description": "Obtener más permisos de los asignados. Vertical (admin) u horizontal (otro user)",
+          "domain": 2
+        },
+        {
+          "acronym": "Proxy",
+          "full_name": "Servidor proxy",
+          "description": "Intermediario cliente↔internet. Filtra, cachea, anonimiza",
+          "domain": 3
+        },
+        {
+          "acronym": "PTZ Camera",
+          "full_name": "Pan-Tilt-Zoom Camera",
+          "description": "Cámara con control de ángulo y zoom. Operador dirige. Detective + disuasorio",
+          "domain": 3
+        },
+        {
+          "acronym": "Purple Team",
+          "full_name": "Equipo púrpura",
+          "description": "Red + Blue trabajan juntos. Más colaborativo y eficiente",
+          "domain": 4
+        },
+        {
+          "acronym": "Purpose Limitation",
+          "full_name": "Limitación de propósito",
+          "description": "Datos usados SOLO para fin declarado al recogerlos. GDPR Art. 5",
+          "domain": 5
+        },
+        {
+          "acronym": "Qualitative",
+          "full_name": "Evaluación cualitativa de riesgo",
+          "description": "Alto/Medio/Bajo. Subjetivo pero rápido. Escalas descriptivas",
+          "domain": 5
+        },
+        {
+          "acronym": "Quantitative",
+          "full_name": "Evaluación cuantitativa de riesgo",
+          "description": "Valores en €/$. Preciso. Requiere datos históricos (SLE, ARO, ALE)",
+          "domain": 5
+        },
+        {
+          "acronym": "Quishing",
+          "full_name": "QR Code Phishing",
+          "description": "Phishing mediante QR malicioso. URL no visible → difícil de detectar",
+          "domain": 1
+        },
+        {
+          "acronym": "RA",
+          "full_name": "Registration Authority",
+          "description": "Verifica identidades para la CA. La CA firma, la RA valida al solicitante",
+          "domain": 1
+        },
+        {
+          "acronym": "Race Condition",
+          "full_name": "Condición de carrera",
+          "description": "Resultado inesperado por dos procesos simultáneos. TOCTOU es un tipo",
+          "domain": 2
+        },
+        {
+          "acronym": "RAID",
+          "full_name": "Redundant Array of Independent Disks",
+          "description": "0=stripe(rápido) · 1=mirror · 5=paridad(min 3) · 10=mirror+stripe(min 4)",
+          "domain": 3
+        },
+        {
+          "acronym": "Rainbow Table",
+          "full_name": "Tabla arcoíris",
+          "description": "Hashes precalculados → contraseñas. Derrotada por SALT",
+          "domain": 2
+        },
+        {
+          "acronym": "Ransomware",
+          "full_name": "Secuestro de datos",
+          "description": "Cifra archivos + pide rescate en crypto. Defensa: backup OFFLINE",
+          "domain": 2
+        },
+        {
+          "acronym": "RAS",
+          "full_name": "Remote Access Service",
+          "description": "Solución hardware/software para acceso remoto seguro a redes",
+          "domain": 3
+        },
+        {
+          "acronym": "RAT",
+          "full_name": "Remote Access Trojan",
+          "description": "Trojan que da control remoto total: capturas, keylogger, archivos, cámara",
+          "domain": 2
+        },
+        {
+          "acronym": "RC4",
+          "full_name": "Rivest Cipher 4",
+          "description": "Cifrado de flujo obsoleto. Usado en WEP. Vulnerable",
+          "domain": 1
+        },
+        {
+          "acronym": "Red Team",
+          "full_name": "Equipo rojo",
+          "description": "Simula ser atacante. Usa TTPs reales. Actúa como APT",
+          "domain": 4
+        },
+        {
+          "acronym": "Remote Attestation",
+          "full_name": "Atestación remota",
+          "description": "Servidor verifica estado de seguridad de endpoint remoto antes de dar acceso",
+          "domain": 1
+        },
+        {
+          "acronym": "Replay Attack",
+          "full_name": "Ataque de repetición",
+          "description": "Capturar y reenviar datos de autenticación válidos",
+          "domain": 2
+        },
+        {
+          "acronym": "Reverse Proxy",
+          "full_name": "Proxy inverso",
+          "description": "Intermediario delante de servidores. Balancea carga, oculta IPs internas. Ej: Nginx",
+          "domain": 3
+        },
+        {
+          "acronym": "Right to Audit",
+          "full_name": "Derecho de auditoría",
+          "description": "Cláusula que permite auditar al proveedor. En TODOS los contratos con terceros",
+          "domain": 5
+        },
+        {
+          "acronym": "RIPEMD-160",
+          "full_name": "RACE Integrity Primitives Evaluation Message Digest",
+          "description": "Hash 160 bits. Alternativa a SHA. Menos usado",
+          "domain": 1
+        },
+        {
+          "acronym": "Risk Appetite",
+          "full_name": "Apetito de riesgo",
+          "description": "Cuánto riesgo la org QUIERE asumir (estratégico)",
+          "domain": 5
+        },
+        {
+          "acronym": "Risk Exception",
+          "full_name": "Excepción de riesgo",
+          "description": "Incumplir temporalmente una norma por escenario de riesgo específico",
+          "domain": 5
+        },
+        {
+          "acronym": "Risk Mitigation",
+          "full_name": "Mitigación de riesgo",
+          "description": "Reducir probabilidad o impacto implementando controles",
+          "domain": 5
+        },
+        {
+          "acronym": "Risk Register",
+          "full_name": "Registro de riesgos",
+          "description": "Documento para identificar, evaluar y rastrear riesgos del programa",
+          "domain": 5
+        },
+        {
+          "acronym": "Risk Transference",
+          "full_name": "Transferencia de riesgo",
+          "description": "Pasar riesgo a tercero: ciberseguro, proveedor. No elimina, solo pasa",
+          "domain": 5
+        },
+        {
+          "acronym": "Rogue AP",
+          "full_name": "Punto acceso no autorizado",
+          "description": "AP conectado a red corporativa sin autorización. Puede ser insider",
+          "domain": 2
+        },
+        {
+          "acronym": "Root Cause Analysis",
+          "full_name": "Análisis de causa raíz",
+          "description": "Post-incidente: analizar evidencia para evitar que vuelva a ocurrir",
+          "domain": 5
+        },
+        {
+          "acronym": "Rootkit",
+          "full_name": "Kit de root",
+          "description": "Se oculta en kernel del SO. Invisible a AV. Secure Boot lo detecta",
+          "domain": 2
+        },
+        {
+          "acronym": "RPO",
+          "full_name": "Recovery Point Objective",
+          "description": "Pérdida MÁXIMA de datos tolerable. Define frecuencia de backup",
+          "domain": 3
+        },
+        {
+          "acronym": "RSA",
+          "full_name": "Rivest-Shamir-Adleman",
+          "description": "Cifrado asimétrico. Factorización primos grandes. Claves 2048+ bits. Lento",
+          "domain": 1
+        },
+        {
+          "acronym": "RTO",
+          "full_name": "Recovery Time Objective",
+          "description": "Tiempo MÁXIMO para restaurar servicio. Define qué tipo de site necesitas",
+          "domain": 3
+        },
+        {
+          "acronym": "RTOS",
+          "full_name": "Real-Time Operating System",
+          "description": "SO de tiempo real para sistemas críticos/embedded. Sin seguridad moderna",
+          "domain": 2
+        },
+        {
+          "acronym": "S/MIME",
+          "full_name": "Secure/Multipurpose Internet Mail Extensions",
+          "description": "Cifra y firma emails. Usa certificados X.509. Estándar empresarial",
+          "domain": 1
+        },
+        {
+          "acronym": "SaaS",
+          "full_name": "Software as a Service",
+          "description": "Proveedor gestiona TODO. Cliente solo usa la app. Ej: Gmail, O365",
+          "domain": 3
+        },
+        {
+          "acronym": "SAE",
+          "full_name": "Simultaneous Authentication of Equals",
+          "description": "Método auth de WPA3 Personal. Reemplaza PSK. Resistente a diccionario offline",
+          "domain": 1
+        },
+        {
+          "acronym": "Salt",
+          "full_name": "Valor aleatorio para hashing",
+          "description": "Se añade al password ANTES de hashear → derrota rainbow tables",
+          "domain": 1
+        },
+        {
+          "acronym": "SAML",
+          "full_name": "Security Assertion Markup Language",
+          "description": "XML. SSO empresarial. IdP genera assertions → SP las consume",
+          "domain": 1
+        },
+        {
+          "acronym": "SAN",
+          "full_name": "Subject Alternative Name",
+          "description": "Certificado válido para múltiples dominios diferentes. Más flexible que wildcard",
+          "domain": 1
+        },
+        {
+          "acronym": "SASE",
+          "full_name": "Secure Access Service Edge",
+          "description": "SD-WAN + seguridad en cloud (CASB, SWG, ZTNA, FWaaS). Trabajo remoto moderno",
+          "domain": 3
+        },
+        {
+          "acronym": "SAST",
+          "full_name": "Static Application Security Testing",
+          "description": "Analiza código fuente sin ejecutar. En CI/CD pipeline. Encuentra bugs antes de compilar",
+          "domain": 4
+        },
+        {
+          "acronym": "SBOM",
+          "full_name": "Software Bill of Materials",
+          "description": "Lista componentes software y versiones → detecta dependencias vulnerables (Log4Shell)",
+          "domain": 4
+        },
+        {
+          "acronym": "SCAP",
+          "full_name": "Security Content Automation Protocol",
+          "description": "Framework NIST para automatizar verificación de cumplimiento",
+          "domain": 2
+        },
+        {
+          "acronym": "SCCM",
+          "full_name": "System Center Configuration Manager",
+          "description": "Microsoft. Gestión de configuración, parches, despliegue de software y compliance de endpoints a escala",
+          "domain": 4
+        },
+        {
+          "acronym": "SD-WAN",
+          "full_name": "Software-Defined WAN",
+          "description": "WAN gestionada por software. Más barato que MPLS. Usa internet con cifrado",
+          "domain": 3
+        },
+        {
+          "acronym": "SDLC",
+          "full_name": "Software Development Life Cycle",
+          "description": "Integrar seguridad en cada fase: diseño, código, pruebas, despliegue",
+          "domain": 4
+        },
+        {
+          "acronym": "SDN",
+          "full_name": "Software-Defined Networking",
+          "description": "Red gestionada por software. Separa plano de control del de datos. Centralizado",
+          "domain": 3
+        },
+        {
+          "acronym": "Secure Enclave",
+          "full_name": "Enclave seguro",
+          "description": "Entorno hardware/software aislado para datos sensibles y operaciones criptográficas",
+          "domain": 1
+        },
+        {
+          "acronym": "Security Awareness",
+          "full_name": "Concienciación de seguridad",
+          "description": "Formación obligatoria para TODOS. Anual mínimo. Incluye directivos",
+          "domain": 5
+        },
+        {
+          "acronym": "SED",
+          "full_name": "Self-Encrypting Drive",
+          "description": "Disco con cifrado a nivel hardware integrado",
+          "domain": 1
+        },
+        {
+          "acronym": "SEH",
+          "full_name": "Structured Exception Handling",
+          "description": "Feature de Windows para manejar excepciones y errores en software",
+          "domain": 1
+        },
+        {
+          "acronym": "SELinux",
+          "full_name": "Security-Enhanced Linux",
+          "description": "Implementa MAC en Linux. Modos: Enforcing, Permissive, Disabled",
+          "domain": 3
+        },
+        {
+          "acronym": "Separation of Duties",
+          "full_name": "Separación de funciones",
+          "description": "Nadie controla un proceso entero. Previene fraude interno",
+          "domain": 5
+        },
+        {
+          "acronym": "Serverless",
+          "full_name": "FaaS / Sin servidor",
+          "description": "Proveedor gestiona infra. Riesgo: permisos excesivos, injection en event data",
+          "domain": 4
+        },
+        {
+          "acronym": "Service Mesh",
+          "full_name": "Malla de servicios",
+          "description": "mTLS automático entre microservicios, políticas de acceso, observabilidad. Ej: Istio",
+          "domain": 3
+        },
+        {
+          "acronym": "Session Hijacking",
+          "full_name": "Secuestro de sesión",
+          "description": "Robar session ID para acceder como usuario legítimo. HTTPS previene",
+          "domain": 2
+        },
+        {
+          "acronym": "SFTP",
+          "full_name": "SSH File Transfer Protocol",
+          "description": "Transferencia segura sobre SSH, puerto 22. Distinto de FTPS (SSL/TLS, 990)",
+          "domain": 1
+        },
+        {
+          "acronym": "SHA",
+          "full_name": "Secure Hash Algorithm",
+          "description": "Familia de hashes: SHA-1 ❌ (obsoleto) · SHA-256/SHA-3 ✅ (usar siempre)",
+          "domain": 1
+        },
+        {
+          "acronym": "SHTTP",
+          "full_name": "Secure HTTP",
+          "description": "Protocolo obsoleto para transferencia segura web. Reemplazado por HTTPS",
+          "domain": 1
+        },
+        {
+          "acronym": "Sideloading",
+          "full_name": "Carga lateral",
+          "description": "Instalar apps fuera de tienda oficial. Riesgo de malware",
+          "domain": 2
+        },
+        {
+          "acronym": "SIEM",
+          "full_name": "Security Information and Event Management",
+          "description": "Centraliza logs + correlaciona eventos + genera alertas. Detecta patrones complejos",
+          "domain": 3
+        },
+        {
+          "acronym": "SLA",
+          "full_name": "Service Level Agreement",
+          "description": "Niveles de servicio garantizados: uptime, RTO, soporte. Legal y vinculante",
+          "domain": 5
+        },
+        {
+          "acronym": "SLE",
+          "full_name": "Single Loss Expectancy",
+          "description": "Pérdida por UN incidente. SLE = Valor activo × Factor de exposición",
+          "domain": 5
+        },
+        {
+          "acronym": "Smishing",
+          "full_name": "SMS Phishing",
+          "description": "Phishing por mensajes de texto / SMS",
+          "domain": 2
+        },
+        {
+          "acronym": "SMTPS",
+          "full_name": "SMTP Secure",
+          "description": "SMTP sobre TLS. Puerto 465 (implícito) o 587 (STARTTLS)",
+          "domain": 1
+        },
+        {
+          "acronym": "Snapshot",
+          "full_name": "Instantánea",
+          "description": "Representación del estado de una VM en un momento dado. Para backup/rollback",
+          "domain": 3
+        },
+        {
+          "acronym": "SOAR",
+          "full_name": "Security Orchestration, Automation and Response",
+          "description": "Automatiza respuesta a incidentes con playbooks predefinidos",
+          "domain": 3
+        },
+        {
+          "acronym": "SOC 2",
+          "full_name": "System and Organization Controls",
+          "description": "Type I: diseño (momento) · Type II: efectividad durante 6-12 meses (más riguroso)",
+          "domain": 5
+        },
+        {
+          "acronym": "SolarWinds",
+          "full_name": "Ataque supply chain 2020",
+          "description": "Actualización maliciosa firmada del software Orion. Supply chain attack que afectó a 18,000 organizaciones",
+          "domain": 2
+        },
+        {
+          "acronym": "SOW",
+          "full_name": "Statement of Work",
+          "description": "Documento que describe el alcance específico de un proyecto concreto",
+          "domain": 1
+        },
+        {
+          "acronym": "SPAN",
+          "full_name": "Port Mirroring",
+          "description": "Copia software en switch. Puede perder paquetes bajo carga. TAP es más fiable",
+          "domain": 4
+        },
+        {
+          "acronym": "Spear Phishing",
+          "full_name": "Phishing dirigido",
+          "description": "Dirigido a persona/empresa específica. Más investigado y convincente",
+          "domain": 2
+        },
+        {
+          "acronym": "SPF",
+          "full_name": "Sender Policy Framework",
+          "description": "DNS TXT que lista IPs autorizadas para enviar email del dominio",
+          "domain": 1
+        },
+        {
+          "acronym": "Split Tunnel",
+          "full_name": "Túnel dividido",
+          "description": "Solo tráfico corp va por VPN, internet directo. Riesgo: bypass de controles",
+          "domain": 3
+        },
+        {
+          "acronym": "SQLi",
+          "full_name": "SQL Injection",
+          "description": "Inyectar SQL en campos de entrada. Prevención: prepared statements, input validation",
+          "domain": 2
+        },
+        {
+          "acronym": "SRTP",
+          "full_name": "Secure Real-time Transport Protocol",
+          "description": "Cifrado para audio/video en tiempo real sobre IP (VoIP seguro)",
+          "domain": 1
+        },
+        {
+          "acronym": "SSID",
+          "full_name": "Service Set Identifier",
+          "description": "Nombre de la red WiFi. Ocultarlo NO es seguridad (se descubre con sniffers)",
+          "domain": 1
+        },
+        {
+          "acronym": "STARTTLS",
+          "full_name": "Start TLS",
+          "description": "Comando que upgradea conexión no cifrada a TLS. Vulnerable a downgrade",
+          "domain": 1
+        },
+        {
+          "acronym": "STIX",
+          "full_name": "Structured Threat Intelligence Expression",
+          "description": "Formato JSON estándar para compartir threat intelligence",
+          "domain": 2
+        },
+        {
+          "acronym": "Tabletop",
+          "full_name": "Tabletop Exercise",
+          "description": "Simulacro verbal/documental. Sin sistemas reales. Evalúa plan de respuesta. Económico",
+          "domain": 5
+        },
+        {
+          "acronym": "Tailgating",
+          "full_name": "Acceso no autorizado por proximidad",
+          "description": "Entrar detrás de persona autorizada SIN su conocimiento. Mantrap lo previene",
+          "domain": 3
+        },
+        {
+          "acronym": "TAXII",
+          "full_name": "Trusted Automated Exchange of Intelligence Information",
+          "description": "API/protocolo para transportar STIX entre organizaciones",
+          "domain": 2
+        },
+        {
+          "acronym": "tcpdump",
+          "full_name": "Captura de paquetes CLI",
+          "description": "Herramienta CLI para capturar tráfico de red (como Wireshark pero en terminal). Captura contenido completo (PCAP)",
+          "domain": 4
+        },
+        {
+          "acronym": "Technical Debt",
+          "full_name": "Deuda técnica",
+          "description": "Coste de decisiones a corto plazo que generan problemas a largo plazo",
+          "domain": 4
+        },
+        {
+          "acronym": "TEMPEST",
+          "full_name": "Protección contra emanaciones",
+          "description": "Estándar gobierno para proteger contra escucha de emisiones electromagnéticas",
+          "domain": 3
+        },
+        {
+          "acronym": "TKIP",
+          "full_name": "Temporal Key Integrity Protocol",
+          "description": "Cifrado WPA (mejora de WEP). Deprecated → usar CCMP/AES (WPA2+)",
+          "domain": 1
+        },
+        {
+          "acronym": "TLS 1.3",
+          "full_name": "Transport Layer Security",
+          "description": "Elimina MD5/RC4/DES · Handshake 1-RTT · PFS obligatorio · Sin renegociación insegura",
+          "domain": 1
+        },
+        {
+          "acronym": "TOC/TOU",
+          "full_name": "Time of Check / Time of Use",
+          "description": "Race condition: valor cambia entre cuando se comprueba y cuando se usa",
+          "domain": 2
+        },
+        {
+          "acronym": "Tokenización",
+          "full_name": "Tokenization",
+          "description": "Reemplaza dato sensible por token sin relación matemática. Usado en pagos",
+          "domain": 1
+        },
+        {
+          "acronym": "TPM",
+          "full_name": "Trusted Platform Module",
+          "description": "Chip en placa base: BitLocker, Secure Boot, generación números aleatorios",
+          "domain": 1
+        },
+        {
+          "acronym": "Tripwire",
+          "full_name": "File Integrity Monitoring",
+          "description": "Herramienta FIM comercial. Verifica hashes de archivos para detectar cambios no autorizados (rootkits, tampering)",
+          "domain": 4
+        },
+        {
+          "acronym": "Trojan",
+          "full_name": "Troyano",
+          "description": "Se disfraza de software legítimo. Abre backdoor para el atacante",
+          "domain": 2
+        },
+        {
+          "acronym": "Typosquatting",
+          "full_name": "Secuestro de URL",
+          "description": "Registrar dominio con error tipográfico (gooogle.com) para capturar tráfico",
+          "domain": 2
+        },
+        {
+          "acronym": "UEM",
+          "full_name": "Unified Endpoint Management",
+          "description": "Gestión unificada: móviles + PCs + IoT + wearables. Evolución de MDM",
+          "domain": 5
+        },
+        {
+          "acronym": "UPS",
+          "full_name": "Uninterruptible Power Supply",
+          "description": "Alimentación de emergencia temporal ante corte eléctrico",
+          "domain": 3
+        },
+        {
+          "acronym": "UTM",
+          "full_name": "Unified Threat Management",
+          "description": "Todo en uno: firewall + IPS + AV + VPN + filtro web. Más simple que NGFW",
+          "domain": 3
+        },
+        {
+          "acronym": "VirusTotal",
+          "full_name": "Análisis de malware online",
+          "description": "Servicio web para buscar hashes de archivos contra múltiples motores AV. Análisis estático de IOCs",
+          "domain": 4
+        },
+        {
+          "acronym": "Vishing",
+          "full_name": "Voice Phishing",
+          "description": "Phishing por voz/llamada. Suplantan bancos, soporte técnico",
+          "domain": 1
+        },
+        {
+          "acronym": "VLAN",
+          "full_name": "Virtual Local Area Network",
+          "description": "Segmentación lógica dentro del mismo switch. Requiere router entre VLANs",
+          "domain": 3
+        },
+        {
+          "acronym": "VM Escape",
+          "full_name": "Escape de máquina virtual",
+          "description": "Salir de una VM para acceder a otras VMs/hipervisor. Crítico en cloud",
+          "domain": 2
+        },
+        {
+          "acronym": "Volatility",
+          "full_name": "Análisis de memoria",
+          "description": "Framework forense para volcados de RAM. Extrae procesos, conexiones, malware",
+          "domain": 4
+        },
+        {
+          "acronym": "VPN",
+          "full_name": "Virtual Private Network",
+          "description": "Túnel cifrado sobre internet. Site-to-site o Remote access (client-to-site)",
+          "domain": 3
+        },
+        {
+          "acronym": "Vuln Scanning",
+          "full_name": "Escaneo de vulnerabilidades",
+          "description": "Automático. Identifica CVEs. NO explota. Menos intrusivo que pentest",
+          "domain": 4
+        },
+        {
+          "acronym": "WAF",
+          "full_name": "Web Application Firewall",
+          "description": "Protege apps web: SQLi, XSS, CSRF. Capa 7. Específico para HTTP/HTTPS",
+          "domain": 3
+        },
+        {
+          "acronym": "War Driving",
+          "full_name": "Conducción de guerra",
+          "description": "Buscar redes WiFi vulnerables desplazándose en vehículo con antena",
+          "domain": 2
+        },
+        {
+          "acronym": "Warm Site",
+          "full_name": "Sitio cálido",
+          "description": "Infraestructura parcialmente preparada. Horas-días activar. Equilibrio coste/tiempo",
+          "domain": 3
+        },
+        {
+          "acronym": "Whaling",
+          "full_name": "Phishing a ejecutivos",
+          "description": "Spear phishing dirigido a C-level (CEO, CFO, CTO)",
+          "domain": 2
+        },
+        {
+          "acronym": "WIDS",
+          "full_name": "Wireless Intrusion Detection System",
+          "description": "Monitoriza WLANs para acceso no autorizado y amenazas inalámbricas",
+          "domain": 3
+        },
+        {
+          "acronym": "Wildcard",
+          "full_name": "Wildcard Certificate",
+          "description": "Certificado para *.dominio.com (subdominios, NO sub-subdominios)",
+          "domain": 1
+        },
+        {
+          "acronym": "Wireshark",
+          "full_name": "Analizador de paquetes",
+          "description": "Inspecciona tráfico de red en tiempo real o de archivo PCAP",
+          "domain": 4
+        },
+        {
+          "acronym": "Worm",
+          "full_name": "Gusano",
+          "description": "Se auto-replica SIN interacción humana por la red. WannaCry = Worm+Ransomware",
+          "domain": 2
+        },
+        {
+          "acronym": "WPA2/WPA3",
+          "full_name": "Wi-Fi Protected Access",
+          "description": "WPA2: AES-CCMP · WPA3: SAE. Enterprise: 802.1X + RADIUS",
+          "domain": 1
+        },
+        {
+          "acronym": "Write Blocker",
+          "full_name": "Bloqueador de escritura",
+          "description": "Hardware/software que impide escribir en disco original durante forense. OBLIGATORIO",
+          "domain": 4
+        },
+        {
+          "acronym": "WSUS",
+          "full_name": "Windows Server Update Services",
+          "description": "Gestiona parches y actualizaciones de Windows de forma centralizada en la empresa",
+          "domain": 4
+        },
+        {
+          "acronym": "X.509",
+          "full_name": "Certificado Digital",
+          "description": "Estándar de certificado: clave pública + identidad + firma de CA",
+          "domain": 1
+        },
+        {
+          "acronym": "XDR",
+          "full_name": "Extended Detection and Response",
+          "description": "EDR + red + cloud + email. Correlación amplia, respuesta unificada",
+          "domain": 3
+        },
+        {
+          "acronym": "XSS",
+          "full_name": "Cross-Site Scripting",
+          "description": "Inyectar JS en web. Reflected (URL,1user) · Stored (servidor,todos)",
+          "domain": 2
+        },
+        {
+          "acronym": "XXE",
+          "full_name": "XML External Entity Injection",
+          "description": "Inyectar entidades XML que acceden a archivos del servidor. Deshabilitar entidades externas",
+          "domain": 2
+        },
+        {
+          "acronym": "Zero Trust",
+          "full_name": "Confianza cero",
+          "description": "Nunca confiar, siempre verificar. PDP decide → PEP aplica. Identidad adaptativa",
+          "domain": 1
+        },
+        {
+          "acronym": "Zero-Day",
+          "full_name": "Día cero",
+          "description": "Vulnerabilidad desconocida para fabricante. Sin parche. Solo mitigación",
+          "domain": 2
+        }
+      ],
+      "total_terms": 386
+    }
+  ]
+}

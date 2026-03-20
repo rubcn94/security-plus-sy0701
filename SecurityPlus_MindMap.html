@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security+ SY0-701 — Mapa Mental</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0f18;color:#e4e6ee;font-family:'IBM Plex Sans',sans-serif;overflow:hidden;height:100vh;width:100vw}
+
+#canvas{width:100%;height:100%;display:block}
+
+/* Controls */
+#controls{position:fixed;top:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(20,23,36,0.95);border:1px solid #2e3344;border-radius:12px;padding:8px 14px;z-index:100;backdrop-filter:blur(8px)}
+#controls h1{font-size:13px;font-weight:700;color:#6c8aff;white-space:nowrap}
+#search{background:#1a1d27;border:1px solid #2e3344;color:#e4e6ee;padding:5px 12px;border-radius:6px;font-family:inherit;font-size:12px;width:180px;outline:none}
+#search:focus{border-color:#6c8aff}
+#search::placeholder{color:#686d82}
+.ctrl-btn{background:#1a1d27;border:1px solid #2e3344;color:#9ca0b0;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.ctrl-btn:hover{background:#242836;color:#e4e6ee;border-color:#3d4259}
+
+/* Legend */
+#legend{position:fixed;bottom:12px;left:12px;background:rgba(20,23,36,0.95);border:1px solid #2e3344;border-radius:10px;padding:10px 14px;z-index:100;backdrop-filter:blur(8px)}
+#legend h3{font-size:11px;color:#686d82;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.leg-item{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:11px;color:#9ca0b0}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Tooltip */
+#tooltip{position:fixed;pointer-events:none;background:rgba(20,23,36,0.97);border:1px solid #3d4259;border-radius:10px;padding:12px 14px;max-width:290px;z-index:200;display:none;backdrop-filter:blur(8px);transition:border-color .2s}
+#tooltip.pinned{pointer-events:auto;border-color:#6c8aff;box-shadow:0 0 0 1px rgba(108,138,255,.25),0 8px 24px rgba(0,0,0,.5)}
+#tooltip .tt-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:3px}
+#tooltip .tt-term{font-size:13px;font-weight:700;color:#e4e6ee;flex:1}
+#tooltip .tt-pin-badge{font-size:9px;color:#6c8aff;background:rgba(108,138,255,.15);border:1px solid rgba(108,138,255,.3);border-radius:4px;padding:1px 6px;white-space:nowrap;margin-top:1px;display:none}
+#tooltip.pinned .tt-pin-badge{display:inline-block}
+#tooltip .tt-close{background:none;border:none;color:#686d82;font-size:16px;line-height:1;cursor:pointer;padding:0 0 0 4px;display:none;flex-shrink:0;transition:color .15s}
+#tooltip.pinned .tt-close{display:block}
+#tooltip .tt-close:hover{color:#e4e6ee}
+#tooltip .tt-full{font-size:11px;color:#6c8aff;margin-bottom:6px}
+#tooltip .tt-def{font-size:11px;color:#9ca0b0;line-height:1.6}
+#tooltip .tt-domain{font-size:10px;margin-top:6px;padding:2px 8px;border-radius:4px;display:inline-block}
+
+/* Info bar */
+#info{position:fixed;bottom:12px;right:12px;background:rgba(20,23,36,0.95);border:1px solid #2e3344;border-radius:10px;padding:8px 12px;font-size:11px;color:#686d82;z-index:100;text-align:right;line-height:1.7}
+#info b{color:#9ca0b0}
+
+.node circle{stroke-width:1.5;cursor:pointer;transition:filter .15s}
+.node circle:hover{filter:brightness(1.3)}
+.node text{font-family:'IBM Plex Sans',sans-serif;pointer-events:none;user-select:none}
+.link{fill:none;stroke-opacity:0.35}
+</style>
+</head>
+<body>
+<div id="controls">
+  <h1>🔐 Security+ SY0-701</h1>
+  <input id="search" placeholder="Buscar concepto..." oninput="doSearch(this.value)">
+  <button class="ctrl-btn" onclick="resetZoom()">⌂ Reset</button>
+  <button class="ctrl-btn" onclick="expandAll()">+ Expandir</button>
+  <button class="ctrl-btn" onclick="collapseAll()">− Colapsar</button>
+</div>
+
+<svg id="canvas"></svg>
+
+<div id="legend">
+  <h3>Dominios</h3>
+  <div class="leg-item"><div class="leg-dot" style="background:#818cf8"></div>D1 · General Security Concepts (12%)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#f87171"></div>D2 · Threats, Vulnerabilities & Mitigations (22%)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#34d399"></div>D3 · Security Architecture (18%)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#fbbf24"></div>D4 · Security Operations (28%)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#a78bfa"></div>D5 · Security Program Management (20%)</div>
+</div>
+
+<div id="tooltip">
+  <div class="tt-header">
+    <div class="tt-term" id="tt-term"></div>
+    <span class="tt-pin-badge">📌 fijado</span>
+    <button class="tt-close" id="tt-close">×</button>
+  </div>
+  <div class="tt-full" id="tt-full"></div>
+  <div class="tt-def" id="tt-def"></div>
+  <div class="tt-domain" id="tt-domain"></div>
+</div>
+
+<div id="info">
+  <b>Scroll</b> para zoom &nbsp;·&nbsp; <b>Drag</b> para mover<br>
+  <b>Click</b> en nodo para expandir/colapsar<br>
+  <b>Click</b> en término para fijar definición &nbsp;·&nbsp; <b>Hover</b> para ver
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA: Hierarchy for the mind map
+// ═══════════════════════════════════════════════════════
+
+const DOMAIN_COLORS = {
+  root: '#4b5563',
+  1: '#818cf8', 2: '#f87171', 3: '#34d399', 4: '#fbbf24', 5: '#a78bfa'
+};
+
+const DOMAIN_COLORS_DIM = {
+  1: 'rgba(129,140,248,0.15)', 2: 'rgba(248,113,113,0.15)',
+  3: 'rgba(52,211,153,0.15)',  4: 'rgba(251,191,36,0.15)', 5: 'rgba(167,139,250,0.15)'
+};
+
+// Glossary terms (extracted from CheatSheet) organized by subcategory
+const GLOSSARY = {
+  // D1 ────────────────────────────────────────────────────────────────
+  "Criptografía Simétrica": [
+    {a:"AES",f:"Advanced Encryption Standard",d:"Estándar de cifrado simétrico. Bloques de 128 bits. Claves: 128/192/256 bits. Sustituyó a DES/3DES. Usado en TLS, BitLocker, WPA2.",n:1},
+    {a:"ChaCha20",f:"ChaCha20",d:"Cifrado de flujo simétrico. Alternativa a AES en dispositivos sin hardware AES. Usado en TLS 1.3 y WireGuard. Muy eficiente en software.",n:1},
+    {a:"3DES",f:"Triple DES",d:"Cifrado simétrico que aplica DES 3 veces. Obsoleto → usar AES",n:1},
+    {a:"Symmetric key",f:"Clave Simétrica",d:"Una sola clave para cifrar y descifrar. Rápido. Problema: distribución segura de la clave.",n:1},
+  ],
+  "Criptografía Asimétrica": [
+    {a:"RSA",f:"Rivest–Shamir–Adleman",d:"Criptografía asimétrica basada en factorización. Claves 2048-4096 bits. Vulnerable a computación cuántica (Shor).",n:1},
+    {a:"ECC",f:"Elliptic Curve Cryptography",d:"Criptografía de curva elíptica. ECC-256 ≈ RSA-3072. Más eficiente para IoT/móvil. También vulnerable a cuántica.",n:1},
+    {a:"Diffie-Hellman",f:"Diffie-Hellman Key Exchange",d:"Intercambio de claves sobre canal inseguro. Sin PFS: DHE/ECDHE (efímero). Base del Forward Secrecy en TLS.",n:1},
+    {a:"DSA",f:"Digital Signature Algorithm",d:"Algoritmo de firma digital basado en DLP. Menos usado que RSA/ECDSA. Requiere buen generador de números aleatorios.",n:1},
+  ],
+  "Hashing": [
+    {a:"SHA-256",f:"Secure Hash Algorithm 256-bit",d:"Hash criptográfico de 256 bits. Parte de SHA-2. Estándar actual para integridad de archivos y certificados digitales.",n:1},
+    {a:"HMAC",f:"Hash-based Message Authentication Code",d:"Hash con clave simétrica compartida. Verifica integridad + autenticación. Solo quien tiene la clave puede verificar. No da no-repudio.",n:1},
+    {a:"bcrypt",f:"bcrypt",d:"Función de hashing para contraseñas. Incluye salt automático y factor de coste (slow hashing). Resistente a ataques de fuerza bruta.",n:1},
+    {a:"MD5",f:"MD5 Message Digest",d:"Hash de 128 bits. Roto criptográficamente (colisiones). Solo para checksums no de seguridad (ej: verificación de descarga).",n:1},
+  ],
+  "PKI & Certificados": [
+    {a:"CA",f:"Certificate Authority",d:"Entidad que firma y emite certificados digitales X.509. Root CA → Intermediate CA → End-entity cert. Trust anchor.",n:1},
+    {a:"X.509",f:"X.509 Certificate Standard",d:"Estándar para certificados de clave pública. Define estructura: sujeto, emisor, clave pública, validez, extensiones, firma CA.",n:1},
+    {a:"CRL",f:"Certificate Revocation List",d:"Lista de certificados revocados publicada por la CA. Descargada periódicamente. Menos eficiente que OCSP para tiempo real.",n:1},
+    {a:"OCSP",f:"Online Certificate Status Protocol",d:"Verifica el estado de un certificado en tiempo real. OCSP Stapling: el servidor incluye la respuesta en el handshake TLS.",n:1},
+    {a:"Certificate Transparency",f:"Certificate Transparency Logs",d:"Logs públicos e inmutables donde se registran todos los certificados emitidos por CAs. Chrome exige CT proof. Detecta certificados fraudulentos.",n:1},
+    {a:"HSM",f:"Hardware Security Module",d:"Módulo físico anti-tamper. Las claves nunca salen del HSM. Operaciones criptográficas dentro del chip. Estándar en CAs, bancos, pasarelas de pago.",n:1},
+    {a:"TPM",f:"Trusted Platform Module",d:"Chip en la placa base que almacena claves y mide el estado del sistema. Vinculado a un dispositivo. Base de Secure Boot y BitLocker.",n:1},
+  ],
+  "Autenticación": [
+    {a:"MFA",f:"Multi-Factor Authentication",d:"Requiere 2+ factores: algo que sabes/tienes/eres. Mitiga phishing, credential stuffing, Pass-the-Hash.",n:1},
+    {a:"TOTP",f:"Time-Based One-Time Password",d:"OTP generado con TOTP (RFC 6238). Cambia cada 30s. Basado en HMAC-SHA1 con timestamp. Google Authenticator, Authy.",n:1},
+    {a:"FAR",f:"False Acceptance Rate",d:"Tasa de falsa aceptación en biometría: % de impostores aceptados como legítimos. Bajo FAR = más seguro. Inverso al FRR.",n:1},
+    {a:"FRR",f:"False Rejection Rate",d:"Tasa de falso rechazo en biometría: % de usuarios legítimos rechazados. Alto FRR = peor usabilidad. CER es el punto de equilibrio.",n:1},
+    {a:"Kerberos",f:"Kerberos",d:"Protocolo de autenticación de red de Microsoft AD. KDC emite tickets TGT/TGS. Puerto 88. Vulnerable a Kerberoasting y Golden/Silver Ticket.",n:1},
+    {a:"SAML",f:"Security Assertion Markup Language",d:"Estándar XML para federación de identidad. Usado en SSO empresarial legacy. IdP emite assertions al SP. Alternativa moderna: OIDC.",n:1},
+    {a:"OIDC",f:"OpenID Connect",d:"Capa de autenticación sobre OAuth 2.0. Usa tokens JWT. Para APIs REST y apps modernas. Azure AD, Google lo soportan nativamente.",n:1},
+  ],
+  "Control de Acceso": [
+    {a:"RBAC",f:"Role-Based Access Control",d:"Control de acceso basado en roles organizacionales. Acceso al rol, no al usuario. Menos granular que ABAC para condiciones contextuales.",n:1},
+    {a:"ABAC",f:"Attribute-Based Access Control",d:"Control de acceso basado en atributos dinámicos (IP, hora, dispositivo, clasificación). Permite políticas condicionales complejas.",n:1},
+    {a:"MAC",f:"Mandatory Access Control",d:"El SO asigna etiquetas de clasificación (Top Secret, Secret, etc.). El usuario no puede cambiar los permisos. Usado en entornos militares/gubernamentales.",n:1},
+    {a:"Zero Trust",f:"Zero Trust Architecture",d:"Nunca confiar, siempre verificar. No hay perímetro de confianza. Verifica identidad, dispositivo, contexto en cada acceso. NIST SP 800-207.",n:1},
+    {a:"PDP",f:"Policy Decision Point",d:"Componente Zero Trust que evalúa solicitudes de acceso contra políticas. Decide permitir/denegar basándose en atributos del sujeto, recurso y entorno.",n:1},
+    {a:"PEP",f:"Policy Enforcement Point",d:"Componente Zero Trust que implementa la decisión del PDP. Actúa como guardián que controla el acceso efectivo al recurso protegido.",n:1},
+    {a:"RBAC",f:"Role-Based Access Control",d:"Control de acceso basado en roles. Acceso vinculado al rol, no al usuario individual. Más simple que ABAC.",n:1},
+    {a:"M-of-N",f:"M-of-N Key Splitting (Shamir Secret Sharing)",d:"Divide una clave en N partes. Se necesitan M para reconstruirla. Ningún individuo solo puede acceder. Principio de múltiples custodios.",n:1},
+  ],
+  // D2 ────────────────────────────────────────────────────────────────
+  "Tipos de Malware": [
+    {a:"Ransomware",f:"Ransomware",d:"Cifra archivos y exige rescate. Variantes: crypto-ransomware, locker ransomware. Mitigación: backups offsite, EDR, segmentación.",n:2},
+    {a:"Trojan",f:"Trojan Horse",d:"Malware disfrazado de software legítimo. No se replica solo. Abre backdoor o descarga payloads adicionales.",n:2},
+    {a:"Rootkit",f:"Rootkit",d:"Malware que oculta su presencia modificando el OS. Tipos: kernel-level, user-level, UEFI/firmware. Difícil detección y eliminación.",n:2},
+    {a:"UEFI",f:"Unified Extensible Firmware Interface",d:"Firmware moderno sucesor del BIOS. Los UEFI rootkits persisten en el chip de firmware y sobreviven a reinstalaciones del SO y formateos de disco.",n:2},
+    {a:"Fileless",f:"Fileless Malware",d:"Opera en RAM sin escribir ejecutables en disco. Usa LOLBins (PowerShell, WMI, certutil). Evade AV basado en firmas. Detectar con EDR+AMSI.",n:2},
+    {a:"LOLBins",f:"Living off the Land Binaries",d:"Herramientas legítimas del SO usadas por malware. Ejemplos: PowerShell, WMI, mshta, certutil, regsvr32. Evitan detección por firmas.",n:2},
+    {a:"Botnet",f:"Botnet",d:"Red de dispositivos infectados controlados por C2. Usado para DDoS, spam, credential stuffing. Comunicación: IRC, HTTP, P2P, fast-flux DNS.",n:2},
+  ],
+  "Ataques Web": [
+    {a:"SQLi",f:"SQL Injection",d:"Inyección de código SQL malicioso en queries. Impacto: bypass auth, exfiltración de datos, borrado. Mitigación: prepared statements + input validation.",n:2},
+    {a:"XSS",f:"Cross-Site Scripting",d:"Inyección de scripts en páginas web. Reflected (no persistente), Stored (persistente), DOM-based. Roba cookies/sessions.",n:2},
+    {a:"CSRF",f:"Cross-Site Request Forgery",d:"Fuerza al navegador autenticado a enviar solicitudes no autorizadas. Mitigación: CSRF tokens, SameSite cookies, cabecera Origin.",n:2},
+    {a:"SSRF",f:"Server-Side Request Forgery",d:"Fuerza al servidor a hacer peticiones internas. Puede acceder a metadata de cloud (169.254.169.254), servicios internos, IMDS.",n:2},
+    {a:"LFI",f:"Local File Inclusion",d:"Vulnerabilidad web que permite incluir archivos del servidor local en la respuesta HTTP. Puede exponer /etc/passwd, logs u otros archivos sensibles.",n:2},
+    {a:"TOCTOU",f:"Time-of-Check to Time-of-Use",d:"Condición de carrera entre la verificación y el uso de un recurso. El atacante sustituye el recurso en la ventana temporal. Mitigación: operaciones atómicas.",n:2},
+    {a:"IDOR",f:"Insecure Direct Object Reference",d:"Acceso a recursos de otros usuarios cambiando IDs en la URL/body. Tipo de BOLA. Mitigación: autorización en servidor para cada acceso.",n:2},
+  ],
+  "Ingeniería Social": [
+    {a:"Phishing",f:"Phishing",d:"Email fraudulento que suplanta identidad. Objetivo: credenciales, malware, datos. Defensa: MFA, filtros email, formación, DMARC/DKIM/SPF.",n:2},
+    {a:"Vishing",f:"Voice Phishing",d:"Phishing telefónico. Atacante suplanta soporte técnico, banco o autoridad. Técnica de pretexting por canal de voz.",n:2},
+    {a:"Smishing",f:"SMS Phishing",d:"Phishing via SMS. Enlace malicioso o número de teléfono de contacto falso. Muy efectivo por menor conciencia del usuario.",n:2},
+    {a:"Pretexting",f:"Pretexting",d:"Crear una historia o identidad ficticia para manipular a la víctima. Puede ocurrir por cualquier canal. El pretexto justifica la solicitud.",n:2},
+    {a:"Watering hole",f:"Watering Hole Attack",d:"Comprometer un sitio web visitado por el objetivo. Drive-by download cuando la víctima visita el sitio comprometido.",n:2},
+    {a:"Homograph attack",f:"IDN Homograph Attack",d:"Usa caracteres Unicode visualmente idénticos a ASCII en dominios. Los navegadores muestran la versión punycode (xn--) para alertar.",n:2},
+  ],
+  "Técnicas Avanzadas": [
+    {a:"Pass-the-Hash",f:"Pass-the-Hash Attack",d:"Extraer el hash NTLM de la memoria (lsass.exe con Mimikatz) y usarlo directamente para autenticarse. Técnica de movimiento lateral en AD.",n:2},
+    {a:"Kerberoasting",f:"Kerberoasting",d:"Solicitar TGS para service accounts y crackear offline el hash Kerberos. Las service accounts suelen tener contraseñas antiguas y débiles.",n:2},
+    {a:"Heap spray",f:"Heap Spray Attack",d:"Llena el heap con copias del shellcode + NOP sled para aumentar la probabilidad de que un puntero corrupto apunte al payload. Usado en exploits de navegador.",n:2},
+    {a:"ROP",f:"Return-Oriented Programming",d:"Encadena 'gadgets' de código legítimo terminados en RET. Evade DEP/NX sin inyectar código externo. Muy usado en exploits modernos.",n:2},
+    {a:"Reproducible builds",f:"Reproducible Builds",d:"Proceso de compilación determinista. Mismo código → mismo binario. Permite detectar manipulaciones en pipelines CI/CD comprometidos comparando hashes.",n:2},
+    {a:"MitB",f:"Man-in-the-Browser",d:"Malware que reside dentro del navegador. Modifica el DOM o tráfico en tiempo real. Opera por encima de TLS. Evade HTTPS al actuar en el endpoint.",n:2},
+  ],
+  "Threat Intelligence": [
+    {a:"MITRE ATT&CK",f:"MITRE ATT&CK Framework",d:"Base de conocimiento de TTPs usadas por actores de amenazas reales. Organizado por tácticas (TA) y técnicas (T). Estándar en SOC y threat hunting.",n:2},
+    {a:"Pyramid of Pain",f:"Pyramid of Pain",d:"Modelo de David Bianco. Base: Hashes (trivial cambiar). Tope: TTPs (muy difícil cambiar). Guía la priorización de indicadores de compromiso.",n:2},
+    {a:"Diamond Model",f:"Diamond Model of Intrusion Analysis",d:"Marco de análisis: Adversario, Infraestructura, Capacidad, Víctima. Útil para correlacionar campañas de ataque y atribuir actores.",n:2},
+    {a:"IOC",f:"Indicator of Compromise",d:"Evidencia de actividad maliciosa: hashes, IPs, dominios, patrones de comportamiento. Compartidos via STIX/TAXII. Clasificados en la Pyramid of Pain.",n:2},
+    {a:"HUMINT",f:"Human Intelligence",d:"Inteligencia obtenida a través de fuentes humanas. En ciberseguridad: monitorización legal de foros underground. Diferente de OSINT (fuentes abiertas).",n:2},
+    {a:"SIGINT",f:"Signals Intelligence",d:"Inteligencia obtenida interceptando comunicaciones electrónicas. Requiere autorización gubernamental. Ilegal para empresas privadas.",n:2},
+  ],
+  // D3 ────────────────────────────────────────────────────────────────
+  "Firewalls & Filtrado": [
+    {a:"NGFW",f:"Next-Generation Firewall",d:"Firewall con inspección profunda de paquetes, identificación de aplicaciones, IPS integrado y feeds de threat intelligence. Ej: Palo Alto, Fortinet.",n:3},
+    {a:"WAF",f:"Web Application Firewall",d:"Filtra tráfico HTTP/S contra ataques web (OWASP Top 10). Opera en capa 7. Puede ser appliance, virtual o cloud (AWS WAF).",n:3},
+    {a:"Stateful firewall",f:"Stateful Inspection Firewall",d:"Rastrea el estado de las conexiones TCP. Más inteligente que packet filtering. Bloquea paquetes fuera del estado de conexión esperado.",n:3},
+    {a:"ACL",f:"Access Control List",d:"Lista de reglas de control de acceso. En redes: permite/deniega tráfico por IP/puerto/protocolo. También en filesystem y AD.",n:3},
+  ],
+  "IDS/IPS": [
+    {a:"IDS",f:"Intrusion Detection System",d:"Detecta pero NO bloquea. Genera alertas. HIDS (host) o NIDS (red). Basado en firmas o anomalías. Genera falsos positivos.",n:3},
+    {a:"IPS",f:"Intrusion Prevention System",d:"Detecta Y bloquea en línea. Variantes: HIPS, NIPS. Más agresivo que IDS. Riesgo de falsos positivos que bloqueen tráfico legítimo.",n:3},
+    {a:"Snort",f:"Snort IDS/IPS",d:"IDS/IPS de código abierto. Basado en reglas (firmas). Puede operar en modo sniffer, logger o inline (IPS). Muy usado en entornos académicos y pymes.",n:3},
+    {a:"Suricata",f:"Suricata IDS/IPS",d:"IDS/IPS/NSM multihilo de alto rendimiento. Compatible con reglas Snort. Soporta inspección de protocolos (HTTP, TLS, DNS) y extracción de ficheros.",n:3},
+  ],
+  "Segmentación de Red": [
+    {a:"DMZ",f:"Demilitarized Zone",d:"Red perimetral entre internet y red interna. Aloja servidores públicos (web, email, DNS). Dos firewalls: exterior e interior.",n:3},
+    {a:"VLAN",f:"Virtual Local Area Network",d:"Segmentación lógica de red a nivel L2. Aísla tráfico de broadcast. Requiere trunking entre switches y router/firewall inter-VLAN.",n:3},
+    {a:"Micro-segmentación",f:"Micro-segmentation",d:"Control de tráfico a nivel de workload individual (Este-Oeste). Implementado con SDN (VMware NSX, Calico). Reduce lateral movement.",n:3},
+    {a:"BPDU guard",f:"BPDU Guard",d:"Protege puertos de acceso STP contra ataques de BPDU spoofing. Desactiva el puerto si recibe un BPDU. Evita cambios no autorizados en la topología STP.",n:3},
+  ],
+  "Cloud Security": [
+    {a:"SASE",f:"Secure Access Service Edge",d:"Combina SD-WAN con seguridad en la nube (CASB, SWG, ZTNA, FWaaS). Inspección en el punto de presencia cloud más cercano. Elimina backhaul.",n:3},
+    {a:"CASB",f:"Cloud Access Security Broker",d:"Intermediario entre usuarios y servicios cloud. Aplica políticas DLP, visibilidad de Shadow IT, autenticación y cifrado sobre SaaS/IaaS.",n:3},
+    {a:"CSPM",f:"Cloud Security Posture Management",d:"Evalúa la configuración de seguridad en entornos cloud. Detecta misconfiguraciones (buckets S3 públicos, Security Groups abiertos).",n:3},
+    {a:"Shared responsibility",f:"Shared Responsibility Model",d:"AWS/Azure dividen seguridad entre proveedor (OF the cloud) y cliente (IN the cloud). IaaS: cliente gestiona SO/apps. SaaS: proveedor gestiona casi todo.",n:3},
+    {a:"RPKI",f:"Resource Public Key Infrastructure",d:"Infraestructura PKI para validar que un AS está autorizado a anunciar un prefijo IP. Los routers validan ROAs. Mitiga BGP hijacking.",n:3},
+    {a:"BGP hijacking",f:"BGP Hijacking",d:"Anuncio no autorizado de prefijos IP ajenos en BGP. Redirige tráfico internet hacia el AS del atacante. Mitigación: RPKI + prefix filtering.",n:3},
+  ],
+  "Protocolos Seguros": [
+    {a:"TLS 1.3",f:"Transport Layer Security 1.3",d:"PFS obligatorio (ECDHE/DHE). Handshake 1-RTT. Elimina RSA key exchange y cipher suites débiles. 0-RTT para reconexiones.",n:3},
+    {a:"IPsec",f:"IP Security Protocol",d:"Suite de protocolos para VPN. AH (autenticación) + ESP (cifrado+autenticación). Tunnel mode (oculta IPs) vs Transport mode (solo payload).",n:3},
+    {a:"DoH",f:"DNS over HTTPS",d:"Cifra las queries DNS sobre HTTPS hacia resolvers externos. Mejora privacidad pero impide que el DNS corporativo filtre dominios maliciosos.",n:3},
+    {a:"DNSSEC",f:"DNS Security Extensions",d:"Firma digitalmente las respuestas DNS. Garantiza autenticidad e integridad. NO cifra. Compatible y complementario con DoH/DoT.",n:3},
+    {a:"SSH",f:"Secure Shell",d:"Protocolo de acceso remoto seguro. Puerto 22. Autenticación por clave pública/privada. Sustituye a Telnet y rlogin (no cifrados).",n:3},
+  ],
+  "Infraestructura Segura": [
+    {a:"NAC",f:"Network Access Control",d:"Evalúa postura de seguridad del dispositivo antes de permitir acceso. Coloca dispositivos no conformes en VLAN de cuarentena. 802.1X.",n:3},
+    {a:"Honeypot",f:"Honeypot",d:"Sistema o servicio falso diseñado para atraer atacantes. Low-interaction (respuestas limitadas) vs High-interaction (sistema real). Genera inteligencia.",n:3},
+    {a:"OT/SCADA",f:"Operational Technology / SCADA",d:"Sistemas que controlan infraestructuras físicas industriales. Prioridad: Disponibilidad. Ciclos de vida 15-25 años. Protocolos heredados (Modbus, DNP3).",n:3},
+    {a:"Deception technology",f:"Deception Technology",d:"Uso de señuelos (honeypots, honeytokens, decoy data) a escala empresarial para detectar movimiento lateral y reconocimiento interno.",n:3},
+  ],
+  // D4 ────────────────────────────────────────────────────────────────
+  "Detección & Monitorización": [
+    {a:"SIEM",f:"Security Information and Event Management",d:"Agrega y correlaciona logs de múltiples fuentes. Genera alertas. Ej: Splunk, Microsoft Sentinel, IBM QRadar. Base del SOC moderno.",n:4},
+    {a:"SOAR",f:"Security Orchestration, Automation and Response",d:"Automatiza respuestas con playbooks. Orquesta herramientas de seguridad. Reduce MTTR. Ejemplo: playbook de phishing automatizado.",n:4},
+    {a:"EDR",f:"Endpoint Detection and Response",d:"Monitoriza comportamiento de endpoints en tiempo real. Detecta malware desconocido/fileless. Permite respuesta activa (aislar, matar procesos).",n:4},
+    {a:"XDR",f:"Extended Detection and Response",d:"Correlaciona telemetría de múltiples capas (endpoint, red, email, identidad, cloud). Detecta ataques multi-vector. Reduce silos de seguridad.",n:4},
+    {a:"UEBA",f:"User and Entity Behavior Analytics",d:"Analítica de comportamiento usando ML. Crea baselines individuales y detecta anomalías estadísticas sin reglas predefinidas. Detecta insiders y APT.",n:4},
+    {a:"PAM",f:"Privileged Access Management",d:"Gestiona y audita el acceso privilegiado. Genera credenciales temporales (JIT), graba sesiones de administración y aplica least privilege.",n:4},
+  ],
+  "Respuesta a Incidentes": [
+    {a:"IR phases",f:"Incident Response Phases",d:"NIST: Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned. PICERL.",n:4},
+    {a:"Containment",f:"Containment Phase",d:"Primera acción técnica ante incidente activo: aislar el sistema comprometido. Short-term (red) y long-term (reconstrucción).",n:4},
+    {a:"Eradication",f:"Eradication Phase",d:"Eliminar la causa raíz: vector de entrada, backdoors, persistencia. ANTES de restaurar desde backup para evitar reinfección.",n:4},
+    {a:"Chain of custody",f:"Chain of Custody",d:"Documentación de quién tuvo acceso a la evidencia, cuándo y qué hizo. Sin cadena de custodia la evidencia puede ser inadmisible en juicio.",n:4},
+    {a:"Order of volatility",f:"Order of Volatility",d:"RFC 3227: RAM → caché/swap → procesos activos → conexiones de red → disco → logs remotos. Recolectar primero lo más volátil.",n:4},
+  ],
+  "Forense Digital": [
+    {a:"FTK",f:"Forensic Toolkit",d:"Suite forense de AccessData. Analiza imágenes de disco, memoria RAM, artefactos de Windows. Estándar en investigaciones forenses.",n:4},
+    {a:"Volatility",f:"Volatility Framework",d:"Framework de análisis forense de memoria RAM. Extrae procesos, conexiones, módulos del kernel, claves de cifrado, credenciales en memoria.",n:4},
+    {a:"Prefetch",f:"Windows Prefetch Files",d:"Archivos .pf que registran las últimas aplicaciones ejecutadas en Windows. Fuente forense para determinar qué programas se ejecutaron.",n:4},
+    {a:"Sysmon",f:"System Monitor",d:"Herramienta de Microsoft Sysinternals. Registra: creación de procesos (Event 1), conexiones de red (Event 3), carga de módulos (Event 7).",n:4},
+  ],
+  "Threat Hunting": [
+    {a:"Hypothesis-driven",f:"Hypothesis-Driven Hunting",d:"El hunter formula una hipótesis basada en TTPs de actores conocidos y busca evidencias proactivamente en logs históricos.",n:4},
+    {a:"IOC-based",f:"IOC-Based Hunting",d:"Busca indicadores de compromiso conocidos (hashes, IPs, dominios). Más reactivo. Útil para campañas conocidas de malware.",n:4},
+    {a:"Analytics-driven",f:"Analytics-Driven Hunting",d:"Parte de anomalías estadísticas detectadas por ML/UEBA. Menos dependiente del conocimiento previo del analista.",n:4},
+    {a:"Purple Team",f:"Purple Team Exercise",d:"Colaboración Red + Blue. Red ejecuta TTPs; Blue verifica si las detecta. Objetivo: mejorar capacidades defensivas mediante ciclo de mejora continua.",n:4},
+  ],
+  "Gestión de Vulnerabilidades": [
+    {a:"CVSS",f:"Common Vulnerability Scoring System",d:"Puntuación 0-10 de gravedad de vulnerabilidades. Dimensiones: Base, Temporal, Ambiental. >7.0 = High. >9.0 = Critical.",n:4},
+    {a:"CVE",f:"Common Vulnerabilities and Exposures",d:"Identificador único para vulnerabilidades (CVE-YEAR-NUMBER). Mantenido por MITRE, financiado por CISA. Base de datos NVD.",n:4},
+    {a:"KEV",f:"Known Exploited Vulnerabilities Catalog",d:"Lista CISA de vulnerabilidades con exploit activo confirmado en el mundo real. Agencias federales USA tienen 15 días para parchear.",n:4},
+    {a:"CISA",f:"Cybersecurity and Infrastructure Security Agency",d:"Agencia federal USA que publica el catálogo KEV y guías de ciberseguridad para sectores críticos.",n:4},
+  ],
+  // D5 ────────────────────────────────────────────────────────────────
+  "Marcos de Gobierno": [
+    {a:"NIST CSF",f:"NIST Cybersecurity Framework",d:"Framework voluntario USA. Funciones: Identify, Protect, Detect, Respond, Recover. Ampliamente adoptado como base de programas de seguridad.",n:5},
+    {a:"ISO 27001",f:"ISO/IEC 27001",d:"Estándar internacional para SGSI (Sistema de Gestión de Seguridad de la Información). Certificable. Basado en ciclo PDCA. 114 controles (Annex A).",n:5},
+    {a:"COBIT",f:"Control Objectives for IT",d:"Marco de gobierno de TI de ISACA. Alinea TI con objetivos de negocio. Basado en 5 principios y 37 procesos.",n:5},
+    {a:"SOC 2",f:"SOC 2 Type II Report",d:"Auditoría de efectividad de controles durante 6-12 meses. Trust Services Criteria: Security (obligatorio) + Availability, Confidentiality, Privacy, Processing Integrity.",n:5},
+  ],
+  "Regulaciones": [
+    {a:"GDPR",f:"General Data Protection Regulation",d:"Regulación UE de protección de datos. Notificación de brecha: 72h a autoridad supervisora. Art. 25: Privacy by Design. Sanciones: 4% de la facturación global.",n:5},
+    {a:"HIPAA",f:"Health Insurance Portability and Accountability Act",d:"Regulación USA para PHI (Protected Health Information). Tres salvaguardas: Technical, Physical, Administrative.",n:5},
+    {a:"PCI DSS",f:"Payment Card Industry Data Security Standard",d:"12 requisitos para proteger datos de tarjeta de pago. CDE (Cardholder Data Environment). SAQ para merchants pequeños. QSA para auditorías.",n:5},
+    {a:"DORA",f:"Digital Operational Resilience Act",d:"Regulación UE en vigor desde enero 2025. Obliga a entidades financieras a notificar incidentes ICT graves a su supervisor (BCE/EBA/ESMA).",n:5},
+    {a:"NIS2",f:"NIS2 Directive",d:"Directiva UE de ciberseguridad para sectores esenciales e importantes (incluye financiero). Obligaciones de gestión de riesgos y notificación de incidentes.",n:5},
+  ],
+  "Gestión de Riesgos": [
+    {a:"Risk register",f:"Risk Register",d:"Inventario de riesgos identificados. Incluye: descripción, probabilidad, impacto, propietario, estado del tratamiento (mitigar/aceptar/transferir/evitar).",n:5},
+    {a:"Risk appetite",f:"Risk Appetite",d:"Declaración estratégica del consejo sobre cuánto riesgo acepta voluntariamente la organización en busca de sus objetivos. Guía inversiones en seguridad.",n:5},
+    {a:"BIA",f:"Business Impact Analysis",d:"Cuantifica el impacto económico y operativo de una interrupción. Determina MTD, impact value, RTO, RPO por proceso crítico. Input del BCP.",n:5},
+    {a:"BCP",f:"Business Continuity Plan",d:"Plan para mantener operaciones del negocio durante y después de un desastre. Más amplio que el DRP. Incluye comunicaciones, ubicaciones alternativas, personal.",n:5},
+    {a:"DRP",f:"Disaster Recovery Plan",d:"Plan de recuperación de sistemas IT. Componente del BCP. Define RTO, RPO y procedimientos de restauración de infraestructura y datos.",n:5},
+  ],
+  "Privacidad & Contratos": [
+    {a:"Privacy by Design",f:"Privacy by Design (GDPR Art. 25)",d:"Privacidad integrada desde el diseño del sistema, no como añadido posterior. Principios: proactivo, privacidad por defecto, integrado en el diseño.",n:5},
+    {a:"Data residency",f:"Data Residency",d:"Requisito de que los datos permanezcan en una geografía específica. Implementación en AWS: Regiones EU + SCPs que denieguen operaciones fuera de esas regiones.",n:5},
+    {a:"Right to audit",f:"Right to Audit Clause",d:"Cláusula contractual que permite auditar los controles de seguridad del proveedor directamente o mediante tercero. Esencial en contratos con terceros que acceden a datos sensibles.",n:5},
+    {a:"OLA",f:"Operational Level Agreement",d:"Acuerdo interno entre departamentos IT que define niveles de servicio mutuos para cumplir el SLA externo.",n:5},
+    {a:"SLA",f:"Service Level Agreement",d:"Acuerdo de nivel de servicio entre proveedor y cliente. Define disponibilidad, tiempos de respuesta y penalizaciones. Ejemplo: 99.9% uptime = 8.76h downtime/año.",n:5},
+  ],
+};
+
+// ═══════════════════════════════════════════════════════
+// BUILD HIERARCHY TREE
+// ═══════════════════════════════════════════════════════
+
+const DOMAIN_INFO = [
+  {id:1, name:"D1 · General Security Concepts", pct:"12%", color:DOMAIN_COLORS[1],
+   cats:["Criptografía Simétrica","Criptografía Asimétrica","Hashing","PKI & Certificados","Autenticación","Control de Acceso"]},
+  {id:2, name:"D2 · Threats, Vulnerabilities & Mitigations", pct:"22%", color:DOMAIN_COLORS[2],
+   cats:["Tipos de Malware","Ataques Web","Ingeniería Social","Técnicas Avanzadas","Threat Intelligence"]},
+  {id:3, name:"D3 · Security Architecture", pct:"18%", color:DOMAIN_COLORS[3],
+   cats:["Firewalls & Filtrado","IDS/IPS","Segmentación de Red","Cloud Security","Protocolos Seguros","Infraestructura Segura"]},
+  {id:4, name:"D4 · Security Operations", pct:"28%", color:DOMAIN_COLORS[4],
+   cats:["Detección & Monitorización","Respuesta a Incidentes","Forense Digital","Threat Hunting","Gestión de Vulnerabilidades"]},
+  {id:5, name:"D5 · Security Program Management", pct:"20%", color:DOMAIN_COLORS[5],
+   cats:["Marcos de Gobierno","Regulaciones","Gestión de Riesgos","Privacidad & Contratos"]},
+];
+
+function buildTree(){
+  return {
+    name:"Security+\nSY0-701",
+    type:"root",
+    children: DOMAIN_INFO.map(dom => ({
+      name: dom.name,
+      type:"domain",
+      domainId: dom.id,
+      pct: dom.pct,
+      color: dom.color,
+      children: dom.cats.map(cat => ({
+        name: cat,
+        type:"category",
+        domainId: dom.id,
+        color: dom.color,
+        children: (GLOSSARY[cat] || []).slice(0, 8).map(term => ({
+          name: term.a,
+          type:"term",
+          fullName: term.f,
+          definition: term.d,
+          domainId: term.n,
+          color: dom.color,
+        }))
+      }))
+    }))
+  };
+}
+
+// ═══════════════════════════════════════════════════════
+// D3 RADIAL TREE VISUALIZATION
+// ═══════════════════════════════════════════════════════
+
+const svg = d3.select("#canvas");
+const width = window.innerWidth, height = window.innerHeight;
+svg.attr("width", width).attr("height", height);
+
+const g = svg.append("g")
+  .attr("transform", `translate(${width/2},${height/2})`);
+
+// Zoom
+const zoom = d3.zoom()
+  .scaleExtent([0.2, 3])
+  .on("zoom", e => g.attr("transform", e.transform.translate(width/2, height/2)));
+svg.call(zoom);
+
+function resetZoom(){
+  svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+}
+
+let root;
+function render(){
+  g.selectAll("*").remove();
+
+  const treeData = buildTree();
+  root = d3.hierarchy(treeData);
+
+  // Start with domain level expanded, categories and terms collapsed
+  root.descendants().forEach(d => {
+    if(d.depth >= 2) {
+      d._children = d.children;
+      d.children = null;
+    }
+  });
+
+  update(root);
+}
+
+function update(source){
+  const RADIUS = Math.min(width, height) * 0.42;
+
+  const treeLayout = d3.cluster()
+    .size([2 * Math.PI, RADIUS])
+    .separation((a,b) => (a.parent===b.parent?1:2)/a.depth);
+
+  treeLayout(root);
+
+  // Links
+  const linkGroup = g.selectAll(".links-group").data([0]);
+  const lg = linkGroup.enter().append("g").attr("class","links-group").merge(linkGroup);
+
+  const links = lg.selectAll(".link").data(root.links(), d => d.target.data.name + d.source.data.name);
+
+  links.enter().append("path")
+    .attr("class","link")
+    .attr("stroke", d => {
+      const dom = d.target.data.domainId;
+      return dom ? DOMAIN_COLORS[dom] : '#4b5563';
+    })
+    .attr("stroke-width", d => d.target.depth === 1 ? 1.5 : d.target.depth === 2 ? 1 : 0.6)
+    .attr("d", d3.linkRadial().angle(d=>d.x).radius(d=>d.y))
+    .merge(links)
+    .transition().duration(400)
+    .attr("d", d3.linkRadial().angle(d=>d.x).radius(d=>d.y));
+
+  links.exit().remove();
+
+  // Nodes
+  const nodeGroup = g.selectAll(".nodes-group").data([0]);
+  const ng = nodeGroup.enter().append("g").attr("class","nodes-group").merge(nodeGroup);
+
+  const nodes = ng.selectAll(".node").data(root.descendants(), d => d.data.name + d.depth);
+
+  const nodeEnter = nodes.enter().append("g")
+    .attr("class","node")
+    .attr("transform", d => `rotate(${d.x*180/Math.PI-90}) translate(${d.y},0)`)
+    .style("cursor", "pointer")
+    .on("click", (e,d) => {
+      e.stopPropagation();
+      // Pin/unpin definition if node has one
+      if(d.data.fullName || d.data.definition){
+        if(pinned && pinnedKey === nodeKey(d)){
+          unpinTooltip();
+        } else {
+          pinTooltip(e, d);
+        }
+      }
+      // Expand/collapse children
+      if(d.children){ d._children=d.children; d.children=null; }
+      else if(d._children){ d.children=d._children; d._children=null; }
+      update(root);
+    })
+    .on("mouseover", (e,d) => { if(!pinned) showTooltip(e,d); })
+    .on("mousemove", (e,d) => { if(!pinned) moveTooltip(e,d); })
+    .on("mouseout",  ()    => { if(!pinned) hideTooltip(); });
+
+  nodeEnter.append("circle")
+    .attr("r", d => d.depth===0?16 : d.depth===1?10 : d.depth===2?5 : 3)
+    .attr("fill", d => {
+      if(d.depth===0) return '#1e2235';
+      const dom = d.data.domainId;
+      return dom ? (d.depth===1 ? DOMAIN_COLORS[dom] : d.depth===2 ? '#1e2235' : DOMAIN_COLORS[dom]+'88') : '#4b5563';
+    })
+    .attr("stroke", d => {
+      if(d.depth===0) return '#6c8aff';
+      const dom = d.data.domainId;
+      return dom ? DOMAIN_COLORS[dom] : '#4b5563';
+    });
+
+  nodeEnter.append("text")
+    .attr("dy", "0.31em")
+    .attr("x", d => d.x<Math.PI===!d.children ? 8 : -8)
+    .attr("text-anchor", d => d.x<Math.PI===!d.children ? "start" : "end")
+    .attr("transform", d => d.x>=Math.PI ? "rotate(180)" : null)
+    .attr("fill", d => {
+      if(d.depth===0) return '#e4e6ee';
+      if(d.depth===1) return DOMAIN_COLORS[d.data.domainId];
+      if(d.depth===2) return '#9ca0b0';
+      return '#686d82';
+    })
+    .attr("font-size", d => d.depth===0?10 : d.depth===1?9.5 : d.depth===2?8.5 : 7.5)
+    .attr("font-weight", d => d.depth<=1?700:d.depth===2?500:400)
+    .text(d => {
+      const n = d.data.name;
+      if(d.depth===1){
+        // Shorten domain names
+        return n.replace('D1 · ','').replace('D2 · ','').replace('D3 · ','').replace('D4 · ','').replace('D5 · ','').split(' ').slice(0,3).join(' ');
+      }
+      if(d.depth===2) return n.length>18 ? n.slice(0,17)+'…' : n;
+      return n.length>14 ? n.slice(0,13)+'…' : n;
+    });
+
+  // Root label (multi-line)
+  nodeEnter.filter(d=>d.depth===0).selectAll("text").remove();
+  nodeEnter.filter(d=>d.depth===0).append("text")
+    .attr("text-anchor","middle").attr("dy","-4").attr("fill","#e4e6ee")
+    .attr("font-size",9).attr("font-weight",700)
+    .text("Security+");
+  nodeEnter.filter(d=>d.depth===0).append("text")
+    .attr("text-anchor","middle").attr("dy","7").attr("fill","#6c8aff")
+    .attr("font-size",7.5)
+    .text("SY0-701");
+
+  // Expand indicator
+  nodeEnter.filter(d=>d._children).append("circle")
+    .attr("r",3).attr("cx",0).attr("cy",0)
+    .attr("fill","rgba(108,138,255,0.3)").attr("stroke","#6c8aff").attr("stroke-width",.8)
+    .attr("transform","translate(0,-14)");
+
+  nodes.merge(nodeEnter).transition().duration(400)
+    .attr("transform", d => `rotate(${d.x*180/Math.PI-90}) translate(${d.y},0)`);
+
+  nodes.exit().remove();
+}
+
+function expandAll(){
+  root.descendants().forEach(d=>{
+    if(d._children){ d.children=d._children; d._children=null; }
+  });
+  update(root);
+}
+function collapseAll(){
+  root.descendants().forEach(d=>{
+    if(d.depth>=2 && d.children){ d._children=d.children; d.children=null; }
+  });
+  update(root);
+}
+
+// ═══════════════════════════════════════════════════════
+// TOOLTIP
+// ═══════════════════════════════════════════════════════
+
+const domLabels = {1:"D1 · General Security Concepts",2:"D2 · Threats & Vulnerabilities",3:"D3 · Security Architecture",4:"D4 · Security Operations",5:"D5 · Security Program Management"};
+const domColors = DOMAIN_COLORS;
+
+let pinned = false;
+let pinnedKey = null;   // string key: name+depth, more reliable than object ref
+
+function nodeKey(d){ return d.data.name + '|' + d.depth; }
+
+function populateTooltip(d){
+  const dom = d.data.domainId;
+  document.getElementById('tt-term').textContent = d.data.name || '';
+  document.getElementById('tt-full').textContent = d.data.fullName || '';
+  document.getElementById('tt-def').textContent = d.data.definition || '';
+  const domEl = document.getElementById('tt-domain');
+  if(dom){
+    domEl.textContent = domLabels[dom] || '';
+    domEl.style.background = domColors[dom]+'22';
+    domEl.style.color = domColors[dom];
+    domEl.style.border = `1px solid ${domColors[dom]}44`;
+  }
+}
+
+function positionTooltip(event){
+  const tt = document.getElementById('tooltip');
+  const x = event.clientX + 16, y = event.clientY - 10;
+  tt.style.left = (x + tt.offsetWidth > window.innerWidth ? x - tt.offsetWidth - 24 : x) + 'px';
+  tt.style.top = (y + tt.offsetHeight > window.innerHeight ? y - tt.offsetHeight : y) + 'px';
+}
+
+function showTooltip(event, d){
+  if(!d.data.fullName && !d.data.definition) return;
+  const tt = document.getElementById('tooltip');
+  populateTooltip(d);
+  tt.style.display = 'block';
+  positionTooltip(event);
+}
+
+function moveTooltip(event){
+  if(pinned) return;
+  positionTooltip(event);
+}
+
+function hideTooltip(){
+  if(pinned) return;
+  document.getElementById('tooltip').style.display='none';
+}
+
+function pinTooltip(event, d){
+  if(!d.data.fullName && !d.data.definition) return;
+  const tt = document.getElementById('tooltip');
+  pinned = true;
+  pinnedKey = nodeKey(d);
+  populateTooltip(d);
+  tt.style.display = 'block';
+  tt.classList.add('pinned');
+  positionTooltip(event);
+}
+
+function unpinTooltip(){
+  const tt = document.getElementById('tooltip');
+  pinned = false;
+  pinnedKey = null;
+  tt.classList.remove('pinned');
+  tt.style.display = 'none';
+}
+
+// Close button — attached via JS to avoid scope issues with onclick=""
+document.getElementById('tt-close').addEventListener('click', function(e){
+  e.stopPropagation();
+  unpinTooltip();
+});
+
+// Click on tooltip itself while pinned — keep it pinned (stop propagation)
+document.getElementById('tooltip').addEventListener('click', function(e){
+  e.stopPropagation();
+});
+
+// Click on SVG background → unpin
+svg.on("click", () => { if(pinned) unpinTooltip(); });
+
+// ═══════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════
+
+function doSearch(q){
+  if(!q){ g.selectAll(".node circle").style("opacity",1).style("filter","none"); return; }
+  q = q.toLowerCase();
+  g.selectAll(".node").each(function(d){
+    const name = (d.data.name||'').toLowerCase();
+    const full = (d.data.fullName||'').toLowerCase();
+    const def  = (d.data.definition||'').toLowerCase();
+    const match = name.includes(q)||full.includes(q)||def.includes(q);
+    d3.select(this).select("circle")
+      .style("opacity", match ? 1 : 0.15)
+      .style("filter", match ? "brightness(1.5) drop-shadow(0 0 6px currentColor)" : "none");
+    d3.select(this).select("text")
+      .style("opacity", match ? 1 : 0.2);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+
+render();
+
+// Handle resize
+window.addEventListener('resize', ()=>{
+  const w=window.innerWidth, h=window.innerHeight;
+  svg.attr("width",w).attr("height",h);
+  render();
+});
+</script>
+</body>
+</html>

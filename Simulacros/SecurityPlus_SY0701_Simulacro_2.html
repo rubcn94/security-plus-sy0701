@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security+ SY0-701 — Simulacro #2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+:root{
+--bg:#0f1117;--bg2:#1a1d27;--bg3:#242836;--bg4:#2e3344;
+--tx:#e4e6ee;--tx2:#9ca0b0;--tx3:#686d82;
+--bd:#2e3344;--bd2:#3d4259;
+--accent:#6c8aff;--accent2:#4a6aef;--accent-bg:rgba(108,138,255,0.08);
+--green:#34d399;--green-bg:rgba(52,211,153,0.1);--green-bd:rgba(52,211,153,0.3);
+--red:#f87171;--red-bg:rgba(248,113,113,0.1);--red-bd:rgba(248,113,113,0.3);
+--amber:#fbbf24;--amber-bg:rgba(251,191,36,0.1);
+--font:'IBM Plex Sans',system-ui,sans-serif;
+--mono:'IBM Plex Mono',monospace;
+--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--tx);line-height:1.6;min-height:100vh}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+
+/* Header */
+.header{text-align:center;padding:24px 0 16px;border-bottom:1px solid var(--bd)}
+.header h1{font-size:22px;font-weight:700;letter-spacing:-0.5px}
+.header .sub{font-size:13px;color:var(--tx2);margin-top:4px}
+
+/* Timer bar */
+.timer-bar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--bd);padding:10px 0}
+.timer-inner{max-width:820px;margin:0 auto;padding:0 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.timer{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--accent);min-width:80px}
+.timer.warning{color:var(--amber)}
+.timer.critical{color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.progress-text{font-size:13px;color:var(--tx2)}
+.progress-bar{flex:1;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.3s}
+
+/* Start screen */
+.start-screen{text-align:center;padding:60px 20px}
+.start-screen h2{font-size:28px;font-weight:700;margin-bottom:12px}
+.start-screen p{color:var(--tx2);font-size:14px;margin-bottom:8px;max-width:500px;margin-left:auto;margin-right:auto}
+.start-screen .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0;max-width:480px;margin-left:auto;margin-right:auto}
+.spec{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--radius);padding:16px 12px}
+.spec-num{font-size:28px;font-weight:700;color:var(--accent)}
+.spec-label{font-size:12px;color:var(--tx2);margin-top:4px}
+.btn-start{background:var(--accent);color:#fff;border:none;padding:14px 48px;font-size:16px;font-weight:600;border-radius:var(--radius);cursor:pointer;font-family:var(--font);margin-top:20px;transition:all 0.2s}
+.btn-start:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* Questions */
+.q-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--radius);padding:20px;margin:12px 0}
+.q-num{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.q-domain{font-size:10px;color:var(--tx3);background:var(--bg3);padding:2px 8px;border-radius:4px;margin-left:8px}
+.q-text{font-size:15px;font-weight:500;margin-bottom:16px;line-height:1.7}
+.q-scenario{font-size:13px;color:var(--tx2);background:var(--bg3);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:14px;line-height:1.7}
+.q-multi{font-size:11px;color:var(--amber);font-weight:500;margin-bottom:8px}
+
+.opt{display:block;padding:12px 14px;margin:6px 0;border:1px solid var(--bd);border-radius:8px;cursor:pointer;font-size:14px;transition:all 0.15s;background:var(--bg3)}
+.opt:hover:not(.disabled){background:var(--bg4);border-color:var(--bd2)}
+.opt.selected{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.opt.correct{background:var(--green-bg)!important;border-color:var(--green-bd)!important;color:var(--green)!important}
+.opt.wrong{background:var(--red-bg)!important;border-color:var(--red-bd)!important;color:var(--red)!important}
+.opt.disabled{pointer-events:none;opacity:0.6}
+.opt.disabled.correct{opacity:1}
+.opt-letter{font-family:var(--mono);font-weight:600;margin-right:10px;font-size:12px}
+
+.explanation{display:none;background:var(--bg3);border-radius:8px;padding:14px;margin-top:12px;font-size:13px;color:var(--tx2);line-height:1.7;border-left:3px solid var(--green)}
+.explanation.show{display:block}
+.explanation b{color:var(--green)}
+
+/* Nav */
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin:20px 0}
+.btn{padding:10px 24px;border:1px solid var(--bd);border-radius:8px;background:var(--bg2);color:var(--tx);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.15s}
+.btn:hover{background:var(--bg3);border-color:var(--bd2)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2)}
+.btn-finish{background:#dc2626;border-color:#dc2626;color:#fff}
+.btn-finish:hover{background:#b91c1c}
+.btn:disabled{opacity:0.3;pointer-events:none}
+
+/* Question grid */
+.q-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:16px 0}
+.q-dot{width:100%;aspect-ratio:1;border-radius:6px;border:1px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:11px;font-family:var(--mono);display:flex;align-items:center;justify-content:center;color:var(--tx3);transition:all 0.15s}
+.q-dot:hover{border-color:var(--accent)}
+.q-dot.current{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
+.q-dot.answered{background:var(--accent);border-color:var(--accent);color:#fff}
+.q-dot.correct-dot{background:var(--green);border-color:var(--green);color:#fff}
+.q-dot.wrong-dot{background:var(--red);border-color:var(--red);color:#fff}
+
+/* Results */
+.results{text-align:center;padding:32px 0}
+.results h2{font-size:28px;font-weight:700;margin-bottom:8px}
+.results .score-big{font-size:72px;font-weight:700;margin:16px 0}
+.results .score-big.pass{color:var(--green)}
+.results .score-big.fail{color:var(--red)}
+.results .verdict{font-size:18px;font-weight:600;margin-bottom:24px}
+.domain-scores{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:20px 0}
+@media(max-width:600px){.domain-scores{grid-template-columns:repeat(2,1fr)}.q-grid{grid-template-columns:repeat(9,1fr)}}
+.d-score{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--radius);padding:14px 10px;text-align:center}
+.d-score-label{font-size:11px;color:var(--tx2);font-weight:500}
+.d-score-pct{font-size:24px;font-weight:700;margin-top:4px}
+.d-score-detail{font-size:11px;color:var(--tx3);margin-top:2px}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="timer-bar hidden" id="timerBar">
+<div class="timer-inner">
+<div class="timer" id="timer">90:00</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="progress-text" id="progressText">0 / 90</div>
+</div>
+</div>
+
+<div class="wrap">
+
+<div class="header">
+<h1>🔐 Security+ SY0-701 — Simulacro #2</h1>
+<p class="sub">Examen de práctica con escenarios realistas</p>
+</div>
+
+<div id="startScreen" class="start-screen">
+<h2>¿Preparado?</h2>
+<p>90 preguntas de escenario como el examen real, distribuidas por los 5 dominios con el mismo peso que CompTIA.</p>
+<div class="specs">
+<div class="spec"><div class="spec-num">90</div><div class="spec-label">Preguntas</div></div>
+<div class="spec"><div class="spec-num">90</div><div class="spec-label">Minutos</div></div>
+<div class="spec"><div class="spec-num">750</div><div class="spec-label">Para aprobar</div></div>
+</div>
+<p style="font-size:12px;color:var(--tx3)">D1 General 12% · D2 Amenazas 22% · D3 Arquitectura 18% · D4 Operaciones 28% · D5 Programa 20%</p>
+<button class="btn-start" onclick="startExam()">Empezar examen</button>
+<br><button class="btn-start" onclick="reviewOnly()" style="background:var(--green);margin-top:10px;font-size:14px;padding:10px 36px">📖 Solo ver correcciones</button>
+</div>
+
+<div id="examArea" class="hidden">
+<div class="q-grid" id="qGrid"></div>
+<div id="questionContainer"></div>
+<div class="q-nav">
+<button class="btn" id="btnPrev" onclick="navQ(-1)" disabled>← Anterior</button>
+<span id="navInfo" style="font-size:12px;color:var(--tx3)"></span>
+<button class="btn btn-primary" id="btnNext" onclick="navQ(1)">Siguiente →</button>
+</div>
+<div style="text-align:center;margin:20px 0">
+<button class="btn btn-finish" onclick="finishExam()">Finalizar examen</button>
+</div>
+</div>
+
+<div id="resultsArea" class="hidden results"></div>
+
+<div id="downloadArea" class="hidden" style="text-align:center;margin:20px 0">
+<button class="btn btn-primary" onclick="generateMD()" style="background:#34d399;border-color:#34d399">📥 Descargar correcciones (.md)</button>
+</div>
+
+
+</div>
+
+<script>
+// ===== QUESTION BANK =====
+const Q=[
+// ===== D1: General Security Concepts (11) =====
+{d:1,q:"Una empresa instala cámaras con carteles de 'Zona videovigilada' pero las cámaras no graban realmente. ¿Qué tipo de control es?",
+o:["Físico + Detective","Físico + Disuasorio","Técnico + Preventivo","Operacional + Compensatorio"],c:1,
+e:"✓B) Físico + Disuasorio — el cartel y las cámaras son elementos físicos, y su propósito es desanimar (disuadir).<br><br>✗A) Físico + Detective — detective implica detectar eventos (grabar), pero las cámaras NO graban.<br>✗C) Técnico + Preventivo — técnico sería software/hardware (firewall, cifrado); las cámaras son físicas. Preventivo impide el acceso, no solo desanima.<br>✗D) Operacional + Compensatorio — operacional son procedimientos/personas (formación, auditorías). Compensatorio es un control temporal que sustituye a otro."},
+
+{d:1,q:"Un servidor web usa cifrado AES-256 para los datos almacenados y TLS 1.3 para las comunicaciones. ¿Qué pilar de CIA protege cada uno?",
+o:["Ambos protegen confidencialidad","AES protege integridad, TLS protege disponibilidad","AES protege confidencialidad at rest, TLS protege confidencialidad in transit","AES protege disponibilidad, TLS protege integridad"],c:2,
+e:"✓C) AES cifra datos at rest (disco) → confidencialidad. TLS cifra datos in transit (red) → confidencialidad. Ambos protegen confidencialidad pero en ESTADOS de datos diferentes.<br><br>✗A) Técnicamente ambos protegen confidencialidad, pero la C es más precisa al distinguir at rest vs in transit, que es lo que pide el examen.<br>✗B) AES es cifrado, no verifica integridad. TLS no protege disponibilidad.<br>✗D) AES no protege disponibilidad. TLS incluye integridad vía HMAC pero su función principal aquí es cifrado."},
+
+{d:1,q:"Un administrador necesita que un certificado cubra shop.empresa.com, api.empresa.com y blog.empresa.com pero NO mail.otraempresa.com. ¿Qué tipo de certificado es suficiente?",
+o:["Certificado SAN","Certificado Wildcard","Certificado EV","Certificado auto-firmado"],c:1,
+e:"✓B) Wildcard (*.empresa.com) cubre todos los subdominios de primer nivel del mismo dominio → suficiente.<br><br>✗A) SAN serviría pero es innecesario si todos son subdominios del mismo dominio; SAN se usa para dominios DIFERENTES (empresa.com + otraempresa.com).<br>✗C) EV (Extended Validation) es un nivel de validación (barra verde), no un tipo de cobertura de dominios. No resuelve cubrir múltiples subdominios.<br>✗D) Auto-firmado no está firmado por CA pública → navegadores muestran error. Inapropiado para sitios públicos."},
+
+{d:1,q:"Una organización permite que los propietarios de carpetas compartidas decidan quién puede acceder a sus archivos. ¿Qué modelo es?",
+o:["MAC","RBAC","DAC","ABAC"],c:2,
+e:"✓C) DAC — el PROPIETARIO decide quién accede. Windows NTFS usa DAC por defecto. Es el más flexible pero menos seguro.<br><br>✗A) MAC — el SISTEMA asigna etiquetas y el usuario NO puede cambiar permisos (SELinux, entornos militares).<br>✗B) RBAC — acceso según el ROL del usuario (ej: rol 'Contable'). No es el propietario quien decide individualmente.<br>✗D) ABAC — acceso según ATRIBUTOS (hora, ubicación, departamento). Más granular que RBAC pero no discrecional del propietario."},
+
+{d:1,q:"Un sistema requiere que el usuario presente su tarjeta de acceso Y escanee su huella dactilar para entrar al datacenter. ¿Qué tipo de autenticación implementa?",
+o:["Single-factor (algo que tienes)","Dual authentication","MFA (algo que tienes + algo que eres)","Biometría únicamente"],c:2,
+e:"✓C) MFA — tarjeta = algo que TIENES + huella = algo que ERES → dos factores DISTINTOS = MFA.<br><br>✗A) Single-factor — hay DOS factores de categorías distintas, no uno.<br>✗B) 'Dual authentication' no es término estándar del examen. El concepto correcto es MFA.<br>✗D) Biometría únicamente — solo la huella es biométrica. La tarjeta es 'algo que tienes', no biometría."},
+
+{d:1,q:"Un protocolo AAA cifra TODO el paquete de comunicación, separa autenticación de autorización, y usa TCP. ¿Cuál es?",
+o:["RADIUS","LDAP","TACACS+","Kerberos"],c:2,
+e:"✓C) TACACS+ — cifra TODO el paquete + TCP + separa auth/authz/accounting. Preferido para dispositivos Cisco.<br><br>✗A) RADIUS — usa UDP, cifra SOLO el password, COMBINA auth+authz.<br>✗B) LDAP — consulta directorios (AD). No es protocolo AAA; no gestiona autorización ni accounting.<br>✗D) Kerberos — autenticación por tickets (UDP/88). No separa auth/authz/acct como TACACS+, y no cifra todo el paquete de comunicación AAA."},
+
+{d:1,q:"Un desarrollador firma un documento con su clave PRIVADA. El receptor lo verifica con la clave PÚBLICA del emisor. ¿Qué se garantiza?",
+o:["Solo confidencialidad","Solo disponibilidad","Integridad y no repudio","Confidencialidad y disponibilidad"],c:2,
+e:"✓C) Integridad + no repudio — firma digital (hash + clave privada) verifica que no fue modificado (integridad) y el emisor no puede negar haberlo firmado (no repudio).<br><br>✗A) Confidencialidad — la firma NO cifra el contenido; cualquiera puede leer el documento. Para confidencialidad se cifra con la clave pública del destinatario.<br>✗B) Disponibilidad — firmar no tiene relación con mantener sistemas accesibles.<br>✗D) Confidencialidad + disponibilidad — la firma no proporciona ninguno de estos dos."},
+
+{d:1,q:"Tras implementar Zero Trust, un dispositivo debe demostrar que su sistema operativo está actualizado y que tiene EDR activo ANTES de acceder a la red. ¿Qué concepto es?",
+o:["NAC health check","Device attestation","SASE validation","Certificate pinning"],c:1,
+e:"✓B) Device attestation — el dispositivo atestigua su estado de salud y cumplimiento. Concepto clave de Zero Trust que alimenta al PDP.<br><br>✗A) NAC health check — NAC verifica antes de conectar a la red, pero device attestation es el concepto más amplio dentro de Zero Trust (no solo red, cualquier acceso).<br>✗C) SASE validation — SASE es una arquitectura de red (SD-WAN + seguridad cloud), no un concepto de verificación de dispositivos.<br>✗D) Certificate pinning — vincula un certificado específico a un servidor/app para prevenir MITM. No verifica estado de salud del dispositivo."},
+
+{d:1,q:"Un equipo de criptografía selecciona un algoritmo para intercambiar claves de sesión en dispositivos IoT con recursos muy limitados. ¿Cuál es el más apropiado?",
+o:["RSA-4096","AES-256","ECDHE","3DES"],c:2,
+e:"✓C) ECDHE — curva elíptica + Diffie-Hellman + ephemeral. Ideal para IoT limitado: misma seguridad que RSA con claves mucho más cortas. Además da PFS.<br><br>✗A) RSA-4096 — asimétrico pero MUY costoso computacionalmente. Claves de 4096 bits = demasiados recursos para IoT.<br>✗B) AES-256 — SIMÉTRICO, no intercambia claves. Cifra datos pero la pregunta pide intercambio de claves (necesita asimétrico).<br>✗D) 3DES — simétrico + obsoleto + lento. No sirve para intercambio de claves y está deprecado."},
+
+{d:1,q:"Un administrador necesita verificar en tiempo real si el certificado TLS de un sitio web ha sido revocado. ¿Qué protocolo consulta?",
+o:["CRL","OCSP","HSTS","DNSSEC"],c:1,
+e:"✓B) OCSP — consulta en tiempo real al servidor OCSP de la CA: valid/revoked/unknown. Respuesta inmediata.<br><br>✗A) CRL — lista descargada periódicamente, puede estar desactualizada entre descargas. No es tiempo real.<br>✗C) HSTS — fuerza HTTPS en el navegador. No verifica revocación de certificados.<br>✗D) DNSSEC — firma respuestas DNS para prevenir poisoning. Sin relación con certificados TLS."},
+
+{d:1,q:"Un usuario accede a una app web empresarial usando 'Login con Microsoft'. La app recibe un token que confirma quién es el usuario y un token de acceso a su calendario. ¿Qué protocolos se usan?",
+o:["SAML para ambos","OAuth para identidad, OIDC para acceso","OIDC para identidad, OAuth para autorización al calendario","Kerberos para ambos"],c:2,
+e:"✓C) OIDC para identidad (quién eres → ID token) + OAuth para autorización (qué puede hacer la app → access token al calendario). OIDC va SOBRE OAuth como capa de identidad.<br><br>✗A) SAML — usa XML y es más común en SSO empresarial browser-based. 'Login con Microsoft' en apps modernas usa OIDC/OAuth.<br>✗B) Invertido — OAuth es autorización, OIDC es identidad. No al revés.<br>✗D) Kerberos — tickets dentro de dominios Windows/AD. No se usa para 'Login con Microsoft' en apps web externas."},
+
+// ===== D2: Threats, Vulnerabilities, Mitigations (20) =====
+{d:2,q:"Un empleado del departamento de finanzas descarga datos de clientes durante semanas antes de dimitir para irse a la competencia. ¿Qué tipo de amenaza es?",
+o:["APT","Insider malicioso","Shadow IT","Script kiddie"],c:1,
+e:"✓B) Insider malicioso — acceso legítimo + conoce la infraestructura + intención deliberada de exfiltrar datos antes de irse.<br><br>✗A) APT — grupo externo (normalmente state-sponsored) con persistencia prolongada. El empleado es interno.<br>✗C) Shadow IT — uso de servicios no autorizados por IT (ej: Dropbox). No describe exfiltración deliberada.<br>✗D) Script kiddie — atacante externo con poca habilidad. No aplica a empleado interno con acceso legítimo."},
+
+{d:2,q:"Un atacante registra el dominio go0gle.com (con cero en lugar de 'o') y crea un sitio idéntico a Google para robar credenciales. ¿Qué técnica es?",
+o:["Pharming","DNS poisoning","Typosquatting","Watering hole"],c:2,
+e:"✓C) Typosquatting — dominio con error tipográfico (go0gle.com con cero) para engañar usuarios.<br><br>✗A) Pharming — redirige tráfico modificando DNS o archivo hosts. No registra dominios falsos.<br>✗B) DNS poisoning — corrompe caché DNS de un servidor. No registra dominios similares.<br>✗D) Watering hole — infecta sitio legítimo que la víctima visita frecuentemente. No crea sitios con dominios similares."},
+
+{d:2,q:"Un malware se instala en el kernel del sistema operativo y es invisible para el antivirus. Solo se detecta si se verifica la integridad del arranque. ¿Qué tipo es?",
+o:["Worm","Trojan","Rootkit","Fileless"],c:2,
+e:"✓C) Rootkit — oculto en kernel + invisible al AV + detectado por verificación de arranque (Secure Boot).<br><br>✗A) Worm — se propaga por red automáticamente. No se describe propagación ni ocultación en kernel.<br>✗B) Trojan — parece software legítimo. No se menciona que parezca legítimo; el foco es ocultación en kernel.<br>✗D) Fileless — opera en memoria usando herramientas del SO (PowerShell, WMI). No se instala en kernel ni persiste así."},
+
+{d:2,q:"Un pentester usa la herramienta Reaver para atacar el PIN de 8 dígitos de un router WiFi y consigue acceso en 4 horas. ¿Qué funcionalidad estaba habilitada?",
+o:["WPA3-SAE","802.1X","WPS","RADIUS"],c:2,
+e:"✓C) WPS — PIN de 8 dígitos vulnerable a brute force. Reaver lo rompe en horas. SIEMPRE deshabilitar WPS.<br><br>✗A) WPA3-SAE — protocolo moderno y seguro, resistente a brute force. No usa PIN de 8 dígitos.<br>✗B) 802.1X — autenticación enterprise con RADIUS y certificados. No usa PIN de 8 dígitos.<br>✗D) RADIUS — servidor AAA, no una funcionalidad del router con PIN vulnerable."},
+
+{d:2,q:"Un atacante llama a un empleado haciéndose pasar por soporte técnico y le convence para que instale un 'parche de seguridad' que en realidad es malware. ¿Qué técnicas combina?",
+o:["Phishing + Ransomware","Vishing + Pretexting","Smishing + Typosquatting","Whaling + BEC"],c:1,
+e:"✓B) Vishing + Pretexting — por teléfono = vishing. Historia falsa creíble ('soy soporte técnico') = pretexting.<br><br>✗A) Phishing + Ransomware — phishing es por email (no teléfono). Ransomware cifra archivos pidiendo rescate.<br>✗C) Smishing + Typosquatting — smishing es por SMS. Typosquatting es dominio con typo. Ninguno aplica.<br>✗D) Whaling + BEC — whaling es phishing a ejecutivos. BEC suplanta al CEO por email. No es un ataque telefónico."},
+
+{d:2,q:"Un analista descubre que un grupo APT ha estado presente en la red durante 8 meses sin ser detectado, exfiltrando datos de propiedad intelectual. ¿Qué caracteriza a este actor?",
+o:["Motivación económica y baja sofisticación","Recursos ilimitados, persistencia prolongada, espionaje","Motivación ideológica, ataques DDoS","Herramientas de terceros, bajo nivel técnico"],c:1,
+e:"✓B) APT — recursos ilimitados (state-sponsored), persistencia prolongada (8 meses sin detectar), espionaje de propiedad intelectual.<br><br>✗A) Motivación económica + baja sofisticación — describe crimen oportunista o script kiddies. APTs son altamente sofisticados.<br>✗C) Motivación ideológica + DDoS — describe hacktivistas. APTs hacen espionaje silencioso, no DDoS.<br>✗D) Herramientas de terceros + bajo nivel — describe script kiddies. APTs desarrollan herramientas propias y zero-days."},
+
+{d:2,q:"Una aplicación web permite que un atacante acceda a archivos del servidor usando la URL: https://app.com/file?name=../../../etc/passwd. ¿Qué vulnerabilidad es?",
+o:["SQL Injection","XSS Stored","Directory traversal","CSRF"],c:2,
+e:"✓C) Directory traversal — usar ../ para navegar fuera del directorio web y acceder a archivos del servidor (/etc/passwd).<br><br>✗A) SQL Injection — inyecta código SQL en consultas de BBDD. No navega directorios con ../.<br>✗B) XSS Stored — inyecta JavaScript que se ejecuta en navegadores de otros usuarios. No accede a archivos del servidor.<br>✗D) CSRF — engaña al navegador para hacer peticiones no deseadas con la sesión de la víctima. No navega directorios."},
+
+{d:2,q:"Un atacante intercepta la comunicación entre un usuario y su banco degradando la conexión de HTTPS a HTTP. ¿Qué ataque es y qué lo previene?",
+o:["DNS poisoning — DNSSEC","SSL stripping — HSTS","ARP spoofing — static ARP","Session hijacking — token rotation"],c:1,
+e:"✓B) SSL stripping + HSTS — degradar HTTPS→HTTP = SSL stripping (MITM). HSTS fuerza HTTPS en el navegador, previniendo el downgrade.<br><br>✗A) DNS poisoning + DNSSEC — DNS poisoning falsea respuestas DNS, no degrada HTTPS.<br>✗C) ARP spoofing + static ARP — ARP spoofing redirige tráfico en L2 pero no describe el downgrade HTTPS→HTTP.<br>✗D) Session hijacking + token rotation — session hijacking roba sesiones activas, no degrada el protocolo de cifrado."},
+
+{d:2,q:"Después de una brecha, un analista descubre que los atacantes usaron credenciales robadas de LinkedIn (2012) para acceder a cuentas corporativas donde los empleados reutilizaban passwords. ¿Qué ataque es?",
+o:["Password spraying","Brute force","Credential stuffing","Rainbow table"],c:2,
+e:"✓C) Credential stuffing — credenciales robadas de otra brecha (LinkedIn 2012) probadas en otros servicios. Funciona por reutilización de passwords.<br><br>✗A) Password spraying — usa passwords comunes contra muchas cuentas, no credenciales robadas específicas.<br>✗B) Brute force — prueba todas las combinaciones posibles en una cuenta. Mucho más lento y ruidoso.<br>✗D) Rainbow table — hashes precalculados para revertir hashes. No es un ataque de login contra servicios."},
+
+{d:2,q:"Un sensor SCADA de una planta química reporta lecturas falsas de temperatura, ocultando que el reactor se está sobrecalentando. ¿Qué tipo de consecuencia tiene este ataque?",
+o:["Pérdida de confidencialidad","Pérdida de integridad con consecuencias físicas","Pérdida de disponibilidad","Pérdida de no repudio"],c:1,
+e:"✓B) Pérdida de integridad con consecuencias físicas — datos manipulados (integridad) en SCADA pueden causar explosiones, contaminación. ICS prioriza AIC (Availability-Integrity-Confidentiality).<br><br>✗A) Pérdida de confidencialidad — las lecturas falsas manipulan datos (integridad), no se trata de que alguien vea datos secretos.<br>✗C) Pérdida de disponibilidad — el sensor SIGUE reportando (está disponible), pero reporta datos FALSOS.<br>✗D) Pérdida de no repudio — no repudio es poder demostrar quién hizo qué. No aplica a lecturas de sensor manipuladas."},
+
+{d:2,q:"Un empleado conecta un AP WiFi personal a la red corporativa para tener mejor cobertura en su oficina. ¿Qué amenaza crea?",
+o:["Evil Twin","Rogue AP","Bluejacking","War driving"],c:1,
+e:"✓B) Rogue AP — AP no autorizado conectado DENTRO de la red corporativa. Puede ser bien intencionado pero crea un punto de acceso sin controles.<br><br>✗A) Evil Twin — AP falso con mismo SSID pero FUERA de la red (ej: parking). El empleado conectó el AP DENTRO de la red.<br>✗C) Bluejacking — ataque Bluetooth que envía mensajes no solicitados. No tiene que ver con WiFi.<br>✗D) War driving — buscar redes WiFi desde un vehículo. No implica instalar un AP."},
+
+{d:2,q:"Un analista revisa un PCAP y observa que un host interno envía peticiones DNS cada 30 segundos a un dominio sospechoso que no aparece en ninguna blacklist. ¿Qué puede indicar?",
+o:["DNS recursion normal","DNS over HTTPS","Beacon C2 — malware comunicando con servidor de control","DNSSEC validation"],c:2,
+e:"✓C) Beacon C2 — peticiones DNS regulares (cada 30s) a dominio sospechoso = patrón de malware comunicando con Command & Control. DNS Sinkhole ayudaría a detectar y bloquear.<br><br>✗A) DNS recursion normal — DNS recursivo resuelve consultas pero no genera patrones regulares cada 30s a un solo dominio sospechoso.<br>✗B) DNS over HTTPS — cifra consultas DNS para privacidad. No es un indicador de compromiso per se.<br>✗D) DNSSEC validation — firma respuestas DNS para integridad. No genera patrones regulares a dominios sospechosos."},
+
+{d:2,q:"Un atacante envía un email con un QR code que redirige a una página de login falsa. ¿Qué tipo de phishing es?",
+o:["Smishing","Vishing","Quishing","Spear phishing"],c:2,
+e:"✓C) Quishing — phishing por QR code. Difícil de detectar porque la URL no es visible directamente hasta que se escanea.<br><br>✗A) Smishing — phishing por SMS. El escenario usa email con QR, no SMS.<br>✗B) Vishing — phishing por voz/teléfono. No aplica.<br>✗D) Spear phishing — phishing personalizado dirigido a una persona específica. El escenario no indica personalización, sino el uso de QR como vector."},
+
+{d:2,q:"Un programa aparentemente legítimo de edición de fotos incluye un backdoor que permite al atacante control remoto total: capturas de pantalla, keylogger, acceso a archivos. ¿Qué tipo de malware es?",
+o:["Worm","RAT (Remote Access Trojan)","Logic bomb","Adware"],c:1,
+e:"✓B) RAT (Remote Access Trojan) — parece legítimo (trojan) + control remoto total (capturas, keylogger, archivos, cámara).<br><br>✗A) Worm — se propaga solo por red. El programa no se describe propagándose.<br>✗C) Logic bomb — código que se activa con una condición (fecha, evento). No da control remoto.<br>✗D) Adware — muestra anuncios no deseados. No proporciona acceso remoto ni keylogger."},
+
+{d:2,q:"Un framework categoriza los ataques como: Reconocimiento, Acceso Inicial, Ejecución, Persistencia, Exfiltración, etc. ¿Qué framework es?",
+o:["NIST CSF","OWASP Top 10","MITRE ATT&CK","Kill Chain"],c:2,
+e:"✓C) MITRE ATT&CK — categoriza ataques en Tácticas (por qué) → Técnicas (cómo) → Procedimientos (pasos). Las fases descritas son tácticas de ATT&CK.<br><br>✗A) NIST CSF — framework de gestión de riesgo (Identify/Protect/Detect/Respond/Recover), no categorización de ataques.<br>✗B) OWASP Top 10 — vulnerabilidades de aplicaciones web (SQLi, XSS, etc), no un framework de fases de ataque.<br>✗D) Kill Chain — modelo lineal de 7 fases (Lockheed Martin). ATT&CK es más detallado y no es estrictamente lineal."},
+
+{d:2,q:"Tras un incidente, el equipo encuentra estos artefactos: hash MD5 de un ejecutable malicioso, una IP 185.x.x.x contactada repetidamente, y un dominio evil-update.com. ¿Qué son colectivamente?",
+o:["IOAs (Indicators of Attack)","IOCs (Indicators of Compromise)","TTPs","CVEs"],c:1,
+e:"✓B) IOCs — hash de malware + IP de C2 + dominio sospechoso = evidencia de compromiso ya ocurrido (reactivo).<br><br>✗A) IOAs — patrones de ataque en curso (proactivo). Los artefactos encontrados post-incidente son IOCs, no IOAs.<br>✗C) TTPs — tácticas/técnicas/procedimientos describen CÓMO actúa el atacante. Los artefactos son la EVIDENCIA, no la técnica.<br>✗D) CVEs — identificadores de vulnerabilidades conocidas. Los hashes e IPs no son vulnerabilidades."},
+
+{d:2,q:"Un atacante explota una vulnerabilidad en la librería Log4j de un servidor web. La organización no sabía que usaba Log4j. ¿Qué documento habría ayudado a identificar esta dependencia?",
+o:["NDA","SBOM","SLA","AUP"],c:1,
+e:"✓B) SBOM (Software Bill of Materials) — lista todos los componentes y dependencias. Sin SBOM no sabes qué librerías usas → no puedes parchear lo que no conoces. Log4j fue el ejemplo perfecto.<br><br>✗A) NDA — acuerdo de confidencialidad. No lista componentes de software.<br>✗C) SLA — niveles de servicio garantizados. No detalla dependencias técnicas.<br>✗D) AUP — uso aceptable de recursos IT. No tiene relación con inventario de componentes de software."},
+
+{d:2,q:"¿Cuál es la principal ventaja de un IOA sobre un IOC?",
+o:["IOA es más barato","IOA es proactivo — detecta ataques en curso antes de que se complete","IOA no requiere SIEM","IOA es más fácil de implementar"],c:1,
+e:"✓B) IOA es proactivo — detecta patrones de ataque EN CURSO antes de que se complete. Permite actuar preventivamente.<br><br>✗A) IOA es más barato — no es una cuestión de coste sino de timing (proactivo vs reactivo).<br>✗C) IOA no requiere SIEM — IOA puede implementarse con SIEM, EDR u otras herramientas. No es que no requiera SIEM.<br>✗D) IOA es más fácil de implementar — al contrario, IOA requiere detección de comportamiento sofisticada, más compleja que buscar hashes (IOC)."},
+
+{d:2,q:"Una botnet de 100,000 dispositivos IoT infectados envía peticiones DNS amplificadas contra un objetivo. La petición es de 64 bytes pero genera respuestas de 3,400 bytes. ¿Qué ataque es?",
+o:["DoS simple","DDoS volumétrico con amplificación DNS","DNS poisoning","SYN flood"],c:1,
+e:"✓B) DDoS volumétrico con amplificación DNS — botnet (múltiples fuentes = Distributed) + petición pequeña → respuesta ×53 mayor (amplificación DNS).<br><br>✗A) DoS simple — DoS simple es desde UNA fuente. 100,000 dispositivos = Distributed (DDoS).<br>✗C) DNS poisoning — corrompe caché DNS para redirigir tráfico. No es un ataque de volumen.<br>✗D) SYN flood — ataque que agota conexiones TCP con SYN sin completar handshake. No usa amplificación DNS."},
+
+{d:2,q:"Un usuario ejecuta un archivo que parecía ser una actualización de Adobe Reader. Inmediatamente todos sus archivos .docx y .xlsx son cifrados y aparece una nota exigiendo 2 BTC. ¿Qué combinación de malware es?",
+o:["Worm + Spyware","Trojan + Ransomware","Virus + Adware","Rootkit + Keylogger"],c:1,
+e:"✓B) Trojan + Ransomware — parecía actualización de Adobe Reader (trojan) + cifra archivos pidiendo rescate (ransomware). El usuario tuvo que ejecutarlo.<br><br>✗A) Worm + Spyware — worm se propaga solo sin interacción. El usuario ejecutó el archivo manualmente. Spyware espía, no cifra.<br>✗C) Virus + Adware — virus necesita un host (otro archivo). Adware muestra anuncios, no cifra ni pide rescate.<br>✗D) Rootkit + Keylogger — rootkit se oculta en kernel. Keylogger registra teclas. Ninguno cifra archivos pidiendo rescate."},
+
+// ===== D3: Security Architecture (16) =====
+{d:3,q:"Una empresa usa Gmail empresarial (Google Workspace). ¿Quién es responsable de gestionar los permisos de acceso de los empleados a los buzones?",
+o:["Google (el proveedor)","El cliente","Responsabilidad compartida","Depende del contrato"],c:1,
+e:"✓B) El cliente — Google Workspace = SaaS. En SaaS el proveedor gestiona TODO (infra, plataforma, app) EXCEPTO datos y acceso de usuarios. El cliente controla quién accede.<br><br>✗A) Google — Google gestiona la infra y la app, pero NO los permisos de acceso de los empleados del cliente.<br>✗C) Responsabilidad compartida — en SaaS la gestión de acceso es claramente del cliente.<br>✗D) Depende del contrato — en el modelo SaaS estándar, la gestión de identidad/acceso es siempre del cliente."},
+
+{d:3,q:"Un IPS inline bloquea una transacción bancaria legítima porque su firma coincide parcialmente con un ataque conocido. ¿Qué tipo de error es?",
+o:["False negative","True positive","False positive","True negative"],c:2,
+e:"✓C) False positive — tráfico legítimo bloqueado = falsa alarma. Es el precio de un IPS agresivo. Tuning de reglas reduce los FP.<br><br>✗A) False negative — sería un ataque real NO detectado. Aquí sí se detectó (se bloqueó), pero era legítimo.<br>✗B) True positive — sería bloquear un ataque REAL. Pero era una transacción legítima.<br>✗D) True negative — tráfico legítimo correctamente permitido. Aquí fue bloqueado, no permitido."},
+
+{d:3,q:"Un equipo SOC necesita automatizar la respuesta a alertas de phishing: cuarentenar email, extraer URLs, bloquear en firewall, y crear ticket. ¿Qué herramienta necesitan?",
+o:["SIEM","SOAR","EDR","WAF"],c:1,
+e:"✓B) SOAR — automatiza respuesta con playbooks predefinidos: cuarentenar + extraer IOCs + bloquear + crear ticket = orquestación.<br><br>✗A) SIEM — correlaciona logs y genera alertas, pero NO ejecuta acciones de respuesta automáticamente.<br>✗C) EDR — detecta y responde en endpoints individuales, no orquesta flujos completos entre email/firewall/ticketing.<br>✗D) WAF — protege aplicaciones web filtrando tráfico HTTP. No gestiona flujos de respuesta a phishing."},
+
+{d:3,q:"Un administrador cifra todos los datos en un portátil usando BitLocker para protegerlos en caso de robo. ¿Qué estado de datos protege?",
+o:["In transit","In use","At rest","In processing"],c:2,
+e:"✓C) At rest — datos en disco cifrados con BitLocker. Si el portátil es robado, los datos no son accesibles sin la clave.<br><br>✗A) In transit — datos moviéndose por la red. BitLocker cifra disco, no comunicaciones. TLS cifra in transit.<br>✗B) In use — datos en RAM procesándose activamente. BitLocker no protege datos en memoria.<br>✗D) In processing — no es un estado estándar de datos en Security+. Los tres estados son: at rest, in transit, in use."},
+
+{d:3,q:"Una empresa hace backup diferencial de lunes a sábado y completo los domingos. Si falla el viernes, ¿cuántos backups necesita restaurar?",
+o:["1 (solo el diferencial del jueves)","2 (completo del domingo + diferencial del jueves)","5 (completo + lun + mar + mie + jue)","6 (todos los de la semana)"],c:1,
+e:"✓B) 2 — backup completo del domingo + diferencial del jueves = 2 restauraciones. Diferencial = todos los cambios desde el último COMPLETO.<br><br>✗A) 1 — el diferencial solo no basta; necesitas el completo como base.<br>✗C) 5 — eso sería si fuera INCREMENTAL (completo + cada día). Diferencial solo necesita el último diferencial + completo.<br>✗D) 6 — no se necesitan todos los de la semana con diferencial."},
+
+{d:3,q:"Una organización define un RPO de 4 horas para su base de datos principal. ¿Qué implica esto operativamente?",
+o:["Pueden perder hasta 4 horas de datos","Deben restaurar en 4 horas","El backup tarda 4 horas","El servidor aguanta 4 horas sin electricidad"],c:0,
+e:"✓A) RPO = pérdida máxima de datos tolerable → deben hacer backup al menos cada 4 horas.<br><br>✗B) Restaurar en 4 horas = eso sería RTO (Recovery Time Objective), no RPO.<br>✗C) El backup tarda 4 horas — RPO no mide duración del backup sino la cantidad de datos que puedes perder.<br>✗D) Aguanta 4 horas sin electricidad — esto no tiene relación con RPO. UPS/generador cubren la alimentación."},
+
+{d:3,q:"Un firewall de capa 7 inspecciona una petición HTTP y detecta un intento de XSS en un parámetro de formulario. ¿Qué tipo de firewall es?",
+o:["Stateless packet filter","Stateful firewall","WAF","ACL de router"],c:2,
+e:"✓C) WAF — inspecciona contenido HTTP (capa 7) y detecta XSS en parámetros de formulario.<br><br>✗A) Stateless packet filter — opera en capa 3, solo ve IP/puerto. No inspecciona contenido HTTP.<br>✗B) Stateful firewall — opera en capa 3-4, rastrea conexiones pero no inspecciona payload HTTP.<br>✗D) ACL de router — filtra por IP/puerto en capa 3. Sin capacidad de inspección de contenido."},
+
+{d:3,q:"Una organización necesita que un dispositivo pase un health check (antivirus actualizado, parches al día, firewall activo) ANTES de conectarse a la red. ¿Qué implementa?",
+o:["SIEM","NAC","DLP","CASB"],c:1,
+e:"✓B) NAC — verifica cumplimiento (antivirus, parches, firewall) ANTES de dar acceso a la red. Gate de entrada a la red.<br><br>✗A) SIEM — correlaciona logs y genera alertas. No controla acceso a la red.<br>✗C) DLP — previene fuga de datos sensibles. No verifica estado de salud de dispositivos.<br>✗D) CASB — intermediario users↔cloud. No controla acceso a la red local."},
+
+{d:3,q:"Un proceso de eliminación de datos en SSDs envía un comando al controlador del disco para borrar todas las celdas de memoria. ¿Qué método es?",
+o:["Degaussing","Wiping con 3 pasadas","ATA Secure Erase","Crypto-shredding"],c:2,
+e:"✓C) ATA Secure Erase — comando al controlador del SSD que borra todas las celdas. Diseñado específicamente para SSDs.<br><br>✗A) Degaussing — desmagnetización. NO funciona en SSDs (no son magnéticos). Solo para HDDs y cintas.<br>✗B) Wiping con 3 pasadas — no es fiable en SSDs por wear leveling (celdas de reserva pueden retener datos).<br>✗D) Crypto-shredding — destruye la clave de cifrado para hacer datos ilegibles. Diferente: requiere que los datos estuvieran cifrados previamente."},
+
+{d:3,q:"Un administrador configura pfSense con 4 VLANs: DMZ, LAN Corporativa, Servidores, y Gestión SOC. ¿Cuál es el principal beneficio de seguridad?",
+o:["Mayor velocidad de red","Segmentación limita movimiento lateral del atacante","Reduce el coste de hardware","Simplifica la gestión de cables"],c:1,
+e:"✓B) Segmentación limita movimiento lateral — si un atacante compromete la DMZ, no puede moverse a la LAN sin pasar por el firewall (pfSense).<br><br>✗A) Mayor velocidad de red — VLANs no mejoran la velocidad; organizan el tráfico lógicamente.<br>✗C) Reduce coste de hardware — VLANs son lógicas dentro del mismo switch, pero su beneficio principal es seguridad, no ahorro.<br>✗D) Simplifica gestión de cables — VLANs son segmentación lógica, no física. No cambian el cableado."},
+
+{d:3,q:"Una empresa cifra los datos de un cliente en cloud. Cuando decide eliminarlos, destruye las claves de cifrado en vez de borrar los datos. ¿Qué técnica es?",
+o:["Degaussing","Data masking","Crypto-shredding","Anonimización"],c:2,
+e:"✓C) Crypto-shredding — cifrar datos + destruir la clave = datos inaccesibles. Ideal para cloud donde no controlas el hardware.<br><br>✗A) Degaussing — desmagnetización para HDDs. En cloud no tienes acceso al hardware, y SSD no es magnético.<br>✗B) Data masking — ocultar parcialmente datos (ej: **** 1234). No destruye los datos originales.<br>✗D) Anonimización — eliminar info identificativa de forma irreversible. No es lo mismo que destruir TODOS los datos."},
+
+{d:3,q:"Un servidor de correo verifica la firma DKIM de un email entrante usando una clave que obtiene de un registro DNS del dominio remitente. ¿Qué verifica exactamente?",
+o:["Que la IP del remitente está autorizada","Que el contenido del email no ha sido modificado","Que el usuario destinatario existe","Que la conexión usa TLS"],c:1,
+e:"✓B) DKIM verifica integridad — firma criptográfica del contenido del email → si fue modificado en tránsito, la firma no coincide.<br><br>✗A) IP del remitente autorizada — eso es SPF (Sender Policy Framework), que verifica IPs en registro DNS TXT.<br>✗C) Usuario destinatario existe — el servidor de correo destino verifica eso, no DKIM.<br>✗D) Conexión usa TLS — STARTTLS verifica cifrado de conexión SMTP. DKIM firma el contenido, no la conexión."},
+
+{d:3,q:"Un empleado pierde un USB con datos de tarjetas de crédito. El USB no estaba cifrado. ¿Qué control habría mitigado el riesgo más eficazmente?",
+o:["DLP para bloquear copia a USB","FDE (Full Disk Encryption) en el USB","NAC para detectar el USB","SIEM para alertar"],c:1,
+e:"✓B) FDE en el USB — aunque se pierda, los datos no son accesibles sin la clave. Protege at rest.<br><br>✗A) DLP para bloquear copia — habría PREVENIDO la copia, pero los datos ya estaban en el USB. FDE protege DESPUÉS de la copia.<br>✗C) NAC para detectar el USB — NAC controla acceso a la RED, no detecta dispositivos USB.<br>✗D) SIEM para alertar — SIEM correlaciona logs pero no protege datos en un USB perdido."},
+
+{d:3,q:"Una jaula metálica rodea una sala de servidores para evitar que señales electromagnéticas se filtren al exterior. ¿Qué protección proporciona?",
+o:["Protección contra incendios","Faraday cage — protección contra emanaciones (TEMPEST)","Protección contra inundaciones","Protección contra cortes de luz"],c:1,
+e:"✓B) Faraday cage — bloquea señales electromagnéticas → protege contra TEMPEST (escucha de emanaciones). También protege contra jamming y EMP.<br><br>✗A) Protección contra incendios — para eso se usan sistemas de supresión (gas FM-200) y detectores de humo.<br>✗C) Protección contra inundaciones — para eso se usan suelos elevados, sensores de agua y ubicación en pisos altos.<br>✗D) Protección contra cortes de luz — para eso se usan UPS + generadores de respaldo."},
+
+{d:3,q:"Un guardia de seguridad verifica que cada persona que entra al datacenter pasa por un vestíbulo donde la primera puerta debe cerrarse antes de que la segunda se abra. ¿Qué control es?",
+o:["Bollards","Fencing","Mantrap / Vestíbulo","Turnstile"],c:2,
+e:"✓C) Mantrap/Vestíbulo — dos puertas, una cierra antes de abrir otra. Previene tailgating.<br><br>✗A) Bollards — postes de hormigón/metal contra ataques con vehículo.<br>✗B) Fencing — valla perimetral para delimitar el perímetro. No controla paso individual.<br>✗D) Turnstile — torno giratorio, permite paso uno a uno pero no tiene doble puerta ni zona intermedia."},
+
+{d:3,q:"Una empresa necesita visibilidad sobre qué servicios SaaS no autorizados están usando los empleados (Shadow IT). ¿Qué herramienta necesita?",
+o:["WAF","CASB","IPS","NAC"],c:1,
+e:"✓B) CASB — descubre y monitoriza aplicaciones cloud no autorizadas (Shadow IT). Intermediario users↔cloud.<br><br>✗A) WAF — protege apps web filtrando HTTP malicioso. No descubre Shadow IT.<br>✗C) IPS — detecta y bloquea ataques en red. No tiene visibilidad sobre servicios SaaS no autorizados.<br>✗D) NAC — controla acceso de dispositivos a la red. No monitoriza uso de servicios cloud."},
+
+// ===== D4: Security Operations (25) =====
+{d:4,q:"Un analista SOC recibe una alerta del SIEM: 50 eventos 4720 (cuenta creada) en 2 minutos desde un servidor de Active Directory a las 4AM. ¿Qué indica?",
+o:["Provisión normal de nuevos empleados","Posible compromiso — atacante creando cuentas de persistencia masivamente","Error de sincronización de AD","Backup de directorio activo"],c:1,
+e:"✓B) Posible compromiso — 50 cuentas creadas (Event 4720) en 2 min a las 4AM = actividad anómala. Patrón de atacante creando persistencia tras comprometer AD.<br><br>✗A) Provisión normal — RRHH no provisiona 50 cuentas a las 4AM en 2 minutos. Horario y volumen son red flags.<br>✗C) Error de sincronización — una sincronización crearía eventos de modificación, no 50 cuentas nuevas.<br>✗D) Backup de AD — el backup no genera eventos 4720 (creación de cuentas)."},
+
+{d:4,q:"Durante un pentest, el equipo ejecuta Nmap contra la red objetivo para descubrir hosts activos, puertos abiertos y servicios. ¿En qué fase del pentest están?",
+o:["Reconnaissance","Scanning","Exploitation","Post-exploitation"],c:1,
+e:"✓B) Scanning — Nmap descubre hosts, puertos, servicios = reconocimiento ACTIVO (toca el objetivo).<br><br>✗A) Reconnaissance — en terminología de pentest, recon suele referirse a PASIVO (OSINT, WHOIS sin tocar infra).<br>✗C) Exploitation — sería usar vulnerabilidades encontradas para ganar acceso (Metasploit).<br>✗D) Post-exploitation — sería después de ganar acceso: pivotar, escalar privilegios, exfiltrar."},
+
+{d:4,q:"Un equipo Red Team simula un ataque APT durante 3 meses sin que el Blue Team lo sepa. ¿Cuál es el principal objetivo?",
+o:["Encontrar CVEs en servidores","Evaluar la capacidad real de detección y respuesta del Blue Team","Cumplir con PCI DSS","Entrenar al Red Team en nuevas herramientas"],c:1,
+e:"✓B) Evaluar capacidad real de detección y respuesta del Blue Team — simulación realista de APT.<br><br>✗A) Encontrar CVEs — eso es un vuln scan o pentest técnico, no un ejercicio Red Team de 3 meses.<br>✗C) Cumplir PCI DSS — PCI DSS no requiere Red Team exercises de 3 meses.<br>✗D) Entrenar al Red Team — el objetivo principal es evaluar al Blue Team, no entrenar al Red Team."},
+
+{d:4,q:"Un fuzzer envía millones de inputs malformados a una API REST y descubre que cierto input causa un crash con acceso a memoria no autorizada. ¿Qué encontró?",
+o:["XSS vulnerability","SQL Injection","Buffer overflow","Logic bomb"],c:2,
+e:"✓C) Buffer overflow — input malformado → crash + acceso a memoria no autorizada = desbordamiento de buffer. Fuzzing es excelente para encontrar esto.<br><br>✗A) XSS — inyecta JavaScript en navegadores. No causa crash del servidor con acceso a memoria.<br>✗B) SQL Injection — inyecta SQL en consultas de BBDD. No causa acceso a memoria del servidor.<br>✗D) Logic bomb — código que se activa con condición. No se descubre con fuzzing de APIs."},
+
+{d:4,q:"Un escáner de vulnerabilidades reporta que un servidor Apache tiene la CVE-2024-XXXX con CVSS 4.3. ¿Qué prioridad tiene?",
+o:["Crítico — parchear inmediatamente","Alto — parchear esta semana","Medio — programar en próximo ciclo","Bajo — monitorizar"],c:2,
+e:"✓C) Medio (4.0-6.9) — CVSS 4.3 = programar en próximo ciclo de mantenimiento.<br><br>✗A) Crítico (9-10) — CVSS 4.3 está muy lejos del rango crítico.<br>✗B) Alto (7-8.9) — 4.3 no alcanza el rango alto.<br>✗D) Bajo (0-3.9) — 4.3 está justo por encima del rango bajo, cae en Medio."},
+
+{d:4,q:"Un DAST encuentra que una app web en producción permite inyección de comandos OS a través de un campo de búsqueda. ¿Qué tipo de testing lo encontró y por qué?",
+o:["SAST — analizó el código fuente","DAST — probó la app en ejecución y encontró el fallo de runtime","Fuzzing — envió inputs aleatorios al código","Code review — un desarrollador lo vio"],c:1,
+e:"✓B) DAST — probó app en ejecución y encontró fallo de runtime. DAST ataca la app como un usuario externo.<br><br>✗A) SAST — analiza código fuente SIN ejecutar. El escenario dice 'en producción' y 'runtime'.<br>✗C) Fuzzing — envía inputs aleatorios, pero el escenario identifica específicamente DAST. Fuzzing es una técnica, DAST es el tipo de testing.<br>✗D) Code review — inspección manual de código por un humano. No es automático ni en producción."},
+
+{d:4,q:"Un playbook SOAR se activa cuando el SIEM detecta un login desde un país bloqueado. Automáticamente: deshabilita la cuenta, alerta al manager, y crea un ticket de investigación. ¿Qué concepto describe la coordinación de estas tres acciones?",
+o:["Automatización","Orquestación","Scripting","Manual response"],c:1,
+e:"✓B) Orquestación — coordinar MÚLTIPLES automatizaciones en un flujo (deshabilitar + alertar + crear ticket = 3 acciones coordinadas).<br><br>✗A) Automatización — sería UNA sola acción (solo deshabilitar cuenta). El playbook completo con 3 acciones es orquestación.<br>✗C) Scripting — un script ejecuta código, pero orquestación implica coordinar múltiples sistemas distintos (IAM + email + ticketing).<br>✗D) Manual response — todo se hace automáticamente, no hay intervención manual."},
+
+{d:4,q:"Un administrador define toda la infraestructura de red (firewalls, VLANs, ACLs) en archivos YAML almacenados en un repositorio Git. ¿Qué práctica es?",
+o:["CI/CD","SOAR","IaC","SDN"],c:2,
+e:"✓C) IaC (Infrastructure as Code) — infra definida en archivos YAML versionados en Git. Auditable y reproducible.<br><br>✗A) CI/CD — pipeline de integración/despliegue continuo. Puede USAR IaC, pero IaC es el concepto de definir infra en código.<br>✗B) SOAR — automatiza respuesta a incidentes de seguridad. No define infraestructura.<br>✗D) SDN — separa plano de control y datos en red. Relacionado pero IaC es el concepto más preciso para 'archivos YAML en Git'."},
+
+{d:4,q:"Un email legítimo de un partner comercial es rechazado porque su servidor de correo no está en el registro SPF del dominio remitente. ¿Qué tipo de error es?",
+o:["True positive","False negative","False positive","True negative"],c:2,
+e:"✓C) False positive — email legítimo rechazado = falsa alarma. El partner necesita actualizar su registro SPF.<br><br>✗A) True positive — sería un email malicioso correctamente rechazado. Pero este era legítimo.<br>✗B) False negative — sería un email malicioso NO detectado (peor caso).<br>✗D) True negative — email legítimo correctamente aceptado. Pero fue rechazado."},
+
+{d:4,q:"Un analista necesita determinar quién se comunicó con quién, cuándo y cuánto tráfico, pero NO necesita el contenido de las comunicaciones. ¿Qué herramienta usa?",
+o:["Wireshark","NetFlow","tcpdump","PCAP"],c:1,
+e:"✓B) NetFlow — metadatos de tráfico (quién→quién, cuándo, cuánto) SIN contenido. Eficiente para análisis de patrones.<br><br>✗A) Wireshark — captura paquetes completos INCLUYENDO contenido. Excede lo que se necesita.<br>✗C) tcpdump — captura paquetes completos como Wireshark pero en CLI. Incluye contenido.<br>✗D) PCAP — formato de archivo de captura completa de paquetes. Incluye contenido."},
+
+{d:4,q:"Un servidor tiene un Network TAP instalado que copia todo el tráfico a un sensor IDS. El switch adyacente también tiene un SPAN port configurado para el mismo tráfico. ¿Cuál es más fiable bajo alta carga?",
+o:["SPAN — software es más flexible","TAP — copia física, no pierde paquetes","Ambos son iguales","Depende del fabricante"],c:1,
+e:"✓B) TAP — copia física pasiva, no pierde paquetes bajo alta carga. Ideal para monitoreo crítico.<br><br>✗A) SPAN — copia por software en el switch. Bajo carga alta puede descartar paquetes al dar prioridad al tráfico de producción.<br>✗C) Ambos iguales — TAP es superior bajo alta carga por ser hardware pasivo.<br>✗D) Depende del fabricante — es una diferencia fundamental: hardware pasivo (TAP) vs software (SPAN)."},
+
+{d:4,q:"Un forense necesita analizar un servidor comprometido. Conecta un write blocker al disco y crea una imagen bit a bit. ¿Cuál es el siguiente paso OBLIGATORIO?",
+o:["Analizar la imagen","Enviar al equipo legal","Calcular y verificar hash SHA-256 de la imagen","Apagar el servidor"],c:2,
+e:"✓C) Calcular y verificar hash SHA-256 — garantiza que la copia es idéntica al original. Sin verificación, la cadena de custodia se debilita.<br><br>✗A) Analizar la imagen — ANTES de analizar, debes verificar integridad. Si no, el análisis podría ser cuestionado en juicio.<br>✗B) Enviar al equipo legal — primero verificar integridad, luego enviar.<br>✗D) Apagar el servidor — si aún no capturaste RAM, apagar destruiría evidencia volátil. Y el hash es prioritario después de la imagen."},
+
+{d:4,q:"Un investigador encuentra evidencia digital clave pero no puede demostrar quién la manejó entre el momento de la recolección y el juicio. El juez la declara inadmisible. ¿Qué faltó?",
+o:["Write blocker","Hash verification","Chain of custody","Legal hold"],c:2,
+e:"✓C) Chain of custody — registro documentado de quién, cuándo y qué hizo con la evidencia. Sin ella = inadmisible en juicio.<br><br>✗A) Write blocker — previene modificación del disco original. Importante pero no es lo que faltó aquí.<br>✗B) Hash verification — verifica integridad de la copia. Importante pero el problema era la documentación del manejo.<br>✗D) Legal hold — orden de preservar evidencia. Ya tenían la evidencia; el problema era el registro de quién la manejó."},
+
+{d:4,q:"Una empresa contrata CrowdStrike para monitorizar endpoints 24/7, gestionar alertas EDR, y realizar threat hunting. ¿Qué tipo de servicio contrata?",
+o:["MSP","MSSP","CASB","SOC interno"],c:1,
+e:"✓B) MSSP (Managed Security Service Provider) — proveedor externo de seguridad: monitoreo 24/7, EDR, threat hunting.<br><br>✗A) MSP — servicios IT GENERALES (soporte, redes, helpdesk). No específico de seguridad.<br>✗C) CASB — intermediario users↔cloud. No es un proveedor de servicios de seguridad completo.<br>✗D) SOC interno — sería un equipo PROPIO de la empresa. Aquí contratan a CrowdStrike (externo)."},
+
+{d:4,q:"Un CI/CD pipeline rechaza un merge request porque SAST detectó una vulnerabilidad de SQL Injection en el código nuevo. ¿Cuál es el beneficio principal?",
+o:["Reduce el coste de servidores","Detecta vulnerabilidades ANTES de llegar a producción","Mejora el rendimiento de la app","Cumple con HIPAA automáticamente"],c:1,
+e:"✓B) Detecta vulnerabilidades ANTES de producción — SAST en CI/CD = shift-left security. Cuanto antes se detecta, más barato es arreglar.<br><br>✗A) Reduce coste de servidores — SAST no tiene relación con costes de infraestructura.<br>✗C) Mejora rendimiento — SAST busca vulnerabilidades de seguridad, no optimiza rendimiento.<br>✗D) Cumple HIPAA automáticamente — SAST ayuda con seguridad pero no garantiza cumplimiento automático de ninguna regulación."},
+
+{d:4,q:"Un script PowerShell obfuscado intenta ejecutarse en un servidor Windows. ¿Qué componente de Windows lo escanea en memoria antes de permitir la ejecución?",
+o:["Windows Defender Firewall","BitLocker","AMSI (Antimalware Scan Interface)","AppLocker"],c:2,
+e:"✓C) AMSI — escanea scripts (PowerShell, VBScript, JScript) en memoria ANTES de ejecutar, incluso obfuscados. Defensa clave contra fileless.<br><br>✗A) Windows Defender Firewall — filtra tráfico de red. No escanea scripts en memoria.<br>✗B) BitLocker — cifra el disco. No analiza ni bloquea scripts.<br>✗D) AppLocker — controla QUÉ ejecutables pueden correr (whitelist/blacklist). No escanea contenido de scripts en memoria."},
+
+{d:4,q:"Un analista ve en el SIEM: login exitoso (4624) desde Madrid a las 14:00 y otro login exitoso (4624) desde São Paulo a las 14:05 con la misma cuenta. ¿Qué tipo de detección aplica?",
+o:["Brute force detection","Impossible travel","Geofencing alert","DLP trigger"],c:1,
+e:"✓B) Impossible travel — dos logins exitosos desde ubicaciones geográficamente imposibles en 5 minutos. Indica cuenta comprometida.<br><br>✗A) Brute force detection — no hay intentos fallidos masivos, solo dos logins exitosos desde sitios distantes.<br>✗C) Geofencing alert — geofencing bloquea acceso desde regiones no autorizadas. Impossible travel detecta la ANOMALÍA de distancia vs tiempo.<br>✗D) DLP trigger — DLP detecta fuga de datos, no anomalías de login geográfico."},
+
+{d:4,q:"Un equipo de seguridad necesita verificar si una app web en producción es vulnerable a los OWASP Top 10 sin acceso al código fuente. ¿Qué tipo de test realizan?",
+o:["SAST","Code review","DAST","Unit testing"],c:2,
+e:"✓C) DAST — sin código fuente + app en producción = testing dinámico como atacante externo. Verifica OWASP Top 10 en runtime.<br><br>✗A) SAST — necesita código fuente. El escenario dice 'sin acceso al código'.<br>✗B) Code review — revisión manual de código. Requiere acceso al código fuente.<br>✗D) Unit testing — pruebas de funcionalidad escritas por desarrolladores. No es testing de seguridad externo."},
+
+{d:4,q:"Tras un incidente de ransomware, el equipo ejecuta la fase de 'Lessons Learned'. ¿Cuál es el objetivo principal?",
+o:["Identificar al atacante para acciones legales","Actualizar el IR plan basándose en lo que funcionó y lo que falló","Restaurar los backups","Notificar a los medios"],c:1,
+e:"✓B) Actualizar el IR plan basándose en lo que funcionó y lo que falló — Lessons Learned = 4ª fase NIST, OBLIGATORIA.<br><br>✗A) Identificar al atacante — puede ser parte del análisis, pero el objetivo principal de Lessons Learned es MEJORAR el proceso.<br>✗C) Restaurar backups — eso es fase 3 (Recuperación), no post-incidente.<br>✗D) Notificar a los medios — comunicación externa es parte de la respuesta, no de Lessons Learned."},
+
+{d:4,q:"Un log muestra que alguien borró todos los eventos del Event Viewer de Windows a las 3:17AM. ¿Qué indica esto?",
+o:["Mantenimiento rutinario del sistema","Atacante cubriendo sus huellas — alerta crítica","Error del sistema operativo","Rotación automática de logs"],c:1,
+e:"✓B) Atacante cubriendo huellas — borrado manual de logs a las 3AM = anti-forensics. Debe ser alerta de máxima prioridad.<br><br>✗A) Mantenimiento rutinario — el mantenimiento no borra TODOS los eventos a las 3AM. Se programa en horario laboral.<br>✗C) Error del SO — Windows no borra todos los logs por error del sistema.<br>✗D) Rotación automática — la rotación archiva logs antiguos, no borra todos los eventos del Event Viewer de golpe."},
+
+{d:4,q:"Un equipo tiene acceso parcial: conocen el rango de IPs y el nombre de la aplicación, pero no tienen credenciales ni código fuente. ¿Qué tipo de pentest es?",
+o:["Black box","White box","Grey box","Red team"],c:2,
+e:"✓C) Grey box — info parcial (rango IPs + nombre app, pero sin credenciales ni código). El más común y realista.<br><br>✗A) Black box — sin NINGUNA información. Aquí tienen rango de IPs y nombre de la app.<br>✗B) White box — info COMPLETA (código fuente, credenciales, documentación). Aquí falta mucho.<br>✗D) Red team — es un tipo de engagement (simular APT), no un nivel de información previo."},
+
+{d:4,q:"Un SIEM correlaciona estos eventos: (1) Email con adjunto .exe recibido, (2) Ejecución de proceso desconocido, (3) Conexión saliente a IP en threat feed, (4) Exfiltración de datos detectada por DLP. ¿Qué fases del ataque se observan?",
+o:["Reconocimiento y Escaneo","Entrega, Ejecución, C2 y Exfiltración","Solo Exfiltración","Post-exploitation únicamente"],c:1,
+e:"✓B) Entrega, Ejecución, C2 y Exfiltración — email=Entrega, .exe=Ejecución, IP sospechosa=C2, DLP=Exfiltración. Cadena completa.<br><br>✗A) Reconocimiento y Escaneo — son fases PREVIAS al ataque (buscar info, puertos). No coinciden con los eventos descritos.<br>✗C) Solo Exfiltración — el SIEM muestra 4 fases distintas, no solo la última.<br>✗D) Post-exploitation únicamente — post-exploitation es una fase, pero aquí se ven múltiples fases desde la entrega."},
+
+{d:4,q:"Un sistema detecta que un ejecutable tiene un hash que coincide con un hash de malware en la base de datos de firmas. ¿Qué tipo de detección es?",
+o:["Detección por comportamiento (heurística)","Detección por firmas (signature-based)","Detección por anomalía","Machine learning"],c:1,
+e:"✓B) Detección por firmas (signature-based) — hash coincide con firma conocida en base de datos = AV clásico. Solo detecta malware YA CONOCIDO.<br><br>✗A) Detección por comportamiento — observa acciones sospechosas (crear procesos, conexiones C2). No usa hashes estáticos.<br>✗C) Detección por anomalía — compara contra baseline de actividad normal. No usa hashes.<br>✗D) Machine learning — usa modelos entrenados para clasificar. No es simple comparación de hash."},
+
+{d:4,q:"Un dispositivo de red se configura para que, si falla, permita todo el tráfico para no interrumpir operaciones críticas. ¿Qué modo es y cuándo es apropiado?",
+o:["Fail-closed — siempre apropiado","Fail-open — cuando la disponibilidad es más crítica que la seguridad","Fail-over — para redundancia","Fail-safe — para cumplimiento normativo"],c:1,
+e:"✓B) Fail-open — falla y deja pasar todo. Apropiado cuando disponibilidad > seguridad (hospital, planta industrial).<br><br>✗A) Fail-closed — falla y BLOQUEA todo. Prioriza seguridad. Opuesto al escenario.<br>✗C) Fail-over — conmuta a sistema de respaldo para mantener servicio. No es 'permitir todo'.<br>✗D) Fail-safe — término genérico que puede significar fail-open o fail-closed según contexto. En Security+ se usan fail-open/fail-closed."},
+
+// ===== D5: Security Program Management (18) =====
+{d:5,q:"Un activo vale 500,000€. Hay un 20% de probabilidad de que un incendio destruya el 50% de su valor cada año. ¿Cuál es el ALE?",
+o:["25,000€","50,000€","100,000€","250,000€"],c:1,
+e:"✓B) 50,000€ — SLE = 500,000 × 0.5 = 250,000€. ARO = 0.2. ALE = 250,000 × 0.2 = 50,000€.<br><br>✗A) 25,000€ — error de cálculo (probablemente 500,000 × 0.5 × 0.1).<br>✗C) 100,000€ — error de cálculo (probablemente 500,000 × 0.2).<br>✗D) 250,000€ — eso es el SLE, no el ALE. Falta multiplicar por ARO."},
+
+{d:5,q:"El CISO decide que el riesgo de un ataque DDoS es aceptable porque el coste del control supera el impacto estimado. Documenta su decisión. ¿Qué estrategia aplica?",
+o:["Mitigación","Transferencia","Aceptación","Evitación"],c:2,
+e:"✓C) Aceptación — documentar y asumir conscientemente el riesgo. Válida cuando coste control > impacto. Debe documentarse formalmente.<br><br>✗A) Mitigación — implementar controles para reducir riesgo. El CISO decidió NO implementar controles.<br>✗B) Transferencia — pasar riesgo a tercero (seguro). No se describe compra de seguro.<br>✗D) Evitación — eliminar la actividad que genera riesgo. No se elimina ninguna actividad."},
+
+{d:5,q:"Una empresa elimina completamente su servicio de email público para evitar ataques de phishing contra sus empleados. ¿Qué estrategia de riesgo es?",
+o:["Mitigación","Transferencia","Aceptación","Evitación"],c:3,
+e:"✓D) Evitación — eliminar la actividad que genera el riesgo. Es la más extrema. Eliminar email = eliminar el vector de phishing.<br><br>✗A) Mitigación — sería implementar controles (filtros anti-phishing) manteniendo el email.<br>✗B) Transferencia — sería contratar seguro contra phishing.<br>✗C) Aceptación — sería no hacer nada y asumir el riesgo."},
+
+{d:5,q:"Un auditor solicita evidencia de que los controles de seguridad han sido EFECTIVOS durante los últimos 12 meses, no solo que existen. ¿Qué tipo de informe pide?",
+o:["SOC 2 Type I","SOC 2 Type II","Gap Analysis","Risk assessment"],c:1,
+e:"✓B) SOC 2 Type II — efectividad demostrada durante 6-12 meses. Más riguroso que Type I.<br><br>✗A) SOC 2 Type I — solo verifica diseño de controles en un momento dado. No demuestra efectividad continua.<br>✗C) Gap Analysis — compara estado actual vs objetivo. No evalúa efectividad temporal.<br>✗D) Risk assessment — evalúa probabilidad e impacto de riesgos. No audita efectividad de controles."},
+
+{d:5,q:"Un framework voluntario estructura la seguridad en 5 funciones: Identify, Protect, Detect, Respond, Recover. ¿Cuál es?",
+o:["ISO 27001","PCI DSS","NIST CSF","COBIT"],c:2,
+e:"✓C) NIST CSF — Identify → Protect → Detect → Respond → Recover. Framework voluntario (no certificable).<br><br>✗A) ISO 27001 — estándar certificable internacional. No estructura en 5 funciones ID/PR/DE/RS/RC.<br>✗B) PCI DSS — 12 requisitos para datos de tarjetas. No usa las 5 funciones.<br>✗D) COBIT — framework de gobernanza IT (ISACA). Tiene estructura diferente."},
+
+{d:5,q:"Un contrato entre dos organizaciones establece intenciones compartidas pero NO es legalmente vinculante. ¿Qué documento es?",
+o:["SLA","NDA","MOU","MSA"],c:2,
+e:"✓C) MOU (Memorandum of Understanding) — intención compartida, NO legalmente vinculante.<br><br>✗A) SLA — vinculante con penalizaciones y métricas de servicio.<br>✗B) NDA — vinculante para confidencialidad.<br>✗D) MSA — contrato marco vinculante para relación comercial."},
+
+{d:5,q:"Una empresa necesita un contrato marco que establezca términos generales para toda su relación con un proveedor, y después crear alcances específicos para cada proyecto. ¿Qué combinación de documentos necesita?",
+o:["SLA + NDA","MOU + MOA","MSA + SOW","AUP + NDA"],c:2,
+e:"✓C) MSA + SOW — MSA = marco general de la relación. SOW = alcance específico de cada proyecto dentro del MSA. Combinación estándar.<br><br>✗A) SLA + NDA — SLA define niveles de servicio, NDA protege confidencialidad. No son marco + alcance.<br>✗B) MOU + MOA — MOU es intención, MOA es más formal. No definen alcance de proyectos específicos.<br>✗D) AUP + NDA — AUP define uso aceptable, NDA protege info. No son marco contractual para proyectos."},
+
+{d:5,q:"Un empleado accede a datos de clientes, modifica registros financieros, y aprueba sus propias transacciones sin supervisión. ¿Qué control falta?",
+o:["MFA","DLP","Separation of duties","Mandatory vacation"],c:2,
+e:"✓C) Separation of duties — nadie debería poder crear, modificar Y aprobar sin supervisión de otro.<br><br>✗A) MFA — protege acceso al sistema pero no impide que una persona haga todo una vez autenticada.<br>✗B) DLP — previene fuga de datos. No controla separación de funciones de negocio.<br>✗D) Mandatory vacation — detecta fraude cuando otro cubre durante la ausencia. Complementario, pero separation of duties es el control que FALTA aquí."},
+
+{d:5,q:"Un empleado lleva 5 años sin tomar vacaciones y se pone nervioso cuando le obligan a tomarlas. Durante su ausencia, su reemplazo descubre irregularidades contables. ¿Qué control funcionó?",
+o:["Job rotation","Background check","Mandatory vacation","Least privilege"],c:2,
+e:"✓C) Mandatory vacation — vacaciones obligatorias permiten que otro descubra irregularidades. Negarse = red flag de fraude.<br><br>✗A) Job rotation — rotar roles también detecta fraude, pero el escenario describe específicamente vacaciones forzadas, no rotación.<br>✗B) Background check — verificación de antecedentes ANTES de contratar. No aplica a empleado de 5 años.<br>✗D) Least privilege — permisos mínimos. No es lo que detectó el fraude (fue la ausencia del empleado)."},
+
+{d:5,q:"El primer día de un nuevo empleado: firma AUP y NDA, se le provisiona una cuenta con acceso mínimo, y recibe formación de security awareness. ¿Qué proceso es?",
+o:["Offboarding","Background check","Onboarding","Job rotation"],c:2,
+e:"✓C) Onboarding — incorporación: AUP + NDA + cuenta least privilege + formación de seguridad. Todo desde el día 1.<br><br>✗A) Offboarding — salida: revocar accesos, devolver equipos, exit interview. Opuesto.<br>✗B) Background check — verificación de antecedentes. Parte del onboarding, pero no lo describe completo.<br>✗D) Job rotation — rotar entre diferentes roles/funciones. No es el proceso de primer día."},
+
+{d:5,q:"GDPR exige que una persona pueda solicitar la eliminación completa de todos sus datos personales de una organización. ¿Qué derecho ejerce?",
+o:["Data minimization","Purpose limitation","Right to be forgotten","Data portability"],c:2,
+e:"✓C) Right to be forgotten — solicitar borrado completo de datos personales. Derecho fundamental de GDPR (Art. 17).<br><br>✗A) Data minimization — recoger SOLO datos necesarios al inicio. No es derecho del individuo a solicitar borrado.<br>✗B) Purpose limitation — usar datos solo para el fin declarado. No implica borrado.<br>✗D) Data portability — derecho a recibir tus datos en formato portátil para llevarlos a otro servicio. No es borrado."},
+
+{d:5,q:"Una empresa recopila nombre, email, teléfono, fecha de nacimiento, historial médico y dirección de sus clientes para un programa de fidelización. Un auditor GDPR objeta. ¿Qué principio viola?",
+o:["Purpose limitation","Data minimization","Data sovereignty","Right to audit"],c:1,
+e:"✓B) Data minimization — historial médico y fecha de nacimiento NO son necesarios para fidelización. Solo recoger lo necesario.<br><br>✗A) Purpose limitation — usar datos solo para el fin declarado. Es posible que tengan fin declarado, pero el problema es que RECOPILAN datos innecesarios.<br>✗C) Data sovereignty — datos sujetos a leyes del país donde se almacenan. No es el problema aquí.<br>✗D) Right to audit — cláusula contractual para inspeccionar controles de un proveedor. No aplica."},
+
+{d:5,q:"Una empresa europea almacena datos personales de ciudadanos franceses en servidores ubicados en Singapur. ¿Qué concepto GDPR aplica?",
+o:["Data retention","Data classification","Data sovereignty","Data masking"],c:2,
+e:"✓C) Data sovereignty — datos sujetos a leyes del país donde se almacenan. Singapur tiene leyes diferentes a la UE → necesita salvaguardas.<br><br>✗A) Data retention — periodo de conservación de datos. No es el tema principal aquí.<br>✗B) Data classification — categorizar datos por sensibilidad. No trata de ubicación geográfica.<br>✗D) Data masking — ocultar parcialmente datos. No es el concepto relevante para ubicación de almacenamiento."},
+
+{d:5,q:"¿Quién en una organización DECIDE que los datos financieros deben clasificarse como 'Confidencial'?",
+o:["Data Custodian (IT)","Data Steward","Data Processor","Data Owner (ejecutivo)"],c:3,
+e:"✓D) Data Owner (ejecutivo) — DECIDE clasificación y quién accede. Responsable último de los datos.<br><br>✗A) Data Custodian (IT) — IMPLEMENTA controles técnicos definidos por el Owner. No decide clasificación.<br>✗B) Data Steward — cuida CALIDAD de datos (duplicados, consistencia). No decide clasificación.<br>✗C) Data Processor — procesa datos por cuenta del Controller (GDPR). No decide clasificación."},
+
+{d:5,q:"Bajo GDPR, ¿cuál es la diferencia entre Data Controller y Data Processor?",
+o:["Controller procesa datos, Processor decide cómo","Controller decide por qué y cómo procesar, Processor procesa por cuenta del Controller","Son sinónimos","Controller es siempre una persona, Processor siempre una empresa"],c:1,
+e:"✓B) Controller decide propósito y medios del procesamiento. Processor procesa por cuenta del Controller.<br><br>✗A) Invertido — Controller DECIDE, no procesa. Processor PROCESA, no decide.<br>✗C) Son sinónimos — tienen responsabilidades distintas bajo GDPR.<br>✗D) Controller persona, Processor empresa — ambos pueden ser personas u organizaciones."},
+
+{d:5,q:"Un empleado conecta su portátil personal a la red corporativa para trabajar. La empresa permite esto con ciertas restricciones. ¿Qué política aplica?",
+o:["COPE","CYOD","BYOD","MDM"],c:2,
+e:"✓C) BYOD — empleado usa SU dispositivo personal. La empresa permite con restricciones.<br><br>✗A) COPE — la EMPRESA compra y da el dispositivo. Aquí lo trajo el empleado.<br>✗B) CYOD — elige de lista aprobada por la empresa. No aplica si es dispositivo totalmente personal.<br>✗D) MDM — herramienta para GESTIONAR dispositivos móviles. No es una política de propiedad."},
+
+{d:5,q:"Una simulación de phishing trimestral muestra que el 15% de empleados hicieron click en el enlace malicioso. ¿Cuál debería ser la respuesta de la organización?",
+o:["Despedir a los que hicieron click","Formación adicional inmediata para los que cayeron, sin castigo","Ignorar — 15% es aceptable","Bloquear acceso email a los que fallaron"],c:1,
+e:"✓B) Formación adicional inmediata sin castigo — cultura sin castigo fomenta reporte de incidentes. El objetivo es bajar el % progresivamente.<br><br>✗A) Despedir — castigo excesivo y contraproducente. Nadie reportará incidentes si teme ser despedido.<br>✗C) Ignorar 15% — 15% es significativo. Con formación se puede reducir.<br>✗D) Bloquear acceso email — demasiado disruptivo para el negocio y castiga en vez de educar."},
+
+{d:5,q:"Un equipo de seguridad realiza un ejercicio donde el CISO, el director de IT, el legal y RRHH discuten en una sala cómo responderían a un ataque de ransomware, sin tocar sistemas. ¿Qué tipo de ejercicio es?",
+o:["Pentest","Red team exercise","Tabletop exercise","Disaster recovery test"],c:2,
+e:"✓C) Tabletop exercise — discusión verbal sin tocar sistemas reales. Participan CISO, IT, legal, RRHH. Económico y rápido.<br><br>✗A) Pentest — prueba técnica contra sistemas reales. No es discusión en sala.<br>✗B) Red team exercise — simulación real de ataque contra infraestructura. No es discusión.<br>✗D) Disaster recovery test — activa sistemas de respaldo (hot site, backups). Usa sistemas reales."},
+
+{d:4,q:"Un analista observa que un host interno está realizando escaneos de puertos contra múltiples servidores internos. Este comportamiento no es normal para ese host. ¿Qué indica probablemente?",
+o:["Actualización de inventario de red","El host está comprometido y el atacante realiza reconocimiento lateral","Error de configuración de NAC","Backup de red programado"],c:1,
+e:"✓B) Host comprometido — escaneo de puertos interno desde host que no debería hacerlo = movimiento lateral post-compromiso. El atacante busca más objetivos dentro de la red.<br><br>✗A) Actualización de inventario — las herramientas de inventario usan protocolos específicos (SNMP, WMI), no escaneos de puertos tipo Nmap.<br>✗C) Error de configuración de NAC — NAC controla acceso a la red, no genera escaneos de puertos.<br>✗D) Backup de red programado — los backups no realizan escaneos de puertos contra múltiples servidores."},
+];;
+
+// Shuffle questions
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
+
+let questions=[];
+let currentQ=0;
+let answers=[];
+let timerInterval;
+let timeLeft=90*60;
+let examFinished=false;
+let forceFinish=false;
+
+function startExam(){
+  // Shuffle and pick
+  questions=shuffle([...Q]);
+  answers=new Array(questions.length).fill(-1);
+  currentQ=0;
+  timeLeft=90*60;
+  examFinished=false;
+  
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('examArea').classList.remove('hidden');
+  document.getElementById('timerBar').classList.remove('hidden');
+  
+  buildGrid();
+  showQuestion(0);
+  startTimer();
+}
+
+function buildGrid(){
+  const g=document.getElementById('qGrid');
+  g.innerHTML='';
+  for(let i=0;i<questions.length;i++){
+    const d=document.createElement('div');
+    d.className='q-dot'+(i===currentQ?' current':'');
+    d.textContent=i+1;
+    d.onclick=()=>showQuestion(i);
+    g.appendChild(d);
+  }
+}
+
+function updateGrid(){
+  const dots=document.querySelectorAll('.q-dot');
+  dots.forEach((d,i)=>{
+    d.className='q-dot';
+    if(i===currentQ)d.classList.add('current');
+    if(answers[i]>=0)d.classList.add('answered');
+    if(examFinished){
+      if(answers[i]===questions[i].c)d.classList.add('correct-dot');
+      else if(answers[i]>=0)d.classList.add('wrong-dot');
+    }
+  });
+}
+
+function showQuestion(idx){
+  currentQ=idx;
+  const q=questions[idx];
+  const domNames=['','D1 General','D2 Amenazas','D3 Arquitectura','D4 Operaciones','D5 Programa'];
+  const letters='ABCD';
+  
+  let html=`<div class="q-card">
+    <div class="q-num">Pregunta ${idx+1} de ${questions.length} <span class="q-domain">${domNames[q.d]}</span></div>`;
+  
+  if(q.s) html+=`<div class="q-scenario">${q.s}</div>`;
+  html+=`<div class="q-text">${q.q}</div>`;
+  
+  q.o.forEach((opt,oi)=>{
+    let cls='opt';
+    if(examFinished){
+      cls+=' disabled';
+      if(oi===q.c)cls+=' correct';
+      else if(oi===answers[idx])cls+=' wrong';
+    }else{
+      if(oi===answers[idx])cls+=' selected';
+    }
+    html+=`<div class="${cls}" data-i="${oi}" onclick="selectOpt(${idx},${oi})"><span class="opt-letter">${letters[oi]}</span>${opt}</div>`;
+  });
+  
+  if(examFinished && q.e){
+    html+=`<div class="explanation show"><b>Explicación:</b> ${q.e}</div>`;
+  }
+  
+  html+=`</div>`;
+  
+  document.getElementById('questionContainer').innerHTML=html;
+  document.getElementById('btnPrev').disabled=idx===0;
+  document.getElementById('btnNext').textContent=idx===questions.length-1?'Finalizar':'Siguiente →';
+  document.getElementById('navInfo').textContent=`${idx+1} / ${questions.length}`;
+  document.getElementById('progressFill').style.width=((answers.filter(a=>a>=0).length/questions.length)*100)+'%';
+  document.getElementById('progressText').textContent=answers.filter(a=>a>=0).length+' / '+questions.length+' respondidas';
+  
+  updateGrid();
+}
+
+function selectOpt(qi,oi){
+  if(examFinished)return;
+  answers[qi]=oi;
+  showQuestion(qi);
+}
+
+function navQ(dir){
+  const next=currentQ+dir;
+  if(next>=0&&next<questions.length)showQuestion(next);
+  else if(next>=questions.length)finishExam();
+}
+
+function startTimer(){
+  timerInterval=setInterval(()=>{
+    timeLeft--;
+    if(timeLeft<=0){clearInterval(timerInterval);finishExam();return;}
+    const m=Math.floor(timeLeft/60);
+    const s=timeLeft%60;
+    const el=document.getElementById('timer');
+    el.textContent=m+':'+(s<10?'0':'')+s;
+    el.className='timer'+(timeLeft<300?' critical':timeLeft<600?' warning':'');
+  },1000);
+}
+
+function finishExam(){
+  if(examFinished)return;
+  if(!examFinished && answers.filter(a=>a>=0).length<questions.length && !forceFinish){
+    const unanswered=questions.length-answers.filter(a=>a>=0).length;
+    // Show inline confirmation
+    const fb=document.querySelector('.btn-finish');
+    fb.textContent=`⚠️ ${unanswered} sin responder — Click otra vez para confirmar`;
+    fb.style.background='#f59e0b';fb.style.borderColor='#f59e0b';
+    forceFinish=true;
+    setTimeout(()=>{forceFinish=false;fb.textContent='Finalizar examen';fb.style.background='#dc2626';fb.style.borderColor='#dc2626';},4000);
+    return;
+  }
+  
+  clearInterval(timerInterval);
+  examFinished=true;
+  
+  // Calculate scores
+  let total=0,correct=0;
+  const domScores={1:{t:0,c:0},2:{t:0,c:0},3:{t:0,c:0},4:{t:0,c:0},5:{t:0,c:0}};
+  
+  questions.forEach((q,i)=>{
+    total++;
+    domScores[q.d].t++;
+    if(answers[i]===q.c){correct++;domScores[q.d].c++;}
+  });
+  
+  const pct=Math.round((correct/total)*100);
+  // CompTIA uses 100-900 scale, 750 to pass. Approximate:
+  const score=Math.round(100+(pct/100)*800);
+  const pass=score>=750;
+  
+  const domNames={1:'D1 General',2:'D2 Amenazas',3:'D3 Arquitectura',4:'D4 Operaciones',5:'D5 Programa'};
+  
+  let html=`<h2>Resultado del examen</h2>
+    <div class="score-big ${pass?'pass':'fail'}">${score}</div>
+    <div class="verdict" style="color:${pass?'var(--green)':'var(--red)'}">${pass?'✅ APROBADO':'❌ NO APROBADO'} — ${correct}/${total} correctas (${pct}%)</div>
+    <p style="color:var(--tx2);font-size:13px;margin-bottom:20px">Puntuación para aprobar: 750 / 900</p>
+    <div class="domain-scores">`;
+  
+  for(let d=1;d<=5;d++){
+    const ds=domScores[d];
+    const dp=ds.t?Math.round((ds.c/ds.t)*100):0;
+    html+=`<div class="d-score">
+      <div class="d-score-label">${domNames[d]}</div>
+      <div class="d-score-pct" style="color:${dp>=80?'var(--green)':dp>=60?'var(--amber)':'var(--red)'}">${dp}%</div>
+      <div class="d-score-detail">${ds.c}/${ds.t}</div>
+    </div>`;
+  }
+  
+  html+=`</div>
+    <div style="margin:24px 0">
+      <button class="btn btn-primary" onclick="reviewExam()">📝 Revisar respuestas</button>
+      <button class="btn" onclick="location.reload()" style="margin-left:8px">🔄 Nuevo examen</button>
+    </div>`;
+  
+  document.getElementById('examArea').classList.add('hidden');
+  document.getElementById('resultsArea').classList.remove('hidden');
+  document.getElementById('downloadArea').classList.remove('hidden');
+  document.getElementById('resultsArea').innerHTML=html;
+}
+
+function reviewExam(){
+  document.getElementById('resultsArea').classList.add('hidden');
+  document.getElementById('examArea').classList.remove('hidden');
+  document.querySelector('.btn-finish').style.display='none';
+  showQuestion(0);
+}
+
+
+// ===== MD DOWNLOAD FUNCTIONALITY =====
+function generateMD() {
+    const letters = 'ABCD';
+    let md = `# Security+ SY0-701 — Simulacro #2 — Correcciones\n\n`;
+    md += `**Total:** ${Q.length} preguntas\n\n---\n\n`;
+    
+    Q.forEach((q, i) => {
+        md += `## P${i+1} — Dominio ${q.d}\n\n`;
+        md += `**${q.q}**\n\n`;
+        q.o.forEach((opt, j) => {
+            const mark = j === q.c ? '✓' : '✗';
+            md += `${mark} **${letters[j]})** ${opt}\n\n`;
+        });
+        md += `**Explicación:**\n\n${q.e.replace(/<br>/g,'\n')}\n\n---\n\n`;
+    });
+    
+    const blob = new Blob([md], {type: 'text/markdown'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'SecurityPlus_Simulacro_2_Correcciones.md';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+
+// ===== REVIEW-ONLY MODE =====
+function reviewOnly(){
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('timerBar').classList.remove('hidden');
+  document.getElementById('examArea').classList.remove('hidden');
+  document.getElementById('downloadArea').classList.remove('hidden');
+  
+  // Load questions and set exam as finished
+  questions=[...Q];
+  answers=new Array(questions.length).fill(-1);
+  examFinished=true;
+  
+  // Build question grid
+  const grid=document.getElementById('qGrid');
+  let gh='';
+  questions.forEach((_,i)=>{
+    gh+=`<div class="q-dot wrong-dot" onclick="showQuestion(${i})">${i+1}</div>`;
+  });
+  grid.innerHTML=gh;
+  
+  // Hide timer, show progress as "Modo revisión"
+  document.getElementById('timer').textContent='📖';
+  document.getElementById('progressText').textContent='Modo revisión';
+  document.getElementById('progressFill').style.width='100%';
+  
+  // Hide finish button
+  document.querySelector('.btn-finish').style.display='none';
+  
+  showQuestion(0);
+}
+</script>
+</body>
+</html>
