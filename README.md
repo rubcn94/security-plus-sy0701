@@ -24,16 +24,6 @@ Sec+/
 
 ---
 
-## Simulacros
-
-| # | Archivo | Preguntas | Multi-respuesta |
-|---|---------|-----------|-----------------|
-| 1 | Simulacro.html | 90 | ~20% |
-| 2 | Simulacro_2.html | 90 | ~20% |
-| 3 | Simulacro_3.html | 90 | ~20% |
-| 4 | Simulacro_4.html | 90 | ~20% |
-| 5–11 | Simulacro_6 → 11 | 90 c/u | ~20–22% |
-
 **Total: 990 preguntas únicas con explicaciones detalladas.**
 
 Distribución por dominio (por simulacro):
